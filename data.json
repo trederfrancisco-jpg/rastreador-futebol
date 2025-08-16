@@ -5,53 +5,65 @@
       "Palmeiras": ["D", "V", "Flamengo"],
       "Botafogo": ["V", "E: 1x1", "Grêmio"],
       "Athletico-PR": ["D", "E: 0x0", "São Paulo"],
-      "Corinthians": ["E: 1x1", "D", "Fortaleza"]
+      "Corinthians": ["E: 1x1", "D", "Fortaleza"],
+      "São Paulo": ["V", "V", "Cruzeiro"],
+      "Vasco": ["E: 2x2", "V", "Bahia"],
+      "Grêmio": ["D", "D", "Botafogo"]
     },
     "39": {
       "Arsenal": ["V", "V", "Liverpool"],
       "Liverpool": ["D", "V", "Arsenal"],
       "Manchester City": ["V", "E: 2x2", "Aston Villa"],
-      "Newcastle": ["V", "D", "Chelsea"]
+      "Newcastle": ["V", "D", "Chelsea"],
+      "Tottenham": ["E: 1x1", "V", "Brighton"]
     },
     "140": {
       "Barcelona": ["V", "V", "Real Madrid"],
       "Real Madrid": ["D", "E: 1x1", "Barcelona"],
-      "Getafe": ["E: 0x0", "D", "Atlético de Madrid"]
+      "Atlético de Madrid": ["V", "V", "Sevilha"],
+      "Getafe": ["E: 0x0", "D", "Valencia"]
     },
     "78": {
       "Bayern de Munique": ["V", "V", "Borussia Dortmund"],
       "Eintracht Frankfurt": ["D", "E: 1x1", "RB Leipzig"],
-      "Bayer Leverkusen": ["V", "V", "Stuttgart"]
+      "Bayer Leverkusen": ["V", "V", "Stuttgart"],
+      "Dortmund": ["D", "D", "Bayern"]
     },
     "135": {
       "Inter de Milão": ["V", "E: 0x0", "Napoli"],
       "Napoli": ["E: 2x2", "V", "Juventus"],
-      "Juventus": ["D", "E: 1x1", "Milan"]
+      "Juventus": ["D", "E: 1x1", "Milan"],
+      "AC Milan": ["V", "D", "Lazio"]
     },
     "61": {
       "PSG": ["V", "V", "Olympique de Marselha"],
       "Lille": ["E: 0x0", "D", "Monaco"],
-      "Marselha": ["D", "E: 1x1", "PSG"]
+      "Marselha": ["D", "E: 1x1", "PSG"],
+      "Monaco": ["V", "V", "Lille"]
     },
     "88": {
       "Ajax": ["V", "E: 0x0", "PSV"],
       "Feyenoord": ["V", "V", "AZ Alkmaar"],
-      "PSV": ["D", "V", "Ajax"]
+      "PSV": ["D", "V", "Ajax"],
+      "Utrecht": ["E: 1x1", "D", "Feyenoord"]
     },
     "94": {
       "Benfica": ["V", "V", "Porto"],
       "Porto": ["D", "E: 1x1", "Benfica"],
-      "Sporting": ["V", "V", "Braga"]
+      "Sporting": ["V", "V", "Braga"],
+      "Braga": ["D", "D", "Sporting"]
     },
     "262": {
       "Club América": ["V", "E: 0x0", "Chivas"],
       "Tigres": ["D", "D", "Monterrey"],
-      "Chivas": ["E: 1x1", "D", "América"]
+      "Chivas": ["E: 1x1", "D", "América"],
+      "Pachuca": ["V", "V", "Tigres"]
     },
     "10217": {
       "Corinthians": ["V", "E: 0x0", "Palmeiras"],
       "Flamengo": ["V", "V", "São Paulo"],
-      "Palmeiras": ["D", "E: 1x1", "Corinthians"]
+      "Palmeiras": ["D", "E: 1x1", "Corinthians"],
+      "São Paulo": ["D", "D", "Flamengo"]
     }
   }
 }
