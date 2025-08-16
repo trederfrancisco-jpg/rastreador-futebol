@@ -2,28 +2,42 @@
   "2025": {
     "71": {
       "Flamengo": {
-        "results": ["V", "E: 0x0"],
-        "next_opponent": "Juventude",
-        "position": 4,
-        "points": 32,
-        "form_opponent": "D, D, D",
-        "opponent_table": "Z4",
+        "results": ["D", "E: 0x0"],
+        "next_opponent": "Palmeiras",
+        "position": 8,
+        "points": 24,
+        "form_opponent": "V, D",
+        "opponent_table": "Top 10",
         "home_away": "Casa",
         "injuries": "Nenhum",
-        "avg_goals": 1.9,
-        "avg_corners": 6.4
+        "avg_goals": 1.5,
+        "avg_corners": 5.2
       },
-      "Palmeiras": {
+      "Athletico-PR": {
         "results": ["E: 1x1", "D"],
-        "next_opponent": "Grêmio",
-        "position": 2,
-        "points": 36,
-        "form_opponent": "E, D, V",
-        "opponent_table": "Meio da tabela",
+        "next_opponent": "São Paulo",
+        "position": 11,
+        "points": 22,
+        "form_opponent": "D, D",
+        "opponent_table": "Z4",
+        "home_away": "Casa",
+        "injuries": "1 titular",
+        "avg_goals": 1.3,
+        "avg_corners": 4.8
+      }
+    },
+    "39": {
+      "Arsenal": {
+        "results": ["V", "V"],
+        "next_opponent": "Liverpool",
+        "position": 1,
+        "points": 45,
+        "form_opponent": "E, D",
+        "opponent_table": "Top 6",
         "home_away": "Fora",
-        "injuries": "Atacante titular",
-        "avg_goals": 1.7,
-        "avg_corners": 5.8
+        "injuries": "2 titulares",
+        "avg_goals": 2.1,
+        "avg_corners": 6.8
       }
     }
   }
