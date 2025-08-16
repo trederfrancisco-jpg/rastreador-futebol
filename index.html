@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rastreador de Times - Chance de Gol/Vitória</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #121212; color: white; display: flex; height: 100vh; }
+    #sidebar { width: 300px; background: #1e1e1e; padding: 20px; box-sizing: border-box; overflow-y: auto; }
+    #content { flex-grow: 1; padding: 20px; box-sizing: border-box; overflow-y: auto; background: #222; }
+    h1, h2 { margin-top: 0; }
+    select, button { width: 100%; padding: 10px; margin-bottom: 10px; background: #333; border: none; color: white; border-radius: 4px; font-size: 1rem; cursor: pointer; }
+    button:hover, select:hover { background: #555; }
+    #results { margin-top: 15px; max-height: 70vh; overflow-y: auto; background: #121212; padding: 10px; border-radius: 6px; }
+    .item { padding: 8px 6px; border-bottom: 1px solid #444; }
+    .item:last-child { border-bottom: none; }
+    .loading { font-style: italic; color: #aaa; }
+    .error { color: #ff6b6b; font-weight: bold; }
+    nav { display: flex; margin-bottom: 15px; }
+    nav button { flex: 1; margin-right: 5px; }
+    nav button:last-child { margin-right: 0; }
+    nav button.active { background: #ff9800; color: black; font-weight: bold; }
+    .section-title { font-weight: bold; margin-top: 10px; }
+    .tip { font-style: italic; color: #bbb; margin-top: 10px; }
+    #trackerSection { display: none; margin-top: 10px; padding: 10px; background-color: rgba(255, 255, 255, 0.9); border-radius: 5px; color: #000; }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <h1>Rastreador de Times</h1>
+    <label for="leagueSelect">Selecione Campeonato:</label>
+    <select id="leagueSelect" onchange="loadData()">
+      <option value="">Selecione um campeonato</option>
+      <option value="71">🇧🇷 Brasileirão Série A</option>
+      <option value="39">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League (Inglaterra)</option>
+      <option value="140">🇪🇸 La Liga (Espanha)</option>
+      <option value="78">🇩🇪 Bundesliga (Alemanha)</option>
+      <option value="135">🇮🇹 Serie A (Itália)</option>
+      <option value="61">🇫🇷 Ligue 1 (França)</option>
+      <option value="88">🇳🇱 Eredivisie (Holanda)</option>
+      <option value="94">🇵🇹 Primeira Liga (Portugal)</option>
+      <option value="262">🇲🇽 Liga MX (México)</option>
+      <option value="10217">⚽ Brasileirão Feminino</option>
+    </select>
+    <nav>
+      <button id="btnChance" class="active">Chance de Gol/Vitória</button>
+      <button id="btnZeroZero">Jogos 0x0</button>
+    </nav>
+    <div id="sidebarInfo">Selecione um campeonato e escolha uma opção.</div>
+  </div>
+
+  <div id="content">
+    <h2 id="contentTitle">Detalhes</h2>
+    <div id="results"></div>
+    <button class="openbtn" id="trackerBtn" onclick="toggleTracker()">Abrir/Fechar Menu Rastreador</button>
+    <div id="trackerSection"></div>
+  </div>
+
+  <script>
+    let teamResults = {};
+    let currentTab = "chance";
+
+    const leagueSelect = document.getElementById("leagueSelect");
+    const resultsDiv = document.getElementById("results");
+    const sidebarInfo = document.getElementById("sidebarInfo");
+    const contentTitle = document.getElementById("contentTitle");
+
+    const btnChance = document.getElementById("btnChance");
+    const btnZeroZero = document.getElementById("btnZeroZero");
+
+    btnChance.addEventListener("click", function () {
+      currentTab = "chance";
+      updateTabs();
+      loadData();
+    });
+    btnZeroZero.addEventListener("click", function () {
+      currentTab = "zeroZero";
+      updateTabs();
+      loadData();
+    });
+
+    function updateTabs() {
+      if (currentTab === "chance") {
+        btnChance.classList.add("active");
+        btnZeroZero.classList.remove("active");
+        contentTitle.textContent = "Times com Chance de Gol/Vitória";
+      } else {
+        btnChance.classList.remove("active");
+        btnZeroZero.classList.add("active");
+        contentTitle.textContent = "Jogos 0x0";
+      }
+      resultsDiv.innerHTML = "";
+      sidebarInfo.textContent = "";
+    }
+
+    async function fetchTeamResults(leagueId) {
+      resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados locais...</p>";
+
+      try {
+        const response = await fetch('data.json');
+        if (!response.ok) throw new Error("Erro ao carregar data.json");
+        const data = await response.json();
+
+        const year = "2025";
+        if (data[year] && data[year][leagueId]) {
+          teamResults = data[year][leagueId];
+          resultsDiv.innerHTML = ""; // limpa loading
+        } else {
+          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado para este campeonato.</p>";
+        }
+      } catch (err) {
+        console.error("Erro ao carregar JSON:", err);
+        resultsDiv.innerHTML = `<p class='error'>❌ Falha ao carregar dados. Verifique data.json.</p>`;
+      }
+    }
+
+    function checkLastGameZeroZero(team) {
+      const results = teamResults[team] || [];
+      return results.length > 1 && results[1] && results[1].startsWith("E: 0x0");
+    }
+
+    function checkChanceOfWinOrDraw(team) {
+      const results = teamResults[team] || [];
+      return results.length > 1 &&
+        ((results[1].startsWith("E") && (results[0] === "D" || results[0].startsWith("E"))) ||
+         (results[1] === "D" && (results[0] === "E" || results[0] === "D")));
+    }
+
+    function loadChanceOfGoalOrWin(leagueId) {
+      const leagueTeams = Object.keys(teamResults);
+      const chanceOfGoal = leagueTeams.filter(checkLastGameZeroZero);
+      const chanceOfWin = leagueTeams.filter(checkChanceOfWinOrDraw);
+
+      if (chanceOfGoal.length === 0 && chanceOfWin.length === 0) {
+        resultsDiv.innerHTML = "<p>Nenhum time atende aos critérios.</p>";
+      } else {
+        let html = "";
+        if (chanceOfGoal.length > 0) {
+          html += "<div class='section-title'>🎯 Chance de Gol (Último Jogo: 0x0)</div>";
+          html += chanceOfGoal.map(t => `<div class='item'>${t} (Último: ${teamResults[t][1]})</div>`).join("");
+        }
+        if (chanceOfWin.length > 0) {
+          html += "<div class='section-title'>💪 Chance de Vitória/Empate (2 Jogos sem Vitória)</div>";
+          html += chanceOfWin.map(t => {
+            const r = teamResults[t];
+            return `<div class='item'>${t} (J1: ${r[1] || '?'}, J2: ${r[0] || '?'})</div>`;
+          }).join("");
+        }
+        html += "<div class='tip'>💡 Dica: Verifique o adversário, horário e escalação antes de apostar.</div>";
+        resultsDiv.innerHTML = html;
+      }
+    }
+
+    function loadZeroZeroGames(leagueId) {
+      const zeroZeroGames = Object.keys(teamResults).filter(checkLastGameZeroZero);
+      if (zeroZeroGames.length === 0) {
+        resultsDiv.innerHTML = "<p>Nenhum jogo 0x0 encontrado.</p>";
+      } else {
+        resultsDiv.innerHTML = zeroZeroGames.map(t => `<div class='item'>${t} (Último jogo: ${teamResults[t][1]})</div>`).join("");
+        resultsDiv.innerHTML += "<div class='tip'>💡 Dica: Grande chance de gol no próximo jogo!</div>";
+      }
+    }
+
+    async function loadData() {
+      const leagueId = leagueSelect.value;
+      if (!leagueId) {
+        resultsDiv.innerHTML = "";
+        sidebarInfo.textContent = "Selecione um campeonato.";
+        return;
+      }
+      await fetchTeamResults(leagueId);
+      if (currentTab === "chance") {
+        loadChanceOfGoalOrWin(leagueId);
+      } else {
+        loadZeroZeroGames(leagueId);
+      }
+    }
+
+    function toggleTracker() {
+      const trackerSection = document.getElementById("trackerSection");
+      const trackerBtn = document.getElementById("trackerBtn");
+      if (trackerSection.style.display === "none" || !trackerSection.style.display) {
+        trackerSection.style.display = "block";
+        trackerBtn.textContent = "Fechar Menu Rastreador";
+        updateTrackerDetails();
+      } else {
+        trackerSection.style.display = "none";
+        trackerBtn.textContent = "Abrir/Fechar Menu Rastreador";
+      }
+    }
+
+    function updateTrackerDetails() {
+      const trackerSection = document.getElementById("trackerSection");
+      trackerSection.innerHTML = "<h4>🔍 Rastreador Diário</h4>";
+      const leagueId = leagueSelect.value;
+      if (leagueId && teamResults) {
+        const zeroZeroTeams = Object.keys(teamResults).filter(checkLastGameZeroZero);
+        if (zeroZeroTeams.length === 0) {
+          trackerSection.innerHTML += "<p>Nenhum time com último jogo 0x0.</p>";
+        } else {
+          zeroZeroTeams.forEach(team => {
+            const r = teamResults[team];
+            const div = document.createElement("div");
+            div.innerHTML = `<strong>⚽ ${team}</strong>: Último: ${r[1]}, Próximo: <em>${r[2]}</em>`;
+            trackerSection.appendChild(div);
+          });
+        }
+      } else {
+        trackerSection.innerHTML += "<p>Selecione um campeonato.</p>";
+      }
+    }
+  </script>
+</body>
+</html>
