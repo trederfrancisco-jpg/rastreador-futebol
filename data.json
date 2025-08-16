@@ -1,0 +1,46 @@
+{
+  "2025": {
+    "71": {
+      "Flamengo": ["V", "E: 0x0", "Palmeiras"],
+      "Athletico-PR": ["D", "E: 0x0", "São Paulo"],
+      "Botafogo": ["V", "D", "Fluminense"]
+    },
+    "39": {
+      "Arsenal": ["V", "E: 0x0", "Liverpool"],
+      "Newcastle": ["D", "E: 0x0", "Manchester City"],
+      "Aston Villa": ["V", "D", "Tottenham"]
+    },
+    "140": {
+      "Barcelona": ["V", "E: 0x0", "Real Madrid"],
+      "Getafe": ["E: 1x1", "E: 0x0", "Atlético de Madrid"]
+    },
+    "78": {
+      "Bayern de Munique": ["V", "E: 0x0", "Borussia Dortmund"],
+      "Eintracht Frankfurt": ["D", "D", "RB Leipzig"]
+    },
+    "135": {
+      "Inter de Milão": ["V", "E: 0x0", "Napoli"],
+      "Lazio": ["D", "E: 1x1", "Juventus"]
+    },
+    "61": {
+      "PSG": ["V", "V", "Olympique de Marselha"],
+      "Lille": ["D", "E: 0x0", "Monaco"]
+    },
+    "88": {
+      "Ajax": ["V", "E: 0x0", "PSV"],
+      "Feyenoord": ["D", "V", "AZ Alkmaar"]
+    },
+    "94": {
+      "Benfica": ["V", "V", "Porto"],
+      "Sporting": ["E: 1x1", "E: 0x0", "Braga"]
+    },
+    "262": {
+      "Club América": ["V", "E: 0x0", "Chivas"],
+      "Tigres": ["D", "D", "Monterrey"]
+    },
+    "10217": {
+      "Corinthians": ["V", "E: 0x0", "Palmeiras"],
+      "Flamengo": ["V", "V", "São Paulo"]
+    }
+  }
+}
