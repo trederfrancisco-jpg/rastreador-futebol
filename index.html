@@ -22,6 +22,8 @@
     .details { font-size: 0.9em; color: #ccc; margin-top: 6px; line-height: 1.5; }
     .tip { font-style: italic; color: #bbb; margin-top: 15px; text-align: center; }
     #trackerSection { display: none; margin-top: 10px; padding: 10px; background-color: rgba(255, 255, 255, 0.9); border-radius: 5px; color: #000; }
+    .link-tabela { display: block; text-align: center; margin: 10px 0; padding: 8px; background: #333; border-radius: 4px; color: #4caf50; text-decoration: none; font-weight: bold; }
+    .link-tabela:hover { background: #555; }
   </style>
 </head>
 <body>
@@ -36,11 +38,8 @@
       <option value="78">🇩🇪 Bundesliga</option>
       <option value="135">🇮🇹 Serie A</option>
       <option value="61">🇫🇷 Ligue 1</option>
-      <option value="88">🇳🇱 Eredivisie</option>
-      <option value="94">🇵🇹 Primeira Liga</option>
-      <option value="262">🇲🇽 Liga MX</option>
-      <option value="10217">⚽ Brasileirão Feminino</option>
     </select>
+    <div id="tabelaLink"></div>
     <div id="sidebarInfo" class="info-box">Selecione um campeonato.</div>
   </div>
 
@@ -58,30 +57,62 @@
     const leagueSelect = document.getElementById("leagueSelect");
     const resultsDiv = document.getElementById("results");
     const sidebarInfo = document.getElementById("sidebarInfo");
+    const tabelaLink = document.getElementById("tabelaLink");
+
+    const leagueLinks = {
+      "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
+      "39": "https://www.sofascore.com/tournament/england/premier-league/17",
+      "140": "https://www.sofascore.com/tournament/spain/laliga/8",
+      "78": "https://www.sofascore.com/tournament/germany/bundesliga/35",
+      "135": "https://www.sofascore.com/tournament/italy/serie-a/23",
+      "61": "https://www.sofascore.com/tournament/france/ligue-1/34"
+    };
+
+    const leagueNames = {
+      "71": "Brasileirão Série A",
+      "39": "Premier League",
+      "140": "La Liga",
+      "78": "Bundesliga",
+      "135": "Serie A",
+      "61": "Ligue 1"
+    };
+
+    function updateTabelaLink(leagueId) {
+      if (leagueId && leagueLinks[leagueId]) {
+        tabelaLink.innerHTML = `
+          <a href="${leagueLinks[leagueId]}" target="_blank" class="link-tabela">
+            🔍 Ver tabela do ${leagueNames[leagueId]}
+          </a>
+        `;
+      } else {
+        tabelaLink.innerHTML = "";
+      }
+    }
 
     async function loadData() {
       const leagueId = leagueSelect.value;
       if (!leagueId) {
         resultsDiv.innerHTML = "";
         sidebarInfo.textContent = "Selecione um campeonato.";
+        tabelaLink.innerHTML = "";
         return;
       }
 
-      resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados do campeonato...</p>";
+      resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados...</p>";
       try {
         const response = await fetch('/data.json?' + new Date().getTime());
-        if (!response.ok) throw new Error("Erro ao carregar data.json");
+        if (!response.ok) throw new Error("HTTP " + response.status);
         const data = await response.json();
         const year = "2025";
         if (data[year] && data[year][leagueId]) {
           teamResults = data[year][leagueId];
           loadChanceOfWinOrDraw(leagueId);
         } else {
-          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado para este campeonato.</p>";
+          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
         }
       } catch (err) {
-        console.error("Erro ao carregar JSON:", err);
-        resultsDiv.innerHTML = `<p class='error'>❌ Falha ao carregar dados. Verifique o console.</p>`;
+        console.error("Erro:", err);
+        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados. Veja o console.</p>";
       }
     }
 
@@ -95,7 +126,7 @@
       });
 
       if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time com 2 jogos sem vitória neste campeonato.</p>";
+        resultsDiv.innerHTML = "<p>Nenhum time com 2 jogos sem vitória.</p>";
       } else {
         let html = "<div class='section-title'>🎯 Times com Potencial de Reação</div>";
         filtered.forEach(t => {
@@ -115,7 +146,8 @@
         html += "<div class='tip'>💡 Dica: Foco em times com ⭐ Alta Confiança.</div>";
         resultsDiv.innerHTML = html;
       }
-      sidebarInfo.textContent = `Campeonato selecionado: ${leagueId}`;
+      sidebarInfo.textContent = `Campeonato selecionado: ${leagueNames[leagueId]}`;
+      updateTabelaLink(leagueId);
     }
 
     function toggleTracker() {
