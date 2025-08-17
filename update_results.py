@@ -1,81 +1,38 @@
-# update_results.py
-import requests
-import json
-import time
-from datetime import datetime
+async function loadData() {
+  const leagueId = leagueSelect.value;
+  if (!leagueId) {
+    resultsDiv.innerHTML = "Selecione um campeonato e escolha uma opção.";
+    sidebarInfo.textContent = "Selecione um campeonato.";
+    tabelaLink.innerHTML = "";
+    return;
+  }
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
-    "Accept": "application/json",
-    "Referer": "https://www.sofascore.com/"
-}
+  resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados...</p>";
+  try {
+    const response = await fetch('/data.json?' + new Date().getTime());
+    if (!response.ok) throw new Error("Erro HTTP: " + response.status);
+    const data = await response.json();
+    const year = "2025";
 
-LEAGUE_IDS = {
-    "71": {"name": "Brasileirão Série A", "sofascore_id": "103"},
-    "39": {"name": "Premier League", "sofascore_id": "3"},
-    "140": {"name": "La Liga", "sofascore_id": "8"},
-    "78": {"name": "Bundesliga", "sofascore_id": "21"},
-    "135": {"name": "Serie A", "sofascore_id": "19"},
-    "61": {"name": "Ligue 1", "sofascore_id": "16"},
-    "88": {"name": "Eredivisie", "sofascore_id": "11"},
-    "94": {"name": "Primeira Liga", "sofascore_id": "18"},
-    "262": {"name": "Liga MX", "sofascore_id": "26"},
-    "10217": {"name": "Brasileirão Feminino", "sofascore_id": "1154"}
-}
-
-def get_last_match_result(team_name, tournament_id):
-    try:
-        url = f"https://www.sofascore.com/api/v1/tournament/{tournament_id}/standings/total"
-        response = requests.get(url, headers=HEADERS, timeout=10)
-        if response.status_code != 200:
-            return None
-
-        data = response.json()
-        for team in data.get("standings", []):
-            if team_name.lower() in team["team"]["name"].lower():
-                recent = team.get("recentResults", [])
-                last_two = recent[:2] if len(recent) >= 2 else (recent + ["?"] * 2)[:2]
-                result_map = {"W": "V", "L": "D", "D": "E: 1x1"}
-                formatted = [result_map.get(r, r) for r in last_two]
-                next_opp = "Adversário"
-                return formatted + [next_opp]
-        return ["?", "?", "Adversário"]
-    except Exception as e:
-        print(f"Erro ao buscar {team_name}: {e}")
-        return ["?", "?", "Adversário"]
-
-def main():
-    print("🔄 Iniciando atualização de resultados...")
-    data = {"2025": {}}
-
-    teams_by_league = {
-        "71": ["Flamengo", "Palmeiras", "Botafogo"],
-        "39": ["Arsenal", "Liverpool", "Manchester City"],
-        "140": ["Barcelona", "Real Madrid"],
-        "78": ["Bayern", "Dortmund"],
-        "135": ["Inter", "Juventus"],
-        "61": ["PSG", "Marselha"],
-        "88": ["Ajax", "Feyenoord"],
-        "94": ["Benfica", "Porto"],
-        "262": ["América", "Chivas"],
-        "10217": ["Corinthians", "Flamengo"]
+    if (data[year] && data[year][leagueId]) {
+      teamResults = data[year][leagueId];
+      loadChanceOfWinOrDraw(leagueId); // Chama a função separada
+    } else {
+      resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado para este campeonato.</p>";
     }
 
-    for league_id, team_list in teams_by_league.items():
-        league_data = {}
-        tournament_id = LEAGUE_IDS[league_id]["sofascore_id"]
-        for team in team_list:
-            print(f"Buscando dados de {team} ({LEAGUE_IDS[league_id]['name']})")
-            result = get_last_match_result(team, tournament_id)
-            league_data[team] = result
-            time.sleep(1.5)
-        data["2025"][league_id] = league_data
+    sidebarInfo.textContent = `Campeonato selecionado: ${leagueNames[leagueId]}`;
+    updateTabelaLink(leagueId);
 
-    with open('data.json', 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-
-    print("✅ data.json atualizado com sucesso!")
-    print(f"📅 Atualizado em: {datetime.now().strftime('%d/%m/%Y %H:%M')}")
-
-if __name__ == "__main__":
-    main()
+  } catch (err) {
+    console.error("Erro ao carregar dados:", err);
+    resultsDiv.innerHTML = `
+      <p class='error'>
+        ❌ Falha ao carregar dados.<br>
+        Verifique:<br>
+        1. Se o data.json está na raiz<br>
+        2. Se o formato está correto (JSON válido)<br>
+        3. Atualize com Ctrl + F5
+      </p>`;
+  }
+}
