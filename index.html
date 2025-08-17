@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rastreador de Times - Chance de Gol/Vitória</title>
+  <title>Rastreador de Times - Chance de Vitória/Empate</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #121212; color: white; display: flex; height: 100vh; }
     #sidebar { width: 320px; background: #1e1e1e; padding: 20px; box-sizing: border-box; overflow-y: auto; }
@@ -47,7 +47,7 @@
   </div>
 
   <div id="content">
-    <h2>Chance de Gol/Vitória</h2>
+    <h2>Chance de Vitória/Empate (2 Jogos sem Vitória)</h2>
     <div id="results">Selecione um campeonato e escolha uma opção.</div>
     <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
       Abrir/Fechar Menu Rastreador
@@ -120,26 +120,7 @@
           teamResults = data[year][leagueId];
           const teams = Object.keys(teamResults);
 
-          // --- SEÇÃO 1: Chance de Gol (último jogo 0x0) ---
-          const gol0x0 = teams.filter(t => {
-            const r = teamResults[t];
-            return r[0] && (r[0] === "E: 0x0" || r[0].includes("0x0"));
-          });
-
-          let html = "";
-          if (gol0x0.length > 0) {
-            html += "<div class='section-title'>🎯 Chance de Gol (Último Jogo: 0x0)</div>";
-            gol0x0.forEach(t => {
-              const r = teamResults[t];
-              html += `
-                <div class='item'>
-                  <strong>${t}</strong> (Último: ${r[0]})
-                  <div class='details'>🆚 Próximo: ${r[2] || 'Desconhecido'}</div>
-                </div>`;
-            });
-          }
-
-          // --- SEÇÃO 2: 2 jogos sem vitória ---
+          // --- SEÇÃO: 2 jogos sem vitória ---
           const semVitoria = teams.filter(t => {
             const r = teamResults[t];
             return r[0] && r[1] &&
@@ -147,6 +128,7 @@
                    (r[1] === "D" || r[1].startsWith("E"));
           });
 
+          let html = "";
           if (semVitoria.length > 0) {
             html += "<div class='section-title'>💪 Chance de Vitória/Empate (2 Jogos sem Vitória)</div>";
             semVitoria.forEach(t => {
@@ -160,14 +142,13 @@
                   <div class='details'>🆚 Próximo: ${r[2] || 'Desconhecido'}</div>
                 </div>`;
             });
-          }
-
-          if (html === "") {
-            html = "<p>Nenhum time encontrado com os critérios.</p>";
+          } else {
+            html = "<p>Nenhum time com 2 jogos sem vitória.</p>";
           }
 
           html += "<div class='tip'>💡 Dica: Verifique o adversário, horário e escalação antes de apostar.</div>";
           resultsDiv.innerHTML = html;
+
         } else {
           resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado para este campeonato.</p>";
         }
