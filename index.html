@@ -36,6 +36,10 @@
       <option value="78">🇩🇪 Bundesliga</option>
       <option value="135">🇮🇹 Serie A</option>
       <option value="61">🇫🇷 Ligue 1</option>
+      <option value="88">🇳🇱 Eredivisie</option>
+      <option value="94">🇵🇹 Primeira Liga</option>
+      <option value="262">🇲🇽 Liga MX</option>
+      <option value="10217">⚽ Brasileirão Feminino</option>
     </select>
     <div id="sidebarInfo" class="info-box">Selecione um campeonato.</div>
   </div>
@@ -63,24 +67,25 @@
         return;
       }
 
-      resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados...</p>";
+      resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados do campeonato...</p>";
       try {
         const response = await fetch('/data.json?' + new Date().getTime());
+        if (!response.ok) throw new Error("Erro ao carregar data.json");
         const data = await response.json();
         const year = "2025";
         if (data[year] && data[year][leagueId]) {
           teamResults = data[year][leagueId];
-          loadResults(leagueId);
+          loadChanceOfWinOrDraw(leagueId);
         } else {
-          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
+          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado para este campeonato.</p>";
         }
       } catch (err) {
-        console.error("Erro:", err);
-        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados. Verifique o console.</p>";
+        console.error("Erro ao carregar JSON:", err);
+        resultsDiv.innerHTML = `<p class='error'>❌ Falha ao carregar dados. Verifique o console.</p>`;
       }
     }
 
-    function loadResults(leagueId) {
+    function loadChanceOfWinOrDraw(leagueId) {
       const teams = Object.keys(teamResults);
       const filtered = teams.filter(t => {
         const r = teamResults[t].results;
@@ -90,12 +95,12 @@
       });
 
       if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time com 2 jogos sem vitória.</p>";
+        resultsDiv.innerHTML = "<p>Nenhum time com 2 jogos sem vitória neste campeonato.</p>";
       } else {
         let html = "<div class='section-title'>🎯 Times com Potencial de Reação</div>";
         filtered.forEach(t => {
           const d = teamResults[t];
-          const conf = d.avg_goals > 1.5 && d.home_away === "Casa" ? "⭐ Alta Confiança" : "🔸 Média Confiança";
+          const conf = d.home_away === "Casa" && d.avg_goals > 1.5 ? "⭐ Alta Confiança" : "🔸 Média Confiança";
           const confClass = conf.includes("Alta") ? "confidence-high" : "confidence-medium";
           html += `
             <div class='item'>
