@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rastreador de Times - Chance de Vitória/Empate</title>
+  <title>Rastreador de Times - Chance de Gol/Vitória</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #121212; color: white; display: flex; height: 100vh; }
     #sidebar { width: 320px; background: #1e1e1e; padding: 20px; box-sizing: border-box; overflow-y: auto; }
@@ -21,7 +21,6 @@
     .section-title { font-weight: bold; color: #fff; background: #333; padding: 6px 10px; border-radius: 4px; margin: 10px 0 5px 0; }
     .details { font-size: 0.9em; color: #ccc; margin-top: 6px; line-height: 1.5; }
     .tip { font-style: italic; color: #bbb; margin-top: 15px; text-align: center; }
-    #trackerSection { display: none; margin-top: 10px; padding: 10px; background-color: rgba(255, 255, 255, 0.9); border-radius: 5px; color: #000; }
     .link-tabela { display: block; text-align: center; margin: 10px 0; padding: 8px; background: #333; border-radius: 4px; color: #4caf50; text-decoration: none; font-weight: bold; }
     .link-tabela:hover { background: #555; }
   </style>
@@ -48,10 +47,10 @@
   </div>
 
   <div id="content">
-    <h2 id="contentTitle">Chance de Vitória/Empate (2 Jogos sem Vitória)</h2>
-    <div id="results"></div>
-    <button id="toggleBtn" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
-      Abrir/Fechar Rastreador
+    <h2>Chance de Gol/Vitória</h2>
+    <div id="results">Selecione um campeonato e escolha uma opção.</div>
+    <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
+      Abrir/Fechar Menu Rastreador
     </button>
     <div id="trackerSection"></div>
   </div>
@@ -62,9 +61,7 @@
     const resultsDiv = document.getElementById("results");
     const sidebarInfo = document.getElementById("sidebarInfo");
     const tabelaLink = document.getElementById("tabelaLink");
-    const toggleBtn = document.getElementById("toggleBtn");
 
-    // Links para tabelas no Sofascore (sem espaços extras)
     const leagueLinks = {
       "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
       "39": "https://www.sofascore.com/tournament/england/premier-league/17",
@@ -106,7 +103,7 @@
     async function loadData() {
       const leagueId = leagueSelect.value;
       if (!leagueId) {
-        resultsDiv.innerHTML = "<p>Selecione um campeonato.</p>";
+        resultsDiv.innerHTML = "Selecione um campeonato e escolha uma opção.";
         sidebarInfo.textContent = "Selecione um campeonato.";
         tabelaLink.innerHTML = "";
         return;
@@ -115,22 +112,41 @@
       resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados...</p>";
       try {
         const response = await fetch('/data.json?' + new Date().getTime());
-        if (!response.ok) throw new Error("HTTP " + response.status);
+        if (!response.ok) throw new Error("Erro HTTP: " + response.status);
         const data = await response.json();
         const year = "2025";
-        
+
         if (data[year] && data[year][leagueId]) {
           teamResults = data[year][leagueId];
           const teams = Object.keys(teamResults);
 
-          const semVitoria = teams.filter(t => {
+          // --- SEÇÃO 1: Chance de Gol (último jogo 0x0) ---
+          const gol0x0 = teams.filter(t => {
             const r = teamResults[t];
-            return r.length >= 2 && 
-                   (r[0] === "D" || r[0].startsWith("E")) && 
-                   (r[1] === "D" || r[1].startsWith("E"));
+            return r[0] && (r[0] === "E: 0x0" || r[0].includes("0x0"));
           });
 
           let html = "";
+          if (gol0x0.length > 0) {
+            html += "<div class='section-title'>🎯 Chance de Gol (Último Jogo: 0x0)</div>";
+            gol0x0.forEach(t => {
+              const r = teamResults[t];
+              html += `
+                <div class='item'>
+                  <strong>${t}</strong> (Último: ${r[0]})
+                  <div class='details'>🆚 Próximo: ${r[2] || 'Desconhecido'}</div>
+                </div>`;
+            });
+          }
+
+          // --- SEÇÃO 2: 2 jogos sem vitória ---
+          const semVitoria = teams.filter(t => {
+            const r = teamResults[t];
+            return r[0] && r[1] &&
+                   (r[0] === "D" || r[0].startsWith("E")) &&
+                   (r[1] === "D" || r[1].startsWith("E"));
+          });
+
           if (semVitoria.length > 0) {
             html += "<div class='section-title'>💪 Chance de Vitória/Empate (2 Jogos sem Vitória)</div>";
             semVitoria.forEach(t => {
@@ -144,13 +160,14 @@
                   <div class='details'>🆚 Próximo: ${r[2] || 'Desconhecido'}</div>
                 </div>`;
             });
-          } else {
-            html = "<p>Nenhum time com 2 jogos sem vitória.</p>";
+          }
+
+          if (html === "") {
+            html = "<p>Nenhum time encontrado com os critérios.</p>";
           }
 
           html += "<div class='tip'>💡 Dica: Verifique o adversário, horário e escalação antes de apostar.</div>";
           resultsDiv.innerHTML = html;
-
         } else {
           resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado para este campeonato.</p>";
         }
@@ -173,12 +190,13 @@
 
     function toggleTracker() {
       const trackerSection = document.getElementById("trackerSection");
-      if (trackerSection.style.display === "none" || !trackerSection.style.display) {
+      const btn = document.querySelector("button");
+      if (!trackerSection.style.display || trackerSection.style.display === "none") {
         trackerSection.style.display = "block";
-        toggleBtn.textContent = "Fechar Rastreador";
+        btn.textContent = "Fechar Menu Rastreador";
       } else {
         trackerSection.style.display = "none";
-        toggleBtn.textContent = "Abrir/Fechar Rastreador";
+        btn.textContent = "Abrir/Fechar Menu Rastreador";
       }
     }
   </script>
