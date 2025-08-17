@@ -1,36 +1,18 @@
-function loadChanceOfWinOrDraw(leagueId) {
-  const teams = Object.keys(teamResults);
-  const filtered = teams.filter(t => {
-    const r = teamResults[t].results;
-    return r.length >= 2 && 
-           (r[0] === "D" || r[0].startsWith("E")) && 
-           (r[1] === "D" || r[1].startsWith("E"));
-  });
-
-  if (filtered.length === 0) {
-    resultsDiv.innerHTML = "<p>Nenhum time com 2 jogos sem vitória.</p>";
-    return;
+{
+  "2025": {
+    "71": {
+      "Flamengo": {
+        "results": ["D", "E: 1x1"],
+        "next_opponent": "Palmeiras",
+        "position": 4,
+        "points": 32,
+        "form_opponent": "V, V",
+        "opponent_table": "Top 4",
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "avg_goals": 1.9,
+        "avg_corners": 6.4
+      }
+    }
   }
-
-  let html = "<div class='section-title'>🎯 Times com Potencial de Reação</div>";
-  filtered.forEach(t => {
-    const d = teamResults[t];
-    const conf = d.home_away === "Casa" && d.avg_goals > 1.5 ? "⭐ Alta Confiança" : "🔸 Média Confiança";
-    const confClass = conf.includes("Alta") ? "confidence-high" : "confidence-medium";
-
-    html += `
-      <div class='item'>
-        <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
-        <div class='${confClass}'>${conf}</div>
-        <div class='details'>
-          📊 Pos: ${d.position}º | ${d.points} pts | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
-          <br>🏟️ ${d.home_away} | 🧨 Forma Adv: ${d.form_opponent} | 🏃‍♂️ Lesões: ${d.injuries}
-        </div>
-      </div>`;
-  });
-  html += "<div class='tip'>💡 Dica: Foco em times com ⭐ Alta Confiança.</div>";
-  resultsDiv.innerHTML = html;
-
-  sidebarInfo.textContent = `Campeonato selecionado: ${leagueNames[leagueId]}`;
-  updateTabelaLink(leagueId);
 }
