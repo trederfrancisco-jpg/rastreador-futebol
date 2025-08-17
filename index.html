@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rastreador Avançado - Chance de Vitória/Empate</title>
+  <title>Rastreador de Times - Chance de Vitória/Empate</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #121212; color: white; display: flex; height: 100vh; }
     #sidebar { width: 320px; background: #1e1e1e; padding: 20px; box-sizing: border-box; overflow-y: auto; }
@@ -18,7 +18,7 @@
     .error { color: #ff6b6b; font-weight: bold; text-align: center; }
     .confidence-high { color: #4caf50; font-weight: bold; }
     .confidence-medium { color: #ff9800; font-weight: bold; }
-    .confidence-low { color: #f44336; font-weight: bold; }
+    .section-title { font-weight: bold; color: #fff; background: #333; padding: 6px 10px; border-radius: 4px; margin: 10px 0 5px 0; }
     .details { font-size: 0.9em; color: #ccc; margin-top: 6px; line-height: 1.5; }
     .tip { font-style: italic; color: #bbb; margin-top: 15px; text-align: center; }
     #trackerSection { display: none; margin-top: 10px; padding: 10px; background-color: rgba(255, 255, 255, 0.9); border-radius: 5px; color: #000; }
@@ -28,7 +28,7 @@
 </head>
 <body>
   <div id="sidebar">
-    <h1>Rastreador Avançado</h1>
+    <h1>Rastreador de Times</h1>
     <label for="leagueSelect">Selecione Campeonato:</label>
     <select id="leagueSelect" onchange="loadData()">
       <option value="">Selecione um campeonato</option>
@@ -51,7 +51,7 @@
     <h2 id="contentTitle">Chance de Vitória/Empate (2 Jogos sem Vitória)</h2>
     <div id="results"></div>
     <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
-      Abrir/Fechar Rastreador
+      Fechar Menu Rastreador
     </button>
     <div id="trackerSection"></div>
   </div>
@@ -63,6 +63,7 @@
     const sidebarInfo = document.getElementById("sidebarInfo");
     const tabelaLink = document.getElementById("tabelaLink");
 
+    // Links para tabelas no Sofascore
     const leagueLinks = {
       "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
       "39": "https://www.sofascore.com/tournament/england/premier-league/17",
@@ -116,50 +117,51 @@
         if (!response.ok) throw new Error("HTTP " + response.status);
         const data = await response.json();
         const year = "2025";
+        
         if (data[year] && data[year][leagueId]) {
           teamResults = data[year][leagueId];
-          loadChanceOfWinOrDraw(leagueId);
+          const teams = Object.keys(teamResults);
+
+          // --- SEÇÃO ÚNICA: 2 jogos sem vitória ---
+          const semVitoria = teams.filter(t => {
+            const r = teamResults[t];
+            return r.length >= 2 && 
+                   (r[0] === "D" || r[0].startsWith("E")) && 
+                   (r[1] === "D" || r[1].startsWith("E"));
+          });
+
+          let html = "";
+          if (semVitoria.length > 0) {
+            html += "<div class='section-title'>💪 Chance de Vitória/Empate (2 Jogos sem Vitória)</div>";
+            semVitoria.forEach(t => {
+              const r = teamResults[t];
+              const conf = (r[0] === "V" || r[1] === "V") ? "🔸 Média Confiança" : "⭐ Alta Confiança";
+              const confClass = conf.includes("Alta") ? "confidence-high" : "confidence-medium";
+              html += `
+                <div class='item'>
+                  <strong>${t}</strong> (J1: ${r[1]}, J2: ${r[0]})
+                  <div class='${confClass}'>${conf}</div>
+                  <div class='details'>🆚 Próximo: ${r[2] || 'Desconhecido'}</div>
+                </div>`;
+            });
+          } else {
+            html = "<p>Nenhum time com 2 jogos sem vitória.</p>";
+          }
+
+          html += "<div class='tip'>💡 Dica: Verifique o adversário, horário e escalação antes de apostar.</div>";
+          resultsDiv.innerHTML = html;
+
         } else {
-          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
+          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado para este campeonato.</p>";
         }
+
+        sidebarInfo.textContent = `Campeonato selecionado: ${leagueNames[leagueId]}`;
+        updateTabelaLink(leagueId);
+
       } catch (err) {
-        console.error("Erro:", err);
+        console.error("Erro ao carregar dados:", err);
         resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados. Veja o console.</p>";
       }
-    }
-
-    function loadChanceOfWinOrDraw(leagueId) {
-      const teams = Object.keys(teamResults);
-      const filtered = teams.filter(t => {
-        const r = teamResults[t].results;
-        return r.length >= 2 && 
-               (r[0] === "D" || r[0].startsWith("E")) && 
-               (r[1] === "D" || r[1].startsWith("E"));
-      });
-
-      if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time com 2 jogos sem vitória.</p>";
-      } else {
-        let html = "<div class='section-title'>🎯 Times com Potencial de Reação</div>";
-        filtered.forEach(t => {
-          const d = teamResults[t];
-          const conf = d.home_away === "Casa" && d.avg_goals > 1.5 ? "⭐ Alta Confiança" : "🔸 Média Confiança";
-          const confClass = conf.includes("Alta") ? "confidence-high" : "confidence-medium";
-          html += `
-            <div class='item'>
-              <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
-              <div class='${confClass}'>${conf}</div>
-              <div class='details'>
-                📊 Pos: ${d.position}º | ${d.points} pts | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
-                <br>🏟️ ${d.home_away} | 🧨 Adv: ${d.form_opponent} | 🏃‍♂️: ${d.injuries}
-              </div>
-            </div>`;
-        });
-        html += "<div class='tip'>💡 Dica: Foco em times com ⭐ Alta Confiança.</div>";
-        resultsDiv.innerHTML = html;
-      }
-      sidebarInfo.textContent = `Campeonato selecionado: ${leagueNames[leagueId]}`;
-      updateTabelaLink(leagueId);
     }
 
     function toggleTracker() {
@@ -167,10 +169,10 @@
       const btn = document.querySelector("button");
       if (trackerSection.style.display === "none" || !trackerSection.style.display) {
         trackerSection.style.display = "block";
-        btn.textContent = "Fechar Rastreador";
+        btn.textContent = "Fechar Menu Rastreador";
       } else {
         trackerSection.style.display = "none";
-        btn.textContent = "Abrir/Fechar Rastreador";
+        btn.textContent = "Fechar Menu Rastreador";
       }
     }
   </script>
