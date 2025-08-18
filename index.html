@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -47,7 +48,7 @@
   </div>
 
   <div id="content">
-    <h2>Chance de Vitória/Empate (2 Jogos sem Vitória)</h2>
+    <h2>💪 Chance de Vitória/Empate (2 Jogos sem Vitória)</h2>
     <div id="results">Selecione um campeonato e escolha uma opção.</div>
     <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
       Abrir/Fechar Menu Rastreador
@@ -120,7 +121,6 @@
           teamResults = data[year][leagueId];
           const teams = Object.keys(teamResults);
 
-          // --- SEÇÃO: 2 jogos sem vitória ---
           const semVitoria = teams.filter(t => {
             const r = teamResults[t];
             return r[0] && r[1] &&
@@ -130,7 +130,6 @@
 
           let html = "";
           if (semVitoria.length > 0) {
-            html += "<div class='section-title'>💪 Chance de Vitória/Empate (2 Jogos sem Vitória)</div>";
             semVitoria.forEach(t => {
               const r = teamResults[t];
               const conf = (r[0] === "V" || r[1] === "V") ? "🔸 Média Confiança" : "⭐ Alta Confiança";
