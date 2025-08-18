@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -22,16 +21,16 @@
     .confidence-low { color: #f44336; font-weight: bold; }
     .details { font-size: 0.9em; color: #ccc; margin-top: 6px; line-height: 1.5; }
     .tip { font-style: italic; color: #bbb; margin-top: 15px; text-align: center; }
-    #trackerSection { display: none; margin-top: 10px; padding: 10px; background-color: rgba(255, 255, 255, 0.9); border-radius: 5px; color: #000; }
-    .link-tabela { display: block; text-align: center; margin: 10px 0; padding: 8px; background: #333; border-radius: 4px; color: #4caf50; text-decoration: none; font-weight: bold; }
-    .link-tabela:hover { background: #555; }
+    #trackerSection { display: none; margin-top: 10px; padding: 10px; background-color: #333; border-radius: 5px; color: #fff; }
+    .link-tabela { display: block; text-align: center; margin: 10px 0; padding: 8px; background: #333; border-radius: 4px; color: #4caf50; text-decoration: none; font-weight: bold; transition: background 0.3s; }
+    .link-tabela:hover { background: #4caf50; color: white; }
   </style>
 </head>
 <body>
   <div id="sidebar">
     <h1>Rastreador Avançado</h1>
     <label for="leagueSelect">Selecione Campeonato:</label>
-    <select id="leagueSelect" onchange="loadData()">
+    <select id="leagueSelect" onchange="loadData()" aria-label="Selecione um campeonato">
       <option value="">Selecione um campeonato</option>
       <option value="71">🇧🇷 Brasileirão Série A</option>
       <option value="39">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
@@ -49,9 +48,9 @@
   </div>
 
   <div id="content">
-    <h2 id="contentTitle">Chance de Vitória/Empate (2 Jogos sem Vitória)</h2>
-    <div id="results">Selecione um campeonato.</div>
-    <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
+    <h2 id="contentTitle">Chance de Vitória/Empate e Gol</h2>
+    <div id="results" role="region" aria-live="polite">Selecione um campeonato para ver os resultados.</div>
+    <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;" aria-label="Abrir ou fechar o rastreador de apostas">
       Abrir/Fechar Rastreador
     </button>
     <div id="trackerSection"></div>
@@ -66,4 +65,185 @@
 
     const leagueLinks = {
       "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
-      "39": "https://www.sofascore.com/tournament/england/pre
+      "39": "https://www.sofascore.com/tournament/england/premier-league/17",
+      "140": "https://www.sofascore.com/tournament/spain/laliga/8",
+      "78": "https://www.sofascore.com/tournament/germany/bundesliga/35",
+      "135": "https://www.sofascore.com/tournament/italy/serie-a/23",
+      "61": "https://www.sofascore.com/tournament/france/ligue-1/34",
+      "88": "https://www.sofascore.com/tournament/netherlands/eredivisie/25",
+      "94": "https://www.sofascore.com/tournament/portugal/primeira-liga/44",
+      "262": "https://www.sofascore.com/tournament/mexico/liga-mx/105",
+      "10217": "https://www.sofascore.com/tournament/brazil/campeonato-brasileiro-women/1154"
+    };
+
+    const leagueNames = {
+      "71": "Brasileirão Série A",
+      "39": "Premier League",
+      "140": "La Liga",
+      "78": "Bundesliga",
+      "135": "Serie A",
+      "61": "Ligue 1",
+      "88": "Eredivisie",
+      "94": "Primeira Liga",
+      "262": "Liga MX",
+      "10217": "Brasileirão Feminino"
+    };
+
+    function updateTabelaLink(leagueId) {
+      if (leagueId && leagueLinks[leagueId]) {
+        tabelaLink.innerHTML = `
+          <a href="${leagueLinks[leagueId]}" target="_blank" class="link-tabela" aria-label="Ver tabela do ${leagueNames[leagueId]}">
+            🔍 Ver tabela do ${leagueNames[leagueId]}
+          </a>
+        `;
+      } else {
+        tabelaLink.innerHTML = "";
+      }
+    }
+
+    async function loadData() {
+      const leagueId = leagueSelect.value;
+      if (!leagueId) {
+        resultsDiv.innerHTML = "<p role='alert'>Selecione um campeonato para ver os resultados.</p>";
+        sidebarInfo.textContent = "Selecione um campeonato.";
+        tabelaLink.innerHTML = "";
+        return;
+      }
+
+      resultsDiv.innerHTML = "<p class='loading' role='alert'>🔄 Carregando dados...</p>";
+      try {
+        const response = await fetch('/data.json?' + new Date().getTime());
+        if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+        const data = await response.json();
+        const year = "2025";
+
+        if (data[year] && data[year][leagueId]) {
+          teamResults = data[year][leagueId];
+          // Validar estrutura básica
+          const isValid = Object.values(teamResults).every(team =>
+            team && Array.isArray(team.results) && typeof team.next_opponent === "string" &&
+            typeof team.position === "number"
+          );
+          if (!isValid) {
+            throw new Error("Formato inválido no data.json: campos obrigatórios ausentes ou incorretos.");
+          }
+          resultsDiv.innerHTML = loadChanceOfGoalAfterDraw(leagueId) + loadChanceOfWinOrDraw(leagueId);
+        } else {
+          resultsDiv.innerHTML = "<p class='error' role='alert'>⚠️ Nenhum dado encontrado para este campeonato.</p>";
+        }
+
+        sidebarInfo.textContent = `Campeonato selecionado: ${leagueNames[leagueId]}`;
+        updateTabelaLink(leagueId);
+      } catch (err) {
+        console.error("Erro ao carregar dados:", err);
+        resultsDiv.innerHTML = `
+          <p class='error' role='alert'>
+            ❌ Falha ao carregar dados.<br>
+            Verifique:<br>
+            1. Se o data.json está na raiz do site<br>
+            2. Se o formato está correto (JSON válido)<br>
+            3. Atualize com Ctrl + F5
+          </p>`;
+      }
+    }
+
+    function loadChanceOfWinOrDraw(leagueId) {
+      const teams = Object.keys(teamResults);
+      const filtered = teams.filter(t => {
+        const r = teamResults[t]?.results;
+        return Array.isArray(r) && r.length >= 2 &&
+               (r[0] === "D" || r[0]?.startsWith("E")) &&
+               (r[1] === "D" || r[1]?.startsWith("E"));
+      });
+
+      let html = "<div class='section-title'>🎯 Times com Potencial de Reação (2 Jogos sem Vitória)</div>";
+      if (filtered.length === 0) {
+        html += "<p>Nenhum time com 2 jogos sem vitória.</p>";
+      } else {
+        filtered.forEach(t => {
+          const d = teamResults[t];
+          if (!d) return;
+          const conf = (d.home_away === "Casa" && (d.avg_goals ?? 0) > 1.5) ? "⭐ Alta Confiança" : "🔸 Média Confiança";
+          const confClass = conf.includes("Alta") ? "confidence-high" : "confidence-medium";
+          html += `
+            <div class='item'>
+              <strong>${t}</strong> (${d.results?.join(", ") || "N/A"}) vs. ${d.next_opponent || "Desconhecido"}
+              <div class='${confClass}'>${conf}</div>
+              <div class='details'>
+                📊 Pos: ${d.position ?? "N/A"}º | ${d.points ?? 0} pts | 🎯 Gols: ${d.avg_goals ?? "N/A"} | ⚙️ Esc: ${d.avg_corners ?? "N/A"}
+                <br>🏟️ ${d.home_away ?? "N/A"} | 🧨 Adv: ${d.form_opponent ?? "N/A"} | 🏃‍♂️: ${d.injuries ?? "N/A"}
+              </div>
+            </div>`;
+        });
+        html += "<div class='tip'>💡 Dica: Foco em times com ⭐ Alta Confiança.</div>";
+      }
+      return html;
+    }
+
+    function loadChanceOfGoalAfterDraw(leagueId) {
+      const teams = Object.keys(teamResults);
+      const filtered = teams.filter(t => {
+        const r = teamResults[t]?.results;
+        return Array.isArray(r) && r[0] === "E: 0x0";
+      });
+
+      let html = "<div class='section-title'>⚽ Times com Chance de Gol (Após 0x0)</div>";
+      if (filtered.length === 0) {
+        html += "<p>Nenhum time com empate 0x0 no último jogo.</p>";
+      } else {
+        filtered.forEach(t => {
+          const d = teamResults[t];
+          const conf = (d.avg_goals ?? 0) > 1.5 ? "⭐ Alta Confiança" : "🔸 Média Confiança";
+          const confClass = conf.includes("Alta") ? "confidence-high" : "confidence-medium";
+          html += `
+            <div class='item'>
+              <strong>${t}</strong> vs. ${d.next_opponent || "Desconhecido"}
+              <div class='${confClass}'>${conf}</div>
+              <div class='details'>
+                📊 Pos: ${d.position ?? "N/A"}º | ${d.points ?? 0} pts | 🎯 Gols: ${d.avg_goals ?? "N/A"} | ⚙️ Esc: ${d.avg_corners ?? "N/A"}
+                <br>🏟️ ${d.home_away ?? "N/A"} | 🧨 Adv: ${d.form_opponent ?? "N/A"} | 🏃‍♂️: ${d.injuries ?? "N/A"}
+              </div>
+            </div>`;
+        });
+      }
+      return html;
+    }
+
+    function toggleTracker() {
+      const trackerSection = document.getElementById("trackerSection");
+      const btn = document.querySelector("button");
+      if (trackerSection.style.display === "none" || !trackerSection.style.display) {
+        trackerSection.style.display = "block";
+        trackerSection.innerHTML = `
+          <h3>Rastreador de Apostas</h3>
+          <p>Selecione um time para rastrear:</p>
+          <select onchange="trackTeam(this.value)" aria-label="Selecione um time para rastrear">
+            <option value="">Selecione um time</option>
+            ${Object.keys(teamResults).map(t => `<option value="${t}">${t}</option>`).join("")}
+          </select>
+          <div id="trackerOutput"></div>
+        `;
+        btn.textContent = "Fechar Rastreador";
+      } else {
+        trackerSection.style.display = "none";
+        btn.textContent = "Abrir/Fechar Rastreador";
+      }
+    }
+
+    function trackTeam(team) {
+      const trackerOutput = document.getElementById("trackerOutput");
+      if (!team) {
+        trackerOutput.innerHTML = "";
+        return;
+      }
+      const d = teamResults[team];
+      trackerOutput.innerHTML = `
+        <p>Rastreando <strong>${team}</strong>:</p>
+        <p>📊 Próximo jogo: vs. ${d.next_opponent || "N/A"}</p>
+        <p>🎯 Média de gols: ${d.avg_goals || "N/A"}</p>
+        <p>🏟️ Local: ${d.home_away || "N/A"}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
