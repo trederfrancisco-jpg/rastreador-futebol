@@ -1,4 +1,3 @@
-
 {
   "2025": {
     "71": {
@@ -6,8 +5,34 @@
         "results": ["D", "E: 1x1"],
         "next_opponent": "Palmeiras",
         "position": 4,
+        "points": 32,
+        "form_opponent": "V, V",
+        "home_away": "Casa",
+        "injuries": "Nenhum",
         "avg_goals": 1.9,
         "avg_corners": 6.4
+      },
+      "Palmeiras": {
+        "results": ["V", "E: 0x0"],
+        "next_opponent": "Flamengo",
+        "position": 1,
+        "points": 38,
+        "form_opponent": "D, E",
+        "home_away": "Fora",
+        "injuries": "2 jogadores",
+        "avg_goals": 2.1,
+        "avg_corners": 5.8
+      },
+      "Corinthians": {
+        "results": ["E: 0x0", "D"],
+        "next_opponent": "São Paulo",
+        "position": 7,
+        "points": 28,
+        "form_opponent": "V, D",
+        "home_away": "Casa",
+        "injuries": "1 jogador",
+        "avg_goals": 1.6,
+        "avg_corners": 4.9
       }
     }
   }
