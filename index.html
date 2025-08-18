@@ -1,1 +1,69 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rastreador Avançado - Chance de Vitória/Empate</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #121212; color: white; display: flex; height: 100vh; }
+    #sidebar { width: 320px; background: #1e1e1e; padding: 20px; box-sizing: border-box; overflow-y: auto; }
+    #content { flex-grow: 1; padding: 20px; box-sizing: border-box; overflow-y: auto; background: #222; }
+    h1, h2 { margin-top: 0; }
+    select { width: 100%; padding: 10px; margin-bottom: 15px; background: #333; border: none; color: white; border-radius: 4px; font-size: 1rem; cursor: pointer; }
+    .info-box { background: #ff9800; color: black; padding: 8px; border-radius: 4px; font-weight: bold; text-align: center; margin-bottom: 15px; }
+    #results { margin-top: 15px; max-height: 70vh; overflow-y: auto; background: #121212; padding: 10px; border-radius: 6px; }
+    .item { padding: 12px 10px; border-bottom: 1px solid #444; }
+    .item:last-child { border-bottom: none; }
+    .loading { font-style: italic; color: #aaa; text-align: center; margin: 10px 0; }
+    .error { color: #ff6b6b; font-weight: bold; text-align: center; }
+    .confidence-high { color: #4caf50; font-weight: bold; }
+    .confidence-medium { color: #ff9800; font-weight: bold; }
+    .confidence-low { color: #f44336; font-weight: bold; }
+    .details { font-size: 0.9em; color: #ccc; margin-top: 6px; line-height: 1.5; }
+    .tip { font-style: italic; color: #bbb; margin-top: 15px; text-align: center; }
+    #trackerSection { display: none; margin-top: 10px; padding: 10px; background-color: rgba(255, 255, 255, 0.9); border-radius: 5px; color: #000; }
+    .link-tabela { display: block; text-align: center; margin: 10px 0; padding: 8px; background: #333; border-radius: 4px; color: #4caf50; text-decoration: none; font-weight: bold; }
+    .link-tabela:hover { background: #555; }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <h1>Rastreador Avançado</h1>
+    <label for="leagueSelect">Selecione Campeonato:</label>
+    <select id="leagueSelect" onchange="loadData()">
+      <option value="">Selecione um campeonato</option>
+      <option value="71">🇧🇷 Brasileirão Série A</option>
+      <option value="39">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+      <option value="140">🇪🇸 La Liga</option>
+      <option value="78">🇩🇪 Bundesliga</option>
+      <option value="135">🇮🇹 Serie A</option>
+      <option value="61">🇫🇷 Ligue 1</option>
+      <option value="88">🇳🇱 Eredivisie</option>
+      <option value="94">🇵🇹 Primeira Liga</option>
+      <option value="262">🇲🇽 Liga MX</option>
+      <option value="10217">⚽ Brasileirão Feminino</option>
+    </select>
+    <div id="tabelaLink"></div>
+    <div id="sidebarInfo" class="info-box">Selecione um campeonato.</div>
+  </div>
+
+  <div id="content">
+    <h2 id="contentTitle">Chance de Vitória/Empate (2 Jogos sem Vitória)</h2>
+    <div id="results">Selecione um campeonato.</div>
+    <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
+      Abrir/Fechar Rastreador
+    </button>
+    <div id="trackerSection"></div>
+  </div>
+
+  <script>
+    let teamResults = {};
+    const leagueSelect = document.getElementById("leagueSelect");
+    const resultsDiv = document.getElementById("results");
+    const sidebarInfo = document.getElementById("sidebarInfo");
+    const tabelaLink = document.getElementById("tabelaLink");
+
+    const leagueLinks = {
+      "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
+      "39": "https://www.sofascore.com/tournament/england/pre
