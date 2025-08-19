@@ -13,9 +13,7 @@
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "1V, 1E, 3D",
-        "match_date": "12/08/2025",
-        "match_time": "20:00"
+        "last_5_summary": "1V, 1E, 3D"
       },
       "Athletico-PR": {
         "results": ["D", "D"],
@@ -29,9 +27,7 @@
         "home_away": "Casa",
         "injuries": "1 titular",
         "new_coach": true,
-        "last_5_summary": "1V, 1E, 3D",
-        "match_date": "12/08/2025",
-        "match_time": "18:30"
+        "last_5_summary": "1V, 1E, 3D"
       }
     },
     "78": {
@@ -47,9 +43,69 @@
         "home_away": "Casa",
         "injuries": "1 titular",
         "new_coach": false,
-        "last_5_summary": "2V, 2E, 1D",
-        "match_date": "12/08/2025",
-        "match_time": "20:45"
+        "last_5_summary": "2V, 2E, 1D"
+      },
+      "Dortmund": {
+        "results": ["D", "D"],
+        "next_opponent": "Stuttgart",
+        "opponent_table": "Top 6",
+        "form_opponent": "V, D",
+        "position": 7,
+        "points": 30,
+        "avg_goals": 1.8,
+        "avg_corners": 5.6,
+        "home_away": "Casa",
+        "injuries": "2 titulares",
+        "new_coach": true,
+        "last_5_summary": "1V, 1E, 3D"
+      }
+    },
+    "61": {
+      "Marseille": {
+        "results": ["D", "E: 1x1"],
+        "next_opponent": "PSG",
+        "opponent_table": "Top 3",
+        "form_opponent": "V, V",
+        "position": 14,
+        "points": 18,
+        "avg_goals": 1.4,
+        "avg_corners": 4.8,
+        "home_away": "Fora",
+        "injuries": "3 titulares",
+        "new_coach": false,
+        "last_5_summary": "1V, 1E, 3D"
+      }
+    },
+    "202": {
+      "River Plate": {
+        "results": ["D", "D"],
+        "next_opponent": "Boca Juniors",
+        "opponent_table": "Top 5",
+        "form_opponent": "V, V",
+        "position": 12,
+        "points": 18,
+        "avg_goals": 1.5,
+        "avg_corners": 5.2,
+        "home_away": "Casa",
+        "injuries": "3 titulares",
+        "new_coach": true,
+        "last_5_summary": "1V, 1E, 3D"
+      }
+    },
+    "8": {
+      "Manchester City": {
+        "results": ["V", "E: 1x1"],
+        "next_opponent": "Barcelona",
+        "opponent_table": "Top 8",
+        "form_opponent": "V, D",
+        "position": 1,
+        "points": 12,
+        "avg_goals": 2.3,
+        "avg_corners": 7.0,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "last_5_summary": "3V, 1E, 1D"
       }
     }
   }
