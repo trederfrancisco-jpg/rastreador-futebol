@@ -1,1 +1,56 @@
-
+{
+  "2025": {
+    "71": {
+      "Flamengo": {
+        "results": ["D", "E: 1x1"],
+        "next_opponent": "Palmeiras",
+        "opponent_table": "Top 4",
+        "form_opponent": "V, V",
+        "position": 4,
+        "points": 32,
+        "avg_goals": 1.9,
+        "avg_corners": 6.4,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "last_5_summary": "1V, 1E, 3D",
+        "match_date": "12/08/2025",
+        "match_time": "20:00"
+      },
+      "Athletico-PR": {
+        "results": ["D", "D"],
+        "next_opponent": "Cruzeiro",
+        "opponent_table": "Z4",
+        "form_opponent": "D, D",
+        "position": 11,
+        "points": 22,
+        "avg_goals": 1.2,
+        "avg_corners": 4.1,
+        "home_away": "Casa",
+        "injuries": "1 titular",
+        "new_coach": true,
+        "last_5_summary": "1V, 1E, 3D",
+        "match_date": "12/08/2025",
+        "match_time": "18:30"
+      }
+    },
+    "78": {
+      "Bayer Leverkusen": {
+        "results": ["D", "E: 1x1"],
+        "next_opponent": "Bayern",
+        "opponent_table": "Top 3",
+        "form_opponent": "V, V",
+        "position": 3,
+        "points": 42,
+        "avg_goals": 2.0,
+        "avg_corners": 6.1,
+        "home_away": "Casa",
+        "injuries": "1 titular",
+        "new_coach": false,
+        "last_5_summary": "2V, 2E, 1D",
+        "match_date": "12/08/2025",
+        "match_time": "20:45"
+      }
+    }
+  }
+}
