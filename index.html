@@ -59,28 +59,6 @@
       <button id="btnStreak" onclick="setTab('streak')">Série de Vitórias</button>
       <button id="btnAll" onclick="showAllLeagues()">🎯 Todos os Times</button>
     </nav>
-
-    <!-- Nova opção: Classificação -->
-    <button id="btnClassificacao" onclick="toggleClassificacao()">📊 Classificação</button>
-    <div id="classificacaoSection" style="display: none; margin-top: 10px; padding: 10px; background: #333; border-radius: 6px;">
-      <label for="classificacaoSelect">Selecione um campeonato:</label>
-      <select id="classificacaoSelect" onchange="loadClassificacao()" style="width: 100%; padding: 8px; margin-top: 5px; background: #444; color: white; border: none; border-radius: 4px;">
-        <option value="">Selecione um campeonato</option>
-        <option value="71">🇧🇷 Brasileirão Série A</option>
-        <option value="72">🇧🇷 Brasileirão Série B</option>
-        <option value="202">🇦🇷 Liga Profesional (Argentina)</option>
-        <option value="39">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
-        <option value="140">🇪🇸 La Liga</option>
-        <option value="78">🇩🇪 Bundesliga</option>
-        <option value="135">🇮🇹 Serie A</option>
-        <option value="61">🇫🇷 Ligue 1</option>
-        <option value="88">🇳🇱 Eredivisie</option>
-        <option value="94">🇵🇹 Primeira Liga</option>
-        <option value="262">🇲🇽 Liga MX</option>
-        <option value="8">🏆 Champions League</option>
-      </select>
-      <div id="classificacaoTable" style="margin-top: 10px; font-size: 0.9em; color: #ccc;"></div>
-    </div>
   </div>
 
   <div id="content">
@@ -88,6 +66,9 @@
     <div id="results">Selecione um campeonato.</div>
     <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
       Abrir/Fechar Rastreador
+    </button>
+    <button onclick="showClassification()" style="margin-top: 10px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
+      📊 Ver Classificação
     </button>
     <div id="trackerSection"></div>
   </div>
@@ -309,57 +290,69 @@
       }
     }
 
-    // === NOVAS FUNÇÕES: CLASSIFICAÇÃO ===
-    function toggleClassificacao() {
-      const section = document.getElementById("classificacaoSection");
-      if (section.style.display === "none" || !section.style.display) {
-        section.style.display = "block";
-      } else {
-        section.style.display = "none";
-      }
-    }
+    // === FUNÇÃO: MOSTRAR CLASSIFICAÇÃO NO #CONTENT ===
+    function showClassification() {
+      const leagueId = prompt(
+        "Selecione o campeonato:\n" +
+        "71 - Brasileirão Série A\n" +
+        "72 - Brasileirão Série B\n" +
+        "202 - Argentina\n" +
+        "39 - Premier League\n" +
+        "78 - Bundesliga\n" +
+        "61 - Ligue 1\n" +
+        "8 - Champions League\n\n" +
+        "Digite o ID do campeonato:"
+      );
 
-    function loadClassificacao() {
-      const leagueId = document.getElementById("classificacaoSelect").value;
-      const tableDiv = document.getElementById("classificacaoTable");
-
-      if (!leagueId) {
-        tableDiv.innerHTML = "<p>Selecione um campeonato.</p>";
-        return;
-      }
+      if (!leagueId) return;
 
       const tabelas = {
         "71": [
           { pos: 1, club: "Flamengo", pts: 43, pj: 19, vit: 13, emp: 4, der: 2, gm: 36, gc: 9, sg: 27 },
           { pos: 2, club: "Palmeiras", pts: 39, pj: 18, vit: 12, emp: 3, der: 3, gm: 24, gc: 15, sg: 9 },
-          { pos: 3, club: "Cruzeiro", pts: 38, pj: 20, vit: 11, emp: 5, der: 4, gm: 32, gc: 14, sg: 18 }
+          { pos: 3, club: "Cruzeiro", pts: 38, pj: 20, vit: 11, emp: 5, der: 4, gm: 32, gc: 14, sg: 18 },
+          { pos: 4, club: "Bahia", pts: 33, pj: 18, vit: 9, emp: 6, der: 3, gm: 25, gc: 17, sg: 8 },
+          { pos: 5, club: "Botafogo", pts: 29, pj: 18, vit: 8, emp: 5, der: 5, gm: 23, gc: 11, sg: 12 },
+          { pos: 6, club: "Mirassol", pts: 29, pj: 18, vit: 7, emp: 8, der: 3, gm: 29, gc: 19, sg: 10 },
+          { pos: 7, club: "São Paulo", pts: 29, pj: 20, vit: 7, emp: 8, der: 5, gm: 24, gc: 22, sg: 2 },
+          { pos: 8, club: "Fluminense", pts: 27, pj: 18, vit: 8, emp: 3, der: 7, gm: 23, gc: 24, sg: -1 },
+          { pos: 9, club: "Bragantino", pts: 27, pj: 20, vit: 8, emp: 3, der: 9, gm: 22, gc: 26, sg: -4 }
         ],
         "39": [
           { pos: 1, club: "Manchester City", pts: 47, pj: 20, vit: 15, emp: 2, der: 3, gm: 45, gc: 12, sg: 33 },
-          { pos: 2, club: "Arsenal", pts: 45, pj: 20, vit: 14, emp: 3, der: 3, gm: 42, gc: 15, sg: 27 }
+          { pos: 2, club: "Arsenal", pts: 45, pj: 20, vit: 14, emp: 3, der: 3, gm: 42, gc: 15, sg: 27 },
+          { pos: 3, club: "Liverpool", pts: 40, pj: 20, vit: 12, emp: 4, der: 4, gm: 41, gc: 20, sg: 21 },
+          { pos: 4, club: "Tottenham", pts: 38, pj: 20, vit: 11, emp: 5, der: 4, gm: 38, gc: 24, sg: 14 }
+        ],
+        "78": [
+          { pos: 1, club: "Bayern", pts: 45, pj: 20, vit: 14, emp: 3, der: 3, gm: 42, gc: 15, sg: 27 },
+          { pos: 2, club: "Borussia Dortmund", pts: 40, pj: 20, vit: 12, emp: 4, der: 4, gm: 38, gc: 20, sg: 18 },
+          { pos: 3, club: "RB Leipzig", pts: 38, pj: 20, vit: 11, emp: 5, der: 4, gm: 35, gc: 20, sg: 15 },
+          { pos: 4, club: "Bayer Leverkusen", pts: 36, pj: 20, vit: 10, emp: 6, der: 4, gm: 32, gc: 22, sg: 10 }
         ]
       };
 
       const tabela = tabelas[leagueId];
       if (!tabela) {
-        tableDiv.innerHTML = "<p>Tabela não disponível.</p>";
+        resultsDiv.innerHTML = "<p>Tabela não disponível.</p>";
         return;
       }
 
       let html = `
+        <h2>📊 Classificação - ${leagueNames[leagueId] || "Campeonato"}</h2>
         <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
           <thead>
             <tr style="background: #ff9800; color: black;">
-              <th style="padding: 6px; text-align: left;">#</th>
-              <th style="padding: 6px; text-align: left;">Clube</th>
-              <th style="padding: 6px;">Pts</th>
-              <th style="padding: 6px;">PJ</th>
-              <th style="padding: 6px;">V</th>
-              <th style="padding: 6px;">E</th>
-              <th style="padding: 6px;">D</th>
-              <th style="padding: 6px;">GM</th>
-              <th style="padding: 6px;">GC</th>
-              <th style="padding: 6px;">SG</th>
+              <th style="padding: 8px; text-align: left;">#</th>
+              <th style="padding: 8px; text-align: left;">Clube</th>
+              <th style="padding: 8px;">Pts</th>
+              <th style="padding: 8px;">PJ</th>
+              <th style="padding: 8px;">V</th>
+              <th style="padding: 8px;">E</th>
+              <th style="padding: 8px;">D</th>
+              <th style="padding: 8px;">GM</th>
+              <th style="padding: 8px;">GC</th>
+              <th style="padding: 8px;">SG</th>
             </tr>
           </thead>
           <tbody>
@@ -368,21 +361,23 @@
       tabela.forEach(time => {
         html += `
           <tr style="border-bottom: 1px solid #444;">
-            <td style="padding: 6px;">${time.pos}º</td>
-            <td style="padding: 6px;">${time.club}</td>
-            <td style="padding: 6px; font-weight: bold;">${time.pts}</td>
-            <td style="padding: 6px;">${time.pj}</td>
-            <td style="padding: 6px;">${time.vit}</td>
-            <td style="padding: 6px;">${time.emp}</td>
-            <td style="padding: 6px;">${time.der}</td>
-            <td style="padding: 6px;">${time.gm}</td>
-            <td style="padding: 6px;">${time.gc}</td>
-            <td style="padding: 6px;">${time.sg}</td>
+            <td style="padding: 8px;">${time.pos}º</td>
+            <td style="padding: 8px;">${time.club}</td>
+            <td style="padding: 8px; font-weight: bold;">${time.pts}</td>
+            <td style="padding: 8px;">${time.pj}</td>
+            <td style="padding: 8px;">${time.vit}</td>
+            <td style="padding: 8px;">${time.emp}</td>
+            <td style="padding: 8px;">${time.der}</td>
+            <td style="padding: 8px;">${time.gm}</td>
+            <td style="padding: 8px;">${time.gc}</td>
+            <td style="padding: 8px;">${time.sg}</td>
           </tr>`;
       });
 
       html += "</tbody></table>";
-      tableDiv.innerHTML = html;
+
+      resultsDiv.innerHTML = html;
+      sidebarInfo.textContent = `Tabela: ${leagueNames[leagueId] || "Campeonato"}`;
     }
   </script>
 </body>
