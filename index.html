@@ -193,7 +193,8 @@
             <div class='details'>
               🔁 ${d.last_5_summary || ''} | 🧠 Téc: ${d.new_coach ? "SIM" : "NÃO"}
               <br>📊 Pos: ${d.position}º | ${d.points} pts | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
-              <br>🏟️ ${d.home_away} | ⚔️ Adv: ${d.opponent_table || 'Desconhecido'} (${d.form_opponent}) | 🏃‍♂️: ${d.injuries}
+              <br>📅 ${d.match_date} às ${d.match_time} | 🏟️ ${d.home_away}
+              <br>⚔️ Adv: ${d.opponent_table || 'Desconhecido'} (${d.form_opponent}) | 🏃‍♂️: ${d.injuries}
             </div>
           </div>`;
       });
@@ -225,7 +226,7 @@
             <div class='confidence-high'>🔥 Série de ${streak} vitórias</div>
             <div class='details'>
               📊 Pos: ${d.position}º | ${d.points} pts | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
-              <br>🏟️ ${d.home_away} | 🏃‍♂️: ${d.injuries}
+              <br>📅 ${d.match_date} às ${d.match_time} | 🏟️ ${d.home_away} | 🏃‍♂️: ${d.injuries}
             </div>
           </div>`;
       });
@@ -264,7 +265,8 @@
             <div class='details'>
               🔁 ${d.last_5_summary || ''} | 🧠 Téc: ${d.new_coach ? "SIM" : "NÃO"}
               <br>📊 Pos: ${d.position}º | ${d.points} pts | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
-              <br>🏟️ ${d.home_away} | ⚔️ Adv: ${d.opponent_table || 'Desconhecido'} (${d.form_opponent}) | 🏃‍♂️: ${d.injuries}
+              <br>📅 ${d.match_date} às ${d.match_time} | 🏟️ ${d.home_away}
+              <br>⚔️ Adv: ${d.opponent_table || 'Desconhecido'} (${d.form_opponent}) | 🏃‍♂️: ${d.injuries}
             </div>
           </div>`;
       });
