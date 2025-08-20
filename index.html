@@ -290,7 +290,7 @@
       }
     }
 
-    // === FUNÇÃO: MOSTRAR CLASSIFICAÇÃO NO #CONTENT ===
+    // === FUNÇÃO: MOSTRAR CLASSIFICAÇÃO NO #content COM DESTAQUE NA ZONA DE REBAIXAMENTO ===
     function showClassification() {
       const leagueId = prompt(
         "Selecione o campeonato:\n" +
@@ -316,19 +316,27 @@
           { pos: 6, club: "Mirassol", pts: 29, pj: 18, vit: 7, emp: 8, der: 3, gm: 29, gc: 19, sg: 10 },
           { pos: 7, club: "São Paulo", pts: 29, pj: 20, vit: 7, emp: 8, der: 5, gm: 24, gc: 22, sg: 2 },
           { pos: 8, club: "Fluminense", pts: 27, pj: 18, vit: 8, emp: 3, der: 7, gm: 23, gc: 24, sg: -1 },
-          { pos: 9, club: "Bragantino", pts: 27, pj: 20, vit: 8, emp: 3, der: 9, gm: 22, gc: 26, sg: -4 }
+          { pos: 9, club: "Bragantino", pts: 27, pj: 20, vit: 8, emp: 3, der: 9, gm: 22, gc: 26, sg: -4 },
+          { pos: 10, club: "Ceará SC", pts: 25, pj: 19, vit: 7, emp: 4, der: 8, gm: 19, gc: 19, sg: 0 },
+          { pos: 11, club: "Atlético-MG", pts: 24, pj: 18, vit: 6, emp: 6, der: 6, gm: 20, gc: 21, sg: -1 },
+          { pos: 12, club: "Internacional", pts: 24, pj: 19, vit: 6, emp: 6, der: 7, gm: 22, gc: 26, sg: -4 },
+          { pos: 13, club: "Grêmio", pts: 23, pj: 19, vit: 6, emp: 5, der: 8, gm: 19, gc: 25, sg: -6 },
+          { pos: 14, club: "Vasco", pts: 22, pj: 19, vit: 6, emp: 4, der: 9, gm: 25, gc: 30, sg: -5 },
+          { pos: 15, club: "Fortaleza", pts: 21, pj: 18, vit: 5, emp: 6, der: 7, gm: 18, gc: 24, sg: -6 },
+          { pos: 16, club: "Corinthians", pts: 21, pj: 20, vit: 5, emp: 6, der: 9, gm: 19, gc: 26, sg: -7 },
+          { pos: 17, club: "EC Vitória", pts: 19, pj: 20, vit: 3, emp: 10, der: 7, gm: 18, gc: 24, sg: -6 },
+          { pos: 18, club: "Juventude", pts: 15, pj: 18, vit: 4, emp: 3, der: 11, gm: 15, gc: 38, sg: -23 },
+          { pos: 19, club: "Goiás", pts: 14, pj: 19, vit: 3, emp: 5, der: 11, gm: 17, gc: 34, sg: -17 },
+          { pos: 20, club: "Criciúma", pts: 13, pj: 19, vit: 3, emp: 4, der: 12, gm: 16, gc: 39, sg: -23 }
         ],
         "39": [
           { pos: 1, club: "Manchester City", pts: 47, pj: 20, vit: 15, emp: 2, der: 3, gm: 45, gc: 12, sg: 33 },
           { pos: 2, club: "Arsenal", pts: 45, pj: 20, vit: 14, emp: 3, der: 3, gm: 42, gc: 15, sg: 27 },
-          { pos: 3, club: "Liverpool", pts: 40, pj: 20, vit: 12, emp: 4, der: 4, gm: 41, gc: 20, sg: 21 },
-          { pos: 4, club: "Tottenham", pts: 38, pj: 20, vit: 11, emp: 5, der: 4, gm: 38, gc: 24, sg: 14 }
+          { pos: 3, club: "Liverpool", pts: 40, pj: 20, vit: 12, emp: 4, der: 4, gm: 41, gc: 20, sg: 21 }
         ],
         "78": [
           { pos: 1, club: "Bayern", pts: 45, pj: 20, vit: 14, emp: 3, der: 3, gm: 42, gc: 15, sg: 27 },
-          { pos: 2, club: "Borussia Dortmund", pts: 40, pj: 20, vit: 12, emp: 4, der: 4, gm: 38, gc: 20, sg: 18 },
-          { pos: 3, club: "RB Leipzig", pts: 38, pj: 20, vit: 11, emp: 5, der: 4, gm: 35, gc: 20, sg: 15 },
-          { pos: 4, club: "Bayer Leverkusen", pts: 36, pj: 20, vit: 10, emp: 6, der: 4, gm: 32, gc: 22, sg: 10 }
+          { pos: 2, club: "Borussia Dortmund", pts: 40, pj: 20, vit: 12, emp: 4, der: 4, gm: 38, gc: 20, sg: 18 }
         ]
       };
 
@@ -359,8 +367,13 @@
       `;
 
       tabela.forEach(time => {
+        const isZonaRebaixamento = time.pos >= 17;
+        const rowStyle = isZonaRebaixamento 
+          ? "background: #f44336; color: white; font-weight: bold;" 
+          : "border-bottom: 1px solid #444;";
+        
         html += `
-          <tr style="border-bottom: 1px solid #444;">
+          <tr style="${rowStyle}">
             <td style="padding: 8px;">${time.pos}º</td>
             <td style="padding: 8px;">${time.club}</td>
             <td style="padding: 8px; font-weight: bold;">${time.pts}</td>
