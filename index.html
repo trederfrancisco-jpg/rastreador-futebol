@@ -48,6 +48,8 @@
       <option value="94">🇵🇹 Primeira Liga</option>
       <option value="262">🇲🇽 Liga MX</option>
       <option value="8">🏆 Champions League</option>
+      <option value="12">🏆 Copa Libertadores</option>
+      <option value="13">🌎 Copa Sul-Americana</option>
       <option value="10217">⚽ Brasileirão Feminino</option>
     </select>
     <div id="tabelaLink"></div>
@@ -106,6 +108,8 @@
       "94": "https://www.sofascore.com/tournament/portugal/primeira-liga/44",
       "262": "https://www.sofascore.com/tournament/mexico/liga-mx/105",
       "8": "https://www.sofascore.com/tournament/champions-league/8",
+      "12": "https://www.sofascore.com/tournament/south-america/libertadores/12",
+      "13": "https://www.sofascore.com/tournament/south-america/sul-americana/13",
       "10217": "https://www.sofascore.com/tournament/brazil/campeonato-brasileiro-women/1154"
     };
 
@@ -122,6 +126,8 @@
       "94": "Primeira Liga",
       "262": "Liga MX",
       "8": "Champions League",
+      "12": "Copa Libertadores",
+      "13": "Copa Sul-Americana",
       "10217": "Brasileirão Feminino"
     };
 
@@ -290,7 +296,7 @@
       }
     }
 
-    // === FUNÇÃO: MOSTRAR CLASSIFICAÇÃO NO #content COM DESTAQUE NA ZONA DE REBAIXAMENTO ===
+    // === MOSTRAR CLASSIFICAÇÃO NO #content COM DESTAQUE NA ZONA DE REBAIXAMENTO ===
     function showClassification() {
       const leagueId = prompt(
         "Selecione o campeonato:\n" +
@@ -300,7 +306,9 @@
         "39 - Premier League\n" +
         "78 - Bundesliga\n" +
         "61 - Ligue 1\n" +
-        "8 - Champions League\n\n" +
+        "8 - Champions League\n" +
+        "12 - Copa Libertadores\n" +
+        "13 - Copa Sul-Americana\n\n" +
         "Digite o ID do campeonato:"
       );
 
@@ -334,9 +342,14 @@
           { pos: 2, club: "Arsenal", pts: 45, pj: 20, vit: 14, emp: 3, der: 3, gm: 42, gc: 15, sg: 27 },
           { pos: 3, club: "Liverpool", pts: 40, pj: 20, vit: 12, emp: 4, der: 4, gm: 41, gc: 20, sg: 21 }
         ],
-        "78": [
-          { pos: 1, club: "Bayern", pts: 45, pj: 20, vit: 14, emp: 3, der: 3, gm: 42, gc: 15, sg: 27 },
-          { pos: 2, club: "Borussia Dortmund", pts: 40, pj: 20, vit: 12, emp: 4, der: 4, gm: 38, gc: 20, sg: 18 }
+        "12": [
+          { pos: 1, club: "Flamengo", pts: 10, pj: 4, vit: 3, emp: 1, der: 0, gm: 8, gc: 2, sg: 6 },
+          { pos: 2, club: "River Plate", pts: 9, pj: 4, vit: 3, emp: 0, der: 1, gm: 7, gc: 3, sg: 4 },
+          { pos: 3, club: "Palmeiras", pts: 6, pj: 4, vit: 2, emp: 0, der: 2, gm: 5, gc: 4, sg: 1 }
+        ],
+        "13": [
+          { pos: 1, club: "Corinthians", pts: 9, pj: 3, vit: 3, emp: 0, der: 0, gm: 7, gc: 2, sg: 5 },
+          { pos: 2, club: "Independiente", pts: 6, pj: 3, vit: 2, emp: 0, der: 1, gm: 5, gc: 3, sg: 2 }
         ]
       };
 
