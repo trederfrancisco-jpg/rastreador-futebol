@@ -72,6 +72,9 @@
     <button onclick="showClassification()" style="margin-top: 10px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
       📊 Ver Classificação
     </button>
+    <button onclick="showMultiples()" style="margin-top: 10px; padding: 10px; width: 100%; background: #4caf50; border: none; color: white; border-radius: 4px; cursor: pointer;">
+      🎯 Múltiplos em Alta (Hoje)
+    </button>
     <div id="trackerSection"></div>
   </div>
 
@@ -412,6 +415,71 @@
 
       resultsDiv.innerHTML = html;
       sidebarInfo.textContent = `Tabela: ${leagueNames[leagueId] || "Campeonato"}`;
+    }
+
+    // === FUNÇÃO: MÚLTIPLOS EM ALTA (HOJE) ===
+    function getTodayDate() {
+      const today = new Date();
+      const day = String(today.getDate()).padStart(2, '0');
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const year = today.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
+    function showMultiples() {
+      const today = getTodayDate();
+      const teams = Object.keys(teamResults);
+      const multiples = [];
+
+      teams.forEach(t => {
+        const d = teamResults[t];
+        
+        // Regras para múltiplos em alta
+        const isToday = d.match_date === today;
+        const isStrong = d.position <= 6;
+        const isHome = d.home_away === "Casa";
+        const isWeakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
+        const opponentInCrisis = d.form_opponent.includes("D");
+        const goodForm = d.last_5_summary.includes("3V") || d.last_5_summary.includes("4V");
+
+        if (isToday && isStrong && isHome && isWeakOpponent && (opponentInCrisis || goodForm)) {
+          multiples.push({
+            team: t,
+            opponent: d.next_opponent,
+            position: d.position,
+            opponent_table: d.opponent_table,
+            form: d.last_5_summary,
+            home_away: d.home_away
+          });
+        }
+      });
+
+      if (multiples.length < 2) {
+        resultsDiv.innerHTML = "<p class='error'>⚠️ Poucos times com alta probabilidade hoje. Espere ou analise individualmente.</p>";
+        return;
+      }
+
+      // Simulação de odd (exemplo: 1.30 a 1.60)
+      let totalOdd = 1;
+      let html = "<h2>🎯 MÚLTIPLOS EM ALTA (HOJE)</h2>";
+      html += "<div style='background: #2a2a2a; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 0.9em; color: #ccc; line-height: 1.6;'>";
+      
+      multiples.forEach(m => {
+        const odd = (Math.random() * 0.2 + 1.3).toFixed(2); // Simula odd entre 1.30 e 1.50
+        totalOdd *= parseFloat(odd);
+        html += `<div>✅ <strong>${m.team}</strong> vs. ${m.opponent} — Odd: ${odd}</div>`;
+      });
+
+      totalOdd = totalOdd.toFixed(2);
+      const retorno10 = (10 * totalOdd).toFixed(2);
+
+      html += `</div>`;
+      html += `<p><strong>🔁 Odd Total: ${totalOdd}</strong></p>`;
+      html += `<p>💰 R$10,00 → R$${retorno10}</p>`;
+      html += `<p class='tip'>💡 Baseado em posição, forma, casa e adversário. Não é garantia, mas alta probabilidade.</p>`;
+      
+      resultsDiv.innerHTML = html;
+      sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogos`;
     }
   </script>
 </body>
