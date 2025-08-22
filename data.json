@@ -30,7 +30,7 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "last_5_summary": "3V, 1E, 1D",
-        "match_date": "24/08/2025",
+        "match_date": "23/08/2025",
         "match_time": "18:30"
       },
       "Palmeiras": {
@@ -46,7 +46,7 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "last_5_summary": "4V, 1E",
-        "match_date": "24/08/2025",
+        "match_date": "23/08/2025",
         "match_time": "21:00"
       }
     },
@@ -64,7 +64,7 @@
         "injuries": "1 titular",
         "new_coach": false,
         "last_5_summary": "2V, 1E, 2D",
-        "match_date": "24/08/2025",
+        "match_date": "23/08/2025",
         "match_time": "20:00"
       },
       "Manchester City": {
@@ -102,24 +102,6 @@
         "match_time": "15:30"
       }
     },
-    "140": {
-      "Barcelona": {
-        "results": ["V", "V"],
-        "next_opponent": "Real Madrid",
-        "opponent_table": "Top 5",
-        "form_opponent": "V, D",
-        "position": 1,
-        "points": 25,
-        "avg_goals": 2.4,
-        "avg_corners": 6.8,
-        "home_away": "Casa",
-        "injuries": "Nenhum",
-        "new_coach": false,
-        "last_5_summary": "4V, 1E",
-        "match_date": "25/08/2025",
-        "match_time": "21:00"
-      }
-    },
     "61": {
       "PSG": {
         "results": ["V", "V"],
@@ -134,6 +116,24 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "last_5_summary": "5V",
+        "match_date": "23/08/2025",
+        "match_time": "21:00"
+      }
+    },
+    "140": {
+      "Barcelona": {
+        "results": ["V", "V"],
+        "next_opponent": "Real Madrid",
+        "opponent_table": "Top 5",
+        "form_opponent": "V, D",
+        "position": 1,
+        "points": 25,
+        "avg_goals": 2.4,
+        "avg_corners": 6.8,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "last_5_summary": "4V, 1E",
         "match_date": "23/08/2025",
         "match_time": "21:00"
       }
