@@ -426,60 +426,82 @@
       return `${day}/${month}/${year}`;
     }
 
-    function showMultiples() {
+    async function showMultiples() {
       const today = getTodayDate();
-      const teams = Object.keys(teamResults);
       const multiples = [];
 
-      teams.forEach(t => {
-        const d = teamResults[t];
-        
-        // Regras para múltiplos em alta
-        const isToday = d.match_date === today;
-        const isStrong = d.position <= 6;
-        const isHome = d.home_away === "Casa";
-        const isWeakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
-        const opponentInCrisis = d.form_opponent && d.form_opponent.includes("D");
-        const goodForm = d.last_5_summary && (d.last_5_summary.includes("3V") || d.last_5_summary.includes("4V"));
+      try {
+        // Força recarregar o data.json
+        const response = await fetch('/data.json?' + new Date().getTime());
+        if (!response.ok) throw new Error("Falha ao carregar dados");
+        const data = await response.json();
 
-        if (isToday && isStrong && isHome && isWeakOpponent && (opponentInCrisis || goodForm)) {
-          multiples.push({
-            team: t,
-            opponent: d.next_opponent,
-            position: d.position,
-            opponent_table: d.opponent_table,
-            form: d.last_5_summary,
-            home_away: d.home_away
-          });
+        const year = "2025";
+        if (!data[year]) {
+          resultsDiv.innerHTML = "<p class='error'>⚠️ Dados do ano 2025 não encontrados.</p>";
+          return;
         }
-      });
 
-      if (multiples.length < 2) {
-        resultsDiv.innerHTML = "<p class='error'>⚠️ Poucos times com alta probabilidade hoje. Espere ou analise individualmente.</p>";
-        return;
+        // Percorre TODOS os campeonatos
+        for (const leagueId in data[year]) {
+          const leagueData = data[year][leagueId];
+          for (const teamName in leagueData) {
+            const d = leagueData[teamName];
+
+            // Só times que jogam HOJE
+            if (!d.match_date || d.match_date !== today) continue;
+
+            // Regras de filtro
+            const isStrong = d.position <= 6;
+            const isHome = d.home_away === "Casa";
+            const isWeakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
+            const opponentInCrisis = d.form_opponent && d.form_opponent.includes("D");
+            const goodForm = d.last_5_summary && (d.last_5_summary.includes("3V") || d.last_5_summary.includes("4V"));
+
+            if (isStrong && isHome && isWeakOpponent && (opponentInCrisis || goodForm)) {
+              multiples.push({
+                team: teamName,
+                opponent: d.next_opponent,
+                position: d.position,
+                form: d.last_5_summary,
+                home_away: d.home_away
+              });
+            }
+          }
+        }
+
+        if (multiples.length < 2) {
+          resultsDiv.innerHTML = "<p class='error'>⚠️ Poucos times com alta probabilidade hoje. Espere ou analise individualmente.</p>";
+          sidebarInfo.textContent = "⚠️ Poucos times em alta hoje";
+          return;
+        }
+
+        // Gera o resultado visual
+        let totalOdd = 1;
+        let html = "<h2>🎯 MÚLTIPLOS EM ALTA (HOJE)</h2>";
+        html += "<div style='background: #2a2a2a; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 0.9em; color: #ccc; line-height: 1.6;'>";
+
+        multiples.forEach(m => {
+          const odd = (Math.random() * 0.2 + 1.3).toFixed(2);
+          totalOdd *= parseFloat(odd);
+          html += `<div>✅ <strong>${m.team}</strong> vs. ${m.opponent} — Odd: ${odd}</div>`;
+        });
+
+        totalOdd = totalOdd.toFixed(2);
+        const retorno10 = (10 * totalOdd).toFixed(2);
+
+        html += `</div>`;
+        html += `<p><strong>🔁 Odd Total: ${totalOdd}</strong></p>`;
+        html += `<p>💰 R$10,00 → R$${retorno10}</p>`;
+        html += `<p class='tip'>💡 Baseado em posição, forma, casa e adversário. Não é garantia, mas alta probabilidade.</p>`;
+        
+        resultsDiv.innerHTML = html;
+        sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogos`;
+
+      } catch (err) {
+        console.error("Erro em showMultiples:", err);
+        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados. Veja o console.</p>";
       }
-
-      // Simulação de odd (exemplo: 1.30 a 1.60)
-      let totalOdd = 1;
-      let html = "<h2>🎯 MÚLTIPLOS EM ALTA (HOJE)</h2>";
-      html += "<div style='background: #2a2a2a; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 0.9em; color: #ccc; line-height: 1.6;'>";
-      
-      multiples.forEach(m => {
-        const odd = (Math.random() * 0.2 + 1.3).toFixed(2); // Simula odd entre 1.30 e 1.50
-        totalOdd *= parseFloat(odd);
-        html += `<div>✅ <strong>${m.team}</strong> vs. ${m.opponent} — Odd: ${odd}</div>`;
-      });
-
-      totalOdd = totalOdd.toFixed(2);
-      const retorno10 = (10 * totalOdd).toFixed(2);
-
-      html += `</div>`;
-      html += `<p><strong>🔁 Odd Total: ${totalOdd}</strong></p>`;
-      html += `<p>💰 R$10,00 → R$${retorno10}</p>`;
-      html += `<p class='tip'>💡 Baseado em posição, forma, casa e adversário. Não é garantia, mas alta probabilidade.</p>`;
-      
-      resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogos`;
     }
   </script>
 </body>
