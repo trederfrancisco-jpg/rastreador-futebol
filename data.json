@@ -51,19 +51,19 @@
         "match_date": "22/08/2025",
         "match_time": "20:00"
       },
-      "Arsenal": {
+      "Manchester City": {
         "results": ["V", "V"],
-        "next_opponent": "West Ham",
+        "next_opponent": "Tottenham",
         "opponent_table": "Meio da tabela",
         "form_opponent": "E, D",
-        "position": 2,
-        "points": 42,
-        "avg_goals": 2.3,
-        "avg_corners": 6.8,
+        "position": 1,
+        "points": 47,
+        "avg_goals": 2.5,
+        "avg_corners": 7.0,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "4V, 1E",
+        "last_5_summary": "5V",
         "match_date": "22/08/2025",
         "match_time": "17:30"
       }
@@ -87,21 +87,21 @@
       }
     },
     "78": {
-      "Bayer Leverkusen": {
-        "results": ["D", "E: 1x1"],
-        "next_opponent": "Mainz",
-        "opponent_table": "Z4",
-        "form_opponent": "D, D",
-        "position": 3,
-        "points": 42,
-        "avg_goals": 2.0,
-        "avg_corners": 6.1,
+      "Bayern": {
+        "results": ["V", "V"],
+        "next_opponent": "RB Leipzig",
+        "opponent_table": "Top 6",
+        "form_opponent": "V, D",
+        "position": 2,
+        "points": 40,
+        "avg_goals": 2.6,
+        "avg_corners": 6.9,
         "home_away": "Casa",
-        "injuries": "1 titular",
+        "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "2V, 2E, 1D",
+        "last_5_summary": "4V, 1E",
         "match_date": "22/08/2025",
-        "match_time": "18:30"
+        "match_time": "15:30"
       }
     },
     "135": {
@@ -120,24 +120,6 @@
         "last_5_summary": "4V, 1E",
         "match_date": "22/08/2025",
         "match_time": "20:45"
-      }
-    },
-    "94": {
-      "Benfica": {
-        "results": ["V", "V"],
-        "next_opponent": "Moreirense",
-        "opponent_table": "Z4",
-        "form_opponent": "D, D",
-        "position": 1,
-        "points": 30,
-        "avg_goals": 2.3,
-        "avg_corners": 6.5,
-        "home_away": "Casa",
-        "injuries": "Nenhum",
-        "new_coach": false,
-        "last_5_summary": "4V, 1E",
-        "match_date": "22/08/2025",
-        "match_time": "20:00"
       }
     },
     "61": {
@@ -176,12 +158,66 @@
         "match_time": "20:00"
       }
     },
+    "94": {
+      "Benfica": {
+        "results": ["V", "V"],
+        "next_opponent": "Moreirense",
+        "opponent_table": "Z4",
+        "form_opponent": "D, D",
+        "position": 1,
+        "points": 30,
+        "avg_goals": 2.3,
+        "avg_corners": 6.5,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "last_5_summary": "4V, 1E",
+        "match_date": "22/08/2025",
+        "match_time": "20:00"
+      }
+    },
+    "262": {
+      "Club América": {
+        "results": ["D", "D"],
+        "next_opponent": "Chivas",
+        "opponent_table": "Z4",
+        "form_opponent": "E, D",
+        "position": 12,
+        "points": 18,
+        "avg_goals": 1.5,
+        "avg_corners": 5.0,
+        "home_away": "Casa",
+        "injuries": "2 titulares",
+        "new_coach": true,
+        "last_5_summary": "1V, 1E, 3D",
+        "match_date": "22/08/2025",
+        "match_time": "21:00"
+      }
+    },
+    "8": {
+      "Manchester City": {
+        "results": ["V", "E: 1x1"],
+        "next_opponent": "Barcelona",
+        "opponent_table": "Top 8",
+        "form_opponent": "V, D",
+        "position": 1,
+        "points": 12,
+        "avg_goals": 2.3,
+        "avg_corners": 7.0,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "last_5_summary": "3V, 1E, 1D",
+        "match_date": "22/08/2025",
+        "match_time": "20:00"
+      }
+    },
     "10217": {
       "Corinthians Feminino": {
-        "results": ["V", "V"],
+        "results": ["V", "E: 1x1"],
         "next_opponent": "Palmeiras",
         "opponent_table": "Top 3",
-        "form_opponent": "D, D",
+        "form_opponent": "V, D",
         "position": 2,
         "points": 22,
         "avg_goals": 2.0,
