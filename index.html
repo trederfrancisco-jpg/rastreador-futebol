@@ -3,28 +3,23 @@ async function showMultiples() {
   const multiples = [];
 
   try {
-    // Força recarregar o data.json
     const response = await fetch('/data.json?' + new Date().getTime());
     if (!response.ok) throw new Error("Falha ao carregar dados");
     const data = await response.json();
 
-    // Usa o ano fixo "2025"
     const year = "2025";
     if (!data[year]) {
       resultsDiv.innerHTML = "<p class='error'>⚠️ Dados do ano 2025 não encontrados.</p>";
       return;
     }
 
-    // Percorre TODOS os campeonatos
     for (const leagueId in data[year]) {
       const leagueData = data[year][leagueId];
       for (const teamName in leagueData) {
         const d = leagueData[teamName];
 
-        // Verifica se o time joga HOJE
         if (!d.match_date || d.match_date !== today) continue;
 
-        // Regras para múltiplos em alta
         const isStrong = d.position <= 6;
         const isHome = d.home_away === "Casa";
         const isWeakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
@@ -50,7 +45,6 @@ async function showMultiples() {
       return;
     }
 
-    // Simulação de odd
     let totalOdd = 1;
     let html = "<h2>🎯 MÚLTIPLOS EM ALTA (HOJE)</h2>";
     html += "<div style='background: #2a2a2a; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 0.9em; color: #ccc; line-height: 1.6;'>";
