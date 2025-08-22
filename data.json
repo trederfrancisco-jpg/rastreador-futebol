@@ -2,19 +2,19 @@
   "2025": {
     "71": {
       "Flamengo": {
-        "results": ["D", "E: 1x1"],
+        "results": ["V", "D"],
         "next_opponent": "Cruzeiro",
         "opponent_table": "Z4",
         "form_opponent": "D, D",
         "position": 4,
-        "points": 32,
+        "points": 35,
         "avg_goals": 1.9,
-        "avg_corners": 6.4,
+        "avg_corners": 6.5,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "1V, 1E, 3D",
-        "match_date": "24/08/2025",
+        "last_5_summary": "2V, 1E, 2D",
+        "match_date": "25/08/2025",
         "match_time": "20:00"
       },
       "Athletico-PR": {
@@ -30,7 +30,7 @@
         "injuries": "1 titular",
         "new_coach": true,
         "last_5_summary": "1V, 1E, 3D",
-        "match_date": "23/08/2025",
+        "match_date": "24/08/2025",
         "match_time": "19:00"
       },
       "São Paulo": {
@@ -64,7 +64,7 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "last_5_summary": "3V, 1E, 1D",
-        "match_date": "23/08/2025",
+        "match_date": "24/08/2025",
         "match_time": "16:00"
       }
     },
@@ -82,7 +82,7 @@
         "injuries": "3 titulares",
         "new_coach": true,
         "last_5_summary": "1V, 1E, 3D",
-        "match_date": "24/08/2025",
+        "match_date": "25/08/2025",
         "match_time": "21:30"
       }
     },
@@ -100,7 +100,7 @@
         "injuries": "1 titular",
         "new_coach": false,
         "last_5_summary": "2V, 1E, 2D",
-        "match_date": "25/08/2025",
+        "match_date": "26/08/2025",
         "match_time": "20:00"
       }
     },
@@ -118,7 +118,7 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "last_5_summary": "4V, 1E",
-        "match_date": "26/08/2025",
+        "match_date": "27/08/2025",
         "match_time": "21:00"
       }
     },
@@ -136,7 +136,7 @@
         "injuries": "1 titular",
         "new_coach": false,
         "last_5_summary": "2V, 2E, 1D",
-        "match_date": "24/08/2025",
+        "match_date": "25/08/2025",
         "match_time": "20:45"
       }
     },
@@ -154,7 +154,7 @@
         "injuries": "1 titular",
         "new_coach": false,
         "last_5_summary": "4V, 1E",
-        "match_date": "25/08/2025",
+        "match_date": "26/08/2025",
         "match_time": "20:45"
       }
     },
@@ -172,7 +172,7 @@
         "injuries": "3 titulares",
         "new_coach": false,
         "last_5_summary": "1V, 1E, 3D",
-        "match_date": "25/08/2025",
+        "match_date": "26/08/2025",
         "match_time": "21:00"
       }
     },
@@ -190,7 +190,7 @@
         "injuries": "2 titulares",
         "new_coach": false,
         "last_5_summary": "2V, 2E, 1D",
-        "match_date": "26/08/2025",
+        "match_date": "27/08/2025",
         "match_time": "18:30"
       }
     },
@@ -208,7 +208,7 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "last_5_summary": "4V, 1E",
-        "match_date": "24/08/2025",
+        "match_date": "25/08/2025",
         "match_time": "20:00"
       }
     },
@@ -226,7 +226,7 @@
         "injuries": "2 titulares",
         "new_coach": true,
         "last_5_summary": "1V, 1E, 3D",
-        "match_date": "25/08/2025",
+        "match_date": "26/08/2025",
         "match_time": "21:00"
       }
     },
@@ -244,7 +244,7 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "last_5_summary": "3V, 1E, 1D",
-        "match_date": "26/08/2025",
+        "match_date": "27/08/2025",
         "match_time": "20:00"
       }
     },
@@ -262,7 +262,7 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "last_5_summary": "3V, 1E, 1D",
-        "match_date": "28/08/2025",
+        "match_date": "29/08/2025",
         "match_time": "21:30"
       }
     },
@@ -280,7 +280,7 @@
         "injuries": "1 titular",
         "new_coach": false,
         "last_5_summary": "3V, 1E, 1D",
-        "match_date": "27/08/2025",
+        "match_date": "28/08/2025",
         "match_time": "19:00"
       }
     },
@@ -298,9 +298,10 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "last_5_summary": "3V, 1E, 1D",
-        "match_date": "26/08/2025",
+        "match_date": "27/08/2025",
         "match_time": "16:00"
       }
     }
   }
 }
+  
