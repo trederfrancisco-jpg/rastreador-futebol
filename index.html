@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rastreador Avançado - Chance de Vitória</title>
+  <title>Rastreador Avançado - Múltiplos em Alta</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #121212; color: white; display: flex; height: 100vh; }
     #sidebar { width: 320px; background: #1e1e1e; padding: 20px; box-sizing: border-box; overflow-y: auto; }
@@ -79,6 +79,9 @@
   </div>
 
   <script>
+    // 🔥 DATA FIXA PARA TESTE: TODOS OS JOGOS SÃO "HOJE"
+    const DATA_DE_HOJE = "23/08/2025";
+
     let teamResults = {};
     let currentTab = "chance";
 
@@ -179,13 +182,11 @@
       }
     }
 
-    // === NOVA LÓGICA: POTENCIAL REAL DE REAÇÃO ===
     function loadChanceOfWinOrDraw(leagueId) {
       const teams = Object.keys(teamResults);
       const filtered = teams.filter(t => {
         const d = teamResults[t];
         const r = d.results;
-        
         return r && r.length >= 2 &&
                (r[0] === "D" || r[0].startsWith("E")) &&
                (r[1] === "D" || r[1].startsWith("E")) &&
@@ -217,7 +218,7 @@
             </div>
           </div>`;
       });
-      html += "<div class='tip'>💡 Foco: Times fortes em crise leve vs. adversários fracos — potencial de reação nos próximos jogos.</div>";
+      html += "<div class='tip'>💡 Foco: Times fortes em crise leve vs. adversários fracos.</div>";
       resultsDiv.innerHTML = html;
       sidebarInfo.textContent = `Campeonato selecionado: ${leagueNames[leagueId]}`;
       updateTabelaLink(leagueId);
@@ -265,7 +266,7 @@
 
       if (filtered.length === 0) {
         resultsDiv.innerHTML = "<p>Nenhum time com 2 jogos sem vitória.</p>";
-        sidebarInfo.textContent = "✅ Todos os campeonatos: Nenhum time em crise";
+        sidebarInfo.textContent = "✅ Nenhum time em crise";
         return;
       }
 
@@ -304,7 +305,6 @@
       }
     }
 
-    // === MOSTRAR CLASSIFICAÇÃO ===
     function showClassification() {
       const leagueId = prompt(
         "Selecione o campeonato:\n" +
@@ -413,21 +413,9 @@
       sidebarInfo.textContent = `Tabela: ${leagueNames[leagueId] || "Campeonato"}`;
     }
 
-    // === FUNÇÃO CORRIGIDA: MÚLTIPLOS EM ALTA (HOJE) ===
-    function getTodayDate() {
-      // ✅ Altere esta linha para simular qualquer data
-      // return "23/08/2025"; // 🔧 Descomente para testar
-
-      const today = new Date();
-      const day = String(today.getDate()).padStart(2, '0');
-      const month = String(today.getMonth() + 1).padStart(2, '0');
-      const year = today.getFullYear();
-      return `${day}/${month}/${year}`;
-    }
-
+    // ✅ FUNÇÃO CORRIGIDA: MÚLTIPLOS EM ALTA (HOJE)
     async function showMultiples() {
-      const today = getTodayDate();
-      console.log("📅 Data usada para múltiplos:", today);
+      const today = DATA_DE_HOJE; // Usa data fixa
       const multiples = [];
 
       try {
@@ -438,7 +426,6 @@
         const year = "2025";
         if (!data[year]) {
           resultsDiv.innerHTML = "<p class='error'>⚠️ Dados do ano 2025 não encontrados.</p>";
-          sidebarInfo.textContent = "❌ Erro: Dados não encontrados";
           return;
         }
 
@@ -452,7 +439,7 @@
             const isStrong = d.position <= 6;
             const isHome = d.home_away === "Casa";
             const isWeakOpponent = ["Z4", "Meio da tabela"].includes(d.opponent_table);
-            const opponentInCrisis = d.form_opponent && (d.form_opponent.includes("D"));
+            const opponentInCrisis = d.form_opponent && d.form_opponent.includes("D");
             const goodForm = d.last_5_summary && (d.last_5_summary.includes("3V") || d.last_5_summary.includes("4V"));
 
             if (isStrong && isHome && isWeakOpponent && (opponentInCrisis || goodForm)) {
@@ -462,16 +449,10 @@
                 position: d.position,
                 form: d.last_5_summary,
                 home_away: d.home_away,
-                league: leagueNames[leagueId] || "Desconhecido"
+                league: leagueNames[leagueId]
               });
             }
           }
-        }
-
-        if (multiples.length === 0) {
-          resultsDiv.innerHTML = `<p class='error'>⚠️ Nenhum jogo hoje (${today}) atende aos critérios.</p>`;
-          sidebarInfo.textContent = `🎯 Múltiplos em Alta: 0 jogos hoje`;
-          return;
         }
 
         if (multiples.length < 2) {
@@ -496,14 +477,14 @@
         html += `</div>`;
         html += `<p><strong>🔁 Odd Total: ${totalOdd}</strong></p>`;
         html += `<p>💰 R$10,00 → R$${retorno10}</p>`;
-        html += `<p class='tip'>💡 Baseado em posição, forma, casa e adversário. Não é garantia, mas alta probabilidade.</p>`;
+        html += `<p class='tip'>💡 Baseado em posição, forma, casa e adversário. Não é garantia.</p>`;
         
         resultsDiv.innerHTML = html;
         sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogos hoje`;
 
       } catch (err) {
         console.error("Erro em showMultiples:", err);
-        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados. Veja o console.</p>";
+        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados.</p>";
       }
     }
   </script>
