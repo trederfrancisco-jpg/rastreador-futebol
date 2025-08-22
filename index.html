@@ -186,13 +186,12 @@
         const d = teamResults[t];
         const r = d.results;
         
-        // Regras combinadas: só times com condição real de reação
         return r && r.length >= 2 &&
                (r[0] === "D" || r[0].startsWith("E")) &&
                (r[1] === "D" || r[1].startsWith("E")) &&
-               d.position <= 8 &&  // Só times no Top 8
+               d.position <= 8 &&
                (d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela") &&
-               d.form_opponent.includes("D"); // Adversário vem de derrota
+               d.form_opponent.includes("D");
       });
 
       if (filtered.length === 0) {
@@ -256,9 +255,7 @@
     }
 
     function showAllLeagues() {
-      const allResults = [];
       const teams = Object.keys(teamResults);
-
       const filtered = teams.filter(t => {
         const r = teamResults[t].results;
         return r && r.length >= 2 && 
@@ -267,7 +264,7 @@
       });
 
       if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time com 2 jogos sem vitória em nenhum campeonato.</p>";
+        resultsDiv.innerHTML = "<p>Nenhum time com 2 jogos sem vitória.</p>";
         sidebarInfo.textContent = "✅ Todos os campeonatos: Nenhum time em crise";
         return;
       }
@@ -297,7 +294,7 @@
 
     function toggleTracker() {
       const trackerSection = document.getElementById("trackerSection");
-      const btn = document.querySelector("button");
+      const btn = document.querySelector("button[onclick='toggleTracker()']");
       if (trackerSection.style.display === "none" || !trackerSection.style.display) {
         trackerSection.style.display = "block";
         btn.textContent = "Fechar Rastreador";
@@ -307,7 +304,7 @@
       }
     }
 
-    // === MOSTRAR CLASSIFICAÇÃO NO #content COM DESTAQUE NA ZONA DE REBAIXAMENTO ===
+    // === MOSTRAR CLASSIFICAÇÃO ===
     function showClassification() {
       const leagueId = prompt(
         "Selecione o campeonato:\n" +
@@ -412,13 +409,15 @@
       });
 
       html += "</tbody></table>";
-
       resultsDiv.innerHTML = html;
       sidebarInfo.textContent = `Tabela: ${leagueNames[leagueId] || "Campeonato"}`;
     }
 
-    // === FUNÇÃO: MÚLTIPLOS EM ALTA (HOJE) ===
+    // === FUNÇÃO CORRIGIDA: MÚLTIPLOS EM ALTA (HOJE) ===
     function getTodayDate() {
+      // ✅ Altere esta linha para simular qualquer data
+      // return "23/08/2025"; // 🔧 Descomente para testar
+
       const today = new Date();
       const day = String(today.getDate()).padStart(2, '0');
       const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -428,10 +427,10 @@
 
     async function showMultiples() {
       const today = getTodayDate();
+      console.log("📅 Data usada para múltiplos:", today);
       const multiples = [];
 
       try {
-        // Força recarregar o data.json
         const response = await fetch('/data.json?' + new Date().getTime());
         if (!response.ok) throw new Error("Falha ao carregar dados");
         const data = await response.json();
@@ -439,23 +438,21 @@
         const year = "2025";
         if (!data[year]) {
           resultsDiv.innerHTML = "<p class='error'>⚠️ Dados do ano 2025 não encontrados.</p>";
+          sidebarInfo.textContent = "❌ Erro: Dados não encontrados";
           return;
         }
 
-        // Percorre TODOS os campeonatos
         for (const leagueId in data[year]) {
           const leagueData = data[year][leagueId];
           for (const teamName in leagueData) {
             const d = leagueData[teamName];
 
-            // Só times que jogam HOJE
             if (!d.match_date || d.match_date !== today) continue;
 
-            // Regras de filtro
             const isStrong = d.position <= 6;
             const isHome = d.home_away === "Casa";
-            const isWeakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
-            const opponentInCrisis = d.form_opponent && d.form_opponent.includes("D");
+            const isWeakOpponent = ["Z4", "Meio da tabela"].includes(d.opponent_table);
+            const opponentInCrisis = d.form_opponent && (d.form_opponent.includes("D"));
             const goodForm = d.last_5_summary && (d.last_5_summary.includes("3V") || d.last_5_summary.includes("4V"));
 
             if (isStrong && isHome && isWeakOpponent && (opponentInCrisis || goodForm)) {
@@ -464,27 +461,33 @@
                 opponent: d.next_opponent,
                 position: d.position,
                 form: d.last_5_summary,
-                home_away: d.home_away
+                home_away: d.home_away,
+                league: leagueNames[leagueId] || "Desconhecido"
               });
             }
           }
         }
 
-        if (multiples.length < 2) {
-          resultsDiv.innerHTML = "<p class='error'>⚠️ Poucos times com alta probabilidade hoje. Espere ou analise individualmente.</p>";
-          sidebarInfo.textContent = "⚠️ Poucos times em alta hoje";
+        if (multiples.length === 0) {
+          resultsDiv.innerHTML = `<p class='error'>⚠️ Nenhum jogo hoje (${today}) atende aos critérios.</p>`;
+          sidebarInfo.textContent = `🎯 Múltiplos em Alta: 0 jogos hoje`;
           return;
         }
 
-        // Gera o resultado visual
+        if (multiples.length < 2) {
+          resultsDiv.innerHTML = `<p class='error'>⚠️ Apenas ${multiples.length} jogo elegível hoje. Mínimo de 2 para múltiplo.</p>`;
+          sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogo hoje`;
+          return;
+        }
+
         let totalOdd = 1;
-        let html = "<h2>🎯 MÚLTIPLOS EM ALTA (HOJE)</h2>";
+        let html = `<h2>🎯 MÚLTIPLOS EM ALTA (Hoje - ${today})</h2>`;
         html += "<div style='background: #2a2a2a; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 0.9em; color: #ccc; line-height: 1.6;'>";
 
         multiples.forEach(m => {
           const odd = (Math.random() * 0.2 + 1.3).toFixed(2);
           totalOdd *= parseFloat(odd);
-          html += `<div>✅ <strong>${m.team}</strong> vs. ${m.opponent} — Odd: ${odd}</div>`;
+          html += `<div>✅ <strong>${m.team}</strong> vs. ${m.opponent} <em>(${m.league})</em> — Odd: ${odd}</div>`;
         });
 
         totalOdd = totalOdd.toFixed(2);
@@ -496,7 +499,7 @@
         html += `<p class='tip'>💡 Baseado em posição, forma, casa e adversário. Não é garantia, mas alta probabilidade.</p>`;
         
         resultsDiv.innerHTML = html;
-        sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogos`;
+        sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogos hoje`;
 
       } catch (err) {
         console.error("Erro em showMultiples:", err);
