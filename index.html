@@ -399,7 +399,7 @@
       sidebarInfo.textContent = `Tabela: ${leagueNames[leagueId] || "Campeonato"}`;
     }
 
-    // ✅ FUNÇÃO PRINCIPAL: MÚLTIPLOS EM ALTA (HOJE) - REGRA DE G4/G5 vs. Z4 ou Meio da tabela
+    // ✅ FUNÇÃO CORRIGIDA: MÚLTIPLOS EM ALTA (HOJE) - REGRA DE G4/G5 vs. Z4 ou Meio da tabela (NÃO entra se for jogo entre fortes)
     async function showMultiples() {
       const today = DATA_DE_HOJE;
       const multiples = [];
@@ -422,14 +422,15 @@
 
             if (!d.match_date || d.match_date !== today) continue;
 
-            // ✅ NOVA REGRA: Time no G4/G5 em casa vs. Meio da tabela ou Z4
-            const isTop5 = d.position >= 2 && d.position <= 5;
+            // ✅ REGRA CORRETA: Time no G4/G5 em casa vs. Meio da tabela ou Z4 (NÃO entra se for jogo entre fortes)
+            const isTop5 = d.position >= 1 && d.position <= 5; // Inclui líder
             const isHome = d.home_away === "Casa";
             const isWeakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
+            const isStrongOpponent = d.opponent_table === "Top 6" || d.opponent_table === "Top 5";
             const opponentInCrisis = d.form_opponent && d.form_opponent.includes("D");
-            const goodForm = d.last_5_summary && (d.last_5_summary.includes("3V") || d.last_5_summary.includes("4V"));
 
-            if (isTop5 && isHome && isWeakOpponent && (opponentInCrisis || goodForm)) {
+            // ✅ Só entra se for time forte em casa vs. time fraco
+            if (isTop5 && isHome && isWeakOpponent && !isStrongOpponent && opponentInCrisis) {
               multiples.push({
                 team: teamName,
                 opponent: d.next_opponent,
