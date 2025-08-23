@@ -17,22 +17,6 @@
         "match_date": "23/08/2025",
         "match_time": "20:00"
       },
-      "Bahia": {
-        "results": ["V", "V"],
-        "next_opponent": "Santos",
-        "opponent_table": "Z4",
-        "form_opponent": "D, D",
-        "position": 5,
-        "points": 33,
-        "avg_goals": 1.7,
-        "avg_corners": 5.2,
-        "home_away": "Casa",
-        "injuries": "Nenhum",
-        "new_coach": false,
-        "last_5_summary": "3V, 1E, 1D",
-        "match_date": "23/08/2025",
-        "match_time": "18:30"
-      },
       "Palmeiras": {
         "results": ["V", "V"],
         "next_opponent": "Ceará",
@@ -46,27 +30,11 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "last_5_summary": "4V, 1E",
-        "match_date": "23/08/2025",
+        "match_date": "24/08/2025",
         "match_time": "21:00"
       }
     },
     "39": {
-      "Liverpool": {
-        "results": ["V", "D"],
-        "next_opponent": "Chelsea",
-        "opponent_table": "Top 6",
-        "form_opponent": "D, D",
-        "position": 3,
-        "points": 39,
-        "avg_goals": 2.1,
-        "avg_corners": 6.5,
-        "home_away": "Casa",
-        "injuries": "1 titular",
-        "new_coach": false,
-        "last_5_summary": "2V, 1E, 2D",
-        "match_date": "23/08/2025",
-        "match_time": "20:00"
-      },
       "Manchester City": {
         "results": ["V", "V"],
         "next_opponent": "Tottenham",
@@ -82,6 +50,22 @@
         "last_5_summary": "5V",
         "match_date": "23/08/2025",
         "match_time": "17:30"
+      },
+      "Liverpool": {
+        "results": ["V", "D"],
+        "next_opponent": "Chelsea",
+        "opponent_table": "Top 6",
+        "form_opponent": "D, D",
+        "position": 3,
+        "points": 39,
+        "avg_goals": 2.1,
+        "avg_corners": 6.5,
+        "home_away": "Casa",
+        "injuries": "1 titular",
+        "new_coach": false,
+        "last_5_summary": "2V, 1E, 2D",
+        "match_date": "24/08/2025",
+        "match_time": "20:00"
       }
     },
     "78": {
@@ -102,6 +86,24 @@
         "match_time": "15:30"
       }
     },
+    "140": {
+      "Barcelona": {
+        "results": ["V", "V"],
+        "next_opponent": "Real Madrid",
+        "opponent_table": "Top 5",
+        "form_opponent": "V, D",
+        "position": 1,
+        "points": 25,
+        "avg_goals": 2.4,
+        "avg_corners": 6.8,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "last_5_summary": "4V, 1E",
+        "match_date": "25/08/2025",
+        "match_time": "21:00"
+      }
+    },
     "61": {
       "PSG": {
         "results": ["V", "V"],
@@ -120,22 +122,40 @@
         "match_time": "21:00"
       }
     },
-    "140": {
-      "Barcelona": {
-        "results": ["V", "V"],
-        "next_opponent": "Real Madrid",
-        "opponent_table": "Top 5",
-        "form_opponent": "V, D",
+    "8": {
+      "Real Madrid": {
+        "results": ["V", "E"],
+        "next_opponent": "Borussia Dortmund",
+        "opponent_table": "Meio da tabela",
+        "form_opponent": "E, D",
         "position": 1,
-        "points": 25,
+        "points": 12,
         "avg_goals": 2.4,
         "avg_corners": 6.8,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "4V, 1E",
+        "last_5_summary": "3V, 1E, 1D",
         "match_date": "23/08/2025",
-        "match_time": "21:00"
+        "match_time": "20:00"
+      }
+    },
+    "10217": {
+      "Corinthians Feminino": {
+        "results": ["V", "E"],
+        "next_opponent": "Palmeiras",
+        "opponent_table": "Top 3",
+        "form_opponent": "V, D",
+        "position": 2,
+        "points": 22,
+        "avg_goals": 2.0,
+        "avg_corners": 5.8,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "last_5_summary": "3V, 1E, 1D",
+        "match_date": "24/08/2025",
+        "match_time": "16:00"
       }
     }
   }
