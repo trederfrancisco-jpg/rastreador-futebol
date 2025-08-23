@@ -64,24 +64,31 @@
   </div>
 
   <div id="content">
-    <h2 id="contentTitle">Times com Alta Probabilidade de Vitória</h2>
+    <!-- Título e botão de assinatura na mesma linha -->
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 15px;">
+      <h2 id="contentTitle" style="margin: 0; font-size: 1.5rem; white-space: nowrap;">
+        Times com Alta Probabilidade de Vitória
+      </h2>
+      <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" target="_blank" style="white-space: nowrap; padding: 10px 15px; background: #25D366; border: none; color: white; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1rem; text-decoration: none; min-width: 240px; text-align: center;">
+        🚀 QUERO ASSINAR O RASTREADOR PRO
+      </a>
+    </div>
+
+    <!-- Botão de múltiplos -->
+    <button onclick="showMultiples()" style="margin-top: 10px; padding: 10px; width: 100%; background: #4caf50; border: none; color: white; border-radius: 4px; cursor: pointer;">
+      🎯 Múltiplos em Alta (Hoje)
+    </button>
+
+    <!-- Resultados -->
     <div id="results">Selecione um campeonato.</div>
+
+    <!-- Outros botões -->
     <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
       Abrir/Fechar Rastreador
     </button>
     <button onclick="showClassification()" style="margin-top: 10px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
       📊 Ver Classificação
     </button>
-    <button onclick="showMultiples()" style="margin-top: 10px; padding: 10px; width: 100%; background: #4caf50; border: none; color: white; border-radius: 4px; cursor: pointer;">
-      🎯 Múltiplos em Alta (Hoje)
-    </button>
-    
-    <!-- Botão de Assinatura com seu WhatsApp -->
-    <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" target="_blank" style="margin-top: 10px; padding: 10px; width: 100%; background: #25D366; border: none; color: white; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 1rem;">
-      🚀 QUERO ASSINAR O RASTREADOR PRO
-    </a>
-
-    <div id="trackerSection"></div>
   </div>
 
   <script>
