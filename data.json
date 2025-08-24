@@ -18,40 +18,22 @@
         "match_time": "18:30"
       }
     },
-    "39": {
-      "Liverpool": {
-        "results": ["V", "D"],
-        "next_opponent": "Chelsea",
-        "opponent_table": "Top 6",
-        "form_opponent": "D,D",
-        "position": 3,
-        "points": 39,
-        "avg_goals": 2.1,
-        "avg_corners": 6.5,
-        "home_away": "Casa",
-        "injuries": "1 titular",
-        "new_coach": false,
-        "last_5_summary": "2V,1E,2D",
-        "match_date": "24/08/2025",
-        "match_time": "20:00"
-      }
-    },
-    "10217": {
-      "Corinthians Feminino": {
-        "results": ["V", "E"],
-        "next_opponent": "Palmeiras",
-        "opponent_table": "Top 3",
-        "form_opponent": "V,D",
-        "position": 2,
+    "61": {
+      "PSG": {
+        "results": ["V", "V"],
+        "next_opponent": "Marseille",
+        "opponent_table": "Meio da tabela",
+        "form_opponent": "E,D",
+        "position": 1,
         "points": 22,
-        "avg_goals": 2.0,
-        "avg_corners": 5.8,
+        "avg_goals": 2.5,
+        "avg_corners": 6.2,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "3V,1E,1D",
+        "last_5_summary": "5V",
         "match_date": "24/08/2025",
-        "match_time": "16:00"
+        "match_time": "21:00"
       }
     }
   }
