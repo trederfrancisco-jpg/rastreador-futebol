@@ -1,0 +1,66 @@
+name: Atualizar data.json
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Roda todo dia às 06:00 (Brasília)
+  workflow_dispatch:  # Permite rodar manualmente
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Gerar data.json
+        run: |
+          echo '{
+            "2025": {
+              "71": {
+                "Flamengo": {
+                  "results": ["V", "D"],
+                  "next_opponent": "Criciúma",
+                  "opponent_table": "Z4",
+                  "form_opponent": "D,D",
+                  "position": 4,
+                  "points": 35,
+                  "avg_goals": 1.9,
+                  "avg_corners": 6.5,
+                  "home_away": "Casa",
+                  "injuries": "Nenhum",
+                  "new_coach": false,
+                  "last_5_summary": "2V,1E,2D",
+                  "match_date": "24/08/2025",
+                  "match_time": "20:00"
+                }
+              },
+              "39": {
+                "Manchester City": {
+                  "results": ["V", "V"],
+                  "next_opponent": "Tottenham",
+                  "opponent_table": "Meio da tabela",
+                  "form_opponent": "E,D",
+                  "position": 1,
+                  "points": 47,
+                  "avg_goals": 2.5,
+                  "avg_corners": 7.0,
+                  "home_away": "Casa",
+                  "injuries": "Nenhum",
+                  "new_coach": false,
+                  "last_5_summary": "5V",
+                  "match_date": "24/08/2025",
+                  "match_time": "17:30"
+                }
+              }
+            }
+          }' > data.json
+
+      - name: Commit e Push
+        run: |
+          git config user.name "trederfrancisco-jpg"
+          git config user.email "seu-email@exemplo.com"
+          git add data.json
+          git commit -m "📅 Atualizado automaticamente: data.json (hoje)" || echo "Nenhuma alteração"
+          git push
