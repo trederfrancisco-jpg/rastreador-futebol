@@ -18,6 +18,24 @@
         "match_time": "18:30"
       }
     },
+    "39": {
+      "Manchester City": {
+        "results": ["V", "V"],
+        "next_opponent": "West Ham",
+        "opponent_table": "Meio da tabela",
+        "form_opponent": "E,D",
+        "position": 1,
+        "points": 47,
+        "avg_goals": 2.5,
+        "avg_corners": 7.0,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "last_5_summary": "5V",
+        "match_date": "24/08/2025",
+        "match_time": "17:30"
+      }
+    },
     "61": {
       "PSG": {
         "results": ["V", "V"],
@@ -34,6 +52,24 @@
         "last_5_summary": "5V",
         "match_date": "24/08/2025",
         "match_time": "21:00"
+      }
+    },
+    "10217": {
+      "Corinthians Feminino": {
+        "results": ["V", "E"],
+        "next_opponent": "Palmeiras",
+        "opponent_table": "Top 3",
+        "form_opponent": "V,D",
+        "position": 2,
+        "points": 22,
+        "avg_goals": 2.0,
+        "avg_corners": 5.8,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "last_5_summary": "3V,1E,1D",
+        "match_date": "24/08/2025",
+        "match_time": "16:00"
       }
     }
   }
