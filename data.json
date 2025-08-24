@@ -53,24 +53,6 @@
         "match_date": "24/08/2025",
         "match_time": "21:00"
       }
-    },
-    "10217": {
-      "Corinthians Feminino": {
-        "results": ["V", "E"],
-        "next_opponent": "Palmeiras",
-        "opponent_table": "Top 3",
-        "form_opponent": "V,D",
-        "position": 2,
-        "points": 22,
-        "avg_goals": 2.0,
-        "avg_corners": 5.8,
-        "home_away": "Casa",
-        "injuries": "Nenhum",
-        "new_coach": false,
-        "last_5_summary": "3V,1E,1D",
-        "match_date": "24/08/2025",
-        "match_time": "16:00"
-      }
     }
   }
 }
