@@ -1,45 +1,48 @@
-name: Atualizar data.json
+name: Atualizar data.json (Diariamente)
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Roda todo dia às 06:00 (Brasília)
-  workflow_dispatch:  # Permite rodar manualmente
+    - cron: '0 6 * * *'  # Todo dia às 06:00 (Brasília)
+  workflow_dispatch:
 
 jobs:
-  update-data:
+  update-
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      - name: Gerar data.json
+      - name: Gerar data.json com os jogos de hoje
         run: |
           echo '{
             "2025": {
               "71": {
-                "Flamengo": {
-                  "results": ["V", "D"],
-                  "next_opponent": "Criciúma",
+                "Bahia": {
+                  "results": ["V", "V"],
+                  "next_opponent": "Santos",
                   "opponent_table": "Z4",
                   "form_opponent": "D,D",
-                  "position": 4,
-                  "points": 35,
-                  "avg_goals": 1.9,
-                  "avg_corners": 6.5,
+                  "position": 5,
+                  "points": 33,
+                  "avg_goals": 1.7,
+                  "avg_corners": 5.2,
                   "home_away": "Casa",
                   "injuries": "Nenhum",
                   "new_coach": false,
-                  "last_5_summary": "2V,1E,2D",
+                  "last_5_summary": "3V,1E,1D",
                   "match_date": "24/08/2025",
-                  "match_time": "20:00"
+                  "match_time": "18:30"
                 }
               },
               "39": {
                 "Manchester City": {
                   "results": ["V", "V"],
-                  "next_opponent": "Tottenham",
+                  "next_opponent": "West Ham",
                   "opponent_table": "Meio da tabela",
                   "form_opponent": "E,D",
                   "position": 1,
@@ -53,6 +56,24 @@ jobs:
                   "match_date": "24/08/2025",
                   "match_time": "17:30"
                 }
+              },
+              "61": {
+                "PSG": {
+                  "results": ["V", "V"],
+                  "next_opponent": "Marseille",
+                  "opponent_table": "Meio da tabela",
+                  "form_opponent": "E,D",
+                  "position": 1,
+                  "points": 22,
+                  "avg_goals": 2.5,
+                  "avg_corners": 6.2,
+                  "home_away": "Casa",
+                  "injuries": "Nenhum",
+                  "new_coach": false,
+                  "last_5_summary": "5V",
+                  "match_date": "24/08/2025",
+                  "match_time": "21:00"
+                }
               }
             }
           }' > data.json
@@ -62,5 +83,5 @@ jobs:
           git config user.name "trederfrancisco-jpg"
           git config user.email "seu-email@exemplo.com"
           git add data.json
-          git commit -m "📅 Atualizado automaticamente: data.json (hoje)" || echo "Nenhuma alteração"
+          git commit -m "📅 Atualizado automaticamente: data.json" || echo "Sem alterações"
           git push
