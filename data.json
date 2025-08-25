@@ -1,57 +1,39 @@
 {
   "2025": {
-    "71": {
-      "Botafogo": {
+    "88": {
+      "PSV": {
         "results": ["V", "V"],
-        "next_opponent": "Fortaleza",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "E,D",
-        "position": 5,
-        "points": 29,
-        "avg_goals": 1.8,
-        "avg_corners": 5.8,
-        "home_away": "Casa",
-        "injuries": "Nenhum",
-        "new_coach": false,
-        "last_5_summary": "3V,1E,1D",
-        "match_date": "25/08/2025",
-        "match_time": "20:00"
-      }
-    },
-    "39": {
-      "Arsenal": {
-        "results": ["V", "E"],
-        "next_opponent": "Brighton",
+        "next_opponent": "Fortuna Sittard",
         "opponent_table": "Meio da tabela",
         "form_opponent": "D,D",
-        "position": 2,
-        "points": 45,
-        "avg_goals": 2.3,
-        "avg_corners": 6.9,
-        "home_away": "Casa",
-        "injuries": "1 titular",
-        "new_coach": false,
-        "last_5_summary": "4V,1E",
-        "match_date": "25/08/2025",
-        "match_time": "15:00"
-      }
-    },
-    "140": {
-      "Barcelona": {
-        "results": ["V", "V"],
-        "next_opponent": "Real Madrid",
-        "opponent_table": "Top 5",
-        "form_opponent": "V,D",
         "position": 1,
-        "points": 25,
-        "avg_goals": 2.4,
+        "points": 45,
+        "avg_goals": 2.7,
         "avg_corners": 6.8,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "4V,1E",
+        "last_5_summary": "5V",
         "match_date": "25/08/2025",
-        "match_time": "21:00"
+        "match_time": "19:00"
+      }
+    },
+    "94": {
+      "Benfica": {
+        "results": ["V", "V"],
+        "next_opponent": "Estoril",
+        "opponent_table": "Z4",
+        "form_opponent": "D,D",
+        "position": 1,
+        "points": 46,
+        "avg_goals": 2.8,
+        "avg_corners": 7.1,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "last_5_summary": "5V",
+        "match_date": "25/08/2025",
+        "match_time": "20:30"
       }
     }
   }
