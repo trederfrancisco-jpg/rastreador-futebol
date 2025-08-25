@@ -93,7 +93,7 @@
 
   <script>
     // ✅ DATA ATUALIZADA PARA HOJE
-    const DATA_DE_HOJE = "24/08/2025";
+    const DATA_DE_HOJE = "25/08/2025";
 
     let teamResults = {};
     let currentTab = "meio";
@@ -177,7 +177,7 @@
         const response = await fetch('/data.json?' + new Date().getTime());
         if (!response.ok) throw new Error("HTTP " + response.status);
         const data = await response.json();
-        console.log("✅ Dados carregados:", data); // 🔥 DEBUG
+        console.log("✅ Dados carregados:", data);
         const year = "2025";
         if (data[year] && data[year][leagueId]) {
           teamResults = data[year][leagueId];
