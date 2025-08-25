@@ -1,56 +1,56 @@
 {
   "2025": {
     "71": {
-      "Bahia": {
+      "Botafogo": {
         "results": ["V", "V"],
-        "next_opponent": "Santos",
-        "opponent_table": "Z4",
-        "form_opponent": "D,D",
+        "next_opponent": "Fortaleza",
+        "opponent_table": "Meio da tabela",
+        "form_opponent": "E,D",
         "position": 5,
-        "points": 33,
-        "avg_goals": 1.7,
-        "avg_corners": 5.2,
+        "points": 29,
+        "avg_goals": 1.8,
+        "avg_corners": 5.8,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
         "last_5_summary": "3V,1E,1D",
-        "match_date": "24/08/2025",
-        "match_time": "18:30"
+        "match_date": "25/08/2025",
+        "match_time": "20:00"
       }
     },
     "39": {
-      "Manchester City": {
-        "results": ["V", "V"],
-        "next_opponent": "West Ham",
+      "Arsenal": {
+        "results": ["V", "E"],
+        "next_opponent": "Brighton",
         "opponent_table": "Meio da tabela",
-        "form_opponent": "E,D",
-        "position": 1,
-        "points": 47,
-        "avg_goals": 2.5,
-        "avg_corners": 7.0,
+        "form_opponent": "D,D",
+        "position": 2,
+        "points": 45,
+        "avg_goals": 2.3,
+        "avg_corners": 6.9,
         "home_away": "Casa",
-        "injuries": "Nenhum",
+        "injuries": "1 titular",
         "new_coach": false,
-        "last_5_summary": "5V",
-        "match_date": "24/08/2025",
-        "match_time": "17:30"
+        "last_5_summary": "4V,1E",
+        "match_date": "25/08/2025",
+        "match_time": "15:00"
       }
     },
-    "61": {
-      "PSG": {
+    "140": {
+      "Barcelona": {
         "results": ["V", "V"],
-        "next_opponent": "Marseille",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "E,D",
+        "next_opponent": "Real Madrid",
+        "opponent_table": "Top 5",
+        "form_opponent": "V,D",
         "position": 1,
-        "points": 22,
-        "avg_goals": 2.5,
-        "avg_corners": 6.2,
+        "points": 25,
+        "avg_goals": 2.4,
+        "avg_corners": 6.8,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "5V",
-        "match_date": "24/08/2025",
+        "last_5_summary": "4V,1E",
+        "match_date": "25/08/2025",
         "match_time": "21:00"
       }
     }
