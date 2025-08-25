@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rastreador Avançado - Jogos e Múltiplos</title>
+<title>Rastreador Avançado - Jogos do Dia</title>
 <style>
   body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #121212; color: white; display: flex; height: 100vh; }
-  #sidebar { width: 350px; background: #1e1e1e; padding: 20px; box-sizing: border-box; overflow-y: auto; }
+  #sidebar { width: 320px; background: #1e1e1e; padding: 20px; box-sizing: border-box; overflow-y: auto; }
   #content { flex-grow: 1; padding: 20px; box-sizing: border-box; overflow-y: auto; background: #222; }
   h1,h2 { margin-top:0; }
   select { width:100%; padding:10px; margin-bottom:15px; background:#333; border:none; color:white; border-radius:4px; font-size:1rem; cursor:pointer; }
@@ -17,7 +17,7 @@
   .loading { font-style:italic; color:#aaa; text-align:center; margin:10px 0; }
   .error { color:#ff6b6b; font-weight:bold; text-align:center; }
   .details { font-size:0.9em; color:#ccc; margin-top:6px; line-height:1.5; }
-  .highlight { background:#4caf50; color:black; padding:2px 6px; border-radius:4px; font-weight:bold; }
+  .tip { font-style:italic; color:#bbb; margin-top:15px; text-align:center; }
   nav { display:flex; margin-bottom:15px; }
   nav button { flex:1; margin-right:5px; padding:10px; background:#333; border:none; color:white; border-radius:4px; cursor:pointer; }
   nav button:last-child { margin-right:0; }
@@ -28,13 +28,12 @@
   <div id="sidebar">
     <h1>Rastreador Avançado</h1>
     <label for="leagueSelect">Selecione Campeonato:</label>
-    <select id="leagueSelect" onchange="showFilteredGames()">
+    <select id="leagueSelect" onchange="loadData()">
       <option value="">Todos os Campeonatos</option>
     </select>
     <div id="sidebarInfo" class="info-box">Carregando...</div>
     <nav>
       <button id="btnAll" class="active" onclick="setTab('all')">🎯 Jogos do Dia</button>
-      <button id="btnHot" onclick="setTab('hot')">🔥 Times em Alta</button>
     </nav>
   </div>
 
@@ -47,90 +46,49 @@
 let teamResults = {};
 let currentTab = "all";
 
-// Exemplo simples de “Times em Alta” com base em lógica de resultados (substitua pela sua real)
-let hotTeams = ["Coritiba", "Palmeiras", "Flamengo"];
-
 function setTab(tab) {
   currentTab = tab;
   document.getElementById("btnAll").classList.toggle("active", tab === "all");
-  document.getElementById("btnHot").classList.toggle("active", tab === "hot");
-  showFilteredGames();
+  if (Object.keys(teamResults).length) showAllGames();
 }
 
-// Mapeia eventos SofaScore
+// Mapeia os eventos da API SofaScore
 function mapearJogos(data) {
   const resultados = {};
-  const campeonatos = new Set();
   data.events.forEach(evento => {
     const home = evento.homeTeam.name;
     const away = evento.awayTeam.name;
-    const league = evento.tournament.name;
-    campeonatos.add(league);
     const matchDate = new Date(evento.startTimestamp * 1000);
     const match_date = matchDate.toLocaleDateString('pt-BR');
     const match_time = matchDate.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
-    resultados[home] = { next_opponent: away, match_date, match_time, home_away:"Casa", league };
-    resultados[away] = { next_opponent: home, match_date, match_time, home_away:"Fora", league };
+    resultados[home] = {
+      next_opponent: away,
+      match_date,
+      match_time,
+      home_away: "Casa",
+      league: evento.tournament.name
+    };
+    resultados[away] = {
+      next_opponent: home,
+      match_date,
+      match_time,
+      home_away: "Fora",
+      league: evento.tournament.name
+    };
   });
-  populateLeagueSelect(Array.from(campeonatos));
   return resultados;
-}
-
-// Popula o select de campeonatos
-function populateLeagueSelect(leagues) {
-  const select = document.getElementById("leagueSelect");
-  select.innerHTML = '<option value="">Todos os Campeonatos</option>';
-  leagues.forEach(l => {
-    const opt = document.createElement("option");
-    opt.value = l;
-    opt.textContent = l;
-    select.appendChild(opt);
-  });
-}
-
-// Filtra e mostra jogos
-function showFilteredGames() {
-  const resultsDiv = document.getElementById("results");
-  const selectedLeague = document.getElementById("leagueSelect").value;
-  const teams = Object.keys(teamResults);
-  if (!teams.length) return;
-
-  let html = "";
-  const jaMostrados = new Set();
-  teams.forEach(team => {
-    const t = teamResults[team];
-    const key = `${team} vs ${t.next_opponent}`;
-    if (jaMostrados.has(key)) return;
-    jaMostrados.add(key);
-
-    // Filtrar por campeonato
-    if (selectedLeague && t.league !== selectedLeague) return;
-
-    // Filtrar por "Times em Alta"
-    if (currentTab === "hot" && !hotTeams.includes(team) && !hotTeams.includes(t.next_opponent)) return;
-
-    html += `
-      <div class="item">
-        <strong>${team}</strong> vs <strong>${t.next_opponent}</strong> <em>(${t.league})</em><br>
-        🏟️ ${t.home_away} | 📅 ${t.match_date} | ⏰ ${t.match_time}
-        ${hotTeams.includes(team) || hotTeams.includes(t.next_opponent) ? `<span class="highlight">🔥 Hot</span>` : ""}
-      </div>
-    `;
-  });
-
-  resultsDiv.innerHTML = html || "<p class='loading'>Nenhum jogo encontrado para este filtro.</p>";
 }
 
 // Carrega jogos do dia
 async function loadData() {
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
   const resultsDiv = document.getElementById("results");
   resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados...</p>";
   try {
     const response = await fetch(`https://api.sofascore.com/api/v1/sport/football/scheduled-events/${today}`);
     const data = await response.json();
     teamResults = mapearJogos(data);
-    showFilteredGames();
+    showAllGames();
     document.getElementById("sidebarInfo").textContent = `✅ Jogos do dia carregados (${Object.keys(teamResults).length})`;
   } catch(err) {
     console.error(err);
@@ -138,8 +96,34 @@ async function loadData() {
   }
 }
 
+// Mostra todos os jogos
+function showAllGames() {
+  const resultsDiv = document.getElementById("results");
+  const teams = Object.keys(teamResults);
+  if (!teams.length) {
+    resultsDiv.innerHTML = "<p>Nenhum jogo encontrado.</p>";
+    return;
+  }
+  let html = "";
+  const jaMostrados = new Set();
+  teams.forEach(team => {
+    const t = teamResults[team];
+    const key = `${team} vs ${t.next_opponent}`;
+    if (jaMostrados.has(key)) return;
+    jaMostrados.add(key);
+    html += `
+      <div class="item">
+        <strong>${team}</strong> vs <strong>${t.next_opponent}</strong> <em>(${t.league})</em><br>
+        🏟️ ${t.home_away} | 📅 ${t.match_date} | ⏰ ${t.match_time}
+      </div>
+    `;
+  });
+  resultsDiv.innerHTML = html;
+}
+
 loadData();
 </script>
 </body>
 </html>
+
 
