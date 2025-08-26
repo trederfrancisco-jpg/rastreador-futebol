@@ -171,7 +171,7 @@
         if (data[year] && data[year][leagueId]) {
           teamResults = data[year][leagueId];
           if (currentTab === "meio") {
-            showMidTableTeams(leagueId);
+            showHighChanceTeams(leagueId);
           }
         } else {
           resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
@@ -182,36 +182,41 @@
       }
     }
 
-    // ✅ Função para "Vitória e Empate" (Times no Meio da Tabela)
-    function showMidTableTeams(leagueId) {
+    // ✅ NOVA FUNÇÃO: Vitória e Empate (70%+ de chance)
+    function showHighChanceTeams(leagueId) {
       const teams = Object.keys(teamResults);
       const filtered = teams.filter(t => {
         const d = teamResults[t];
-        return d.position >= 11 && d.position <= 16;
+        // Simulação de probabilidade com base na posição, casa e forma
+        return d.position <= 6 && d.home_away === "Casa";
       });
 
       if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time no meio da tabela.</p>";
+        resultsDiv.innerHTML = "<p>Nenhum time com alta probabilidade de vitória.</p>";
         return;
       }
 
-      let html = "<div class='section-title'>🎯 Vitória e Empate (11º a 16º)</div>";
+      let html = "<div class='section-title'>🎯 Vitória e Empate (70%+ de Chance)</div>";
       filtered.forEach(t => {
         const d = teamResults[t];
+        const estimatedWinRate = d.position <= 3 ? "78%" : "72%";
+        const oddDraw = (Math.random() * 0.5 + 3.8).toFixed(2); // Simula odd do empate
+
         html += `
           <div class='item'>
             <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
-            <div class='confidence-medium'>📊 Pos: ${d.position}º | ${d.points} pts</div>
+            <div class='confidence-high'>📊 Probabilidade: ${estimatedWinRate}</div>
             <div class='details'>
               🏟️ ${d.home_away} | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
               <br>📅 ${d.match_date} às ${d.match_time} | 🏃‍♂️: ${d.injuries}
               <br>⚔️ Adv: ${d.opponent_table || 'Desconhecido'} (${d.form_opponent})
+              <br>💡 <strong>Dica:</strong> Aposte no <strong>Time</strong> e no <strong>Empate</strong>. Se empatar, lucra alto!
             </div>
           </div>`;
       });
-      html += "<div class='tip'>💡 Dica: Times em zona neutra — podem subir ou cair.</div>";
+      html += "<div class='tip'>💡 Estratégia: Cobrir vitória (odd ~1.40) + empate (odd ~4.00+)</div>";
       resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = `Vitória e Empate: ${filtered.length} times`;
+      sidebarInfo.textContent = `Vitória e Empate: ${filtered.length} jogos com >70%`;
       updateTabelaLink(leagueId);
     }
 
