@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -25,17 +24,14 @@
     #trackerSection { display: none; margin-top: 10px; padding: 10px; background-color: rgba(255, 255, 255, 0.9); border-radius: 5px; color: #000; }
     .link-tabela { display: block; text-align: center; margin: 10px 0; padding: 8px; background: #333; border-radius: 4px; color: #4caf50; text-decoration: none; font-weight: bold; }
     .link-tabela:hover { background: #555; }
-    nav { display: flex; margin-bottom: 15px; }
-    nav button { flex: 1; margin-right: 5px; padding: 10px; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer; }
-    nav button:last-child { margin-right: 0; }
-    nav button.active { background: #ff9800; color: black; font-weight: bold; }
+    nav { display: none; } /* Ocultamos as abas */
   </style>
 </head>
 <body>
   <div id="sidebar">
     <h1>Rastreador Avançado</h1>
     <label for="leagueSelect">Selecione Campeonato:</label>
-    <select id="leagueSelect" onchange="loadData()">
+    <select id="leagueSelect" onchange="loadData()" style="display: none;">
       <option value="">Selecione um campeonato</option>
       <option value="71">🇧🇷 Brasileirão Série A</option>
       <option value="72">🇧🇷 Brasileirão Série B</option>
@@ -54,14 +50,9 @@
       <option value="10217">⚽ Brasileirão Feminino</option>
     </select>
     <div id="tabelaLink"></div>
-    <div id="sidebarInfo" class="info-box">Selecione um campeonato.</div>
+    <div id="sidebarInfo" class="info-box">Rastreador PRO - Múltiplos em Alta</div>
 
-    <!-- Abas de filtro -->
-    <nav>
-      <button id="btnChance" class="active" onclick="setTab('meio')">Times no Meio da Tabela</button>
-      <button id="btnStreak" onclick="setTab('z4')">Times na Zona de Rebaixamento</button>
-      <button id="btnAll" onclick="showAllLeagues()">🎯 Todos os Times</button>
-    </nav>
+    <!-- Abas removidas -->
   </div>
 
   <div id="content">
@@ -83,12 +74,9 @@
     <!-- Resultados -->
     <div id="results">Selecione um campeonato.</div>
 
-    <!-- Outros botões -->
+    <!-- Botão de rastreador -->
     <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
       Abrir/Fechar Rastreador
-    </button>
-    <button onclick="showClassification()" style="margin-top: 10px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
-      📊 Ver Classificação
     </button>
   </div>
 
@@ -97,25 +85,11 @@
     const DATA_DE_HOJE = "25/08/2025";
 
     let teamResults = {};
-    let currentTab = "meio";
-
-    const leagueSelect = document.getElementById("leagueSelect");
     const resultsDiv = document.getElementById("results");
     const sidebarInfo = document.getElementById("sidebarInfo");
     const tabelaLink = document.getElementById("tabelaLink");
-    const btnChance = document.getElementById("btnChance");
-    const btnStreak = document.getElementById("btnStreak");
-    const btnAll = document.getElementById("btnAll");
 
-    function setTab(tab) {
-      currentTab = tab;
-      btnChance.classList.toggle("active", tab === "meio");
-      btnStreak.classList.toggle("active", tab === "z4");
-      btnAll.classList.toggle("active", tab === "all");
-      if (leagueSelect.value) loadData();
-    }
-
-    // ✅ URLs corrigidas (sem espaços extras)
+    // ✅ URLs dos campeonatos
     const leagueLinks = {
       "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
       "72": "https://www.sofascore.com/tournament/brazil/serie-b/329",
@@ -165,132 +139,30 @@
     }
 
     async function loadData() {
-      const leagueId = leagueSelect.value;
-      if (!leagueId) {
-        resultsDiv.innerHTML = "Selecione um campeonato.";
-        sidebarInfo.textContent = "Selecione um campeonato.";
-        tabelaLink.innerHTML = "";
-        return;
-      }
+      const leagueId = document.getElementById("leagueSelect").value;
+      if (!leagueId) return;
 
-      resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados...</p>";
       try {
         const response = await fetch('/data.json?' + new Date().getTime());
         if (!response.ok) throw new Error("HTTP " + response.status);
         const data = await response.json();
-        console.log("✅ Dados carregados:", data);
         const year = "2025";
         if (data[year] && data[year][leagueId]) {
           teamResults = data[year][leagueId];
-          if (currentTab === "meio") {
-            showMidTableTeams(leagueId);
-          } else if (currentTab === "z4") {
-            showRelegationZoneTeams(leagueId);
-          } else if (currentTab === "all") {
-            showAllLeagues();
-          }
-        } else {
-          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
         }
       } catch (err) {
-        console.error("❌ Erro ao carregar dados:", err);
-        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados. Veja o console.</p>";
+        console.error("Erro ao carregar dados:", err);
       }
     }
 
-    function showMidTableTeams(leagueId) {
-      const teams = Object.keys(teamResults);
-      const filtered = teams.filter(t => {
-        const d = teamResults[t];
-        return d.position >= 11 && d.position <= 16;
+    // Carrega os dados automaticamente ao abrir
+    window.onload = function() {
+      const select = document.getElementById("leagueSelect");
+      const options = select.querySelectorAll("option");
+      options.forEach(opt => {
+        if (opt.value) loadData();
       });
-
-      if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time no meio da tabela.</p>";
-        return;
-      }
-
-      let html = "<div class='section-title'>🎯 Times no Meio da Tabela (11º a 16º)</div>";
-      filtered.forEach(t => {
-        const d = teamResults[t];
-        html += `
-          <div class='item'>
-            <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
-            <div class='confidence-medium'>📊 Pos: ${d.position}º | ${d.points} pts</div>
-            <div class='details'>
-              🏟️ ${d.home_away} | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
-              <br>📅 ${d.match_date} às ${d.match_time} | 🏃‍♂️: ${d.injuries}
-              <br>⚔️ Adv: ${d.opponent_table || 'Desconhecido'} (${d.form_opponent})
-            </div>
-          </div>`;
-      });
-      html += "<div class='tip'>💡 Dica: Times em zona neutra — podem subir ou cair.</div>";
-      resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = `Meio da tabela: ${filtered.length} times`;
-      updateTabelaLink(leagueId);
-    }
-
-    function showRelegationZoneTeams(leagueId) {
-      const teams = Object.keys(teamResults);
-      const filtered = teams.filter(t => {
-        const d = teamResults[t];
-        return d.position >= 17;
-      });
-
-      if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time na zona de rebaixamento.</p>";
-        return;
-      }
-
-      let html = "<div class='section-title'>🔴 Times na Zona de Rebaixamento (17º+)</div>";
-      filtered.forEach(t => {
-        const d = teamResults[t];
-        html += `
-          <div class='item'>
-            <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
-            <div class='confidence-low'>🚨 Pos: ${d.position}º | ${d.points} pts</div>
-            <div class='details'>
-              🏟️ ${d.home_away} | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
-              <br>📅 ${d.match_date} às ${d.match_time} | 🏃‍♂️: ${d.injuries}
-              <br>⚔️ Adv: ${d.opponent_table || 'Desconhecido'} (${d.form_opponent})
-            </div>
-          </div>`;
-      });
-      html += "<div class='tip'>⚠️ Foco: Times em crise — alto risco, mas chance de reação.</div>";
-      resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = `Zona de rebaixamento: ${filtered.length} times`;
-      updateTabelaLink(leagueId);
-    }
-
-    function showAllLeagues() {
-      const teams = Object.keys(teamResults);
-      if (teams.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time disponível.</p>";
-        sidebarInfo.textContent = "✅ Todos os times carregados";
-        return;
-      }
-
-      let html = "<div class='section-title'>🎯 TODOS OS TIMES</div>";
-      teams.forEach(t => {
-        const d = teamResults[t];
-        const conf = d.position <= 6 ? "confidence-high" : 
-                    d.position <= 10 ? "confidence-medium" : "confidence-low";
-        const confText = d.position <= 6 ? "⭐ Top 6" : 
-                         d.position <= 10 ? "🔸 Meio" : "🔴 Z4";
-
-        html += `
-          <div class='item'>
-            <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
-            <div class='${conf}'>${confText} | ${d.position}º</div>
-            <div class='details'>
-              🏟️ ${d.home_away} | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
-              <br>📅 ${d.match_date} às ${d.match_time} | 🏃‍♂️: ${d.injuries}
-            </div>
-          </div>`;
-      });
-      resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = "✅ Todos os times combinados";
-    }
+    };
 
     function toggleTracker() {
       const trackerSection = document.getElementById("trackerSection");
@@ -304,125 +176,15 @@
       }
     }
 
-    function showClassification() {
-      const leagueId = prompt(
-        "Selecione o campeonato:\n" +
-        "71 - Brasileirão Série A\n" +
-        "72 - Brasileirão Série B\n" +
-        "202 - Argentina\n" +
-        "39 - Premier League\n" +
-        "78 - Bundesliga\n" +
-        "61 - Ligue 1\n" +
-        "8 - Champions League\n" +
-        "12 - Copa Libertadores\n" +
-        "13 - Copa Sul-Americana\n\n" +
-        "Digite o ID do campeonato:"
-      );
-
-      if (!leagueId) return;
-
-      const tabelas = {
-        "71": [
-          { pos: 1, club: "Flamengo", pts: 43, pj: 19, vit: 13, emp: 4, der: 2, gm: 36, gc: 9, sg: 27 },
-          { pos: 2, club: "Palmeiras", pts: 39, pj: 18, vit: 12, emp: 3, der: 3, gm: 24, gc: 15, sg: 9 },
-          { pos: 3, club: "Cruzeiro", pts: 38, pj: 20, vit: 11, emp: 5, der: 4, gm: 32, gc: 14, sg: 18 },
-          { pos: 4, club: "Bahia", pts: 33, pj: 18, vit: 9, emp: 6, der: 3, gm: 25, gc: 17, sg: 8 },
-          { pos: 5, club: "Botafogo", pts: 29, pj: 18, vit: 8, emp: 5, der: 5, gm: 23, gc: 11, sg: 12 },
-          { pos: 6, club: "Mirassol", pts: 29, pj: 18, vit: 7, emp: 8, der: 3, gm: 29, gc: 19, sg: 10 },
-          { pos: 7, club: "São Paulo", pts: 29, pj: 20, vit: 7, emp: 8, der: 5, gm: 24, gc: 22, sg: 2 },
-          { pos: 8, club: "Fluminense", pts: 27, pj: 18, vit: 8, emp: 3, der: 7, gm: 23, gc: 24, sg: -1 },
-          { pos: 9, club: "Bragantino", pts: 27, pj: 20, vit: 8, emp: 3, der: 9, gm: 22, gc: 26, sg: -4 },
-          { pos: 10, club: "Ceará SC", pts: 25, pj: 19, vit: 7, emp: 4, der: 8, gm: 19, gc: 19, sg: 0 },
-          { pos: 11, club: "Atlético-MG", pts: 24, pj: 18, vit: 6, emp: 6, der: 6, gm: 20, gc: 21, sg: -1 },
-          { pos: 12, club: "Internacional", pts: 24, pj: 19, vit: 6, emp: 6, der: 7, gm: 22, gc: 26, sg: -4 },
-          { pos: 13, club: "Grêmio", pts: 23, pj: 19, vit: 6, emp: 5, der: 8, gm: 19, gc: 25, sg: -6 },
-          { pos: 14, club: "Vasco", pts: 22, pj: 19, vit: 6, emp: 4, der: 9, gm: 25, gc: 30, sg: -5 },
-          { pos: 15, club: "Fortaleza", pts: 21, pj: 18, vit: 5, emp: 6, der: 7, gm: 18, gc: 24, sg: -6 },
-          { pos: 16, club: "Corinthians", pts: 21, pj: 20, vit: 5, emp: 6, der: 9, gm: 19, gc: 26, sg: -7 },
-          { pos: 17, club: "EC Vitória", pts: 19, pj: 20, vit: 3, emp: 10, der: 7, gm: 18, gc: 24, sg: -6 },
-          { pos: 18, club: "Juventude", pts: 15, pj: 18, vit: 4, emp: 3, der: 11, gm: 15, gc: 38, sg: -23 },
-          { pos: 19, club: "Goiás", pts: 14, pj: 19, vit: 3, emp: 5, der: 11, gm: 17, gc: 34, sg: -17 },
-          { pos: 20, club: "Criciúma", pts: 13, pj: 19, vit: 3, emp: 4, der: 12, gm: 16, gc: 39, sg: -23 }
-        ],
-        "39": [
-          { pos: 1, club: "Manchester City", pts: 47, pj: 20, vit: 15, emp: 2, der: 3, gm: 45, gc: 12, sg: 33 },
-          { pos: 2, club: "Arsenal", pts: 45, pj: 20, vit: 14, emp: 3, der: 3, gm: 42, gc: 15, sg: 27 },
-          { pos: 3, club: "Liverpool", pts: 40, pj: 20, vit: 12, emp: 4, der: 4, gm: 41, gc: 20, sg: 21 }
-        ],
-        "12": [
-          { pos: 1, club: "Flamengo", pts: 10, pj: 4, vit: 3, emp: 1, der: 0, gm: 8, gc: 2, sg: 6 },
-          { pos: 2, club: "River Plate", pts: 9, pj: 4, vit: 3, emp: 0, der: 1, gm: 7, gc: 3, sg: 4 },
-          { pos: 3, club: "Palmeiras", pts: 6, pj: 4, vit: 2, emp: 0, der: 2, gm: 5, gc: 4, sg: 1 }
-        ],
-        "13": [
-          { pos: 1, club: "Corinthians", pts: 9, pj: 3, vit: 3, emp: 0, der: 0, gm: 7, gc: 2, sg: 5 },
-          { pos: 2, club: "Independiente", pts: 6, pj: 3, vit: 2, emp: 0, der: 1, gm: 5, gc: 3, sg: 2 }
-        ]
-      };
-
-      const tabela = tabelas[leagueId];
-      if (!tabela) {
-        resultsDiv.innerHTML = "<p>Tabela não disponível.</p>";
-        return;
-      }
-
-      let html = `
-        <h2>📊 Classificação - ${leagueNames[leagueId] || "Campeonato"}</h2>
-        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-          <thead>
-            <tr style="background: #ff9800; color: black;">
-              <th style="padding: 8px; text-align: left;">#</th>
-              <th style="padding: 8px; text-align: left;">Clube</th>
-              <th style="padding: 8px;">Pts</th>
-              <th style="padding: 8px;">PJ</th>
-              <th style="padding: 8px;">V</th>
-              <th style="padding: 8px;">E</th>
-              <th style="padding: 8px;">D</th>
-              <th style="padding: 8px;">GM</th>
-              <th style="padding: 8px;">GC</th>
-              <th style="padding: 8px;">SG</th>
-            </tr>
-          </thead>
-          <tbody>
-      `;
-
-      tabela.forEach(time => {
-        const isZonaRebaixamento = time.pos >= 17;
-        const rowStyle = isZonaRebaixamento 
-          ? "background: #f44336; color: white; font-weight: bold;" 
-          : "border-bottom: 1px solid #444;";
-        
-        html += `
-          <tr style="${rowStyle}">
-            <td style="padding: 8px;">${time.pos}º</td>
-            <td style="padding: 8px;">${time.club}</td>
-            <td style="padding: 8px; font-weight: bold;">${time.pts}</td>
-            <td style="padding: 8px;">${time.pj}</td>
-            <td style="padding: 8px;">${time.vit}</td>
-            <td style="padding: 8px;">${time.emp}</td>
-            <td style="padding: 8px;">${time.der}</td>
-            <td style="padding: 8px;">${time.gm}</td>
-            <td style="padding: 8px;">${time.gc}</td>
-            <td style="padding: 8px;">${time.sg}</td>
-          </tr>`;
-      });
-
-      html += "</tbody></table>";
-      resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = `Tabela: ${leagueNames[leagueId] || "Campeonato"}`;
-    }
-
     // ✅ FUNÇÃO CORRIGIDA: MÚLTIPLOS EM ALTA (HOJE)
     async function showMultiples() {
       const today = DATA_DE_HOJE;
       const multiples = [];
-      console.log("🔍 Iniciando showMultiples() para:", today);
 
       try {
         const response = await fetch('/data.json?' + new Date().getTime());
-        if (!response.ok) throw new Error("HTTP " + response.status);
+        if (!response.ok) throw new Error("Falha ao carregar dados");
         const data = await response.json();
-        console.log("📥 Dados do data.json:", data);
 
         const year = "2025";
         if (!data[year]) {
@@ -435,18 +197,13 @@
           for (const teamName in leagueData) {
             const d = leagueData[teamName];
 
-            if (!d.match_date || d.match_date !== today) {
-              console.log("⏭️ Pular:", teamName, "data:", d.match_date, "hoje:", today);
-              continue;
-            }
+            if (!d.match_date || d.match_date !== today) continue;
 
             const isTop5 = d.position >= 1 && d.position <= 5;
             const isHome = d.home_away === "Casa";
             const isWeakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
             const isStrongOpponent = d.opponent_table === "Top 6" || d.opponent_table === "Top 5";
             const opponentInCrisis = d.form_opponent && d.form_opponent.includes("D");
-
-            console.log("🔍 Checando:", teamName, { isTop5, isHome, isWeakOpponent, isStrongOpponent, opponentInCrisis });
 
             if (isTop5 && isHome && isWeakOpponent && !isStrongOpponent && opponentInCrisis) {
               multiples.push({
@@ -464,7 +221,6 @@
         if (multiples.length < 2) {
           resultsDiv.innerHTML = `<p class='error'>⚠️ Apenas ${multiples.length} jogo elegível hoje. Mínimo de 2 para múltiplo.</p>`;
           sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogo hoje`;
-          console.log("❌ Múltiplo não formado:", multiples);
           return;
         }
 
@@ -488,10 +244,9 @@
         
         resultsDiv.innerHTML = html;
         sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogos hoje`;
-        console.log("✅ Múltiplo exibido:", multiples);
 
       } catch (err) {
-        console.error("❌ Erro em showMultiples:", err);
+        console.error("Erro em showMultiples:", err);
         resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados.</p>";
       }
     }
