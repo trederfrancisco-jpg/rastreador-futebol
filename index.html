@@ -24,14 +24,17 @@
     #trackerSection { display: none; margin-top: 10px; padding: 10px; background-color: rgba(255, 255, 255, 0.9); border-radius: 5px; color: #000; }
     .link-tabela { display: block; text-align: center; margin: 10px 0; padding: 8px; background: #333; border-radius: 4px; color: #4caf50; text-decoration: none; font-weight: bold; }
     .link-tabela:hover { background: #555; }
-    nav { display: none; } /* Ocultamos as abas */
+    nav { display: flex; margin-bottom: 15px; }
+    nav button { flex: 1; margin-right: 5px; padding: 10px; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer; }
+    nav button:last-child { margin-right: 0; }
+    nav button.active { background: #ff9800; color: black; font-weight: bold; }
   </style>
 </head>
 <body>
   <div id="sidebar">
     <h1>Rastreador Avançado</h1>
     <label for="leagueSelect">Selecione Campeonato:</label>
-    <select id="leagueSelect" onchange="loadData()" style="display: none;">
+    <select id="leagueSelect" onchange="loadData()">
       <option value="">Selecione um campeonato</option>
       <option value="71">🇧🇷 Brasileirão Série A</option>
       <option value="72">🇧🇷 Brasileirão Série B</option>
@@ -50,9 +53,14 @@
       <option value="10217">⚽ Brasileirão Feminino</option>
     </select>
     <div id="tabelaLink"></div>
-    <div id="sidebarInfo" class="info-box">Rastreador PRO - Múltiplos em Alta</div>
+    <div id="sidebarInfo" class="info-box">Selecione um campeonato.</div>
 
-    <!-- Abas removidas -->
+    <!-- Abas de filtro (renombradas) -->
+    <nav>
+      <button id="btnChance" class="active" onclick="setTab('meio')">Vitória e Empate</button>
+      <button id="btnStreak" onclick="setTab('z4')">Times na Zona de Rebaixamento</button>
+      <button id="btnAll" onclick="showAllLeagues()">🎯 Todos os Times</button>
+    </nav>
   </div>
 
   <div id="content">
@@ -74,10 +82,11 @@
     <!-- Resultados -->
     <div id="results">Selecione um campeonato.</div>
 
-    <!-- Botão de rastreador -->
+    <!-- Outros botões -->
     <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
       Abrir/Fechar Rastreador
     </button>
+    <!-- Botão "Ver Classificação" REMOVIDO -->
   </div>
 
   <script>
@@ -85,11 +94,24 @@
     const DATA_DE_HOJE = "25/08/2025";
 
     let teamResults = {};
+    let currentTab = "meio";
+
+    const leagueSelect = document.getElementById("leagueSelect");
     const resultsDiv = document.getElementById("results");
     const sidebarInfo = document.getElementById("sidebarInfo");
     const tabelaLink = document.getElementById("tabelaLink");
+    const btnChance = document.getElementById("btnChance");
+    const btnStreak = document.getElementById("btnStreak");
+    const btnAll = document.getElementById("btnAll");
 
-    // ✅ URLs dos campeonatos
+    function setTab(tab) {
+      currentTab = tab;
+      btnChance.classList.toggle("active", tab === "meio");
+      btnStreak.classList.toggle("active", tab === "z4");
+      btnAll.classList.toggle("active", tab === "all");
+      if (leagueSelect.value) loadData();
+    }
+
     const leagueLinks = {
       "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
       "72": "https://www.sofascore.com/tournament/brazil/serie-b/329",
@@ -139,9 +161,15 @@
     }
 
     async function loadData() {
-      const leagueId = document.getElementById("leagueSelect").value;
-      if (!leagueId) return;
+      const leagueId = leagueSelect.value;
+      if (!leagueId) {
+        resultsDiv.innerHTML = "Selecione um campeonato.";
+        sidebarInfo.textContent = "Selecione um campeonato.";
+        tabelaLink.innerHTML = "";
+        return;
+      }
 
+      resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados...</p>";
       try {
         const response = await fetch('/data.json?' + new Date().getTime());
         if (!response.ok) throw new Error("HTTP " + response.status);
@@ -149,20 +177,115 @@
         const year = "2025";
         if (data[year] && data[year][leagueId]) {
           teamResults = data[year][leagueId];
+          if (currentTab === "meio") {
+            showMidTableTeams(leagueId);
+          } else if (currentTab === "z4") {
+            showRelegationZoneTeams(leagueId);
+          } else if (currentTab === "all") {
+            showAllLeagues();
+          }
+        } else {
+          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
         }
       } catch (err) {
-        console.error("Erro ao carregar dados:", err);
+        console.error("Erro:", err);
+        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados. Veja o console.</p>";
       }
     }
 
-    // Carrega os dados automaticamente ao abrir
-    window.onload = function() {
-      const select = document.getElementById("leagueSelect");
-      const options = select.querySelectorAll("option");
-      options.forEach(opt => {
-        if (opt.value) loadData();
+    function showMidTableTeams(leagueId) {
+      const teams = Object.keys(teamResults);
+      const filtered = teams.filter(t => {
+        const d = teamResults[t];
+        return d.position >= 11 && d.position <= 16;
       });
-    };
+
+      if (filtered.length === 0) {
+        resultsDiv.innerHTML = "<p>Nenhum time no meio da tabela.</p>";
+        return;
+      }
+
+      let html = "<div class='section-title'>🎯 Vitória e Empate (11º a 16º)</div>";
+      filtered.forEach(t => {
+        const d = teamResults[t];
+        html += `
+          <div class='item'>
+            <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
+            <div class='confidence-medium'>📊 Pos: ${d.position}º | ${d.points} pts</div>
+            <div class='details'>
+              🏟️ ${d.home_away} | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
+              <br>📅 ${d.match_date} às ${d.match_time} | 🏃‍♂️: ${d.injuries}
+              <br>⚔️ Adv: ${d.opponent_table || 'Desconhecido'} (${d.form_opponent})
+            </div>
+          </div>`;
+      });
+      html += "<div class='tip'>💡 Dica: Times em zona neutra — podem subir ou cair.</div>";
+      resultsDiv.innerHTML = html;
+      sidebarInfo.textContent = `Vitória e Empate: ${filtered.length} times`;
+      updateTabelaLink(leagueId);
+    }
+
+    function showRelegationZoneTeams(leagueId) {
+      const teams = Object.keys(teamResults);
+      const filtered = teams.filter(t => {
+        const d = teamResults[t];
+        return d.position >= 17;
+      });
+
+      if (filtered.length === 0) {
+        resultsDiv.innerHTML = "<p>Nenhum time na zona de rebaixamento.</p>";
+        return;
+      }
+
+      let html = "<div class='section-title'>🔴 Times na Zona de Rebaixamento (17º+)</div>";
+      filtered.forEach(t => {
+        const d = teamResults[t];
+        html += `
+          <div class='item'>
+            <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
+            <div class='confidence-low'>🚨 Pos: ${d.position}º | ${d.points} pts</div>
+            <div class='details'>
+              🏟️ ${d.home_away} | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
+              <br>📅 ${d.match_date} às ${d.match_time} | 🏃‍♂️: ${d.injuries}
+              <br>⚔️ Adv: ${d.opponent_table || 'Desconhecido'} (${d.form_opponent})
+            </div>
+          </div>`;
+      });
+      html += "<div class='tip'>⚠️ Foco: Times em crise — alto risco, mas chance de reação.</div>";
+      resultsDiv.innerHTML = html;
+      sidebarInfo.textContent = `Zona de rebaixamento: ${filtered.length} times`;
+      updateTabelaLink(leagueId);
+    }
+
+    function showAllLeagues() {
+      const teams = Object.keys(teamResults);
+      if (teams.length === 0) {
+        resultsDiv.innerHTML = "<p>Nenhum time disponível.</p>";
+        sidebarInfo.textContent = "✅ Todos os times carregados";
+        return;
+      }
+
+      let html = "<div class='section-title'>🎯 TODOS OS TIMES</div>";
+      teams.forEach(t => {
+        const d = teamResults[t];
+        const conf = d.position <= 6 ? "confidence-high" : 
+                    d.position <= 10 ? "confidence-medium" : "confidence-low";
+        const confText = d.position <= 6 ? "⭐ Top 6" : 
+                         d.position <= 10 ? "🔸 Meio" : "🔴 Z4";
+
+        html += `
+          <div class='item'>
+            <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
+            <div class='${conf}'>${confText} | ${d.position}º</div>
+            <div class='details'>
+              🏟️ ${d.home_away} | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
+              <br>📅 ${d.match_date} às ${d.match_time} | 🏃‍♂️: ${d.injuries}
+            </div>
+          </div>`;
+      });
+      resultsDiv.innerHTML = html;
+      sidebarInfo.textContent = "✅ Todos os times combinados";
+    }
 
     function toggleTracker() {
       const trackerSection = document.getElementById("trackerSection");
