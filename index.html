@@ -55,11 +55,9 @@
     <div id="tabelaLink"></div>
     <div id="sidebarInfo" class="info-box">Selecione um campeonato.</div>
 
-    <!-- Abas de filtro (renombradas) -->
+    <!-- Apenas um botão: "Vitória e Empate" -->
     <nav>
       <button id="btnChance" class="active" onclick="setTab('meio')">Vitória e Empate</button>
-      <button id="btnStreak" onclick="setTab('z4')">Times na Zona de Rebaixamento</button>
-      <button id="btnAll" onclick="showAllLeagues()">🎯 Todos os Times</button>
     </nav>
   </div>
 
@@ -86,7 +84,6 @@
     <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
       Abrir/Fechar Rastreador
     </button>
-    <!-- Botão "Ver Classificação" REMOVIDO -->
   </div>
 
   <script>
@@ -101,14 +98,10 @@
     const sidebarInfo = document.getElementById("sidebarInfo");
     const tabelaLink = document.getElementById("tabelaLink");
     const btnChance = document.getElementById("btnChance");
-    const btnStreak = document.getElementById("btnStreak");
-    const btnAll = document.getElementById("btnAll");
 
     function setTab(tab) {
       currentTab = tab;
       btnChance.classList.toggle("active", tab === "meio");
-      btnStreak.classList.toggle("active", tab === "z4");
-      btnAll.classList.toggle("active", tab === "all");
       if (leagueSelect.value) loadData();
     }
 
@@ -179,10 +172,6 @@
           teamResults = data[year][leagueId];
           if (currentTab === "meio") {
             showMidTableTeams(leagueId);
-          } else if (currentTab === "z4") {
-            showRelegationZoneTeams(leagueId);
-          } else if (currentTab === "all") {
-            showAllLeagues();
           }
         } else {
           resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
@@ -193,6 +182,7 @@
       }
     }
 
+    // ✅ Função para "Vitória e Empate" (Times no Meio da Tabela)
     function showMidTableTeams(leagueId) {
       const teams = Object.keys(teamResults);
       const filtered = teams.filter(t => {
@@ -223,68 +213,6 @@
       resultsDiv.innerHTML = html;
       sidebarInfo.textContent = `Vitória e Empate: ${filtered.length} times`;
       updateTabelaLink(leagueId);
-    }
-
-    function showRelegationZoneTeams(leagueId) {
-      const teams = Object.keys(teamResults);
-      const filtered = teams.filter(t => {
-        const d = teamResults[t];
-        return d.position >= 17;
-      });
-
-      if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time na zona de rebaixamento.</p>";
-        return;
-      }
-
-      let html = "<div class='section-title'>🔴 Times na Zona de Rebaixamento (17º+)</div>";
-      filtered.forEach(t => {
-        const d = teamResults[t];
-        html += `
-          <div class='item'>
-            <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
-            <div class='confidence-low'>🚨 Pos: ${d.position}º | ${d.points} pts</div>
-            <div class='details'>
-              🏟️ ${d.home_away} | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
-              <br>📅 ${d.match_date} às ${d.match_time} | 🏃‍♂️: ${d.injuries}
-              <br>⚔️ Adv: ${d.opponent_table || 'Desconhecido'} (${d.form_opponent})
-            </div>
-          </div>`;
-      });
-      html += "<div class='tip'>⚠️ Foco: Times em crise — alto risco, mas chance de reação.</div>";
-      resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = `Zona de rebaixamento: ${filtered.length} times`;
-      updateTabelaLink(leagueId);
-    }
-
-    function showAllLeagues() {
-      const teams = Object.keys(teamResults);
-      if (teams.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time disponível.</p>";
-        sidebarInfo.textContent = "✅ Todos os times carregados";
-        return;
-      }
-
-      let html = "<div class='section-title'>🎯 TODOS OS TIMES</div>";
-      teams.forEach(t => {
-        const d = teamResults[t];
-        const conf = d.position <= 6 ? "confidence-high" : 
-                    d.position <= 10 ? "confidence-medium" : "confidence-low";
-        const confText = d.position <= 6 ? "⭐ Top 6" : 
-                         d.position <= 10 ? "🔸 Meio" : "🔴 Z4";
-
-        html += `
-          <div class='item'>
-            <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
-            <div class='${conf}'>${confText} | ${d.position}º</div>
-            <div class='details'>
-              🏟️ ${d.home_away} | 🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
-              <br>📅 ${d.match_date} às ${d.match_time} | 🏃‍♂️: ${d.injuries}
-            </div>
-          </div>`;
-      });
-      resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = "✅ Todos os times combinados";
     }
 
     function toggleTracker() {
