@@ -88,7 +88,7 @@
 
   <script>
     // ✅ DATA ATUALIZADA PARA HOJE
-    const DATA_DE_HOJE = "25/08/2025";
+    const DATA_DE_HOJE = "26/08/2025";
 
     let teamResults = {};
     let currentTab = "meio";
@@ -187,7 +187,6 @@
       const teams = Object.keys(teamResults);
       const filtered = teams.filter(t => {
         const d = teamResults[t];
-        // Simulação de probabilidade com base na posição, casa e forma
         return d.position <= 6 && d.home_away === "Casa";
       });
 
@@ -200,7 +199,7 @@
       filtered.forEach(t => {
         const d = teamResults[t];
         const estimatedWinRate = d.position <= 3 ? "78%" : "72%";
-        const oddDraw = (Math.random() * 0.5 + 3.8).toFixed(2); // Simula odd do empate
+        const oddDraw = (Math.random() * 0.5 + 3.8).toFixed(2);
 
         html += `
           <div class='item'>
@@ -300,7 +299,6 @@
         
         resultsDiv.innerHTML = html;
         sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogos hoje`;
-
       } catch (err) {
         console.error("Erro em showMultiples:", err);
         resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados.</p>";
