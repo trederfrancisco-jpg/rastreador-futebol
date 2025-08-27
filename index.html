@@ -24,10 +24,21 @@
     #trackerSection { display: none; margin-top: 10px; padding: 10px; background-color: rgba(255, 255, 255, 0.9); border-radius: 5px; color: #000; }
     .link-tabela { display: block; text-align: center; margin: 10px 0; padding: 8px; background: #333; border-radius: 4px; color: #4caf50; text-decoration: none; font-weight: bold; }
     .link-tabela:hover { background: #555; }
-    nav { display: flex; margin-bottom: 15px; }
-    nav button { flex: 1; margin-right: 5px; padding: 10px; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer; }
-    nav button:last-child { margin-right: 0; }
+    nav { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
+    nav button { padding: 10px; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer; text-align: left; }
     nav button.active { background: #ff9800; color: black; font-weight: bold; }
+    .vip-button {
+      background: linear-gradient(45deg, #ff8a00, #e52e71);
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 5px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -55,14 +66,17 @@
     <div id="tabelaLink"></div>
     <div id="sidebarInfo" class="info-box">Selecione um campeonato.</div>
 
-    <!-- Apenas um botão: "Vitória e Empate" -->
+    <!-- Botões de filtro -->
     <nav>
       <button id="btnChance" class="active" onclick="setTab('meio')">Vitória e Empate</button>
+      <button id="btnPressureVIP" onclick="showPressureAlertVIP()" class="vip-button">
+        🔐 Alerta de Pressão VIP
+      </button>
     </nav>
   </div>
 
   <div id="content">
-    <!-- Título e botão na mesma linha -->
+    <!-- Título e botão de assinatura -->
     <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 15px;">
       <h2 id="contentTitle" style="margin: 0; font-size: 1.5rem; white-space: nowrap;">
         Times com Alta Probabilidade de Vitória
@@ -80,10 +94,34 @@
     <!-- Resultados -->
     <div id="results">Selecione um campeonato.</div>
 
-    <!-- Outros botões -->
+    <!-- Botão de rastreador -->
     <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
       Abrir/Fechar Rastreador
     </button>
+  </div>
+
+  <!-- MODAL DE PAGAMENTO VIP -->
+  <div id="paymentModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:999; padding:20px; color:white; font-family:Arial;">
+    <div style="max-width:500px; margin:50px auto; background:#121212; padding:20px; border-radius:10px; box-shadow:0 0 20px rgba(255,138,0,0.3);">
+      <h2 style="color:#ff9800; text-align:center;">🔐 Acesso VIP Liberado</h2>
+      <p style="text-align:center; color:#ccc;">Assine o <strong>Rastreador PRO</strong> e tenha acesso ao <strong>Alerta de Pressão VIP</strong> com análise avançada, histórico e envio automático.</p>
+      
+      <ul style="color:#ccc; margin:20px 0;">
+        <li>✅ Análise emocional em tempo real</li>
+        <li>✅ Recomendações com odd ideal</li>
+        <li>✅ Histórico de acertos (30 dias)</li>
+        <li>✅ Alerta por WhatsApp automático</li>
+        <li>✅ Texto pronto para copiar</li>
+      </ul>
+
+      <a href="https://wa.me/5511998545662?text=Quero+assinar+o+Rastreador+PRO+com+Alerta+VIP" target="_blank" style="background:#25D366; color:black; padding:15px; text-align:center; display:block; border-radius:6px; font-weight:bold; text-decoration:none; font-size:1.1rem;">
+        🚀 QUERO O VIP (via WhatsApp)
+      </a>
+      
+      <button onclick="closePaymentModal()" style="background:#555; border:none; color:white; padding:10px; width:100%; margin-top:10px; border-radius:6px;">
+        Fechar
+      </button>
+    </div>
   </div>
 
   <script>
@@ -105,6 +143,7 @@
       if (leagueSelect.value) loadData();
     }
 
+    // Links corrigidos (sem espaços extras)
     const leagueLinks = {
       "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
       "72": "https://www.sofascore.com/tournament/brazil/serie-b/329",
@@ -302,6 +341,48 @@
         console.error("Erro em showMultiples:", err);
         resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados.</p>";
       }
+    }
+
+    // ✅ VERIFICA TOKEN AO CARREGAR
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      
+      if (token && token.startsWith('VIP')) {
+        localStorage.setItem('user_plan', 'vip');
+        showSuccessToast("✅ Acesso VIP liberado!");
+      }
+    }
+
+    // ✅ MOSTRA MODAL VIP
+    function showPressureAlertVIP() {
+      const isVIP = localStorage.getItem('user_plan') === 'vip';
+      
+      if (isVIP) {
+        alert("✅ Bem-vindo, assinante VIP!\n\nAqui você verá os alertas de pressão avançados em tempo real.");
+      } else {
+        openPaymentModal();
+      }
+    }
+
+    function openPaymentModal() {
+      document.getElementById('paymentModal').style.display = 'block';
+    }
+
+    function closePaymentModal() {
+      document.getElementById('paymentModal').style.display = 'none';
+    }
+
+    function showSuccessToast(msg) {
+      const toast = document.createElement('div');
+      toast.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        background: #4caf50; color: white; padding: 10px 20px; border-radius: 6px;
+        z-index: 1000; font-weight: bold;
+      `;
+      toast.textContent = msg;
+      document.body.appendChild(toast);
+      setTimeout(() => document.body.removeChild(toast), 3000);
     }
   </script>
 </body>
