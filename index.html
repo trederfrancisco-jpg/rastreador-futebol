@@ -87,8 +87,8 @@
   </div>
 
   <script>
-    // ✅ DATA ATUALIZADA PARA HOJE
-    const DATA_DE_HOJE = "26/08/2025";
+    // ✅ DATA AUTOMÁTICA
+    const DATA_DE_HOJE = new Date().toLocaleDateString('pt-BR');
 
     let teamResults = {};
     let currentTab = "meio";
@@ -182,12 +182,12 @@
       }
     }
 
-    // ✅ NOVA FUNÇÃO: Vitória e Empate (70%+ de chance)
     function showHighChanceTeams(leagueId) {
       const teams = Object.keys(teamResults);
       const filtered = teams.filter(t => {
         const d = teamResults[t];
-        return d.position <= 6 && d.home_away === "Casa";
+        const pos = Number(d.position);
+        return !isNaN(pos) && pos <= 6 && d.home_away === "Casa";
       });
 
       if (filtered.length === 0) {
@@ -198,7 +198,7 @@
       let html = "<div class='section-title'>🎯 Vitória e Empate (70%+ de Chance)</div>";
       filtered.forEach(t => {
         const d = teamResults[t];
-        const estimatedWinRate = d.position <= 3 ? "78%" : "72%";
+        const estimatedWinRate = Number(d.position) <= 3 ? "78%" : "72%";
         const oddDraw = (Math.random() * 0.5 + 3.8).toFixed(2);
 
         html += `
@@ -231,7 +231,6 @@
       }
     }
 
-    // ✅ FUNÇÃO CORRIGIDA: MÚLTIPLOS EM ALTA (HOJE)
     async function showMultiples() {
       const today = DATA_DE_HOJE;
       const multiples = [];
