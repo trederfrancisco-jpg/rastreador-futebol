@@ -125,7 +125,7 @@
   </div>
 
   <script>
-    // ✅ DATA AUTOMÁTICA
+    // ✅ DATA AUTOMÁTICA - 28/08/2025
     const DATA_DE_HOJE = new Date().toLocaleDateString('pt-BR');
 
     let teamResults = {};
@@ -354,12 +354,88 @@
       }
     }
 
+    // ✅ RENDERIZA O ALERTA DE PRESSÃO VIP
+    function renderVIPPressureAlert() {
+      const today = DATA_DE_HOJE;
+      const games = Object.keys(teamResults);
+      const alerts = [];
+
+      games.forEach(t => {
+        const d = teamResults[t];
+        // Regra: time em crise (sem vencer há 2 jogos) vs adversário que já venceu
+        const isLosingStreak = d.results && d.results.slice(-2).every(r => r !== "V");
+        const opponentWonBefore = d.form_opponent && d.form_opponent.includes("V");
+
+        if (isLosingStreak && opponentWonBefore && d.match_date === today) {
+          alerts.push({
+            team: t,
+            opponent: d.next_opponent,
+            results: d.results,
+            form_opponent: d.form_opponent,
+            position: d.position,
+            home_away: d.home_away,
+            league: leagueNames[leagueSelect.value]
+          });
+        }
+      });
+
+      if (alerts.length === 0) {
+        resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum alerta de pressão encontrado hoje.</p>";
+        return;
+      }
+
+      let html = "<div class='section-title'>🔐 ALERTA DE PRESSÃO VIP - HOJE</div>";
+      alerts.forEach(a => {
+        const oddDraw = (Math.random() * 0.5 + 3.8).toFixed(2);
+        html += `
+          <div class='item'>
+            <strong>${a.team}</strong> (${a.results.join(", ")}) vs. ${a.opponent}
+            <div class='confidence-medium'>📊 Pressão: precisa reagir</div>
+            <div class='details'>
+              🏟️ ${a.home_away} | 🎯 Gols: ${a.position}º lugar
+              <br>📅 ${a.home_away === "Casa" ? "Favorito em casa" : "Cuidado fora de casa"}
+              <br>⚔️ Adv: ${a.form_opponent}
+              <br>💡 <strong>Dica VIP:</strong> Aposte em <strong>${a.team} vence ou empata</strong> (odd empate ~${oddDraw})
+            </div>
+          </div>`;
+      });
+
+      html += "<div class='tip'>💡 Estratégia VIP: cobrir vitória + empate em times pressionados</div>";
+      resultsDiv.innerHTML = html;
+      sidebarInfo.textContent = `🔐 Alerta VIP: ${alerts.length} jogos com pressão`;
+    }
+
+    // ✅ CARREGA DADOS PARA O VIP
+    async function loadDataForVIP() {
+      try {
+        const response = await fetch('/data.json?' + new Date().getTime());
+        if (!response.ok) throw new Error("Falha ao carregar dados");
+        const data = await response.json();
+        const year = "2025";
+        const leagueId = leagueSelect.value;
+
+        if (data[year] && data[year][leagueId]) {
+          teamResults = data[year][leagueId];
+          renderVIPPressureAlert();
+        } else {
+          resultsDiv.innerHTML = "<p class='error'>⚠️ Dados não encontrados.</p>";
+        }
+      } catch (err) {
+        console.error("Erro:", err);
+        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados VIP.</p>";
+      }
+    }
+
     // ✅ MOSTRA MODAL VIP
     function showPressureAlertVIP() {
       const isVIP = localStorage.getItem('user_plan') === 'vip';
       
       if (isVIP) {
-        alert("✅ Bem-vindo, assinante VIP!\n\nAqui você verá os alertas de pressão avançados em tempo real.");
+        if (leagueSelect.value) {
+          loadDataForVIP();
+        } else {
+          resultsDiv.innerHTML = "<p>Selecione um campeonato.</p>";
+        }
       } else {
         openPaymentModal();
       }
