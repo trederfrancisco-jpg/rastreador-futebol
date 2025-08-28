@@ -137,9 +137,10 @@
       🎯 Múltiplos em Alta (Próximos 7 Dias)
     </button>
 
-    <!-- Resultados (com conteúdo inicial) -->
+    <!-- Resultados (com conteúdo inicial: próximos + resultados passados) -->
     <div id="results">
       <div class="initial-results">
+        <!-- PRÓXIMOS JOGOS -->
         <div class="section-title">📅 Próximos 7 Dias</div>
         <div class="item">
           <strong>Flamengo</strong> vs. Ceará
@@ -153,6 +154,25 @@
           <strong>Arsenal</strong> vs. Aston Villa
           <div class="details">📅 29/08 às 17:30 | 🏟️ Casa | 🎯 Alta probabilidade</div>
         </div>
+
+        <!-- RESULTADOS DA FERRAMENTA (últimos 7 dias) -->
+        <div class="section-title" style="margin-top: 20px;">📊 Resultados da Semana</div>
+        <div class="item">
+          <strong>Flamengo</strong> vs. Ceará
+          <div class="confidence-high">✅ Win — Entrada acertada</div>
+          <div class="details">🎯 Análise: time pressionado + favorito em casa</div>
+        </div>
+        <div class="item">
+          <strong>Cruzeiro</strong> vs. Atlético-MG
+          <div class="confidence-medium">💡 Empate — Odd alta pagou bem</div>
+          <div class="details">💡 Estratégia: cobrir vitória + empate</div>
+        </div>
+        <div class="item">
+          <strong>Palmeiras</strong> vs. Corinthians
+          <div class="confidence-low">❌ Red — Fora de casa contra time forte</div>
+          <div class="details">📌 Aposta não indicada pela ferramenta</div>
+        </div>
+
         <div class="tip">📌 Dica: Escolha uma opção acima para ver análises detalhadas.</div>
       </div>
     </div>
@@ -562,7 +582,7 @@
       resultsDiv.dataset.active = 'vip';
     }
 
-    // ✅ VOLTA PARA RESULTADOS INICIAIS
+    // ✅ VOLTA PARA RESULTADOS INICIAIS (com histórico)
     function resetToInitialResults() {
       resultsDiv.innerHTML = `
         <div class="initial-results">
@@ -579,6 +599,24 @@
             <strong>Arsenal</strong> vs. Aston Villa
             <div class="details">📅 29/08 às 17:30 | 🏟️ Casa | 🎯 Alta probabilidade</div>
           </div>
+
+          <div class="section-title" style="margin-top: 20px;">📊 Resultados da Semana</div>
+          <div class="item">
+            <strong>Flamengo</strong> vs. Ceará
+            <div class="confidence-high">✅ Win — Entrada acertada</div>
+            <div class="details">🎯 Análise: time pressionado + favorito em casa</div>
+          </div>
+          <div class="item">
+            <strong>Cruzeiro</strong> vs. Atlético-MG
+            <div class="confidence-medium">💡 Empate — Odd alta pagou bem</div>
+            <div class="details">💡 Estratégia: cobrir vitória + empate</div>
+          </div>
+          <div class="item">
+            <strong>Palmeiras</strong> vs. Corinthians
+            <div class="confidence-low">❌ Red — Fora de casa contra time forte</div>
+            <div class="details">📌 Aposta não indicada pela ferramenta</div>
+          </div>
+
           <div class="tip">📌 Dica: Escolha uma opção acima para ver análises detalhadas.</div>
         </div>
       `;
