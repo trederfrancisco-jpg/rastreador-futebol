@@ -98,6 +98,11 @@
     <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
       Abrir/Fechar Rastreador
     </button>
+
+    <!-- SEÇÃO DO TRACKER -->
+    <div id="trackerSection" style="display:none; margin-top:15px; background:#333; padding:10px; border-radius:6px;">
+      <p style="color:#ccc;">Aqui entraria o conteúdo adicional do rastreador.</p>
+    </div>
   </div>
 
   <!-- MODAL DE PAGAMENTO VIP -->
@@ -127,6 +132,64 @@
   <script>
     // ✅ DATA AUTOMÁTICA
     const DATA_DE_HOJE = new Date().toLocaleDateString('pt-BR');
+
+    // ✅ DADOS EMBUTIDOS (sem depender de data.json)
+    const DATA_EMBUTIDA = {
+      "2025": {
+        "71": {
+          "Flamengo": {
+            "results": ["V", "V"],
+            "next_opponent": "Ceará",
+            "opponent_table": "Z4",
+            "form_opponent": "D,D",
+            "position": 1,
+            "points": 46,
+            "avg_goals": 2.8,
+            "avg_corners": 7.0,
+            "home_away": "Casa",
+            "injuries": "Nenhum",
+            "new_coach": false,
+            "last_5_summary": "5V",
+            "match_date": "28/08/2025",
+            "match_time": "20:00"
+          },
+          "Palmeiras": {
+            "results": ["E", "D"],
+            "next_opponent": "Corinthians",
+            "opponent_table": "Meio da tabela",
+            "form_opponent": "V,E",
+            "position": 3,
+            "points": 40,
+            "avg_goals": 2.2,
+            "avg_corners": 6.1,
+            "home_away": "Casa",
+            "injuries": "1 titular",
+            "new_coach": false,
+            "last_5_summary": "2V,2E,1D",
+            "match_date": "28/08/2025",
+            "match_time": "18:30"
+          }
+        },
+        "39": {
+          "Arsenal": {
+            "results": ["V", "V"],
+            "next_opponent": "Aston Villa",
+            "opponent_table": "Meio da tabela",
+            "form_opponent": "D,E",
+            "position": 2,
+            "points": 44,
+            "avg_goals": 2.5,
+            "avg_corners": 6.8,
+            "home_away": "Casa",
+            "injuries": "Nenhum",
+            "new_coach": false,
+            "last_5_summary": "5V",
+            "match_date": "28/08/2025",
+            "match_time": "17:30"
+          }
+        }
+      }
+    };
 
     let teamResults = {};
     let currentTab = "meio";
@@ -191,7 +254,7 @@
       }
     }
 
-    async function loadData() {
+    function loadData() {
       const leagueId = leagueSelect.value;
       if (!leagueId) {
         resultsDiv.innerHTML = "Selecione um campeonato.";
@@ -201,22 +264,15 @@
       }
 
       resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados...</p>";
-      try {
-        const response = await fetch('/data.json?' + new Date().getTime());
-        if (!response.ok) throw new Error("HTTP " + response.status);
-        const data = await response.json();
-        const year = "2025";
-        if (data[year] && data[year][leagueId]) {
-          teamResults = data[year][leagueId];
-          if (currentTab === "meio") {
-            showHighChanceTeams(leagueId);
-          }
-        } else {
-          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
+
+      const year = "2025";
+      if (DATA_EMBUTIDA[year] && DATA_EMBUTIDA[year][leagueId]) {
+        teamResults = DATA_EMBUTIDA[year][leagueId];
+        if (currentTab === "meio") {
+          showHighChanceTeams(leagueId);
         }
-      } catch (err) {
-        console.error("Erro:", err);
-        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados. Veja o console.</p>";
+      } else {
+        resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
       }
     }
 
@@ -273,76 +329,66 @@
       const today = DATA_DE_HOJE;
       const multiples = [];
 
-      try {
-        const response = await fetch('/data.json?' + new Date().getTime());
-        if (!response.ok) throw new Error("Falha ao carregar dados");
-        const data = await response.json();
+      const year = "2025";
+      if (!DATA_EMBUTIDA[year]) {
+        resultsDiv.innerHTML = "<p class='error'>⚠️ Dados do ano 2025 não encontrados.</p>";
+        return;
+      }
 
-        const year = "2025";
-        if (!data[year]) {
-          resultsDiv.innerHTML = "<p class='error'>⚠️ Dados do ano 2025 não encontrados.</p>";
-          return;
-        }
+      for (const leagueId in DATA_EMBUTIDA[year]) {
+        const leagueData = DATA_EMBUTIDA[year][leagueId];
+        for (const teamName in leagueData) {
+          const d = leagueData[teamName];
 
-        for (const leagueId in data[year]) {
-          const leagueData = data[year][leagueId];
-          for (const teamName in leagueData) {
-            const d = leagueData[teamName];
+          if (!d.match_date || d.match_date !== today) continue;
 
-            if (!d.match_date || d.match_date !== today) continue;
+          const isTop5 = d.position >= 1 && d.position <= 5;
+          const isHome = d.home_away === "Casa";
+          const isWeakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
+          const isStrongOpponent = d.opponent_table === "Top 6" || d.opponent_table === "Top 5";
+          const opponentInCrisis = d.form_opponent && d.form_opponent.includes("D");
 
-            const isTop5 = d.position >= 1 && d.position <= 5;
-            const isHome = d.home_away === "Casa";
-            const isWeakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
-            const isStrongOpponent = d.opponent_table === "Top 6" || d.opponent_table === "Top 5";
-            const opponentInCrisis = d.form_opponent && d.form_opponent.includes("D");
-
-            if (isTop5 && isHome && isWeakOpponent && !isStrongOpponent && opponentInCrisis) {
-              multiples.push({
-                team: teamName,
-                opponent: d.next_opponent,
-                position: d.position,
-                form: d.last_5_summary,
-                home_away: d.home_away,
-                league: leagueNames[leagueId]
-              });
-            }
+          if (isTop5 && isHome && isWeakOpponent && !isStrongOpponent && opponentInCrisis) {
+            multiples.push({
+              team: teamName,
+              opponent: d.next_opponent,
+              position: d.position,
+              form: d.last_5_summary,
+              home_away: d.home_away,
+              league: leagueNames[leagueId]
+            });
           }
         }
-
-        if (multiples.length < 2) {
-          resultsDiv.innerHTML = `<p class='error'>⚠️ Apenas ${multiples.length} jogo elegível hoje. Mínimo de 2 para múltiplo.</p>`;
-          sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogo hoje`;
-          return;
-        }
-
-        let totalOdd = 1;
-        let html = `<h2>🎯 MÚLTIPLOS EM ALTA (Hoje - ${today})</h2>`;
-        html += "<div style='background: #2a2a2a; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 0.9em; color: #ccc; line-height: 1.6;'>";
-
-        multiples.forEach(m => {
-          const odd = (Math.random() * 0.2 + 1.3).toFixed(2);
-          totalOdd *= parseFloat(odd);
-          html += `<div>✅ <strong>${m.team}</strong> vs. ${m.opponent} <em>(${m.league})</em> — Odd: ${odd}</div>`;
-        });
-
-        totalOdd = totalOdd.toFixed(2);
-        const retorno10 = (10 * totalOdd).toFixed(2);
-
-        html += `</div>`;
-        html += `<p><strong>🔁 Odd Total: ${totalOdd}</strong></p>`;
-        html += `<p>💰 R$10,00 → R$${retorno10}</p>`;
-        html += `<p class='tip'>💡 Baseado em posição, forma, casa e adversário. Não é garantia.</p>`;
-        
-        resultsDiv.innerHTML = html;
-        sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogos hoje`;
-      } catch (err) {
-        console.error("Erro em showMultiples:", err);
-        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados.</p>";
       }
+
+      if (multiples.length < 2) {
+        resultsDiv.innerHTML = `<p class='error'>⚠️ Apenas ${multiples.length} jogo elegível hoje. Mínimo de 2 para múltiplo.</p>`;
+        sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogo hoje`;
+        return;
+      }
+
+      let totalOdd = 1;
+      let html = `<h2>🎯 MÚLTIPLOS EM ALTA (Hoje - ${today})</h2>`;
+      html += "<div style='background: #2a2a2a; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 0.9em; color: #ccc; line-height: 1.6;'>";
+
+      multiples.forEach(m => {
+        const odd = (Math.random() * 0.2 + 1.3).toFixed(2);
+        totalOdd *= parseFloat(odd);
+        html += `<div>✅ <strong>${m.team}</strong> vs. ${m.opponent} <em>(${m.league})</em> — Odd: ${odd}</div>`;
+      });
+
+      totalOdd = totalOdd.toFixed(2);
+      const retorno10 = (10 * totalOdd).toFixed(2);
+
+      html += `</div>`;
+      html += `<p><strong>🔁 Odd Total: ${totalOdd}</strong></p>`;
+      html += `<p>💰 R$10,00 → R$${retorno10}</p>`;
+      html += `<p class='tip'>💡 Baseado em posição, forma, casa e adversário. Não é garantia.</p>`;
+      
+      resultsDiv.innerHTML = html;
+      sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogos hoje`;
     }
 
-    // ✅ VERIFICA TOKEN AO CARREGAR
     window.onload = function() {
       const urlParams = new URLSearchParams(window.location.search);
       const token = urlParams.get('token');
@@ -353,7 +399,6 @@
       }
     }
 
-    // ✅ RENDERIZA O ALERTA DE PRESSÃO VIP
     function renderVIPPressureAlert() {
       const today = DATA_DE_HOJE;
       const games = Object.keys(teamResults);
@@ -361,10 +406,11 @@
 
       games.forEach(t => {
         const d = teamResults[t];
-        const isLosingStreak = d.results && d.results.slice(-2).every(r => r !== "V");
-        const opponentWonBefore = d.form_opponent && d.form_opponent.includes("V");
+        const last2 = d.results.slice(-2);
+        const isPressure = last2.every(r => r !== "V");
+        const opponentWon = d.form_opponent && d.form_opponent.includes("V");
 
-        if (isLosingStreak && opponentWonBefore && d.match_date === today) {
+        if (isPressure && opponentWon && d.match_date === today) {
           alerts.push({
             team: t,
             opponent: d.next_opponent,
@@ -403,28 +449,18 @@
       sidebarInfo.textContent = `🔐 Alerta VIP: ${alerts.length} jogos com pressão`;
     }
 
-    // ✅ CARREGA DADOS PARA O VIP
     async function loadDataForVIP() {
-      try {
-        const response = await fetch('/data.json?' + new Date().getTime());
-        if (!response.ok) throw new Error("Falha ao carregar dados");
-        const data = await response.json();
-        const year = "2025";
-        const leagueId = leagueSelect.value;
+      const year = "2025";
+      const leagueId = leagueSelect.value;
 
-        if (data[year] && data[year][leagueId]) {
-          teamResults = data[year][leagueId];
-          renderVIPPressureAlert();
-        } else {
-          resultsDiv.innerHTML = "<p class='error'>⚠️ Dados não encontrados.</p>";
-        }
-      } catch (err) {
-        console.error("Erro:", err);
-        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados VIP.</p>";
+      if (DATA_EMBUTIDA[year] && DATA_EMBUTIDA[year][leagueId]) {
+        teamResults = DATA_EMBUTIDA[year][leagueId];
+        renderVIPPressureAlert();
+      } else {
+        resultsDiv.innerHTML = "<p class='error'>⚠️ Dados não encontrados.</p>";
       }
     }
 
-    // ✅ MOSTRA MODAL VIP
     function showPressureAlertVIP() {
       const isVIP = localStorage.getItem('user_plan') === 'vip';
       
