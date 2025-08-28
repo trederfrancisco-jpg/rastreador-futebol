@@ -125,7 +125,7 @@
   </div>
 
   <script>
-    // ✅ DATA AUTOMÁTICA - 28/08/2025
+    // ✅ DATA AUTOMÁTICA
     const DATA_DE_HOJE = new Date().toLocaleDateString('pt-BR');
 
     let teamResults = {};
@@ -143,7 +143,6 @@
       if (leagueSelect.value) loadData();
     }
 
-    // Links corrigidos (sem espaços extras)
     const leagueLinks = {
       "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
       "72": "https://www.sofascore.com/tournament/brazil/serie-b/329",
@@ -362,7 +361,6 @@
 
       games.forEach(t => {
         const d = teamResults[t];
-        // Regra: time em crise (sem vencer há 2 jogos) vs adversário que já venceu
         const isLosingStreak = d.results && d.results.slice(-2).every(r => r !== "V");
         const opponentWonBefore = d.form_opponent && d.form_opponent.includes("V");
 
