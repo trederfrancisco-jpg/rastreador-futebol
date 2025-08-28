@@ -115,7 +115,7 @@
     <!-- Botões de filtro -->
     <nav>
       <button id="btnChance" class="active" onclick="setTab('meio')">Vitória e Empate</button>
-      <button id="btnPressureVIP" onclick="showPressureAlertVIP()" class="vip-button">
+      <button id="btnPressureVIP" onclick="togglePressureAlertVIP()" class="vip-button">
         🔐 Alerta de Pressão VIP
       </button>
     </nav>
@@ -133,12 +133,25 @@
     </div>
 
     <!-- Botão de múltiplos -->
-    <button onclick="showMultiples()" style="margin-top: 10px; padding: 10px; width: 100%; background: #4caf50; border: none; color: white; border-radius: 4px; cursor: pointer;">
+    <button onclick="toggleMultiples()" style="margin-top: 10px; padding: 10px; width: 100%; background: #4caf50; border: none; color: white; border-radius: 4px; cursor: pointer;">
       🎯 Múltiplos em Alta (Hoje)
     </button>
 
-    <!-- Resultados -->
-    <div id="results">Selecione um campeonato.</div>
+    <!-- Resultados (com conteúdo inicial) -->
+    <div id="results">
+      <div class="initial-results">
+        <div class="section-title">🎯 Resultados de Hoje</div>
+        <div class="item">
+          <strong>Cruzeiro</strong> vs. Atlético-MG
+          <div class="confidence-high">✅ Win — Entrada acertada</div>
+        </div>
+        <div class="item">
+          <strong>Palmeiras</strong> vs. Corinthians
+          <div class="confidence-medium">💡 Empate — Odd alta pagou bem</div>
+        </div>
+        <div class="tip">📌 Dica: Escolha uma opção acima para ver análises em tempo real.</div>
+      </div>
+    </div>
 
     <!-- Botão de rastreador -->
     <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
@@ -303,7 +316,20 @@
     function loadData() {
       const leagueId = leagueSelect.value;
       if (!leagueId) {
-        resultsDiv.innerHTML = "Selecione um campeonato.";
+        resultsDiv.innerHTML = `
+          <div class="initial-results">
+            <div class="section-title">🎯 Resultados de Hoje</div>
+            <div class="item">
+              <strong>Cruzeiro</strong> vs. Atlético-MG
+              <div class="confidence-high">✅ Win — Entrada acertada</div>
+            </div>
+            <div class="item">
+              <strong>Palmeiras</strong> vs. Corinthians
+              <div class="confidence-medium">💡 Empate — Odd alta pagou bem</div>
+            </div>
+            <div class="tip">📌 Dica: Escolha uma opção acima para ver análises em tempo real.</div>
+          </div>
+        `;
         sidebarInfo.textContent = "Selecione um campeonato.";
         tabelaLink.innerHTML = "";
         return;
@@ -371,7 +397,13 @@
       }
     }
 
-    async function showMultiples() {
+    // ✅ TOGGLE MÚLTIPLOS (abre e fecha)
+    function toggleMultiples() {
+      if (resultsDiv.dataset.active === 'multiples') {
+        resetToInitialResults();
+        return;
+      }
+
       const today = DATA_DE_HOJE;
       const multiples = [];
 
@@ -409,7 +441,6 @@
 
       if (multiples.length < 2) {
         resultsDiv.innerHTML = `<p class='error'>⚠️ Apenas ${multiples.length} jogo elegível hoje. Mínimo de 2 para múltiplo.</p>`;
-        sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogo hoje`;
         return;
       }
 
@@ -430,18 +461,39 @@
       html += `<p><strong>🔁 Odd Total: ${totalOdd}</strong></p>`;
       html += `<p>💰 R$10,00 → R$${retorno10}</p>`;
       html += `<p class='tip'>💡 Baseado em posição, forma, casa e adversário. Não é garantia.</p>`;
-      
+
       resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = `🎯 Múltiplos em Alta: ${multiples.length} jogos hoje`;
+      resultsDiv.dataset.active = 'multiples';
     }
 
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get('token');
-      
-      if (token && token.startsWith('VIP')) {
-        localStorage.setItem('user_plan', 'vip');
-        showSuccessToast("✅ Acesso VIP liberado!");
+    // ✅ TOGGLE ALERTA DE PRESSÃO VIP
+    function togglePressureAlertVIP() {
+      const isVIP = localStorage.getItem('user_plan') === 'vip';
+
+      if (isVIP) {
+        if (resultsDiv.dataset.active === 'vip') {
+          resetToInitialResults();
+        } else {
+          if (leagueSelect.value) {
+            loadDataForVIP();
+          } else {
+            resultsDiv.innerHTML = "<p>Selecione um campeonato.</p>";
+          }
+        }
+      } else {
+        openPaymentModal();
+      }
+    }
+
+    async function loadDataForVIP() {
+      const year = "2025";
+      const leagueId = leagueSelect.value;
+
+      if (DATA_EMBUTIDA[year] && DATA_EMBUTIDA[year][leagueId]) {
+        teamResults = DATA_EMBUTIDA[year][leagueId];
+        renderVIPPressureAlert();
+      } else {
+        resultsDiv.innerHTML = "<p class='error'>⚠️ Dados não encontrados.</p>";
       }
     }
 
@@ -492,32 +544,36 @@
 
       html += "<div class='tip'>💡 Estratégia VIP: cobrir vitória + empate em times pressionados</div>";
       resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = `🔐 Alerta VIP: ${alerts.length} jogos com pressão`;
+      resultsDiv.dataset.active = 'vip';
     }
 
-    async function loadDataForVIP() {
-      const year = "2025";
-      const leagueId = leagueSelect.value;
-
-      if (DATA_EMBUTIDA[year] && DATA_EMBUTIDA[year][leagueId]) {
-        teamResults = DATA_EMBUTIDA[year][leagueId];
-        renderVIPPressureAlert();
-      } else {
-        resultsDiv.innerHTML = "<p class='error'>⚠️ Dados não encontrados.</p>";
-      }
+    // ✅ VOLTA PARA RESULTADOS INICIAIS
+    function resetToInitialResults() {
+      resultsDiv.innerHTML = `
+        <div class="initial-results">
+          <div class="section-title">🎯 Resultados de Hoje</div>
+          <div class="item">
+            <strong>Cruzeiro</strong> vs. Atlético-MG
+            <div class="confidence-high">✅ Win — Entrada acertada</div>
+          </div>
+          <div class="item">
+            <strong>Palmeiras</strong> vs. Corinthians
+            <div class="confidence-medium">💡 Empate — Odd alta pagou bem</div>
+          </div>
+          <div class="tip">📌 Dica: Escolha uma opção acima para ver análises em tempo real.</div>
+        </div>
+      `;
+      resultsDiv.dataset.active = '';
     }
 
-    function showPressureAlertVIP() {
-      const isVIP = localStorage.getItem('user_plan') === 'vip';
+    // ✅ VERIFICA TOKEN AO CARREGAR
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
       
-      if (isVIP) {
-        if (leagueSelect.value) {
-          loadDataForVIP();
-        } else {
-          resultsDiv.innerHTML = "<p>Selecione um campeonato.</p>";
-        }
-      } else {
-        openPaymentModal();
+      if (token && token.startsWith('VIP')) {
+        localStorage.setItem('user_plan', 'vip');
+        showSuccessToast("✅ Acesso VIP liberado!");
       }
     }
 
