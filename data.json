@@ -51,24 +51,6 @@
         "match_date": "28/08/2025",
         "match_time": "17:30"
       }
-    },
-    "94": {
-      "Benfica": {
-        "results": ["V", "V"],
-        "next_opponent": "Porto",
-        "opponent_table": "Top 6",
-        "form_opponent": "V,D",
-        "position": 1,
-        "points": 47,
-        "avg_goals": 3.0,
-        "avg_corners": 7.5,
-        "home_away": "Casa",
-        "injuries": "Nenhum",
-        "new_coach": false,
-        "last_5_summary": "5V",
-        "match_date": "28/08/2025",
-        "match_time": "20:30"
-      }
     }
   }
 }
