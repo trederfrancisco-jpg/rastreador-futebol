@@ -1,56 +1,16 @@
-{
-  "2025": {
-    "71": {
-      "Flamengo": {
-        "results": ["V", "V"],
-        "next_opponent": "Ceará",
-        "opponent_table": "Z4",
-        "form_opponent": "D,D",
-        "position": 1,
-        "points": 46,
-        "avg_goals": 2.8,
-        "avg_corners": 7.0,
-        "home_away": "Casa",
-        "injuries": "Nenhum",
-        "new_coach": false,
-        "last_5_summary": "5V",
-        "match_date": "28/08/2025",
-        "match_time": "20:00"
-      },
-      "Palmeiras": {
-        "results": ["E", "D"],
-        "next_opponent": "Corinthians",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "V,E",
-        "position": 3,
-        "points": 40,
-        "avg_goals": 2.2,
-        "avg_corners": 6.1,
-        "home_away": "Casa",
-        "injuries": "1 titular",
-        "new_coach": false,
-        "last_5_summary": "2V,2E,1D",
-        "match_date": "28/08/2025",
-        "match_time": "18:30"
-      }
-    },
-    "39": {
-      "Arsenal": {
-        "results": ["V", "V"],
-        "next_opponent": "Aston Villa",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "D,E",
-        "position": 2,
-        "points": 44,
-        "avg_goals": 2.5,
-        "avg_corners": 6.8,
-        "home_away": "Casa",
-        "injuries": "Nenhum",
-        "new_coach": false,
-        "last_5_summary": "5V",
-        "match_date": "28/08/2025",
-        "match_time": "17:30"
-      }
-    }
-  }
+"Palmeiras": {
+  "results": ["E", "D"],
+  "next_opponent": "Corinthians",
+  "opponent_table": "Meio da tabela",
+  "form_opponent": "V,E",
+  "position": 3,
+  "points": 40,
+  "avg_goals": 2.2,
+  "avg_corners": 6.1,
+  "home_away": "Casa",
+  "injuries": "1 titular",
+  "new_coach": false,
+  "last_5_summary": "2V,2E,1D",
+  "scheduled_date": "31/08/2025",
+  "match_time": "18:30"
 }
