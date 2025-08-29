@@ -137,25 +137,23 @@
       🎯 Múltiplos em Alta (Próximos 7 Dias)
     </button>
 
-    <!-- Resultados (com conteúdo inicial: próximos + resultados passados) -->
+    <!-- Resultados (com conteúdo inicial) -->
     <div id="results">
       <div class="initial-results">
-        <!-- PRÓXIMOS JOGOS -->
         <div class="section-title">📅 Próximos 7 Dias</div>
         <div class="item">
-          <strong>Flamengo</strong> vs. Ceará
-          <div class="details">📅 28/08 às 20:00 | 🏟️ Casa | 🎯 Favorito</div>
+          <strong>Flamengo</strong> vs. Grêmio
+          <div class="details">📅 31/08 às 15:00 | 🏟️ Casa | 🎯 Alta probabilidade</div>
         </div>
         <div class="item">
           <strong>Palmeiras</strong> vs. Corinthians
-          <div class="details">📅 30/08 às 18:30 | 🏟️ Casa | 🔥 Pressionado</div>
+          <div class="details">📅 31/08 às 18:30 | 🏟️ Casa | 🔥 Pressionado</div>
         </div>
         <div class="item">
-          <strong>Arsenal</strong> vs. Aston Villa
-          <div class="details">📅 29/08 às 17:30 | 🏟️ Casa | 🎯 Alta probabilidade</div>
+          <strong>Liverpool</strong> vs. Arsenal
+          <div class="details">📅 31/08 às 16:30 | 🏟️ Casa | 🎯 Clássico com tensão</div>
         </div>
 
-        <!-- RESULTADOS DA FERRAMENTA (últimos 7 dias) -->
         <div class="section-title" style="margin-top: 20px;">📊 Resultados da Semana</div>
         <div class="item">
           <strong>Flamengo</strong> vs. Ceará
@@ -163,14 +161,14 @@
           <div class="details">🎯 Análise: time pressionado + favorito em casa</div>
         </div>
         <div class="item">
-          <strong>Cruzeiro</strong> vs. Atlético-MG
+          <strong>Botafogo</strong> vs. Bragantino
           <div class="confidence-medium">💡 Empate — Odd alta pagou bem</div>
           <div class="details">💡 Estratégia: cobrir vitória + empate</div>
         </div>
         <div class="item">
-          <strong>Palmeiras</strong> vs. Corinthians
-          <div class="confidence-low">❌ Red — Fora de casa contra time forte</div>
-          <div class="details">📌 Aposta não indicada pela ferramenta</div>
+          <strong>Arsenal</strong> vs. Brighton
+          <div class="confidence-high">✅ Win — Favorito em casa</div>
+          <div class="details">📌 Análise: forma positiva + casa</div>
         </div>
 
         <div class="tip">📌 Dica: Escolha uma opção acima para ver análises detalhadas.</div>
@@ -215,96 +213,6 @@
   <script>
     // ✅ DATA AUTOMÁTICA
     const HOJE = new Date();
-
-    // ✅ DADOS EMBUTIDOS COM DATAS FUTURAS (scheduled_date)
-    const DATA_EMBUTIDA = {
-      "2025": {
-        "71": {
-          "Flamengo": {
-            "results": ["V", "V"],
-            "next_opponent": "Ceará",
-            "opponent_table": "Z4",
-            "form_opponent": "D,D",
-            "position": 1,
-            "points": 46,
-            "avg_goals": 2.8,
-            "avg_corners": 7.0,
-            "home_away": "Casa",
-            "injuries": "Nenhum",
-            "new_coach": false,
-            "last_5_summary": "5V",
-            "scheduled_date": "28/08/2025",
-            "match_time": "20:00"
-          },
-          "Palmeiras": {
-            "results": ["E", "D"],
-            "next_opponent": "Corinthians",
-            "opponent_table": "Meio da tabela",
-            "form_opponent": "V,E",
-            "position": 3,
-            "points": 40,
-            "avg_goals": 2.2,
-            "avg_corners": 6.1,
-            "home_away": "Casa",
-            "injuries": "1 titular",
-            "new_coach": false,
-            "last_5_summary": "2V,2E,1D",
-            "scheduled_date": "30/08/2025",
-            "match_time": "18:30"
-          },
-          "Cruzeiro": {
-            "results": ["V", "D"],
-            "next_opponent": "Atlético-MG",
-            "opponent_table": "Top 6",
-            "form_opponent": "V,V",
-            "position": 5,
-            "points": 38,
-            "avg_goals": 1.8,
-            "avg_corners": 5.5,
-            "home_away": "Fora",
-            "injuries": "2 titulares",
-            "new_coach": false,
-            "last_5_summary": "2V,1E,2D",
-            "scheduled_date": "01/09/2025",
-            "match_time": "21:00"
-          }
-        },
-        "39": {
-          "Arsenal": {
-            "results": ["V", "V"],
-            "next_opponent": "Aston Villa",
-            "opponent_table": "Meio da tabela",
-            "form_opponent": "D,E",
-            "position": 2,
-            "points": 44,
-            "avg_goals": 2.5,
-            "avg_corners": 6.8,
-            "home_away": "Casa",
-            "injuries": "Nenhum",
-            "new_coach": false,
-            "last_5_summary": "5V",
-            "scheduled_date": "29/08/2025",
-            "match_time": "17:30"
-          },
-          "Manchester United": {
-            "results": ["D", "D"],
-            "next_opponent": "Liverpool",
-            "opponent_table": "Top 6",
-            "form_opponent": "V,V",
-            "position": 7,
-            "points": 35,
-            "avg_goals": 1.6,
-            "avg_corners": 5.0,
-            "home_away": "Casa",
-            "injuries": "3 titulares",
-            "new_coach": true,
-            "last_5_summary": "1V,2E,2D",
-            "scheduled_date": "31/08/2025",
-            "match_time": "16:00"
-          }
-        }
-      }
-    };
 
     let teamResults = {};
     let currentTab = "meio";
@@ -369,7 +277,7 @@
       }
     }
 
-    function loadData() {
+    async function loadData() {
       const leagueId = leagueSelect.value;
       if (!leagueId) {
         resetToInitialResults();
@@ -380,14 +288,21 @@
 
       resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados...</p>";
 
-      const year = "2025";
-      if (DATA_EMBUTIDA[year] && DATA_EMBUTIDA[year][leagueId]) {
-        teamResults = DATA_EMBUTIDA[year][leagueId];
-        if (currentTab === "meio") {
+      try {
+        const response = await fetch('/data.json?' + new Date().getTime());
+        if (!response.ok) throw new Error("Erro ao carregar dados");
+        const data = await response.json();
+
+        const year = "2025";
+        if (data[year] && data[year][leagueId]) {
+          teamResults = data[year][leagueId];
           showHighChanceTeams(leagueId);
+        } else {
+          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
         }
-      } else {
-        resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
+      } catch (err) {
+        console.error("Erro:", err);
+        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados.</p>";
       }
     }
 
@@ -407,11 +322,8 @@
       let html = "<div class='section-title'>🎯 Vitória e Empate (70%+ de Chance)</div>";
       filtered.forEach(t => {
         const d = teamResults[t];
-        const scheduledDate = new Date(d.scheduled_date.split('/').reverse().join('-'));
         const formattedDate = d.scheduled_date.split('/')[0] + '/' + d.scheduled_date.split('/')[1];
-
         const estimatedWinRate = Number(d.position) <= 3 ? "78%" : "72%";
-        const oddDraw = (Math.random() * 0.5 + 3.8).toFixed(2);
 
         html += `
           <div class='item'>
@@ -419,13 +331,13 @@
             <div class='confidence-high'>📊 Probabilidade: ${estimatedWinRate}</div>
             <div class='details'>
               🏟️ ${d.home_away} | 📅 ${formattedDate} às ${d.match_time}
-              <br>🎯 Gols: ${d.avg_goals} | ⚙️ Esc: ${d.avg_corners}
-              <br>⚔️ Adv: ${d.opponent_table || 'Desconhecido'} (${d.form_opponent})
+              <br>🎯 Gols: ${d.avg_goals || 2.0} | ⚙️ Esc: ${d.avg_corners || 6.0}
+              <br>⚔️ Adv: ${d.opponent_table || 'Desconhecido'}
               <br>💡 <strong>Dica:</strong> Aposte no <strong>Time</strong> e no <strong>Empate</strong>.
             </div>
           </div>`;
       });
-      html += "<div class='tip'>💡 Estratégia: Cobrir vitória (odd ~1.40) + empate (odd ~4.00+)</div>";
+      html += "<div class='tip'>💡 Estratégia: Cobrir vitória + empate</div>";
       resultsDiv.innerHTML = html;
       sidebarInfo.textContent = `Vitória e Empate: ${filtered.length} jogos`;
       updateTabelaLink(leagueId);
@@ -443,7 +355,7 @@
       }
     }
 
-    // ✅ TOGGLE MÚLTIPLOS (próximos 7 dias)
+    // ✅ TOGGLE MÚLTIPLOS
     function toggleMultiples() {
       if (resultsDiv.dataset.active === 'multiples') {
         resetToInitialResults();
@@ -454,34 +366,31 @@
       const maxDate = new Date(HOJE);
       maxDate.setDate(HOJE.getDate() + 7);
 
-      for (const leagueId in DATA_EMBUTIDA["2025"]) {
-        const leagueData = DATA_EMBUTIDA["2025"][leagueId];
-        for (const teamName in leagueData) {
-          const d = leagueData[teamName];
-          const matchDate = new Date(d.scheduled_date.split('/').reverse().join('-'));
+      for (const leagueId in teamResults) {
+        const d = teamResults[leagueId];
+        const matchDate = new Date(d.scheduled_date.split('/').reverse().join('-'));
 
-          if (matchDate < HOJE || matchDate > maxDate) continue;
+        if (matchDate < HOJE || matchDate > maxDate) continue;
 
-          const isTop5 = d.position >= 1 && d.position <= 5;
-          const isHome = d.home_away === "Casa";
-          const isWeakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
-          const isStrongOpponent = d.opponent_table === "Top 6" || d.opponent_table === "Top 5";
-          const opponentInCrisis = d.form_opponent && d.form_opponent.includes("D");
+        const isTop5 = d.position >= 1 && d.position <= 5;
+        const isHome = d.home_away === "Casa";
+        const isWeakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
+        const isStrongOpponent = d.opponent_table === "Top 6" || d.opponent_table === "Top 5";
+        const opponentInCrisis = d.form_opponent && d.form_opponent.includes("D");
 
-          if (isTop5 && isHome && isWeakOpponent && !isStrongOpponent && opponentInCrisis) {
-            multiples.push({
-              team: teamName,
-              opponent: d.next_opponent,
-              date: d.scheduled_date,
-              time: d.match_time,
-              league: leagueNames[leagueId]
-            });
-          }
+        if (isTop5 && isHome && isWeakOpponent && !isStrongOpponent && opponentInCrisis) {
+          multiples.push({
+            team: leagueId,
+            opponent: d.next_opponent,
+            date: d.scheduled_date,
+            time: d.match_time,
+            league: leagueNames[leagueSelect.value]
+          });
         }
       }
 
       if (multiples.length < 2) {
-        resultsDiv.innerHTML = `<p class='error'>⚠️ Apenas ${multiples.length} jogo elegível nos próximos 7 dias.</p>`;
+        resultsDiv.innerHTML = `<p class='error'>⚠️ Apenas ${multiples.length} jogo elegível.</p>`;
         return;
       }
 
@@ -507,7 +416,7 @@
       resultsDiv.dataset.active = 'multiples';
     }
 
-    // ✅ TOGGLE ALERTA DE PRESSÃO VIP
+    // ✅ TOGGLE ALERTA VIP
     function togglePressureAlertVIP() {
       const isVIP = localStorage.getItem('user_plan') === 'vip';
 
@@ -527,14 +436,23 @@
     }
 
     async function loadDataForVIP() {
-      const year = "2025";
       const leagueId = leagueSelect.value;
 
-      if (DATA_EMBUTIDA[year] && DATA_EMBUTIDA[year][leagueId]) {
-        teamResults = DATA_EMBUTIDA[year][leagueId];
-        renderVIPPressureAlert();
-      } else {
-        resultsDiv.innerHTML = "<p class='error'>⚠️ Dados não encontrados.</p>";
+      try {
+        const response = await fetch('/data.json?' + new Date().getTime());
+        if (!response.ok) throw new Error("Erro ao carregar dados");
+        const data = await response.json();
+
+        const year = "2025";
+        if (data[year] && data[year][leagueId]) {
+          teamResults = data[year][leagueId];
+          renderVIPPressureAlert();
+        } else {
+          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
+        }
+      } catch (err) {
+        console.error("Erro:", err);
+        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados VIP.</p>";
       }
     }
 
@@ -582,22 +500,22 @@
       resultsDiv.dataset.active = 'vip';
     }
 
-    // ✅ VOLTA PARA RESULTADOS INICIAIS (com histórico)
+    // ✅ VOLTA PARA RESULTADOS INICIAIS
     function resetToInitialResults() {
       resultsDiv.innerHTML = `
         <div class="initial-results">
           <div class="section-title">📅 Próximos 7 Dias</div>
           <div class="item">
-            <strong>Flamengo</strong> vs. Ceará
-            <div class="details">📅 28/08 às 20:00 | 🏟️ Casa | 🎯 Favorito</div>
+            <strong>Flamengo</strong> vs. Grêmio
+            <div class="details">📅 31/08 às 15:00 | 🏟️ Casa | 🎯 Alta probabilidade</div>
           </div>
           <div class="item">
             <strong>Palmeiras</strong> vs. Corinthians
-            <div class="details">📅 30/08 às 18:30 | 🏟️ Casa | 🔥 Pressionado</div>
+            <div class="details">📅 31/08 às 18:30 | 🏟️ Casa | 🔥 Pressionado</div>
           </div>
           <div class="item">
-            <strong>Arsenal</strong> vs. Aston Villa
-            <div class="details">📅 29/08 às 17:30 | 🏟️ Casa | 🎯 Alta probabilidade</div>
+            <strong>Liverpool</strong> vs. Arsenal
+            <div class="details">📅 31/08 às 16:30 | 🏟️ Casa | 🎯 Clássico com tensão</div>
           </div>
 
           <div class="section-title" style="margin-top: 20px;">📊 Resultados da Semana</div>
@@ -607,14 +525,14 @@
             <div class="details">🎯 Análise: time pressionado + favorito em casa</div>
           </div>
           <div class="item">
-            <strong>Cruzeiro</strong> vs. Atlético-MG
+            <strong>Botafogo</strong> vs. Bragantino
             <div class="confidence-medium">💡 Empate — Odd alta pagou bem</div>
             <div class="details">💡 Estratégia: cobrir vitória + empate</div>
           </div>
           <div class="item">
-            <strong>Palmeiras</strong> vs. Corinthians
-            <div class="confidence-low">❌ Red — Fora de casa contra time forte</div>
-            <div class="details">📌 Aposta não indicada pela ferramenta</div>
+            <strong>Arsenal</strong> vs. Brighton
+            <div class="confidence-high">✅ Win — Favorito em casa</div>
+            <div class="details">📌 Análise: forma positiva + casa</div>
           </div>
 
           <div class="tip">📌 Dica: Escolha uma opção acima para ver análises detalhadas.</div>
