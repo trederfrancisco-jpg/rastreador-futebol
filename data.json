@@ -9,7 +9,8 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "scheduled_date": "31/08/2025",
-        "match_time": "15:00"
+        "match_time": "15:00",
+        "form_opponent": "E,D"
       },
       "Palmeiras": {
         "results": ["E", "D"],
@@ -19,17 +20,8 @@
         "injuries": "1 titular",
         "new_coach": false,
         "scheduled_date": "31/08/2025",
-        "match_time": "18:30"
-      },
-      "Cruzeiro": {
-        "results": ["D", "V"],
-        "next_opponent": "Atlético-MG",
-        "position": 5,
-        "home_away": "Casa",
-        "injuries": "2 titulares",
-        "new_coach": false,
-        "scheduled_date": "12/09/2025",
-        "match_time": "20:00"
+        "match_time": "18:30",
+        "form_opponent": "V,E"
       },
       "Botafogo": {
         "results": ["V", "E"],
@@ -39,7 +31,8 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "scheduled_date": "30/08/2025",
-        "match_time": "17:30"
+        "match_time": "17:30",
+        "form_opponent": "D,E"
       }
     },
     "39": {
@@ -51,29 +44,32 @@
         "injuries": "1 titular",
         "new_coach": false,
         "scheduled_date": "31/08/2025",
-        "match_time": "16:30"
+        "match_time": "16:30",
+        "form_opponent": "V,V"
       },
       "Arsenal": {
-        "results": ["V", "E"],
+        "results": ["D", "D"],
         "next_opponent": "Brighton",
-        "position": 2,
+        "position": 4,
         "home_away": "Fora",
-        "injuries": "1 titular",
+        "injuries": "2 titulares",
         "new_coach": false,
         "scheduled_date": "29/08/2025",
-        "match_time": "20:00"
+        "match_time": "20:00",
+        "form_opponent": "V,E"
       }
     },
     "140": {
       "Barcelona": {
-        "results": ["E", "V"],
+        "results": ["V", "E"],
         "next_opponent": "Getafe",
         "position": 3,
         "home_away": "Casa",
         "injuries": "2 titulares",
         "new_coach": false,
         "scheduled_date": "29/08/2025",
-        "match_time": "20:00"
+        "match_time": "20:00",
+        "form_opponent": "D,D"
       },
       "Real Madrid": {
         "results": ["V", "V"],
@@ -83,7 +79,8 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "scheduled_date": "30/08/2025",
-        "match_time": "20:00"
+        "match_time": "20:00",
+        "form_opponent": "V,D"
       }
     },
     "135": {
@@ -95,7 +92,8 @@
         "injuries": "1 titular",
         "new_coach": false,
         "scheduled_date": "31/08/2025",
-        "match_time": "20:45"
+        "match_time": "20:45",
+        "form_opponent": "V,E"
       },
       "Juventus": {
         "results": ["V", "V"],
@@ -105,7 +103,8 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "scheduled_date": "30/08/2025",
-        "match_time": "20:45"
+        "match_time": "20:45",
+        "form_opponent": "V,V"
       }
     },
     "78": {
@@ -117,7 +116,8 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "scheduled_date": "30/08/2025",
-        "match_time": "18:30"
+        "match_time": "18:30",
+        "form_opponent": "V,D"
       }
     },
     "61": {
@@ -129,7 +129,8 @@
         "injuries": "Nenhum",
         "new_coach": false,
         "scheduled_date": "30/08/2025",
-        "match_time": "20:00"
+        "match_time": "20:00",
+        "form_opponent": "V,V"
       }
     }
   }
