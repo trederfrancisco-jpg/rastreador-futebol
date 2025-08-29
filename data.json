@@ -4,161 +4,243 @@
       "Flamengo": {
         "results": ["V", "V"],
         "next_opponent": "Ceará",
-        "opponent_table": "Z4",
-        "form_opponent": "D,D",
         "position": 1,
-        "points": 46,
-        "avg_goals": 2.8,
-        "avg_corners": 7.0,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "5V",
-        "scheduled_date": "28/08/2025",
-        "match_time": "20:00"
-      }
-    },
-    "72": {
-      "Vasco": {
-        "results": ["V", "E"],
-        "next_opponent": "Ituano",
-        "opponent_table": "Z4",
-        "form_opponent": "D,D",
-        "position": 2,
-        "points": 38,
-        "avg_goals": 2.1,
-        "avg_corners": 5.5,
-        "home_away": "Casa",
-        "injuries": "Nenhum",
-        "new_coach": false,
-        "last_5_summary": "3V,2E",
         "scheduled_date": "29/08/2025",
-        "match_time": "21:30"
-      }
-    },
-    "202": {
-      "River Plate": {
-        "results": ["V", "V"],
-        "next_opponent": "Talleres",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "E,D",
-        "position": 4,
-        "points": 32,
-        "avg_goals": 2.0,
-        "avg_corners": 6.0,
+        "match_time": "20:00"
+      },
+      "Palmeiras": {
+        "results": ["E", "D"],
+        "next_opponent": "Corinthians",
+        "position": 3,
         "home_away": "Casa",
         "injuries": "1 titular",
         "new_coach": false,
-        "last_5_summary": "4V,1D",
+        "scheduled_date": "31/08/2025",
+        "match_time": "18:30"
+      },
+      "Cruzeiro": {
+        "results": ["V", "D"],
+        "next_opponent": "Atlético-MG",
+        "position": 5,
+        "home_away": "Fora",
+        "injuries": "2 titulares",
+        "new_coach": false,
+        "scheduled_date": "01/09/2025",
+        "match_time": "21:00"
+      },
+      "Vitória": {
+        "results": ["D", "D"],
+        "next_opponent": "Bahia",
+        "position": 18,
+        "home_away": "Casa",
+        "injuries": "3 titulares",
+        "new_coach": true,
         "scheduled_date": "30/08/2025",
+        "match_time": "19:00"
+      },
+      "Botafogo": {
+        "results": ["V", "E"],
+        "next_opponent": "Fortaleza",
+        "position": 2,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "scheduled_date": "02/09/2025",
         "match_time": "20:00"
       }
     },
     "39": {
       "Arsenal": {
-        "results": ["V", "V"],
-        "next_opponent": "Aston Villa",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "D,E",
+        "results": ["V", "E"],
+        "next_opponent": "Brighton",
         "position": 2,
-        "points": 44,
-        "avg_goals": 2.5,
-        "avg_corners": 6.8,
+        "home_away": "Casa",
+        "injuries": "1 titular",
+        "new_coach": false,
+        "scheduled_date": "29/08/2025",
+        "match_time": "17:30"
+      },
+      "Liverpool": {
+        "results": ["V", "V"],
+        "next_opponent": "Man City",
+        "position": 4,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "5V",
-        "scheduled_date": "29/08/2025",
+        "scheduled_date": "30/08/2025",
         "match_time": "17:30"
+      },
+      "Ipswich": {
+        "results": ["D", "D"],
+        "next_opponent": "Everton",
+        "position": 19,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": true,
+        "scheduled_date": "29/08/2025",
+        "match_time": "20:00"
+      },
+      "Aston Villa": {
+        "results": ["E", "V"],
+        "next_opponent": "Chelsea",
+        "position": 5,
+        "home_away": "Casa",
+        "injuries": "1 titular",
+        "new_coach": false,
+        "scheduled_date": "31/08/2025",
+        "match_time": "16:00"
       }
     },
     "140": {
       "Barcelona": {
-        "results": ["V", "E"],
-        "next_opponent": "Valencia",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "V,D",
+        "results": ["E", "V"],
+        "next_opponent": "Getafe",
         "position": 3,
-        "points": 41,
-        "avg_goals": 2.6,
-        "avg_corners": 6.5,
         "home_away": "Casa",
         "injuries": "2 titulares",
         "new_coach": false,
-        "last_5_summary": "3V,1E,1D",
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "29/08/2025",
         "match_time": "20:00"
-      }
-    },
-    "78": {
-      "Bayern de Munique": {
+      },
+      "Real Madrid": {
         "results": ["V", "V"],
-        "next_opponent": "Stuttgart",
-        "opponent_table": "Top 6",
-        "form_opponent": "V,V",
+        "next_opponent": "Valencia",
         "position": 1,
-        "points": 45,
-        "avg_goals": 3.0,
-        "avg_corners": 7.2,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "5V",
         "scheduled_date": "30/08/2025",
-        "match_time": "18:30"
+        "match_time": "20:00"
+      },
+      "Las Palmas": {
+        "results": ["D", "D"],
+        "next_opponent": "Alavés",
+        "position": 17,
+        "home_away": "Casa",
+        "injuries": "1 titular",
+        "new_coach": false,
+        "scheduled_date": "29/08/2025",
+        "match_time": "18:00"
+      },
+      "Girona": {
+        "results": ["V", "E"],
+        "next_opponent": "Athletic Bilbao",
+        "position": 6,
+        "home_away": "Fora",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "scheduled_date": "01/09/2025",
+        "match_time": "19:00"
       }
     },
     "135": {
       "Inter de Milão": {
         "results": ["V", "E"],
         "next_opponent": "Lazio",
-        "opponent_table": "Top 6",
-        "form_opponent": "V,E",
         "position": 2,
-        "points": 42,
-        "avg_goals": 2.4,
-        "avg_corners": 6.0,
         "home_away": "Casa",
         "injuries": "1 titular",
         "new_coach": false,
-        "last_5_summary": "4V,1E",
         "scheduled_date": "31/08/2025",
         "match_time": "20:45"
-      }
-    },
-    "61": {
-      "PSG": {
+      },
+      "Juventus": {
         "results": ["V", "V"],
-        "next_opponent": "Marselha",
-        "opponent_table": "Top 6",
-        "form_opponent": "V,D",
+        "next_opponent": "Napoli",
         "position": 1,
-        "points": 47,
-        "avg_goals": 3.2,
-        "avg_corners": 7.0,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "5V",
+        "scheduled_date": "30/08/2025",
+        "match_time": "20:45"
+      },
+      "Venezia": {
+        "results": ["D", "D"],
+        "next_opponent": "Empoli",
+        "position": 18,
+        "home_away": "Casa",
+        "injuries": "3 titulares",
+        "new_coach": true,
+        "scheduled_date": "29/08/2025",
+        "match_time": "18:00"
+      }
+    },
+    "78": {
+      "Bayern de Munique": {
+        "results": ["V", "V"],
+        "next_opponent": "Stuttgart",
+        "position": 1,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "scheduled_date": "30/08/2025",
+        "match_time": "18:30"
+      },
+      "Bayer Leverkusen": {
+        "results": ["E", "V"],
+        "next_opponent": "Eintracht Frankfurt",
+        "position": 2,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "scheduled_date": "29/08/2025",
+        "match_time": "18:30"
+      },
+      "Holstein Kiel": {
+        "results": ["D", "D"],
+        "next_opponent": "Bochum",
+        "position": 17,
+        "home_away": "Casa",
+        "injuries": "2 titulares",
+        "new_coach": true,
+        "scheduled_date": "28/08/2025",
+        "match_time": "18:30"
+      }
+    },
+    "61": {
+      "Paris Saint-Germain": {
+        "results": ["V", "V"],
+        "next_opponent": "Marseille",
+        "position": 1,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
         "scheduled_date": "30/08/2025",
         "match_time": "20:00"
+      },
+      "Lille": {
+        "results": ["V", "E"],
+        "next_opponent": "Lyon",
+        "position": 4,
+        "home_away": "Casa",
+        "injuries": "1 titular",
+        "new_coach": false,
+        "scheduled_date": "31/08/2025",
+        "match_time": "18:00"
+      },
+      "Auxerre": {
+        "results": ["D", "D"],
+        "next_opponent": "Reims",
+        "position": 18,
+        "home_away": "Casa",
+        "injuries": "3 titulares",
+        "new_coach": true,
+        "scheduled_date": "29/08/2025",
+        "match_time": "18:00"
       }
     },
     "88": {
       "Ajax": {
         "results": ["V", "D"],
         "next_opponent": "Feyenoord",
-        "opponent_table": "Top 6",
-        "form_opponent": "V,V",
         "position": 4,
-        "points": 35,
-        "avg_goals": 2.3,
-        "avg_corners": 5.8,
         "home_away": "Casa",
         "injuries": "2 titulares",
         "new_coach": true,
-        "last_5_summary": "3V,1E,1D",
-        "scheduled_date": "29/08/2025",
+        "scheduled_date": "01/09/2025",
         "match_time": "20:00"
       }
     },
@@ -166,17 +248,11 @@
       "Benfica": {
         "results": ["V", "V"],
         "next_opponent": "Porto",
-        "opponent_table": "Top 6",
-        "form_opponent": "V,E",
         "position": 1,
-        "points": 46,
-        "avg_goals": 3.0,
-        "avg_corners": 7.5,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "5V",
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "02/09/2025",
         "match_time": "20:30"
       }
     },
@@ -184,16 +260,10 @@
       "Club América": {
         "results": ["V", "E"],
         "next_opponent": "Tigres",
-        "opponent_table": "Top 6",
-        "form_opponent": "V,D",
         "position": 3,
-        "points": 36,
-        "avg_goals": 2.0,
-        "avg_corners": 5.5,
         "home_away": "Casa",
         "injuries": "1 titular",
         "new_coach": false,
-        "last_5_summary": "3V,2E",
         "scheduled_date": "30/08/2025",
         "match_time": "21:00"
       }
@@ -202,16 +272,10 @@
       "Manchester City": {
         "results": ["V", "V"],
         "next_opponent": "Dortmund",
-        "opponent_table": "Top 8",
-        "form_opponent": "V,E",
         "position": 1,
-        "points": 18,
-        "avg_goals": 2.8,
-        "avg_corners": 7.0,
         "home_away": "Casa",
         "injuries": "2 titulares",
         "new_coach": false,
-        "last_5_summary": "5V",
         "scheduled_date": "01/09/2025",
         "match_time": "20:00"
       }
@@ -220,16 +284,10 @@
       "Fluminense": {
         "results": ["V", "V"],
         "next_opponent": "River Plate",
-        "opponent_table": "Top 8",
-        "form_opponent": "V,D",
         "position": 1,
-        "points": 16,
-        "avg_goals": 2.2,
-        "avg_corners": 6.0,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "4V,1E",
         "scheduled_date": "02/09/2025",
         "match_time": "21:30"
       }
@@ -238,16 +296,10 @@
       "Independiente": {
         "results": ["E", "D"],
         "next_opponent": "Flamengo",
-        "opponent_table": "Top 8",
-        "form_opponent": "V,V",
         "position": 4,
-        "points": 12,
-        "avg_goals": 1.8,
-        "avg_corners": 5.0,
         "home_away": "Casa",
         "injuries": "3 titulares",
         "new_coach": true,
-        "last_5_summary": "2V,1E,2D",
         "scheduled_date": "03/09/2025",
         "match_time": "19:00"
       }
@@ -256,16 +308,10 @@
       "Corinthians Feminino": {
         "results": ["V", "V"],
         "next_opponent": "Palmeiras Feminino",
-        "opponent_table": "Top 4",
-        "form_opponent": "V,E",
         "position": 2,
-        "points": 38,
-        "avg_goals": 2.5,
-        "avg_corners": 6.2,
         "home_away": "Casa",
         "injuries": "Nenhum",
         "new_coach": false,
-        "last_5_summary": "4V,1E",
         "scheduled_date": "29/08/2025",
         "match_time": "16:00"
       }
