@@ -1,6 +1,16 @@
 {
   "2025": {
     "71": {
+      "Flamengo": {
+        "results": ["V", "E"],
+        "next_opponent": "Grêmio",
+        "position": 2,
+        "home_away": "Casa",
+        "scheduled_date": "31/08/2025",
+        "match_time": "15:00",
+        "opponent_table": "Meio da tabela",
+        "form_opponent": "E,D"
+      },
       "Palmeiras": {
         "results": ["D", "D"],
         "next_opponent": "Corinthians",
@@ -9,6 +19,28 @@
         "scheduled_date": "31/08/2025",
         "match_time": "18:30",
         "opponent_table": "Meio da tabela",
+        "form_opponent": "V,E"
+      },
+      "Botafogo": {
+        "results": ["V", "V"],
+        "next_opponent": "Fortaleza",
+        "position": 1,
+        "home_away": "Fora",
+        "scheduled_date": "30/08/2025",
+        "match_time": "19:00",
+        "opponent_table": "Top 6",
+        "form_opponent": "V,D"
+      }
+    },
+    "39": {
+      "Arsenal": {
+        "results": ["V", "V"],
+        "next_opponent": "Liverpool",
+        "position": 1,
+        "home_away": "Casa",
+        "scheduled_date": "31/08/2025",
+        "match_time": "16:30",
+        "opponent_table": "Top 6",
         "form_opponent": "V,E"
       }
     }
