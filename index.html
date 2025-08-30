@@ -308,6 +308,77 @@
   </div>
 
   <script>
+    // DADOS EMBUTIDOS (data.json inline) - ZERO DEPENDÊNCIA
+    const DATA_2025 = {
+      "71": {
+        "Flamengo": {
+          "results": ["V", "E"],
+          "next_opponent": "Grêmio",
+          "position": 2,
+          "home_away": "Casa",
+          "scheduled_date": "31/08/2025",
+          "match_time": "15:00",
+          "opponent_table": "Meio da tabela",
+          "form_opponent": "E,D"
+        },
+        "Palmeiras": {
+          "results": ["D", "E"],
+          "next_opponent": "Corinthians",
+          "position": 4,
+          "home_away": "Casa",
+          "scheduled_date": "31/08/2025",
+          "match_time": "18:30",
+          "opponent_table": "Meio da tabela",
+          "form_opponent": "V,E"
+        },
+        "Botafogo": {
+          "results": ["V", "V"],
+          "next_opponent": "Fortaleza",
+          "position": 1,
+          "home_away": "Fora",
+          "scheduled_date": "30/08/2025",
+          "match_time": "19:00",
+          "opponent_table": "Top 6",
+          "form_opponent": "V,D"
+        }
+      },
+      "39": {
+        "Arsenal": {
+          "results": ["V", "V"],
+          "next_opponent": "Liverpool",
+          "position": 1,
+          "home_away": "Casa",
+          "scheduled_date": "31/08/2025",
+          "match_time": "16:30",
+          "opponent_table": "Top 6",
+          "form_opponent": "V,E"
+        },
+        "Manchester United": {
+          "results": ["D", "E"],
+          "next_opponent": "Aston Villa",
+          "position": 12,
+          "home_away": "Casa",
+          "scheduled_date": "30/08/2025",
+          "match_time": "14:00",
+          "opponent_table": "Meio da tabela",
+          "form_opponent": "V,V"
+        }
+      },
+      "140": {
+        "Barcelona": {
+          "results": ["V", "V"],
+          "next_opponent": "Girona",
+          "position": 1,
+          "home_away": "Casa",
+          "scheduled_date": "31/08/2025",
+          "match_time": "20:00",
+          "opponent_table": "Meio da tabela",
+          "form_opponent": "E,V"
+        }
+      }
+      // Adicione mais campeonatos aqui se quiser
+    };
+
     const HOJE = new Date();
     let teamResults = {};
 
@@ -364,7 +435,7 @@
       }
     }
 
-    async function loadData() {
+    function loadData() {
       const leagueId = leagueSelect.value;
       if (!leagueId) {
         resetToInitialResults();
@@ -373,23 +444,13 @@
         return;
       }
 
-      resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados...</p>";
+      resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando análise...</p>";
 
-      try {
-        const response = await fetch('/data.json?' + new Date().getTime());
-        if (!response.ok) throw new Error("Erro ao carregar dados");
-        const data = await response.json();
-
-        const year = "2025";
-        if (data[year] && data[year][leagueId]) {
-          teamResults = data[year][leagueId];
-          showHighChanceTeams(leagueId);
-        } else {
-          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado para este campeonato.</p>";
-        }
-      } catch (err) {
-        console.error("Erro:", err);
-        resultsDiv.innerHTML = "<p class='error'>❌ Falha ao carregar dados. Verifique o arquivo data.json.</p>";
+      if (DATA_2025[leagueId]) {
+        teamResults = DATA_2025[leagueId];
+        showHighChanceTeams(leagueId);
+      } else {
+        resultsDiv.innerHTML = "<p class='error'>⚠️ Dados não disponíveis para este campeonato.</p>";
       }
     }
 
@@ -656,7 +717,7 @@
       const token = urlParams.get('token');
       if (token && token.startsWith('VIP')) {
         localStorage.setItem('user_plan', 'vip');
-        alert("✅ Acesso VIP ativado!");
+        alert("✅ Acesso VIP ativado com sucesso!");
       }
 
       window.addEventListener('keydown', e => {
