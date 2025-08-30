@@ -30,16 +30,6 @@
         "match_time": "19:00",
         "opponent_table": "Top 6",
         "form_opponent": "V,D"
-      },
-      "Atlético-MG": {
-        "results": ["D", "D"],
-        "next_opponent": "Ceará",
-        "position": 5,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "20:00",
-        "opponent_table": "Z4",
-        "form_opponent": "D,D"
       }
     },
     "39": {
@@ -62,16 +52,6 @@
         "match_time": "14:00",
         "opponent_table": "Meio da tabela",
         "form_opponent": "V,V"
-      },
-      "Tottenham": {
-        "results": ["D", "D"],
-        "next_opponent": "Leicester",
-        "position": 6,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "17:00",
-        "opponent_table": "Z4",
-        "form_opponent": "D,L"
       }
     },
     "140": {
@@ -94,16 +74,6 @@
         "match_time": "20:00",
         "opponent_table": "Meio da tabela",
         "form_opponent": "D,E"
-      },
-      "Atlético de Madrid": {
-        "results": ["D", "E"],
-        "next_opponent": "Sevilla",
-        "position": 3,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "18:00",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "V,V"
       }
     },
     "135": {
@@ -126,16 +96,6 @@
         "match_time": "20:45",
         "opponent_table": "Top 6",
         "form_opponent": "V,V"
-      },
-      "AC Milan": {
-        "results": ["D", "D"],
-        "next_opponent": "Bologna",
-        "position": 7,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "18:30",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "V,D"
       }
     },
     "78": {
@@ -148,16 +108,6 @@
         "match_time": "18:30",
         "opponent_table": "Top 6",
         "form_opponent": "V,D"
-      },
-      "Borussia Dortmund": {
-        "results": ["D", "E"],
-        "next_opponent": "Eintracht Frankfurt",
-        "position": 4,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "18:30",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "V,V"
       }
     },
     "61": {
@@ -170,100 +120,6 @@
         "match_time": "20:00",
         "opponent_table": "Top 6",
         "form_opponent": "V,V"
-      },
-      "Lyon": {
-        "results": ["D", "D"],
-        "next_opponent": "Nantes",
-        "position": 8,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "19:00",
-        "opponent_table": "Z4",
-        "form_opponent": "D,L"
-      }
-    },
-    "88": {
-      "Ajax": {
-        "results": ["V", "V"],
-        "next_opponent": "FC Utrecht",
-        "position": 2,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "18:00",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "E,D"
-      }
-    },
-    "94": {
-      "Benfica": {
-        "results": ["V", "V"],
-        "next_opponent": "Sporting",
-        "position": 1,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "20:30",
-        "opponent_table": "Top 5",
-        "form_opponent": "V,E"
-      }
-    },
-    "262": {
-      "Club América": {
-        "results": ["V", "E"],
-        "next_opponent": "Tigres",
-        "position": 3,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "21:00",
-        "opponent_table": "Top 6",
-        "form_opponent": "V,V"
-      }
-    },
-    "8": {
-      "Manchester City": {
-        "results": ["V", "V"],
-        "next_opponent": "RB Leipzig",
-        "position": "Grupo A",
-        "home_away": "Casa",
-        "scheduled_date": "01/09/2025",
-        "match_time": "18:45",
-        "opponent_table": "Meio da tabela (alemao)",
-        "form_opponent": "E,V"
-      }
-    },
-    "12": {
-      "Fluminense": {
-        "results": ["D", "E"],
-        "next_opponent": "River Plate",
-        "position": "Avançou",
-        "home_away": "Casa",
-        "scheduled_date": "01/09/2025",
-        "match_time": "21:30",
-        "opponent_table": "Top 5 (Argentina)",
-        "form_opponent": "V,V"
-      }
-    },
-    "13": {
-      "São Paulo": {
-        "results": ["V", "D"],
-        "next_opponent": "Independiente",
-        "position": "Avançou",
-        "home_away": "Casa",
-        "scheduled_date": "02/09/2025",
-        "match_time": "19:00",
-        "opponent_table": "Meio da tabela (Argentina)",
-        "form_opponent": "D,V"
-      }
-    },
-    "10217": {
-      "Corinthians Fem": {
-        "results": ["V", "V"],
-        "next_opponent": "Palmeiras Fem",
-        "position": 1,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "16:00",
-        "opponent_table": "Top 6",
-        "form_opponent": "E,V"
       }
     }
   }
