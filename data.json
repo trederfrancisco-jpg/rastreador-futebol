@@ -30,16 +30,6 @@
         "match_time": "19:00",
         "opponent_table": "Top 6",
         "form_opponent": "V,D"
-      },
-      "São Paulo": {
-        "results": ["E", "D"],
-        "next_opponent": "Cruzeiro",
-        "position": 5,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "20:00",
-        "opponent_table": "Z4",
-        "form_opponent": "D,E"
       }
     },
     "39": {
@@ -61,16 +51,6 @@
         "scheduled_date": "30/08/2025",
         "match_time": "14:00",
         "opponent_table": "Meio da tabela",
-        "form_opponent": "V,V"
-      },
-      "Liverpool": {
-        "results": ["V", "D"],
-        "next_opponent": "Arsenal",
-        "position": 3,
-        "home_away": "Fora",
-        "scheduled_date": "31/08/2025",
-        "match_time": "16:30",
-        "opponent_table": "Top 6",
         "form_opponent": "V,V"
       }
     },
@@ -94,16 +74,6 @@
         "match_time": "20:00",
         "opponent_table": "Meio da tabela",
         "form_opponent": "D,E"
-      },
-      "Atlético de Madrid": {
-        "results": ["E", "D"],
-        "next_opponent": "Sevilla",
-        "position": 6,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "18:30",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "V,D"
       }
     },
     "135": {
@@ -126,16 +96,6 @@
         "match_time": "20:45",
         "opponent_table": "Top 6",
         "form_opponent": "V,V"
-      },
-      "AC Milan": {
-        "results": ["D", "E"],
-        "next_opponent": "Roma",
-        "position": 4,
-        "home_away": "Fora",
-        "scheduled_date": "31/08/2025",
-        "match_time": "18:00",
-        "opponent_table": "Top 6",
-        "form_opponent": "V,V"
       }
     },
     "78": {
@@ -148,16 +108,6 @@
         "match_time": "18:30",
         "opponent_table": "Top 6",
         "form_opponent": "V,D"
-      },
-      "Borussia Dortmund": {
-        "results": ["V", "D"],
-        "next_opponent": "Eintracht Frankfurt",
-        "position": 3,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "18:30",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "V,E"
       }
     },
     "61": {
@@ -170,16 +120,6 @@
         "match_time": "20:00",
         "opponent_table": "Top 6",
         "form_opponent": "V,V"
-      },
-      "Olympique de Lyon": {
-        "results": ["E", "D"],
-        "next_opponent": "Nice",
-        "position": 7,
-        "home_away": "Casa",
-        "scheduled_date": "31/08/2025",
-        "match_time": "19:00",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": "V,E"
       }
     }
   }
