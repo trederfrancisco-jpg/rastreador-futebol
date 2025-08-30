@@ -1,52 +1,148 @@
-"39": {
-  "Arsenal": {
-    "results": ["D", "V"],
-    "next_opponent": "Liverpool",
-    "position": 5,
-    "home_away": "Casa",
-    "injuries": "2 titulares",
-    "new_coach": false,
-    "scheduled_date": "31/08/2025",
-    "match_time": "16:30",
-    "opponent_table": "Top 6",
-    "form_opponent": "V,V"
-  },
-  "Liverpool": {
-    "results": ["V", "V"],
-    "next_opponent": "Arsenal",
-    "position": 1,
-    "home_away": "Fora",
-    "injuries": "1 titular",
-    "new_coach": false,
-    "scheduled_date": "31/08/2025",
-    "match_time": "16:30",
-    "opponent_table": "Top 6",
-    "form_opponent": "D,V"
-  }
-},
-"140": {
-  "Barcelona": {
-    "results": ["V", "E"],
-    "next_opponent": "Real Madrid",
-    "position": 3,
-    "home_away": "Casa",
-    "injuries": "2 titulares",
-    "new_coach": false,
-    "scheduled_date": "01/09/2025",
-    "match_time": "20:00",
-    "opponent_table": "Top 6",
-    "form_opponent": "V,E"
-  },
-  "Real Madrid": {
-    "results": ["V", "V"],
-    "next_opponent": "Barcelona",
-    "position": 1,
-    "home_away": "Fora",
-    "injuries": "Nenhum",
-    "new_coach": false,
-    "scheduled_date": "01/09/2025",
-    "match_time": "20:00",
-    "opponent_table": "Top 6",
-    "form_opponent": "V,V"
+{
+  "2025": {
+    "71": {
+      "Flamengo": {
+        "results": ["V", "V"],
+        "next_opponent": "Grêmio",
+        "position": 1,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "scheduled_date": "31/08/2025",
+        "match_time": "15:00",
+        "opponent_table": "Meio da tabela",
+        "form_opponent": "E,D"
+      },
+      "Palmeiras": {
+        "results": ["E", "D"],
+        "next_opponent": "Corinthians",
+        "position": 4,
+        "home_away": "Casa",
+        "injuries": "1 titular",
+        "new_coach": false,
+        "scheduled_date": "31/08/2025",
+        "match_time": "18:30",
+        "opponent_table": "Meio da tabela",
+        "form_opponent": "V,E"
+      },
+      "Botafogo": {
+        "results": ["V", "E"],
+        "next_opponent": "Bragantino",
+        "position": 2,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "scheduled_date": "30/08/2025",
+        "match_time": "17:30",
+        "opponent_table": "Meio da tabela",
+        "form_opponent": "D,E"
+      }
+    },
+    "39": {
+      "Liverpool": {
+        "results": ["V", "V"],
+        "next_opponent": "Arsenal",
+        "position": 1,
+        "home_away": "Casa",
+        "injuries": "1 titular",
+        "new_coach": false,
+        "scheduled_date": "31/08/2025",
+        "match_time": "16:30",
+        "opponent_table": "Top 6",
+        "form_opponent": "V,V"
+      },
+      "Arsenal": {
+        "results": ["D", "D"],
+        "next_opponent": "Brighton",
+        "position": 5,
+        "home_away": "Fora",
+        "injuries": "2 titulares",
+        "new_coach": false,
+        "scheduled_date": "29/08/2025",
+        "match_time": "20:00",
+        "opponent_table": "Meio da tabela",
+        "form_opponent": "V,E"
+      }
+    },
+    "140": {
+      "Barcelona": {
+        "results": ["V", "E"],
+        "next_opponent": "Getafe",
+        "position": 3,
+        "home_away": "Casa",
+        "injuries": "2 titulares",
+        "new_coach": false,
+        "scheduled_date": "29/08/2025",
+        "match_time": "20:00",
+        "opponent_table": "Z4",
+        "form_opponent": "D,D"
+      },
+      "Real Madrid": {
+        "results": ["V", "V"],
+        "next_opponent": "Valencia",
+        "position": 2,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "scheduled_date": "30/08/2025",
+        "match_time": "20:00",
+        "opponent_table": "Meio da tabela",
+        "form_opponent": "V,D"
+      }
+    },
+    "135": {
+      "Inter de Milão": {
+        "results": ["V", "E"],
+        "next_opponent": "Lazio",
+        "position": 2,
+        "home_away": "Casa",
+        "injuries": "1 titular",
+        "new_coach": false,
+        "scheduled_date": "31/08/2025",
+        "match_time": "20:45",
+        "opponent_table": "Top 6",
+        "form_opponent": "V,E"
+      },
+      "Juventus": {
+        "results": ["V", "V"],
+        "next_opponent": "Napoli",
+        "position": 1,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "scheduled_date": "30/08/2025",
+        "match_time": "20:45",
+        "opponent_table": "Top 6",
+        "form_opponent": "V,V"
+      }
+    },
+    "78": {
+      "Bayern de Munique": {
+        "results": ["V", "V"],
+        "next_opponent": "Stuttgart",
+        "position": 1,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "scheduled_date": "30/08/2025",
+        "match_time": "18:30",
+        "opponent_table": "Top 6",
+        "form_opponent": "V,D"
+      }
+    },
+    "61": {
+      "Paris Saint-Germain": {
+        "results": ["V", "V"],
+        "next_opponent": "Marseille",
+        "position": 1,
+        "home_away": "Casa",
+        "injuries": "Nenhum",
+        "new_coach": false,
+        "scheduled_date": "30/08/2025",
+        "match_time": "20:00",
+        "opponent_table": "Top 6",
+        "form_opponent": "V,V"
+      }
+    }
   }
 }
