@@ -274,6 +274,11 @@
 
         <div class="tip">📌 Dica: Escolha uma opção acima para ver análises detalhadas.</div>
       </div>
+
+      <!-- ✅ BOTÃO "VOLTAR AO INÍCIO" -->
+      <button id="btnVoltarInicio" style="margin: 15px 0; padding: 10px; width: 100%; background: #444; border: none; color: white; border-radius: 4px; cursor: pointer; font-size: 1rem; display: none;">
+        🔙 Voltar ao Início
+      </button>
     </div>
 
     <button id="btnToggleTracker" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
@@ -356,6 +361,7 @@
     const sidebarInfo = document.getElementById("sidebarInfo");
     const tabelaLink = document.getElementById("tabelaLink");
     const leagueSelect = document.getElementById("leagueSelect");
+    const btnVoltarInicio = document.getElementById("btnVoltarInicio");
 
     const leagueLinks = {
       "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
@@ -407,7 +413,14 @@
     }
 
     function resetToInitialResults() {
-      resultsDiv.innerHTML = document.querySelector('.initial-results').innerHTML;
+      const initialHTML = document.querySelector('.initial-results').innerHTML;
+      resultsDiv.innerHTML = `
+        <div class="initial-results">${initialHTML}</div>
+        <button id="btnVoltarInicio" style="margin: 15px 0; padding: 10px; width: 100%; background: #444; border: none; color: white; border-radius: 4px; cursor: pointer; font-size: 1rem; display: none;">
+          🔙 Voltar ao Início
+        </button>
+      `;
+      document.getElementById("btnVoltarInicio").addEventListener("click", voltarAoInicio);
     }
 
     function openPaymentModal() {
@@ -462,6 +475,7 @@
 
       if (filtered.length === 0) {
         resultsDiv.innerHTML = "<p>Nenhum time do G4 pressionado contra time fraco.</p>";
+        mostrarBotaoVoltar();
         return;
       }
 
@@ -483,6 +497,7 @@
       html += "<div class='tip'>📅 Dados atualizados em: 05/04/2025</div>";
       html += "<div class='tip'>💡 Estratégia: Cobrir vitória + empate (X2)</div>";
       resultsDiv.innerHTML = html;
+      mostrarBotaoVoltar();
       sidebarInfo.textContent = `Reação do Líder: ${filtered.length} jogos`;
       updateTabelaLink(leagueId);
     }
@@ -508,6 +523,7 @@
 
       if (multiples.length < 2) {
         resultsDiv.innerHTML = `<p class='error'>⚠️ Apenas ${multiples.length} jogo elegível.</p>`;
+        mostrarBotaoVoltar();
         return;
       }
 
@@ -530,23 +546,27 @@
       html += `<div class='tip'>📅 Dados atualizados em: 05/04/2025</div>`;
       html += `<p class='tip'>💡 Baseado em pressão do G4 + adversário fraco</p>`;
       resultsDiv.innerHTML = html;
+      mostrarBotaoVoltar();
     }
 
-    // Outras funções VIP (mantidas, mas com lógica similar)
+    // Outras funções VIP
     function togglePressureAlertVIP() {
       const isVIP = localStorage.getItem('user_plan') === 'vip';
       if (!isVIP) { openPaymentModal(); return; }
       resultsDiv.innerHTML = "<div class='section-title'>🔐 ALERTA DE PRESSÃO VIP</div><div class='item'>Funcionalidade VIP ativa. Dados carregados com base na pressão do G4.</div><div class='tip'>📅 Dados atualizados em: 05/04/2025</div>";
+      mostrarBotaoVoltar();
     }
     function showHiddenConflicts() {
       const isVIP = localStorage.getItem('user_plan') === 'vip';
       if (!isVIP) { openPaymentModal(); return; }
       resultsDiv.innerHTML = "<div class='section-title'>🔍 CONFLITOS OCULTOS (VIP)</div><div class='item'>Funcionalidade VIP: análise de mercado subestimado.</div><div class='tip'>📅 Dados atualizados em: 05/04/2025</div>";
+      mostrarBotaoVoltar();
     }
     function showReactionChain() {
       const isVIP = localStorage.getItem('user_plan') === 'vip';
       if (!isVIP) { openPaymentModal(); return; }
       resultsDiv.innerHTML = "<div class='section-title'>🌪️ REAÇÃO EM CADEIA (VIP)</div><div class='item'>Estratégia VIP: reação emocional de times do G4 contra times fracos.</div><div class='tip'>📅 Dados atualizados em: 05/04/2025</div>";
+      mostrarBotaoVoltar();
     }
 
     function toggleTracker() {
@@ -559,6 +579,18 @@
         trackerSection.style.display = "none";
         btn.textContent = "Abrir/Fechar Rastreador";
       }
+    }
+
+    // ✅ Função: Voltar ao Início
+    function voltarAoInicio() {
+      resetToInitialResults();
+      setActiveButton(document.getElementById("btnChance"));
+    }
+
+    // ✅ Mostra o botão "Voltar ao Início"
+    function mostrarBotaoVoltar() {
+      const btn = document.getElementById("btnVoltarInicio");
+      if (btn) btn.style.display = "block";
     }
 
     // ==================== EVENT LISTENERS ====================
@@ -592,6 +624,10 @@
       document.getElementById("btnCloseModal").addEventListener("click", closePaymentModal);
       leagueSelect.addEventListener("change", loadData);
 
+      // Inicializa o botão "Voltar ao Início"
+      document.getElementById("btnVoltarInicio").addEventListener("click", voltarAoInicio);
+
+      // Carrega inicial
       loadData();
     });
 
@@ -611,7 +647,6 @@
   </script>
 </body>
 </html>
-
 
 
 
