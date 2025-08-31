@@ -7,7 +7,7 @@
         "next_opponent": "Grêmio",
         "home_away": "Casa",
         "opponent_table": "Z4",
-        "form_opponent": ["V", "D", "V"],
+        "form_opponent": ["D", "V", "D"],
         "scheduled_date": "31/08/2025",
         "match_time": "15:00"
       },
@@ -17,7 +17,7 @@
         "next_opponent": "Corinthians",
         "home_away": "Casa",
         "opponent_table": "Meio da tabela",
-        "form_opponent": ["D", "V", "V"],
+        "form_opponent": ["V", "D", "V"],
         "scheduled_date": "31/08/2025",
         "match_time": "18:30"
       }
