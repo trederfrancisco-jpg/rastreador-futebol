@@ -7,17 +7,19 @@
         "next_opponent": "Grêmio",
         "home_away": "Casa",
         "opponent_table": "Z4",
-        "form_opponent": ["D", "V", "D"],
+        "position_opponent": 16,
+        "form_opponent": ["D", "D", "V"],
         "scheduled_date": "05/09/2025",
         "match_time": "20:00"
       },
       "Palmeiras": {
         "position": 3,
-        "results": ["V", "V", "D"],
-        "next_opponent": "Corinthians",
-        "home_away": "Casa",
-        "opponent_table": "Meio da tabela",
-        "form_opponent": ["V", "D", "V"],
+        "results": ["E", "E", "D"],
+        "next_opponent": "Fortaleza",
+        "home_away": "Fora",
+        "opponent_table": "Z4",
+        "position_opponent": 17,
+        "form_opponent": ["D", "D", "D"],
         "scheduled_date": "06/09/2025",
         "match_time": "18:30"
       }
@@ -26,10 +28,11 @@
       "Liverpool": {
         "position": 4,
         "results": ["V", "E", "D"],
-        "next_opponent": "Arsenal",
+        "next_opponent": "Everton",
         "home_away": "Casa",
-        "opponent_table": "Top 6",
-        "form_opponent": ["V", "V", "V"],
+        "opponent_table": "Meio da tabela",
+        "position_opponent": 11,
+        "form_opponent": ["V", "D", "D"],
         "scheduled_date": "06/09/2025",
         "match_time": "16:30"
       }
