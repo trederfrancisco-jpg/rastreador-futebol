@@ -306,7 +306,7 @@
   </div>
 
   <script>
-    // ==================== DADOS MOCK ATUALIZADOS (com times do G4 em pressão) ====================
+    // ==================== DADOS MOCK ATUALIZADOS ====================
     const mockData = {
       "2025": {
         "71": {
@@ -331,17 +331,6 @@
             "form_opponent": ["D", "D", "D"],
             "scheduled_date": "06/09/2025",
             "match_time": "18:30"
-          },
-          "Botafogo": {
-            "position": 4,
-            "results": ["V", "D", "V"],
-            "next_opponent": "Bahia",
-            "home_away": "Casa",
-            "opponent_table": "Z4",
-            "position_opponent": 18,
-            "form_opponent": ["D", "E", "D"],
-            "scheduled_date": "07/09/2025",
-            "match_time": "19:00"
           }
         },
         "39": {
@@ -491,6 +480,7 @@
             </div>
           </div>`;
       });
+      html += "<div class='tip'>📅 Dados atualizados em: 05/04/2025</div>";
       html += "<div class='tip'>💡 Estratégia: Cobrir vitória + empate (X2)</div>";
       resultsDiv.innerHTML = html;
       sidebarInfo.textContent = `Reação do Líder: ${filtered.length} jogos`;
@@ -537,6 +527,7 @@
       html += `</div>`;
       html += `<p><strong>🔁 Odd Total: ${totalOdd}</strong></p>`;
       html += `<p>💰 R$10,00 → R$${retorno10}</p>`;
+      html += `<div class='tip'>📅 Dados atualizados em: 05/04/2025</div>`;
       html += `<p class='tip'>💡 Baseado em pressão do G4 + adversário fraco</p>`;
       resultsDiv.innerHTML = html;
     }
@@ -545,17 +536,17 @@
     function togglePressureAlertVIP() {
       const isVIP = localStorage.getItem('user_plan') === 'vip';
       if (!isVIP) { openPaymentModal(); return; }
-      resultsDiv.innerHTML = "<div class='section-title'>🔐 ALERTA DE PRESSÃO VIP</div><div class='item'>Funcionalidade VIP ativa. Dados carregados com base na pressão do G4.</div>";
+      resultsDiv.innerHTML = "<div class='section-title'>🔐 ALERTA DE PRESSÃO VIP</div><div class='item'>Funcionalidade VIP ativa. Dados carregados com base na pressão do G4.</div><div class='tip'>📅 Dados atualizados em: 05/04/2025</div>";
     }
     function showHiddenConflicts() {
       const isVIP = localStorage.getItem('user_plan') === 'vip';
       if (!isVIP) { openPaymentModal(); return; }
-      resultsDiv.innerHTML = "<div class='section-title'>🔍 CONFLITOS OCULTOS (VIP)</div><div class='item'>Funcionalidade VIP: análise de mercado subestimado.</div>";
+      resultsDiv.innerHTML = "<div class='section-title'>🔍 CONFLITOS OCULTOS (VIP)</div><div class='item'>Funcionalidade VIP: análise de mercado subestimado.</div><div class='tip'>📅 Dados atualizados em: 05/04/2025</div>";
     }
     function showReactionChain() {
       const isVIP = localStorage.getItem('user_plan') === 'vip';
       if (!isVIP) { openPaymentModal(); return; }
-      resultsDiv.innerHTML = "<div class='section-title'>🌪️ REAÇÃO EM CADEIA (VIP)</div><div class='item'>Estratégia VIP: reação emocional de times do G4 contra times fracos.</div>";
+      resultsDiv.innerHTML = "<div class='section-title'>🌪️ REAÇÃO EM CADEIA (VIP)</div><div class='item'>Estratégia VIP: reação emocional de times do G4 contra times fracos.</div><div class='tip'>📅 Dados atualizados em: 05/04/2025</div>";
     }
 
     function toggleTracker() {
