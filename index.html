@@ -2,54 +2,80 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rastreador Avançado</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #121212; color: white; display: flex; height: 100vh; }
-    #sidebar { width: 320px; background: #1e1e1e; padding: 20px; box-sizing: border-box; overflow-y: auto; position: relative; }
-    #content { flex-grow: 1; padding: 20px; box-sizing: border-box; overflow-y: auto; background: #222; }
-    h1, h2 { margin-top: 0; }
-
-    .logo {
-      position: absolute;
-      top: 15px;
-      left: 20px;
-      width: 280px;
-      height: 50px;
-      background: linear-gradient(135deg, #0ea5b7, #25D366);
-      color: white;
-      font-weight: bold;
-      border-radius: 10px;
-      padding: 10px 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      z-index: 1000;
-      font-size: 1.1rem;
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 0; padding: 0; 
+      background: #121212; 
+      color: white; 
+      display: flex; 
+      height: 100vh; 
+      overflow: hidden;
     }
-    .logo svg {
-      width: 40px;
-      height: 40px;
-      margin-right: 12px;
+    #sidebar { 
+      width: 320px; 
+      background: #1e1e1e; 
+      padding: 20px; 
+      box-sizing: border-box; 
+      overflow-y: auto; 
+      position: relative; 
     }
-
-    select { width: 100%; padding: 10px; margin-bottom: 15px; background: #333; border: none; color: white; border-radius: 4px; font-size: 1rem; cursor: pointer; }
-    .info-box { background: #ff9800; color: black; padding: 8px; border-radius: 4px; font-weight: bold; text-align: center; margin-bottom: 15px; }
-    #results { margin-top: 15px; max-height: 70vh; overflow-y: auto; background: #121212; padding: 10px; border-radius: 6px; }
+    #content { 
+      flex-grow: 1; 
+      padding: 20px; 
+      box-sizing: border-box; 
+      overflow-y: auto; 
+      background: #222; 
+    }
+    .logo { 
+      position: absolute; top: 15px; left: 20px; 
+      width: 280px; height: 50px; 
+      background: linear-gradient(135deg, #0ea5b7, #25D366); 
+      color: white; font-weight: bold; 
+      border-radius: 10px; padding: 10px 15px; 
+      display: flex; align-items: center; z-index: 1000; font-size: 1.1rem; 
+    }
+    .logo svg { width: 40px; height: 40px; margin-right: 12px; }
+    select { 
+      width: 100%; padding: 10px; margin-bottom: 15px; 
+      background: #333; border: none; color: white; border-radius: 4px; 
+      font-size: 1rem; cursor: pointer; 
+    }
+    .info-box { 
+      background: #ff9800; color: black; padding: 8px; border-radius: 4px; 
+      font-weight: bold; text-align: center; margin-bottom: 15px; 
+    }
+    #results { 
+      margin-top: 15px; max-height: 70vh; overflow-y: auto; 
+      background: #121212; padding: 10px; border-radius: 6px; 
+    }
     .item { padding: 12px 10px; border-bottom: 1px solid #444; }
-    .item:last-child { border-bottom: none; }
-    .loading { font-style: italic; color: #aaa; text-align: center; margin: 10px 0; }
     .error { color: #ff6b6b; font-weight: bold; text-align: center; }
     .confidence-high { color: #4caf50; font-weight: bold; }
+    .confidence-medium { color: #ff9800; font-weight: bold; }
     .details { font-size: 0.9em; color: #ccc; margin-top: 6px; line-height: 1.5; }
     .tip { font-style: italic; color: #bbb; margin-top: 15px; text-align: center; }
-    nav { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
-    nav button { padding: 10px; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer; text-align: left; }
+    nav button { 
+      padding: 10px; background: #333; border: none; color: white; 
+      border-radius: 4px; cursor: pointer; text-align: left; margin-bottom: 5px;
+      width: 100%;
+    }
     nav button.active { background: #ff9800; color: black; font-weight: bold; }
+    .vip-button { 
+      background: linear-gradient(45deg, #ff8a00, #e52e71); color: white; 
+      font-weight: bold; border: none; padding: 10px; border-radius: 4px; 
+      cursor: pointer; width: 100%; margin-top: 5px; text-align: center; 
+    }
+    a.link-tabela { color: #25D366; text-decoration: none; font-weight: bold; display:block; margin-top:10px; }
+    .section-title { font-weight: bold; margin-bottom: 10px; font-size: 1.1rem; }
+    .loading { text-align: center; font-weight: bold; }
   </style>
 </head>
 <body>
 
+  <!-- SIDEBAR -->
   <div id="sidebar">
     <div class="logo">
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -73,8 +99,7 @@
         <option value="">Selecione um campeonato</option>
         <option value="71">🇧🇷 Brasileirão Série A</option>
         <option value="72">🇧🇷 Brasileirão Série B</option>
-        <option value="202">🇦🇷 Liga Profesional (Argentina)</option>
-        <option value="39">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+        <option value="39">🏴 Premier League</option>
         <option value="140">🇪🇸 La Liga</option>
         <option value="78">🇩🇪 Bundesliga</option>
         <option value="135">🇮🇹 Serie A</option>
@@ -87,18 +112,38 @@
     <div id="sidebarInfo" class="info-box">Selecione um campeonato.</div>
 
     <nav>
-      <button id="btnChance" class="active" onclick="setTab('meio')">Chance de Vitória</button>
-      <button onclick="setTab('series')">Série de Vitórias</button>
-      <button onclick="setTab('reacao')">Times com Potencial de Reação</button>
+      <button id="btnChance" class="active" onclick="setTab('meio')">Vitória e Empate</button>
+      <button onclick="togglePressureAlertVIP()" class="vip-button">🔐 Alerta de Pressão VIP</button>
+      <button onclick="showHiddenConflicts()" class="vip-button">🔍 Conflitos Ocultos (VIP)</button>
+      <button onclick="showReactionChain()" class="vip-button">🌪️ Reação em Cadeia (VIP)</button>
     </nav>
   </div>
 
+  <!-- CONTENT -->
   <div id="content">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
       <h2 id="contentTitle" style="margin: 0; font-size: 1.5rem;">Times com Alta Probabilidade de Vitória</h2>
       <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" target="_blank" style="padding: 10px 15px; background: #25D366; border: none; color: white; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1rem; text-decoration: none; min-width: 240px; text-align: center;">
         🚀 QUERO ASSINAR O RASTREADOR PRO
       </a>
+    </div>
+
+    <button onclick="toggleMultiples()" style="margin-top: 10px; padding: 10px; width: 100%; background: #4caf50; border: none; color: white; border-radius: 4px; cursor: pointer;">
+      🎯 Múltiplos em Alta (Próximos 7 Dias)
+    </button>
+
+    <div id="results">
+      <div class="initial-results">
+        <div class="section-title">📅 Próximos 7 Dias</div>
+        <div class="item">
+          <strong>Flamengo</strong> vs. Grêmio
+          <div class="details">📅 31/08 às 15:00 | 🏟️ Casa | 🎯 Alta probabilidade</div>
+        </div>
+        <div class="item">
+          <strong>Palmeiras</strong> vs. Corinthians
+          <div class="details">📅 31/08 às 18:30 | 🏟️ Casa | 🔥 Pressionado</div>
+        </div>
+      </div>
     </div>
 
     <button onclick="toggleTracker()" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
@@ -108,13 +153,24 @@
     <div id="trackerSection" style="display:none; margin-top:15px; background:#333; padding:10px; border-radius:6px;">
       <p style="color:#ccc;">Rastreador</p>
     </div>
+  </div>
 
-    <div id="results">
-      <p class="tip">Selecione um campeonato acima.</p>
+  <!-- MODAL VIP -->
+  <div id="paymentModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:999; padding:20px; color:white;">
+    <div style="max-width:500px; margin:50px auto; background:#121212; padding:20px; border-radius:10px;">
+      <h2 style="color:#ff9800; text-align:center;">🔐 Acesso VIP Liberado</h2>
+      <p style="text-align:center; color:#ccc;">Assine o <strong>Rastreador PRO</strong></p>
+      <a href="https://wa.me/5511998545662?text=Quero+assinar+o+Rastreador+PRO+com+Alerta+VIP" target="_blank" style="background:#25D366; color:black; padding:15px; text-align:center; display:block; border-radius:6px; font-weight:bold;">
+        🚀 QUERO O VIP (via WhatsApp)
+      </a>
+      <button onclick="closePaymentModal()" style="background:#555; border:none; color:white; padding:10px; width:100%; margin-top:10px; border-radius:6px;">
+        Fechar
+      </button>
     </div>
   </div>
 
   <script>
+    const HOJE = new Date();
     let teamResults = {};
     const leagueSelect = document.getElementById("leagueSelect");
     const resultsDiv = document.getElementById("results");
@@ -124,7 +180,6 @@
     const leagueNames = {
       "71": "Brasileirão Série A",
       "72": "Brasileirão Série B",
-      "202": "Liga Profesional (Argentina)",
       "39": "Premier League",
       "140": "La Liga",
       "78": "Bundesliga",
@@ -136,7 +191,6 @@
     const leagueLinks = {
       "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
       "72": "https://www.sofascore.com/tournament/brazil/serie-b/329",
-      "202": "https://www.sofascore.com/tournament/argentina/liga-profesional/202",
       "39": "https://www.sofascore.com/tournament/england/premier-league/17",
       "140": "https://www.sofascore.com/tournament/spain/laliga/8",
       "78": "https://www.sofascore.com/tournament/germany/bundesliga/35",
@@ -181,21 +235,12 @@
       }
     }
 
-    function setTab(tab) {
-      if (leagueSelect.value) {
-        if (tab === 'meio') showHighChanceTeams(leagueSelect.value);
-        if (tab === 'series') showWinningStreaks(leagueSelect.value);
-        if (tab === 'reacao') showReactionPotential(leagueSelect.value);
-      }
-    }
-
     function showHighChanceTeams(leagueId) {
       const teams = Object.keys(teamResults);
       const filtered = teams.filter(t => {
         const d = teamResults[t];
-        const pos = Number(d.position);
         const lastGameWasLoss = d.results && d.results[d.results.length - 1] === "D";
-        const isTop5 = pos >= 1 && pos <= 5;
+        const isTop5 = d.position >= 1 && d.position <= 5;
         const isHome = d.home_away === "Casa";
         const weakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
         return isTop5 && lastGameWasLoss && isHome && weakOpponent;
@@ -203,10 +248,11 @@
 
       if (filtered.length === 0) {
         resultsDiv.innerHTML = "<p>Nenhum time com alta probabilidade de vitória.</p>";
+        sidebarInfo.textContent = "Vitória e Empate: 0 jogos";
         return;
       }
 
-      let html = "<div class='section-title'>🎯 Chance de Vitória (Reação do Líder)</div>";
+      let html = "<div class='section-title'>🎯 Vitória e Empate (Reação do Líder)</div>";
       filtered.forEach(t => {
         const d = teamResults[t];
         html += `
@@ -222,77 +268,84 @@
       });
       html += "<div class='tip'>💡 Estratégia: Cobrir vitória + empate → segurança máxima</div>";
       resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = `Chance de Vitória: ${filtered.length} jogos`;
+      sidebarInfo.textContent = `Vitória e Empate: ${filtered.length} jogos`;
       updateTabelaLink(leagueId);
     }
 
-    function showWinningStreaks(leagueId) {
-      const teams = Object.keys(teamResults);
-      const filtered = teams.filter(t => {
+    function togglePressureAlertVIP() {
+      const isVIP = localStorage.getItem('user_plan') === 'vip';
+      if (!isVIP) { openPaymentModal(); return; }
+
+      const alerts = Object.keys(teamResults).filter(t => {
         const d = teamResults[t];
-        const isWinningStreak = d.results && d.results.slice(-2).every(r => r === "V");
-        const isHome = d.home_away === "Casa";
-        return isWinningStreak && isHome;
+        const isLosingStreak = d.results && d.results.slice(-2).every(r => r !== "V");
+        const opponentWonBefore = d.form_opponent && d.form_opponent.includes("V");
+        return isLosingStreak && opponentWonBefore;
       });
 
-      if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time em série de vitórias.</p>";
+      if (alerts.length === 0) {
+        resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum alerta de pressão encontrado.</p>";
         return;
       }
 
-      let html = "<div class='section-title'>🔥 Série de Vitórias</div>";
-      filtered.forEach(t => {
+      let html = "<div class='section-title'>🔐 ALERTA DE PRESSÃO VIP</div>";
+      alerts.forEach(t => {
         const d = teamResults[t];
         html += `
           <div class='item'>
-            <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
-            <div class='confidence-high'>✅ Em alta forma</div>
-            <div class='details'>📅 ${d.scheduled_date} às ${d.match_time} | 🏟️ ${d.home_away}</div>
+            <strong>${t}</strong> vs. ${d.next_opponent}
+            <div class='confidence-medium'>📅 ${d.scheduled_date} às ${d.match_time} | 🏟️ Casa</div>
+            <div class='details'>💡 Aposte em ${t} vence ou empata</div>
           </div>`;
       });
       resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = `Série de Vitórias: ${filtered.length} jogos`;
     }
 
-    function showReactionPotential(leagueId) {
-      const teams = Object.keys(teamResults);
-      const filtered = teams.filter(t => {
-        const d = teamResults[t];
+    function showHiddenConflicts() {
+      const isVIP = localStorage.getItem('user_plan') === 'vip';
+      if (!isVIP) { openPaymentModal(); return; }
+
+      const today = HOJE.toLocaleDateString('pt-BR');
+      const conflicts = [];
+      for (const teamName in teamResults) {
+        const d = teamResults[teamName];
+        const matchDate = new Date(d.scheduled_date.split('/').reverse().join('-'));
+        const todayDate = new Date(today.split('/').reverse().join('-'));
+        if (matchDate.toDateString() !== todayDate.toDateString()) continue;
+
+        const isTop5 = d.position >= 1 && d.position <= 5;
+        const isHome = d.home_away === "Casa";
         const lastGameWasLoss = d.results && d.results[d.results.length - 1] === "D";
-        const isHome = d.home_away === "Casa";
-        const weakOpponent = d.opponent_table === "Z4";
-        return lastGameWasLoss && isHome && weakOpponent;
-      });
+        const opponentInGoodForm = d.form_opponent && d.form_opponent.includes("V");
 
-      if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time com potencial de reação.</p>";
+        if (isTop5 && isHome && lastGameWasLoss && opponentInGoodForm) {
+          conflicts.push({ team: teamName, opponent: d.next_opponent, league: leagueNames[leagueSelect.value] });
+        }
+      }
+
+      if (conflicts.length === 0) {
+        resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum conflito oculto identificado hoje.</p>";
         return;
       }
 
-      let html = "<div class='section-title'>🌪️ Potencial de Reação</div>";
-      filtered.forEach(t => {
-        const d = teamResults[t];
+      let html = "<div class='section-title'>🔍 CONFLITOS OCULTOS (VIP)</div>";
+      conflicts.forEach(c => {
         html += `
           <div class='item'>
-            <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
-            <div class='confidence-medium'>💡 Precisa reagir</div>
-            <div class='details'>📅 ${d.scheduled_date} às ${d.match_time} | 🏟️ ${d.home_away}</div>
+            <strong>${c.team}</strong> vs. ${c.opponent} <em>(${c.league})</em>
+            <div class='confidence-medium'>⚠️ Conflito: Pressão vs. Forma</div>
+            <div class='details'>💡 Apostar em Empate</div>
           </div>`;
       });
       resultsDiv.innerHTML = html;
-      sidebarInfo.textContent = `Potencial de Reação: ${filtered.length} jogos`;
     }
 
-    function toggleTracker() {
-      const trackerSection = document.getElementById("trackerSection");
-      const btn = document.querySelector("button[onclick='toggleTracker()']");
-      if (trackerSection.style.display === "none" || !trackerSection.style.display) {
-        trackerSection.style.display = "block";
-        btn.textContent = "Fechar Rastreador";
-      } else {
-        trackerSection.style.display = "none";
-        btn.textContent = "Abrir/Fechar Rastreador";
-      }
+    function openPaymentModal() {
+      document.getElementById('paymentModal').style.display = 'block';
+    }
+
+    function closePaymentModal() {
+      document.getElementById('paymentModal').style.display = 'none';
     }
 
     window.onload = function() {
@@ -302,9 +355,27 @@
         localStorage.setItem('user_plan', 'vip');
       }
     }
+
+    function toggleTracker() {
+      const tracker = document.getElementById('trackerSection');
+      tracker.style.display = tracker.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function toggleMultiples() {
+      alert('Funcionalidade "Múltiplos em Alta" ainda não implementada.');
+    }
+
+    function showReactionChain() {
+      alert('Funcionalidade "Reação em Cadeia" ainda não implementada.');
+    }
+
+    function setTab(tab) {
+      document.getElementById('btnChance').classList.toggle('active');
+    }
   </script>
 </body>
 </html>
+
 
 
 
