@@ -9,7 +9,7 @@
         "opponent_table": "Z4",
         "position_opponent": 16,
         "form_opponent": ["D", "D", "V"],
-        "scheduled_date": "05/04/2025",
+        "scheduled_date": "05/09/2025",
         "match_time": "20:00"
       },
       "Palmeiras": {
@@ -20,7 +20,7 @@
         "opponent_table": "Z4",
         "position_opponent": 17,
         "form_opponent": ["D", "D", "D"],
-        "scheduled_date": "06/04/2025",
+        "scheduled_date": "06/09/2025",
         "match_time": "18:30"
       }
     },
@@ -33,47 +33,8 @@
         "opponent_table": "Meio da tabela",
         "position_opponent": 11,
         "form_opponent": ["V", "D", "D"],
-        "scheduled_date": "06/04/2025",
+        "scheduled_date": "06/09/2025",
         "match_time": "16:30"
-      }
-    },
-    "140": {
-      "Real Madrid": {
-        "position": 3,
-        "results": ["V", "V", "D"],
-        "next_opponent": "Alavés",
-        "home_away": "Casa",
-        "opponent_table": "Z4",
-        "position_opponent": 18,
-        "form_opponent": ["D", "E", "D"],
-        "scheduled_date": "05/04/2025",
-        "match_time": "21:00"
-      }
-    },
-    "78": {
-      "Bayer Leverkusen": {
-        "position": 1,
-        "results": ["V", "V", "V"],
-        "next_opponent": "Bochum",
-        "home_away": "Casa",
-        "opponent_table": "Z4",
-        "position_opponent": 16,
-        "form_opponent": ["D", "D", "V"],
-        "scheduled_date": "05/04/2025",
-        "match_time": "15:30"
-      }
-    },
-    "135": {
-      "Inter": {
-        "position": 1,
-        "results": ["E", "V", "D"],
-        "next_opponent": "Lecce",
-        "home_away": "Casa",
-        "opponent_table": "Z4",
-        "position_opponent": 17,
-        "form_opponent": ["D", "D", "D"],
-        "scheduled_date": "06/04/2025",
-        "match_time": "18:00"
       }
     }
   }
