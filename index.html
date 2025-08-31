@@ -110,11 +110,11 @@
     <div id="sidebarInfo" class="info-box">Selecione um campeonato.</div>
 
     <nav>
-      <button id="btnChance" class="active" onclick="setTab('meio')">Vitória e Empate</button>
-      <button onclick="togglePressureAlertVIP()" class="vip-button">🔐 Alerta de Pressão VIP</button>
-      <button onclick="showHiddenConflicts()" class="vip-button">🔍 Conflitos Ocultos (VIP)</button>
-      <button onclick="showReactionChain()" class="vip-button">🌪️ Reação em Cadeia (VIP)</button>
-      <button onclick="toggleMultiples()" class="vip-button">🎯 Múltiplos em Alta (VIP)</button>
+      <button id="btnChance" class="active" onclick="setTab('meio'); setActiveButton(this)">Vitória e Empate</button>
+      <button onclick="togglePressureAlertVIP(); setActiveButton(this)" class="vip-button">🔐 Alerta de Pressão VIP</button>
+      <button onclick="showHiddenConflicts(); setActiveButton(this)" class="vip-button">🔍 Conflitos Ocultos (VIP)</button>
+      <button onclick="showReactionChain(); setActiveButton(this)" class="vip-button">🌪️ Reação em Cadeia (VIP)</button>
+      <button onclick="toggleMultiples(); setActiveButton(this)" class="vip-button">🎯 Múltiplos em Alta (VIP)</button>
     </nav>
   </div>
 
@@ -128,9 +128,7 @@
       </a>
     </div>
 
-    <button onclick="toggleMultiples()" style="margin-top: 10px; padding: 10px; width: 100%; background: #4caf50; border: none; color: white; border-radius: 4px; cursor: pointer;">
-      🎯 MÚLTIPLOS EM ALTA (Próximos 7 Dias)
-    </button>
+    <!-- ✅ BOTÃO DUPLICADO REMOVIDO -->
 
     <div id="results">
       <div class="initial-results">
@@ -214,6 +212,13 @@
         currentTab = tab;
         btnChance.classList.toggle("active", tab === "meio");
         if (leagueSelect.value) loadData();
+      }
+
+      function setActiveButton(button) {
+        document.querySelectorAll("nav button").forEach(btn => {
+          btn.classList.remove("active");
+        });
+        button.classList.add("active");
       }
 
       const leagueLinks = {
@@ -301,9 +306,9 @@
           const lastGameWasLoss = d.results && d.results[d.results.length - 1] === "D";
           const isTop5 = pos >= 1 && pos <= 5;
           const isHome = d.home_away === "Casa";
-          const weakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
+          const weakOpponent = ["Z4", "Meio da tabela"].includes(d.opponent_table);
           const opponentInCrisis = d.form_opponent && d.form_opponent.includes("D");
-          return isTop5 && lastGameWasLoss && isHome && weakOpponent && !opponentInCrisis;
+          return isTop5 && lastGameWasLoss && isHome && weakOpponent && opponentInCrisis;
         });
 
         if (filtered.length === 0) {
@@ -345,6 +350,12 @@
       }
 
       function toggleMultiples() {
+        const isVIP = localStorage.getItem('user_plan') === 'vip';
+        if (!isVIP) {
+          openPaymentModal();
+          return;
+        }
+
         if (resultsDiv.dataset.active === 'multiples') {
           resetToInitialResults();
           return;
@@ -359,13 +370,13 @@
           const matchDate = new Date(d.scheduled_date.split('/').reverse().join('-'));
           if (matchDate < HOJE || matchDate > maxDate) continue;
 
-          const isTop5 = d.position >= 1 && d.position <= 5;
+          const pos = Number(d.position);
+          const isTop5 = pos >= 1 && pos <= 5;
           const isHome = d.home_away === "Casa";
-          const isWeakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
-          const isStrongOpponent = d.opponent_table === "Top 6" || d.opponent_table === "Top 5";
+          const isWeakOpponent = ["Z4", "Meio da tabela"].includes(d.opponent_table);
           const opponentInCrisis = d.form_opponent && d.form_opponent.includes("D");
 
-          if (isTop5 && isHome && isWeakOpponent && !isStrongOpponent && opponentInCrisis) {
+          if (isTop5 && isHome && isWeakOpponent && opponentInCrisis) {
             multiples.push({
               team: teamName,
               opponent: d.next_opponent,
@@ -443,21 +454,20 @@
           return;
         }
 
-        const today = HOJE.toLocaleDateString('pt-BR');
+        const todayStr = HOJE.toISOString().split('T')[0];
         const conflicts = [];
 
         for (const teamName in teamResults) {
           const d = teamResults[teamName];
-          const matchDate = new Date(d.scheduled_date.split('/').reverse().join('-'));
-          const todayDate = new Date(today.split('/').reverse().join('-'));
+          const matchDateStr = d.scheduled_date.split('/').reverse().join('-');
 
-          if (matchDate.toDateString() !== todayDate.toDateString()) continue;
+          if (matchDateStr !== todayStr) continue;
 
           const isTop5 = d.position >= 1 && d.position <= 5;
           const isHome = d.home_away === "Casa";
           const lastGameWasLoss = d.results && d.results[d.results.length - 1] === "D";
           const opponentInGoodForm = d.form_opponent && d.form_opponent.includes("V");
-          const weakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
+          const weakOpponent = ["Z4", "Meio da tabela"].includes(d.opponent_table);
 
           if (isTop5 && isHome && lastGameWasLoss && opponentInGoodForm) {
             conflicts.push({
@@ -515,7 +525,7 @@
           const lastGameWasLoss = d.results && d.results[d.results.length - 1] === "D";
           const isTop5 = pos >= 1 && pos <= 5;
           const isHome = d.home_away === "Casa";
-          const weakOpponent = d.opponent_table === "Z4" || d.opponent_table === "Meio da tabela";
+          const weakOpponent = ["Z4", "Meio da tabela"].includes(d.opponent_table);
           const opponentInDeepCrisis = d.form_opponent && d.form_opponent.includes("D,D");
 
           if (isTop5 && lastGameWasLoss && isHome && weakOpponent && !opponentInDeepCrisis) {
