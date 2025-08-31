@@ -1,3 +1,4 @@
+
 {
   "2025": {
     "71": {
@@ -9,7 +10,7 @@
         "scheduled_date": "31/08/2025",
         "match_time": "15:00",
         "opponent_table": "Meio da tabela",
-        "form_opponent": "E,D"
+        "form_opponent": ["E", "D"]
       },
       "Palmeiras": {
         "results": ["D", "D"],
@@ -19,7 +20,7 @@
         "scheduled_date": "31/08/2025",
         "match_time": "18:30",
         "opponent_table": "Meio da tabela",
-        "form_opponent": "V,E"
+        "form_opponent": ["V", "E"]
       },
       "Botafogo": {
         "results": ["V", "V"],
@@ -29,7 +30,7 @@
         "scheduled_date": "30/08/2025",
         "match_time": "19:00",
         "opponent_table": "Top 6",
-        "form_opponent": "V,D"
+        "form_opponent": ["V", "D"]
       }
     }
   }
