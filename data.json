@@ -8,33 +8,22 @@
         "home_away": "Casa",
         "opponent_table": "Z4",
         "position_opponent": 16,
-        "form_opponent": ["D", "D", "V"],
-        "scheduled_date": "05/09/2025",
-        "match_time": "20:00"
+        "form_opponent": ["D", "V", "D"],
+        "scheduled_date": "05/04/2025",
+        "match_time": "16:00",
+        "live_minute": "30'",
+        "live_score": "0-0"
       },
       "Palmeiras": {
         "position": 3,
         "results": ["E", "E", "D"],
-        "next_opponent": "Fortaleza",
+        "next_opponent": "Corinthians",
         "home_away": "Fora",
-        "opponent_table": "Z4",
-        "position_opponent": 17,
-        "form_opponent": ["D", "D", "D"],
-        "scheduled_date": "06/09/2025",
-        "match_time": "18:30"
-      }
-    },
-    "39": {
-      "Liverpool": {
-        "position": 4,
-        "results": ["V", "E", "D"],
-        "next_opponent": "Everton",
-        "home_away": "Casa",
         "opponent_table": "Meio da tabela",
-        "position_opponent": 11,
-        "form_opponent": ["V", "D", "D"],
-        "scheduled_date": "06/09/2025",
-        "match_time": "16:30"
+        "position_opponent": 10,
+        "form_opponent": ["V", "D", "E"],
+        "scheduled_date": "05/04/2025",
+        "match_time": "18:30"
       }
     }
   }
