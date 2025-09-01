@@ -9,29 +9,29 @@
         "opponent_table": "Z4",
         "position_opponent": 18,
         "form_opponent": ["D", "D", "V"],
-        "scheduled_date": "31/08/2025",
-        "match_time": "16:00"
+        "scheduled_date": "01/09/2025",
+        "match_time": "20:00"
       },
       "Palmeiras": {
         "position": 3,
-        "results": ["V", "V", "E"],
-        "next_opponent": "Corinthians",
-        "home_away": "Casa",
-        "opponent_table": "Meio da tabela",
-        "position_opponent": 11,
-        "form_opponent": ["V", "D", "D"],
-        "scheduled_date": "31/08/2025",
+        "results": ["E", "E", "D"],
+        "next_opponent": "Fortaleza",
+        "home_away": "Fora",
+        "opponent_table": "Z4",
+        "position_opponent": 17,
+        "form_opponent": ["D", "D", "D"],
+        "scheduled_date": "02/09/2025",
         "match_time": "18:30"
       },
       "Botafogo": {
         "position": 4,
-        "results": ["D", "V", "V"],
-        "next_opponent": "Fortaleza",
+        "results": ["V", "V", "E"],
+        "next_opponent": "Ceará",
         "home_away": "Casa",
-        "opponent_table": "Meio da tabela",
-        "position_opponent": 9,
-        "form_opponent": ["E", "D", "V"],
-        "scheduled_date": "31/08/2025",
+        "opponent_table": "Z4",
+        "position_opponent": 19,
+        "form_opponent": ["D", "D", "D"],
+        "scheduled_date": "03/09/2025",
         "match_time": "20:00"
       }
     },
@@ -44,7 +44,7 @@
         "opponent_table": "Top 6",
         "position_opponent": 5,
         "form_opponent": ["V", "V", "D"],
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "01/09/2025",
         "match_time": "16:30"
       },
       "Manchester City": {
@@ -53,9 +53,9 @@
         "next_opponent": "Newcastle",
         "home_away": "Casa",
         "opponent_table": "Z4",
-        "position_opponent": 19,
+        "position_opponent": 20,
         "form_opponent": ["D", "D", "D"],
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "02/09/2025",
         "match_time": "14:00"
       }
     },
@@ -68,7 +68,7 @@
         "opponent_table": "Meio da tabela",
         "position_opponent": 10,
         "form_opponent": ["V", "D", "E"],
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "01/09/2025",
         "match_time": "20:00"
       },
       "Real Madrid": {
@@ -79,7 +79,7 @@
         "opponent_table": "Meio da tabela",
         "position_opponent": 12,
         "form_opponent": ["D", "V", "D"],
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "03/09/2025",
         "match_time": "22:00"
       }
     },
@@ -92,7 +92,7 @@
         "opponent_table": "Meio da tabela",
         "position_opponent": 11,
         "form_opponent": ["V", "D", "D"],
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "01/09/2025",
         "match_time": "15:30"
       },
       "Borussia Dortmund": {
@@ -103,7 +103,7 @@
         "opponent_table": "Top 6",
         "position_opponent": 4,
         "form_opponent": ["V", "V", "E"],
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "02/09/2025",
         "match_time": "18:30"
       }
     },
@@ -116,7 +116,7 @@
         "opponent_table": "Top 5",
         "position_opponent": 5,
         "form_opponent": ["V", "D", "V"],
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "01/09/2025",
         "match_time": "20:45"
       },
       "Juventus": {
@@ -127,7 +127,7 @@
         "opponent_table": "Z4",
         "position_opponent": 18,
         "form_opponent": ["D", "D", "D"],
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "03/09/2025",
         "match_time": "18:00"
       }
     },
@@ -140,7 +140,7 @@
         "opponent_table": "Meio da tabela",
         "position_opponent": 13,
         "form_opponent": ["D", "V", "D"],
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "01/09/2025",
         "match_time": "20:00"
       },
       "Marselha": {
@@ -151,7 +151,7 @@
         "opponent_table": "Meio da tabela",
         "position_opponent": 10,
         "form_opponent": ["V", "D", "E"],
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "02/09/2025",
         "match_time": "18:00"
       }
     },
@@ -164,7 +164,7 @@
         "opponent_table": "Top 5",
         "position_opponent": 4,
         "form_opponent": ["V", "D", "V"],
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "01/09/2025",
         "match_time": "15:00"
       },
       "São Paulo (F)": {
@@ -175,7 +175,7 @@
         "opponent_table": "Z4",
         "position_opponent": 16,
         "form_opponent": ["D", "D", "D"],
-        "scheduled_date": "31/08/2025",
+        "scheduled_date": "02/09/2025",
         "match_time": "17:00"
       }
     }
