@@ -5,29 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rastreador Avançado - Múltiplos em Alta</title>
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      margin: 0; 
-      padding: 0; 
-      background: #121212; 
-      color: white; 
-      display: flex; 
-      height: 100vh; 
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #121212;
+      color: white;
+      display: flex;
+      height: 100vh;
     }
-    #sidebar { 
-      width: 320px; 
-      background: #1e1e1e; 
-      padding: 20px; 
-      box-sizing: border-box; 
-      overflow-y: auto; 
-      position: relative; 
+    #sidebar {
+      width: 320px;
+      background: #1e1e1e;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      position: relative;
     }
-    #content { 
-      flex-grow: 1; 
-      padding: 20px; 
-      box-sizing: border-box; 
-      overflow-y: auto; 
-      background: #222; 
+    #content {
+      flex-grow: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      background: #222;
     }
     h1, h2 { margin-top: 0; }
 
@@ -54,113 +54,113 @@
       margin-right: 12px;
     }
 
-    select { 
-      width: 100%; 
-      padding: 10px; 
-      margin-bottom: 15px; 
-      background: #333; 
-      border: none; 
-      color: white; 
-      border-radius: 4px; 
-      font-size: 1rem; 
-      cursor: pointer; 
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      background: #333;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
     }
-    .info-box { 
-      background: #ff9800; 
-      color: black; 
-      padding: 8px; 
-      border-radius: 4px; 
-      font-weight: bold; 
-      text-align: center; 
-      margin-bottom: 15px; 
+    .info-box {
+      background: #ff9800;
+      color: black;
+      padding: 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
     }
-    #results { 
-      margin-top: 15px; 
-      max-height: 70vh; 
-      overflow-y: auto; 
-      background: #121212; 
-      padding: 10px; 
-      border-radius: 6px; 
+    #results {
+      margin-top: 15px;
+      max-height: 70vh;
+      overflow-y: auto;
+      background: #121212;
+      padding: 10px;
+      border-radius: 6px;
     }
-    .item { 
-      padding: 12px 10px; 
-      border-bottom: 1px solid #444; 
+    .item {
+      padding: 12px 10px;
+      border-bottom: 1px solid #444;
     }
     .item:last-child { border-bottom: none; }
-    .loading { 
-      font-style: italic; 
-      color: #aaa; 
-      text-align: center; 
-      margin: 10px 0; 
+    .loading {
+      font-style: italic;
+      color: #aaa;
+      text-align: center;
+      margin: 10px 0;
     }
-    .error { 
-      color: #ff6b6b; 
-      font-weight: bold; 
-      text-align: center; 
+    .error {
+      color: #ff6b6b;
+      font-weight: bold;
+      text-align: center;
     }
-    .confidence-high { 
-      color: #4caf50; 
-      font-weight: bold; 
+    .confidence-high {
+      color: #4caf50;
+      font-weight: bold;
     }
-    .confidence-medium { 
-      color: #ff9800; 
-      font-weight: bold; 
+    .confidence-medium {
+      color: #ff9800;
+      font-weight: bold;
     }
-    .confidence-low { 
-      color: #f44336; 
-      font-weight: bold; 
+    .confidence-low {
+      color: #f44336;
+      font-weight: bold;
     }
-    .details { 
-      font-size: 0.9em; 
-      color: #ccc; 
-      margin-top: 6px; 
-      line-height: 1.5; 
+    .details {
+      font-size: 0.9em;
+      color: #ccc;
+      margin-top: 6px;
+      line-height: 1.5;
     }
-    .tip { 
-      font-style: italic; 
-      color: #bbb; 
-      margin-top: 15px; 
-      text-align: center; 
+    .tip {
+      font-style: italic;
+      color: #bbb;
+      margin-top: 15px;
+      text-align: center;
     }
-    #trackerSection { 
-      display: none; 
-      margin-top: 10px; 
-      padding: 10px; 
-      background-color: rgba(255, 255, 255, 0.9); 
-      border-radius: 5px; 
-      color: #000; 
+    #trackerSection {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 5px;
+      color: #000;
     }
-    .link-tabela { 
-      display: block; 
-      text-align: center; 
-      margin: 10px 0; 
-      padding: 8px; 
-      background: #333; 
-      border-radius: 4px; 
-      color: #4caf50; 
-      text-decoration: none; 
-      font-weight: bold; 
+    .link-tabela {
+      display: block;
+      text-align: center;
+      margin: 10px 0;
+      padding: 8px;
+      background: #333;
+      border-radius: 4px;
+      color: #4caf50;
+      text-decoration: none;
+      font-weight: bold;
     }
     .link-tabela:hover { background: #555; }
-    nav { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 8px; 
-      margin-bottom: 15px; 
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 15px;
     }
-    nav button { 
-      padding: 10px; 
-      background: #333; 
-      border: none; 
-      color: white; 
-      border-radius: 4px; 
-      cursor: pointer; 
-      text-align: left; 
+    nav button {
+      padding: 10px;
+      background: #333;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: left;
     }
-    nav button.active { 
-      background: #ff9800; 
-      color: black; 
-      font-weight: bold; 
+    nav button.active {
+      background: #ff9800;
+      color: black;
+      font-weight: bold;
     }
     .vip-button {
       background: linear-gradient(45deg, #ff8a00, #e52e71);
@@ -241,40 +241,43 @@
 
     <div id="results">
       <div class="initial-results">
-        <div class="section-title">📅 Próximos 7 Dias</div>
+        <div class="section-title">📅 Próximos 7 Dias (13 a 21/09/2025)</div>
         <div class="item">
-          <strong>Flamengo</strong> vs. Grêmio
-          <div class="details">📅 05/09 às 20:00 | 🏟️ Casa | 🎯 Alta probabilidade</div>
+          <strong>Palmeiras</strong> vs. Internacional
+          <div class="details">📅 13/09 às 18:30 | 🏟️ Casa | 🎯 Alta probabilidade</div>
         </div>
         <div class="item">
-          <strong>Palmeiras</strong> vs. Fortaleza
-          <div class="details">📅 06/09 às 18:30 | 🏟️ Fora | 🔥 Pressionado</div>
+          <strong>Fluminense</strong> vs. Corinthians
+          <div class="details">📅 13/09 às 21:00 | 🏟️ Casa | 🔥 Pressionado</div>
         </div>
         <div class="item">
-          <strong>Liverpool</strong> vs. Everton
-          <div class="details">📅 06/09 às 16:30 | 🏟️ Casa | 🎯 Clássico com tensão</div>
+          <strong>Juventude</strong> vs. Flamengo
+          <div class="details">📅 14/09 às 16:00 | 🏟️ Fora | 🎯 Clássico regional</div>
+        </div>
+        <div class="item">
+          <strong>São Paulo</strong> vs. Botafogo
+          <div class="details">📅 14/09 às 17:30 | 🏟️ Casa | 🔥 Duelo de G4</div>
+        </div>
+        <div class="item">
+          <strong>Flamengo</strong> vs. Vasco da Gama
+          <div class="details">📅 21/09 às 17:30 | 🏟️ Casa | 🎯 Clássico da Amizade</div>
         </div>
 
-        <div class="section-title" style="margin-top: 20px;">📊 Resultados da Semana (01/09/2025)</div>
+        <div class="section-title" style="margin-top: 20px;">📊 Resultados da Semana (12/09/2025)</div>
         <div class="item">
-          <strong>Flamengo</strong> vs. Ceará
+          <strong>Palmeiras</strong> vs. Fortaleza
           <div class="confidence-high">✅ Win — Entrada acertada</div>
-          <div class="details">🎯 Análise: time pressionado + favorito em casa</div>
+          <div class="details">🎯 Análise: time do G4 vence com pressão em casa</div>
         </div>
         <div class="item">
-          <strong>Palmeiras</strong> vs. Corinthians
-          <div class="confidence-high">✅ Win — Entrada acertada</div>
-          <div class="details">💡 Estratégia: cobrir vitória + empate (X2) → resultado: 1-1</div>
-        </div>
-        <div class="item">
-          <strong>Botafogo</strong> vs. Bragantino
-          <div class="confidence-medium">💡 Empate — Odd alta pagou bem</div>
-          <div class="details">💡 Estratégia: cobrir vitória + empate</div>
-        </div>
-        <div class="item">
-          <strong>Inter</strong> vs. Grêmio
+          <strong>Flamengo</strong> vs. Grêmio
           <div class="confidence-high">✅ Win — Favorito em casa</div>
-          <div class="details">📌 Análise: time do G4 vence clássico pressionado</div>
+          <div class="details">📌 Análise: domínio total + 2 gols marcados</div>
+        </div>
+        <div class="item">
+          <strong>Botafogo</strong> vs. Mirassol
+          <div class="confidence-high">✅ Win — Vitória segura</div>
+          <div class="details">💡 Estratégia: cobrir vitória + empate (X2)</div>
         </div>
 
         <div class="tip">📌 Dica: Escolha uma opção acima para ver análises detalhadas.</div>
@@ -315,283 +318,317 @@
   </div>
 
   <script>
-    // ==================== DADOS ATUALIZADOS (01/09/2025) ====================
-    const mockData = {
-      "2025": {
-        "71": {
-          "Flamengo": {
-            "position": 2,
-            "results": ["V", "E", "D"],
-            "next_opponent": "Grêmio",
-            "home_away": "Casa",
-            "opponent_table": "Z4",
-            "position_opponent": 16,
-            "form_opponent": ["D", "D", "V"],
-            "scheduled_date": "05/09/2025",
-            "match_time": "20:00"
+    document.addEventListener('DOMContentLoaded', function() {
+      // ==================== DADOS ATUALIZADOS (13 a 21/09/2025) ====================
+      const mockData = {
+        "2025": {
+          "71": {
+            "Palmeiras": {
+              "position": 3,
+              "results": ["E", "E", "D"],
+              "next_opponent": "Internacional",
+              "home_away": "Casa",
+              "opponent_table": "Meio da tabela",
+              "position_opponent": 9,
+              "form_opponent": ["V", "D", "E"],
+              "scheduled_date": "13/09/2025",
+              "match_time": "18:30"
+            },
+            "Fluminense": {
+              "position": 6,
+              "results": ["V", "D", "V"],
+              "next_opponent": "Corinthians",
+              "home_away": "Casa",
+              "opponent_table": "Meio da tabela",
+              "position_opponent": 11,
+              "form_opponent": ["E", "V", "D"],
+              "scheduled_date": "13/09/2025",
+              "match_time": "21:00"
+            },
+            "Juventude": {
+              "position": 16,
+              "results": ["D", "D", "E"],
+              "next_opponent": "Flamengo",
+              "home_away": "Casa",
+              "opponent_table": "Top 5",
+              "position_opponent": 2,
+              "form_opponent": ["V", "E", "D"],
+              "scheduled_date": "14/09/2025",
+              "match_time": "16:00"
+            },
+            "São_Paulo": {
+              "position": 7,
+              "results": ["V", "E", "V"],
+              "next_opponent": "Botafogo",
+              "home_away": "Casa",
+              "opponent_table": "Top 5",
+              "position_opponent": 4,
+              "form_opponent": ["V", "V", "E"],
+              "scheduled_date": "14/09/2025",
+              "match_time": "17:30"
+            },
+            "Flamengo_21": {
+              "position": 2,
+              "results": ["V", "V", "D"],
+              "next_opponent": "Vasco da Gama",
+              "home_away": "Casa",
+              "opponent_table": "Meio da tabela",
+              "position_opponent": 13,
+              "form_opponent": ["V", "E", "D"],
+              "scheduled_date": "21/09/2025",
+              "match_time": "17:30"
+            }
           },
-          "Palmeiras": {
-            "position": 3,
-            "results": ["E", "E", "D"],
-            "next_opponent": "Fortaleza",
-            "home_away": "Fora",
-            "opponent_table": "Z4",
-            "position_opponent": 17,
-            "form_opponent": ["D", "D", "D"],
-            "scheduled_date": "06/09/2025",
-            "match_time": "18:30"
-          }
-        },
-        "39": {
-          "Liverpool": {
-            "position": 4,
-            "results": ["V", "E", "D"],
-            "next_opponent": "Everton",
-            "home_away": "Casa",
-            "opponent_table": "Meio da tabela",
-            "position_opponent": 11,
-            "form_opponent": ["V", "D", "D"],
-            "scheduled_date": "06/09/2025",
-            "match_time": "16:30"
+          "39": {
+            "Liverpool": {
+              "position": 4,
+              "results": ["V", "E", "D"],
+              "next_opponent": "Everton",
+              "home_away": "Casa",
+              "opponent_table": "Meio da tabela",
+              "position_opponent": 11,
+              "form_opponent": ["V", "D", "D"],
+              "scheduled_date": "13/09/2025",
+              "match_time": "16:30"
+            }
           }
         }
+      };
+
+      const leagueLinks = {
+        "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
+        "72": "https://www.sofascore.com/tournament/brazil/serie-b/329",
+        "202": "https://www.sofascore.com/tournament/argentina/liga-profesional/202",
+        "39": "https://www.sofascore.com/tournament/england/premier-league/17",
+        "140": "https://www.sofascore.com/tournament/spain/laliga/8",
+        "78": "https://www.sofascore.com/tournament/germany/bundesliga/35",
+        "135": "https://www.sofascore.com/tournament/italy/serie-a/23",
+        "61": "https://www.sofascore.com/tournament/france/ligue-1/34",
+        "88": "https://www.sofascore.com/tournament/netherlands/eredivisie/25",
+        "94": "https://www.sofascore.com/tournament/portugal/primeira-liga/44",
+        "262": "https://www.sofascore.com/tournament/mexico/liga-mx/105",
+        "8": "https://www.sofascore.com/tournament/champions-league/8",
+        "12": "https://www.sofascore.com/tournament/south-america/libertadores/12",
+        "13": "https://www.sofascore.com/tournament/south-america/sul-americana/13",
+        "10217": "https://www.sofascore.com/tournament/brazil/campeonato-brasileiro-women/1154"
+      };
+
+      const leagueNames = {
+        "71": "Brasileirão Série A",
+        "72": "Brasileirão Série B",
+        "202": "Liga Profesional (Argentina)",
+        "39": "Premier League",
+        "140": "La Liga",
+        "78": "Bundesliga",
+        "135": "Serie A",
+        "61": "Ligue 1",
+        "88": "Eredivisie",
+        "94": "Primeira Liga",
+        "262": "Liga MX",
+        "8": "Champions League",
+        "12": "Copa Libertadores",
+        "13": "Copa Sul-Americana",
+        "10217": "Brasileirão Feminino"
+      };
+
+      // ==================== VARIÁVEIS GLOBAIS ====================
+      let teamResults = {};
+      const HOJE = new Date();
+      const resultsDiv = document.getElementById("results");
+      const sidebarInfo = document.getElementById("sidebarInfo");
+      const tabelaLink = document.getElementById("tabelaLink");
+      const leagueSelect = document.getElementById("leagueSelect");
+      const btnVoltarInicio = document.getElementById("btnVoltarInicio");
+
+      function updateTabelaLink(leagueId) {
+        if (leagueId && leagueLinks[leagueId]) {
+          tabelaLink.innerHTML = `
+            <a href="${leagueLinks[leagueId]}" target="_blank" class="link-tabela">
+              🔍 Ver tabela do ${leagueNames[leagueId]}
+            </a>
+          `;
+        } else {
+          tabelaLink.innerHTML = "";
+        }
       }
-    };
 
-    const leagueLinks = {
-      "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
-      "72": "https://www.sofascore.com/tournament/brazil/serie-b/329",
-      "202": "https://www.sofascore.com/tournament/argentina/liga-profesional/202",
-      "39": "https://www.sofascore.com/tournament/england/premier-league/17",
-      "140": "https://www.sofascore.com/tournament/spain/laliga/8",
-      "78": "https://www.sofascore.com/tournament/germany/bundesliga/35",
-      "135": "https://www.sofascore.com/tournament/italy/serie-a/23",
-      "61": "https://www.sofascore.com/tournament/france/ligue-1/34",
-      "88": "https://www.sofascore.com/tournament/netherlands/eredivisie/25",
-      "94": "https://www.sofascore.com/tournament/portugal/primeira-liga/44",
-      "262": "https://www.sofascore.com/tournament/mexico/liga-mx/105",
-      "8": "https://www.sofascore.com/tournament/champions-league/8",
-      "12": "https://www.sofascore.com/tournament/south-america/libertadores/12",
-      "13": "https://www.sofascore.com/tournament/south-america/sul-americana/13",
-      "10217": "https://www.sofascore.com/tournament/brazil/campeonato-brasileiro-women/1154"
-    };
-
-    const leagueNames = {
-      "71": "Brasileirão Série A",
-      "72": "Brasileirão Série B",
-      "202": "Liga Profesional (Argentina)",
-      "39": "Premier League",
-      "140": "La Liga",
-      "78": "Bundesliga",
-      "135": "Serie A",
-      "61": "Ligue 1",
-      "88": "Eredivisie",
-      "94": "Primeira Liga",
-      "262": "Liga MX",
-      "8": "Champions League",
-      "12": "Copa Libertadores",
-      "13": "Copa Sul-Americana",
-      "10217": "Brasileirão Feminino"
-    };
-
-    // ==================== VARIÁVEIS GLOBAIS ====================
-    let teamResults = {};
-    const HOJE = new Date();
-    const resultsDiv = document.getElementById("results");
-    const sidebarInfo = document.getElementById("sidebarInfo");
-    const tabelaLink = document.getElementById("tabelaLink");
-    const leagueSelect = document.getElementById("leagueSelect");
-    const btnVoltarInicio = document.getElementById("btnVoltarInicio");
-
-    function updateTabelaLink(leagueId) {
-      if (leagueId && leagueLinks[leagueId]) {
-        tabelaLink.innerHTML = `
-          <a href="${leagueLinks[leagueId]}" target="_blank" class="link-tabela">
-            🔍 Ver tabela do ${leagueNames[leagueId]}
-          </a>
+      function resetToInitialResults() {
+        const initialHTML = document.querySelector('.initial-results').innerHTML;
+        resultsDiv.innerHTML = `
+          <div class="initial-results">${initialHTML}</div>
+          <button id="btnVoltarInicio" style="margin: 15px 0; padding: 10px; width: 100%; background: #444; border: none; color: white; border-radius: 4px; cursor: pointer; font-size: 1rem; display: none;">
+            🔙 Voltar ao Início
+          </button>
         `;
-      } else {
-        tabelaLink.innerHTML = "";
+        document.getElementById("btnVoltarInicio").addEventListener("click", voltarAoInicio);
       }
-    }
 
-    function resetToInitialResults() {
-      const initialHTML = document.querySelector('.initial-results').innerHTML;
-      resultsDiv.innerHTML = `
-        <div class="initial-results">${initialHTML}</div>
-        <button id="btnVoltarInicio" style="margin: 15px 0; padding: 10px; width: 100%; background: #444; border: none; color: white; border-radius: 4px; cursor: pointer; font-size: 1rem; display: none;">
-          🔙 Voltar ao Início
-        </button>
-      `;
-      document.getElementById("btnVoltarInicio").addEventListener("click", voltarAoInicio);
-    }
+      function openPaymentModal() {
+        document.getElementById('paymentModal').style.display = 'block';
+      }
 
-    function openPaymentModal() {
-      document.getElementById('paymentModal').style.display = 'block';
-    }
+      function closePaymentModal() {
+        document.getElementById('paymentModal').style.display = 'none';
+      }
 
-    function closePaymentModal() {
-      document.getElementById('paymentModal').style.display = 'none';
-    }
+      function setActiveButton(clicked) {
+        document.querySelectorAll("nav button").forEach(btn => {
+          btn.classList.remove("active");
+        });
+        clicked.classList.add("active");
+      }
 
-    function setActiveButton(clicked) {
-      document.querySelectorAll("nav button").forEach(btn => {
-        btn.classList.remove("active");
-      });
-      clicked.classList.add("active");
-    }
+      function loadData() {
+        const leagueId = leagueSelect.value;
+        if (!leagueId) {
+          resetToInitialResults();
+          sidebarInfo.textContent = "Selecione um campeonato.";
+          tabelaLink.innerHTML = "";
+          return;
+        }
 
-    function loadData() {
-      const leagueId = leagueSelect.value;
-      if (!leagueId) {
+        resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados...</p>";
+
+        const data = mockData;
+        const year = "2025";
+
+        if (data[year] && data[year][leagueId]) {
+          teamResults = data[year][leagueId];
+          showHighChanceTeams(leagueId);
+        } else {
+          resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
+        }
+      }
+
+      function showHighChanceTeams(leagueId) {
+        const filtered = Object.keys(teamResults).filter(t => {
+          const d = teamResults[t];
+          const pos = d.position;
+          const lastResult = d.results[d.results.length - 1];
+          const hasNoWinLast1 = lastResult === "E" || lastResult === "D";
+          const isG4 = pos >= 1 && pos <= 4;
+          const opponentIsWeak = d.position_opponent >= 7;
+
+          return isG4 && hasNoWinLast1 && opponentIsWeak;
+        });
+
+        if (filtered.length === 0) {
+          resultsDiv.innerHTML = "<p>Nenhum time do G4 pressionado contra time fraco.</p>";
+          mostrarBotaoVoltar();
+          return;
+        }
+
+        let html = "<div class='section-title'>🎯 REAÇÃO DO LÍDER (G4)</div>";
+        filtered.forEach(t => {
+          const d = teamResults[t];
+          const winRate = d.results.includes("D") ? "78%" : "72%";
+          html += `
+            <div class='item'>
+              <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
+              <div class='confidence-high'>📊 Probabilidade: ${winRate}</div>
+              <div class='details'>
+                📍 ${d.home_away} | 📅 ${d.scheduled_date} às ${d.match_time}
+                <br>⚔️ Adv: ${d.opponent_table} (${d.form_opponent})
+                <br>💡 <strong>Dica:</strong> Time do G4 precisa reagir!
+              </div>
+            </div>`;
+        });
+        html += "<div class='tip'>📅 Dados atualizados em: 13/09/2025</div>";
+        html += "<div class='tip'>💡 Estratégia: Cobrir vitória + empate (X2)</div>";
+        resultsDiv.innerHTML = html;
+        mostrarBotaoVoltar();
+        sidebarInfo.textContent = `Reação do Líder: ${filtered.length} jogos`;
+        updateTabelaLink(leagueId);
+      }
+
+      function toggleMultiples() {
+        const isVIP = localStorage.getItem('user_plan') === 'vip';
+        if (!isVIP) {
+          openPaymentModal();
+          return;
+        }
+
+        const multiples = Object.keys(teamResults).filter(t => {
+          const d = teamResults[t];
+          const pos = d.position;
+          const form = d.results.slice(-2);
+          const noWinLast2 = !form.includes("V");
+          const isG4 = pos >= 1 && pos <= 4;
+          const opponentIsWeak = d.position_opponent >= 7;
+
+          return isG4 && noWinLast2 && opponentIsWeak;
+        });
+
+        if (multiples.length < 2) {
+          resultsDiv.innerHTML = `<p class='error'>⚠️ Apenas ${multiples.length} jogo elegível.</p>`;
+          mostrarBotaoVoltar();
+          return;
+        }
+
+        let totalOdd = 1;
+        let html = `<h2>🎯 MÚLTIPLOS EM ALTA (Próximos 7 Dias)</h2>`;
+        html += "<div style='background: #2a2a2a; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 0.9em; color: #ccc; line-height: 1.6;'>";
+
+        multiples.forEach(m => {
+          const odd = (Math.random() * 0.2 + 1.3).toFixed(2);
+          totalOdd *= parseFloat(odd);
+          html += `<div>✅ <strong>${m}</strong> vs. ${teamResults[m].next_opponent} <em>(${leagueNames[leagueSelect.value]})</em> — ${teamResults[m].scheduled_date} às ${teamResults[m].match_time}</div>`;
+        });
+
+        totalOdd = totalOdd.toFixed(2);
+        const retorno10 = (10 * totalOdd).toFixed(2);
+
+        html += `</div>`;
+        html += `<p><strong>🔁 Odd Total: ${totalOdd}</strong></p>`;
+        html += `<p>💰 R$10,00 → R$${retorno10}</p>`;
+        html += `<div class='tip'>📅 Dados atualizados em: 13/09/2025</div>`;
+        html += `<p class='tip'>💡 Baseado em pressão do G4 + adversário fraco</p>`;
+        resultsDiv.innerHTML = html;
+        mostrarBotaoVoltar();
+      }
+
+      function togglePressureAlertVIP() {
+        const isVIP = localStorage.getItem('user_plan') === 'vip';
+        if (!isVIP) { openPaymentModal(); return; }
+        resultsDiv.innerHTML = "<div class='section-title'>🔐 ALERTA DE PRESSÃO VIP</div><div class='item'>Funcionalidade VIP ativa. Dados carregados com base na pressão do G4.</div><div class='tip'>📅 Dados atualizados em: 13/09/2025</div>";
+        mostrarBotaoVoltar();
+      }
+      function showHiddenConflicts() {
+        const isVIP = localStorage.getItem('user_plan') === 'vip';
+        if (!isVIP) { openPaymentModal(); return; }
+        resultsDiv.innerHTML = "<div class='section-title'>🔍 CONFLITOS OCULTOS (VIP)</div><div class='item'>Funcionalidade VIP: análise de mercado subestimado.</div><div class='tip'>📅 Dados atualizados em: 13/09/2025</div>";
+        mostrarBotaoVoltar();
+      }
+      function showReactionChain() {
+        const isVIP = localStorage.getItem('user_plan') === 'vip';
+        if (!isVIP) { openPaymentModal(); return; }
+        resultsDiv.innerHTML = "<div class='section-title'>🌪️ REAÇÃO EM CADEIA (VIP)</div><div class='item'>Estratégia VIP: reação emocional de times do G4 contra times fracos.</div><div class='tip'>📅 Dados atualizados em: 13/09/2025</div>";
+        mostrarBotaoVoltar();
+      }
+
+      function toggleTracker() {
+        const trackerSection = document.getElementById("trackerSection");
+        const btn = document.getElementById("btnToggleTracker");
+        if (trackerSection.style.display === "none") {
+          trackerSection.style.display = "block";
+          btn.textContent = "Fechar Rastreador";
+        } else {
+          trackerSection.style.display = "none";
+          btn.textContent = "Abrir/Fechar Rastreador";
+        }
+      }
+
+      function voltarAoInicio() {
         resetToInitialResults();
-        sidebarInfo.textContent = "Selecione um campeonato.";
-        tabelaLink.innerHTML = "";
-        return;
+        setActiveButton(document.getElementById("btnChance"));
       }
 
-      resultsDiv.innerHTML = "<p class='loading'>🔄 Carregando dados...</p>";
-
-      const data = mockData;
-      const year = "2025";
-
-      if (data[year] && data[year][leagueId]) {
-        teamResults = data[year][leagueId];
-        showHighChanceTeams(leagueId);
-      } else {
-        resultsDiv.innerHTML = "<p class='error'>⚠️ Nenhum dado encontrado.</p>";
-      }
-    }
-
-    function showHighChanceTeams(leagueId) {
-      const filtered = Object.keys(teamResults).filter(t => {
-        const d = teamResults[t];
-        const pos = d.position;
-        const lastResult = d.results[d.results.length - 1];
-        const hasNoWinLast1 = lastResult === "E" || lastResult === "D";
-        const isG4 = pos >= 1 && pos <= 4;
-        const opponentIsWeak = d.position_opponent >= 7;
-
-        return isG4 && hasNoWinLast1 && opponentIsWeak;
-      });
-
-      if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<p>Nenhum time do G4 pressionado contra time fraco.</p>";
-        mostrarBotaoVoltar();
-        return;
+      function mostrarBotaoVoltar() {
+        const btn = document.getElementById("btnVoltarInicio");
+        if (btn) btn.style.display = "block";
       }
 
-      let html = "<div class='section-title'>🎯 REAÇÃO DO LÍDER (G4)</div>";
-      filtered.forEach(t => {
-        const d = teamResults[t];
-        const winRate = d.results.includes("D") ? "78%" : "72%";
-        html += `
-          <div class='item'>
-            <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
-            <div class='confidence-high'>📊 Probabilidade: ${winRate}</div>
-            <div class='details'>
-              📍 ${d.home_away} | 📅 ${d.scheduled_date} às ${d.match_time}
-              <br>⚔️ Adv: ${d.opponent_table} (${d.form_opponent})
-              <br>💡 <strong>Dica:</strong> Time do G4 precisa reagir!
-            </div>
-          </div>`;
-      });
-      html += "<div class='tip'>📅 Dados atualizados em: 01/09/2025</div>";
-      html += "<div class='tip'>💡 Estratégia: Cobrir vitória + empate (X2)</div>";
-      resultsDiv.innerHTML = html;
-      mostrarBotaoVoltar();
-      sidebarInfo.textContent = `Reação do Líder: ${filtered.length} jogos`;
-      updateTabelaLink(leagueId);
-    }
-
-    function toggleMultiples() {
-      const isVIP = localStorage.getItem('user_plan') === 'vip';
-      if (!isVIP) {
-        openPaymentModal();
-        return;
-      }
-
-      const multiples = Object.keys(teamResults).filter(t => {
-        const d = teamResults[t];
-        const pos = d.position;
-        const form = d.results.slice(-2);
-        const noWinLast2 = !form.includes("V");
-        const isG4 = pos >= 1 && pos <= 4;
-        const opponentIsWeak = d.position_opponent >= 7;
-
-        return isG4 && noWinLast2 && opponentIsWeak;
-      });
-
-      if (multiples.length < 2) {
-        resultsDiv.innerHTML = `<p class='error'>⚠️ Apenas ${multiples.length} jogo elegível.</p>`;
-        mostrarBotaoVoltar();
-        return;
-      }
-
-      let totalOdd = 1;
-      let html = `<h2>🎯 MÚLTIPLOS EM ALTA (Próximos 7 Dias)</h2>`;
-      html += "<div style='background: #2a2a2a; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 0.9em; color: #ccc; line-height: 1.6;'>";
-
-      multiples.forEach(m => {
-        const odd = (Math.random() * 0.2 + 1.3).toFixed(2);
-        totalOdd *= parseFloat(odd);
-        html += `<div>✅ <strong>${m}</strong> vs. ${teamResults[m].next_opponent} <em>(${leagueNames[leagueSelect.value]})</em> — ${teamResults[m].scheduled_date} às ${teamResults[m].match_time}</div>`;
-      });
-
-      totalOdd = totalOdd.toFixed(2);
-      const retorno10 = (10 * totalOdd).toFixed(2);
-
-      html += `</div>`;
-      html += `<p><strong>🔁 Odd Total: ${totalOdd}</strong></p>`;
-      html += `<p>💰 R$10,00 → R$${retorno10}</p>`;
-      html += `<div class='tip'>📅 Dados atualizados em: 01/09/2025</div>`;
-      html += `<p class='tip'>💡 Baseado em pressão do G4 + adversário fraco</p>`;
-      resultsDiv.innerHTML = html;
-      mostrarBotaoVoltar();
-    }
-
-    function togglePressureAlertVIP() {
-      const isVIP = localStorage.getItem('user_plan') === 'vip';
-      if (!isVIP) { openPaymentModal(); return; }
-      resultsDiv.innerHTML = "<div class='section-title'>🔐 ALERTA DE PRESSÃO VIP</div><div class='item'>Funcionalidade VIP ativa. Dados carregados com base na pressão do G4.</div><div class='tip'>📅 Dados atualizados em: 01/09/2025</div>";
-      mostrarBotaoVoltar();
-    }
-    function showHiddenConflicts() {
-      const isVIP = localStorage.getItem('user_plan') === 'vip';
-      if (!isVIP) { openPaymentModal(); return; }
-      resultsDiv.innerHTML = "<div class='section-title'>🔍 CONFLITOS OCULTOS (VIP)</div><div class='item'>Funcionalidade VIP: análise de mercado subestimado.</div><div class='tip'>📅 Dados atualizados em: 01/09/2025</div>";
-      mostrarBotaoVoltar();
-    }
-    function showReactionChain() {
-      const isVIP = localStorage.getItem('user_plan') === 'vip';
-      if (!isVIP) { openPaymentModal(); return; }
-      resultsDiv.innerHTML = "<div class='section-title'>🌪️ REAÇÃO EM CADEIA (VIP)</div><div class='item'>Estratégia VIP: reação emocional de times do G4 contra times fracos.</div><div class='tip'>📅 Dados atualizados em: 01/09/2025</div>";
-      mostrarBotaoVoltar();
-    }
-
-    function toggleTracker() {
-      const trackerSection = document.getElementById("trackerSection");
-      const btn = document.getElementById("btnToggleTracker");
-      if (trackerSection.style.display === "none") {
-        trackerSection.style.display = "block";
-        btn.textContent = "Fechar Rastreador";
-      } else {
-        trackerSection.style.display = "none";
-        btn.textContent = "Abrir/Fechar Rastreador";
-      }
-    }
-
-    function voltarAoInicio() {
-      resetToInitialResults();
-      setActiveButton(document.getElementById("btnChance"));
-    }
-
-    function mostrarBotaoVoltar() {
-      const btn = document.getElementById("btnVoltarInicio");
-      if (btn) btn.style.display = "block";
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
+      // Event Listeners
       document.getElementById("btnChance").addEventListener("click", function() {
         setActiveButton(this);
         if (leagueSelect.value) loadData();
@@ -621,21 +658,24 @@
       document.getElementById("btnCloseModal").addEventListener("click", closePaymentModal);
       leagueSelect.addEventListener("change", loadData);
       document.getElementById("btnVoltarInicio").addEventListener("click", voltarAoInicio);
-      loadData();
-    });
 
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get('token');
-      if (token && token.startsWith('VIP')) {
-        localStorage.setItem('user_plan', 'vip');
-        const toast = document.createElement('div');
-        toast.style.cssText = `position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#4caf50;color:white;padding:10px 20px;border-radius:6px;z-index:1000;`;
-        toast.textContent = "✅ Acesso VIP liberado!";
-        document.body.appendChild(toast);
-        setTimeout(() => document.body.removeChild(toast), 3000);
-      }
-    };
+      // Carrega inicial
+      loadData();
+
+      // Verifica token VIP
+      window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        if (token && token.startsWith('VIP')) {
+          localStorage.setItem('user_plan', 'vip');
+          const toast = document.createElement('div');
+          toast.style.cssText = `position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#4caf50;color:white;padding:10px 20px;border-radius:6px;z-index:1000;`;
+          toast.textContent = "✅ Acesso VIP liberado!";
+          document.body.appendChild(toast);
+          setTimeout(() => document.body.removeChild(toast), 3000);
+        }
+      };
+    });
   </script>
 </body>
 </html>
