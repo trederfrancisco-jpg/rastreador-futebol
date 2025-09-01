@@ -7,9 +7,9 @@
         "next_opponent": "Grêmio",
         "home_away": "Casa",
         "opponent_table": "Z4",
-        "position_opponent": 18,
-        "form_opponent": ["D", "D", "V"],
-        "scheduled_date": "01/09/2025",
+        "position_opponent": 16,
+        "form_opponent": ["D", "V", "D"],
+        "scheduled_date": "05/09/2025",
         "match_time": "20:00"
       },
       "Palmeiras": {
@@ -20,163 +20,21 @@
         "opponent_table": "Z4",
         "position_opponent": 17,
         "form_opponent": ["D", "D", "D"],
-        "scheduled_date": "02/09/2025",
+        "scheduled_date": "06/09/2025",
         "match_time": "18:30"
-      },
-      "Botafogo": {
-        "position": 4,
-        "results": ["V", "V", "E"],
-        "next_opponent": "Ceará",
-        "home_away": "Casa",
-        "opponent_table": "Z4",
-        "position_opponent": 19,
-        "form_opponent": ["D", "D", "D"],
-        "scheduled_date": "03/09/2025",
-        "match_time": "20:00"
       }
     },
     "39": {
       "Liverpool": {
         "position": 4,
-        "results": ["V", "D", "V"],
-        "next_opponent": "Arsenal",
-        "home_away": "Casa",
-        "opponent_table": "Top 6",
-        "position_opponent": 5,
-        "form_opponent": ["V", "V", "D"],
-        "scheduled_date": "01/09/2025",
-        "match_time": "16:30"
-      },
-      "Manchester City": {
-        "position": 1,
-        "results": ["V", "V", "V"],
-        "next_opponent": "Newcastle",
-        "home_away": "Casa",
-        "opponent_table": "Z4",
-        "position_opponent": 20,
-        "form_opponent": ["D", "D", "D"],
-        "scheduled_date": "02/09/2025",
-        "match_time": "14:00"
-      }
-    },
-    "140": {
-      "Barcelona": {
-        "position": 2,
         "results": ["V", "E", "D"],
-        "next_opponent": "Real Sociedad",
-        "home_away": "Casa",
-        "opponent_table": "Meio da tabela",
-        "position_opponent": 10,
-        "form_opponent": ["V", "D", "E"],
-        "scheduled_date": "01/09/2025",
-        "match_time": "20:00"
-      },
-      "Real Madrid": {
-        "position": 1,
-        "results": ["V", "V", "V"],
-        "next_opponent": "Valencia",
-        "home_away": "Casa",
-        "opponent_table": "Meio da tabela",
-        "position_opponent": 12,
-        "form_opponent": ["D", "V", "D"],
-        "scheduled_date": "03/09/2025",
-        "match_time": "22:00"
-      }
-    },
-    "78": {
-      "Bayern de Munique": {
-        "position": 1,
-        "results": ["V", "V", "E"],
-        "next_opponent": "Eintracht Frankfurt",
+        "next_opponent": "Everton",
         "home_away": "Casa",
         "opponent_table": "Meio da tabela",
         "position_opponent": 11,
         "form_opponent": ["V", "D", "D"],
-        "scheduled_date": "01/09/2025",
-        "match_time": "15:30"
-      },
-      "Borussia Dortmund": {
-        "position": 5,
-        "results": ["D", "V", "V"],
-        "next_opponent": "Stuttgart",
-        "home_away": "Casa",
-        "opponent_table": "Top 6",
-        "position_opponent": 4,
-        "form_opponent": ["V", "V", "E"],
-        "scheduled_date": "02/09/2025",
-        "match_time": "18:30"
-      }
-    },
-    "135": {
-      "Inter de Milão": {
-        "position": 1,
-        "results": ["V", "V", "V"],
-        "next_opponent": "Lazio",
-        "home_away": "Casa",
-        "opponent_table": "Top 5",
-        "position_opponent": 5,
-        "form_opponent": ["V", "D", "V"],
-        "scheduled_date": "01/09/2025",
-        "match_time": "20:45"
-      },
-      "Juventus": {
-        "position": 3,
-        "results": ["E", "V", "V"],
-        "next_opponent": "Verona",
-        "home_away": "Casa",
-        "opponent_table": "Z4",
-        "position_opponent": 18,
-        "form_opponent": ["D", "D", "D"],
-        "scheduled_date": "03/09/2025",
-        "match_time": "18:00"
-      }
-    },
-    "61": {
-      "PSG": {
-        "position": 1,
-        "results": ["V", "V", "V"],
-        "next_opponent": "Nantes",
-        "home_away": "Casa",
-        "opponent_table": "Meio da tabela",
-        "position_opponent": 13,
-        "form_opponent": ["D", "V", "D"],
-        "scheduled_date": "01/09/2025",
-        "match_time": "20:00"
-      },
-      "Marselha": {
-        "position": 4,
-        "results": ["V", "D", "V"],
-        "next_opponent": "Lyon",
-        "home_away": "Casa",
-        "opponent_table": "Meio da tabela",
-        "position_opponent": 10,
-        "form_opponent": ["V", "D", "E"],
-        "scheduled_date": "02/09/2025",
-        "match_time": "18:00"
-      }
-    },
-    "10217": {
-      "Corinthians (F)": {
-        "position": 1,
-        "results": ["V", "V", "V"],
-        "next_opponent": "Palmeiras (F)",
-        "home_away": "Casa",
-        "opponent_table": "Top 5",
-        "position_opponent": 4,
-        "form_opponent": ["V", "D", "V"],
-        "scheduled_date": "01/09/2025",
-        "match_time": "15:00"
-      },
-      "São Paulo (F)": {
-        "position": 5,
-        "results": ["E", "V", "D"],
-        "next_opponent": "Bahia (F)",
-        "home_away": "Casa",
-        "opponent_table": "Z4",
-        "position_opponent": 16,
-        "form_opponent": ["D", "D", "D"],
-        "scheduled_date": "02/09/2025",
-        "match_time": "17:00"
+        "scheduled_date": "06/09/2025",
+        "match_time": "16:30"
       }
     }
   }
