@@ -433,12 +433,10 @@
 
       // ==================== VARIÁVEIS GLOBAIS ====================
       let teamResults = {};
-      const HOJE = new Date();
       const resultsDiv = document.getElementById("results");
       const sidebarInfo = document.getElementById("sidebarInfo");
       const tabelaLink = document.getElementById("tabelaLink");
       const leagueSelect = document.getElementById("leagueSelect");
-      const btnVoltarInicio = document.getElementById("btnVoltarInicio");
 
       function updateTabelaLink(leagueId) {
         if (leagueId && leagueLinks[leagueId]) {
@@ -524,12 +522,12 @@
           const winRate = d.results.includes("D") ? "78%" : "72%";
           html += `
             <div class='item'>
-              <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
+              <strong>${t.replace('_21', '')}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
               <div class='confidence-high'>📊 Probabilidade: ${winRate}</div>
               <div class='details'>
                 📍 ${d.home_away} | 📅 ${d.scheduled_date} às ${d.match_time}
-                <br>⚔️ Adv: ${d.opponent_table} (${d.form_opponent})
-                <br>💡 <strong>Dica:</strong> Time do G4 precisa reagir!
+                <br>⚔️ Adv: ${d.opponent_table} (${d.form_opponent.join("")})
+                <br>💡 Dica: Time do G4 precisa reagir!
               </div>
             </div>`;
         });
@@ -572,7 +570,7 @@
         multiples.forEach(m => {
           const odd = (Math.random() * 0.2 + 1.3).toFixed(2);
           totalOdd *= parseFloat(odd);
-          html += `<div>✅ <strong>${m}</strong> vs. ${teamResults[m].next_opponent} <em>(${leagueNames[leagueSelect.value]})</em> — ${teamResults[m].scheduled_date} às ${teamResults[m].match_time}</div>`;
+          html += `<div>✅ <strong>${m.replace('_21', '')}</strong> vs. ${teamResults[m].next_opponent} <em>(${leagueNames[leagueSelect.value]})</em> — ${teamResults[m].scheduled_date} às ${teamResults[m].match_time}</div>`;
         });
 
         totalOdd = totalOdd.toFixed(2);
@@ -593,12 +591,14 @@
         resultsDiv.innerHTML = "<div class='section-title'>🔐 ALERTA DE PRESSÃO VIP</div><div class='item'>Funcionalidade VIP ativa. Dados carregados com base na pressão do G4.</div><div class='tip'>📅 Dados atualizados em: 13/09/2025</div>";
         mostrarBotaoVoltar();
       }
+
       function showHiddenConflicts() {
         const isVIP = localStorage.getItem('user_plan') === 'vip';
         if (!isVIP) { openPaymentModal(); return; }
         resultsDiv.innerHTML = "<div class='section-title'>🔍 CONFLITOS OCULTOS (VIP)</div><div class='item'>Funcionalidade VIP: análise de mercado subestimado.</div><div class='tip'>📅 Dados atualizados em: 13/09/2025</div>";
         mostrarBotaoVoltar();
       }
+
       function showReactionChain() {
         const isVIP = localStorage.getItem('user_plan') === 'vip';
         if (!isVIP) { openPaymentModal(); return; }
