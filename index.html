@@ -31,23 +31,19 @@
     }
     h1, h2 { margin-top: 0; }
 
-    /* Badge de elite global - destaque principal */
+    /* Badge de elite como título principal */
     .elite-badge {
-      position: absolute;
-      top: 0;
-      left: 20px;
-      background: linear-gradient(90deg, #000, #1a1a1a);
+      text-align: center;
+      margin-bottom: 10px;
       color: #4caf50;
-      font-size: 0.85rem;
+      font-size: 1.1rem;
       font-weight: bold;
-      padding: 6px 12px;
-      border-radius: 6px 6px 0 0;
       white-space: nowrap;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* Logo ajustado para ficar abaixo do badge */
+    /* Logo ajustado */
     .logo {
       position: absolute;
       top: 40px;
@@ -73,10 +69,8 @@
 
     /* Menu de idioma no topo direito */
     .language-selector {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      z-index: 1000;
+      text-align: right;
+      margin-bottom: 15px;
     }
     #languageSelector {
       padding: 8px 12px;
@@ -240,11 +234,6 @@
 <body>
 
   <div id="sidebar">
-    <!-- Badge de elite global -->
-    <div class="elite-badge">
-      🏆 Top 1% no Mundo | 🥇 Líder em Inovação | 💡 X2 Protegido
-    </div>
-
     <!-- Logo -->
     <div class="logo">
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -260,15 +249,6 @@
         <circle cx="70" cy="70" r="5" fill="#fff"/>
       </svg>
       <span>Rastreador Avançado</span>
-    </div>
-
-    <!-- Menu de idioma no canto superior direito -->
-    <div class="language-selector">
-      <select id="languageSelector">
-        <option value="pt">🇧🇷 PT/BRL</option>
-        <option value="en">🇺🇸 EN/USD</option>
-        <option value="es">🇪🇸 ES/ARS</option>
-      </select>
     </div>
 
     <div style="margin-top: 70px;">
@@ -306,18 +286,29 @@
   </div>
 
   <div id="content">
-    <!-- Título principal com badge de elite acima -->
-    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 15px;">
-      <h2 id="contentTitle" style="margin: 0; font-size: 1.5rem; white-space: nowrap;">
-        🏆 Top 1% no Mundo | 🥇 Líder em Inovação | 💡 X2 Protegido
-      </h2>
+    <!-- Badge de elite como título principal -->
+    <div class="elite-badge">
+      🏆 Top 1% no Mundo | 🥇 Líder em Inovação | 💡 X2 Protegido
+    </div>
+
+    <!-- Menu de idioma alinhado à direita -->
+    <div class="language-selector">
+      <select id="languageSelector">
+        <option value="pt">🇧🇷 PT/BRL</option>
+        <option value="en">🇺🇸 EN/USD</option>
+        <option value="es">🇪🇸 ES/ARS</option>
+      </select>
+    </div>
+
+    <!-- Botão de assinatura -->
+    <div style="text-align: center; margin: 20px 0;">
       <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" target="_blank" class="btn-primary">
         🚀 QUERO ASSINAR O RASTREADOR PRO
       </a>
     </div>
 
     <!-- Selo de Confiança no Topo -->
-    <div class="info-box" style="background: #4caf50; color: white; margin-bottom: 15px;">
+    <div class="info-box" style="background: #4caf50; color: white; margin-bottom: 15px; text-align: center;">
       ✅ 77,3% de Acerto | Estratégia X2 Protegida | 17 acertos em 22 jogos
     </div>
 
