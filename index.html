@@ -31,9 +31,25 @@
     }
     h1, h2 { margin-top: 0; }
 
+    /* Badge de elite global */
+    .elite-badge {
+      position: absolute;
+      top: 0;
+      left: 20px;
+      background: linear-gradient(90deg, #000, #1a1a1a);
+      color: #4caf50;
+      font-size: 0.85rem;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 6px 6px 0 0;
+      white-space: nowrap;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
     .logo {
       position: absolute;
-      top: 15px;
+      top: 40px;
       left: 20px;
       width: 280px;
       height: 50px;
@@ -223,7 +239,12 @@
 <body>
 
   <div id="sidebar">
-    <!-- Logo no canto superior esquerdo -->
+    <!-- Badge de elite global -->
+    <div class="elite-badge">
+      🏆 Top 1% no Mundo | 🥇 Líder em Inovação | 💡 X2 Protegido
+    </div>
+
+    <!-- Logo -->
     <div class="logo">
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 20 L80 20 M20 20 L20 80 M20 80 L80 80 M80 20 L80 80" stroke="#fff" stroke-width="2.5" fill="none"/>
@@ -240,7 +261,7 @@
       <span>Rastreador Avançado</span>
     </div>
 
-    <!-- Menu de idioma no canto superior direito -->
+    <!-- Menu de idioma -->
     <div class="language-selector">
       <select id="languageSelector">
         <option value="pt">🇧🇷 PT/BRL</option>
@@ -415,7 +436,7 @@
   </div>
 
   <script>
-    // Traduções
+    // Traduções completas
     const translations = {
       pt: {
         title: "Rastreador Avançado - Múltiplos em Alta",
@@ -461,7 +482,6 @@
       }
     };
 
-    // Função de tradução
     function translatePage(lang) {
       const t = translations[lang];
       document.title = t.title;
@@ -478,22 +498,16 @@
       document.querySelector("#paymentModal p").innerHTML = t.paymentModalText;
     }
 
-    // Evento de mudança de idioma
     document.getElementById("languageSelector").addEventListener("change", function() {
       const lang = this.value;
       translatePage(lang);
+      localStorage.setItem('language', lang);
     });
 
-    // Carrega o idioma salvo ou padrão
     document.addEventListener('DOMContentLoaded', function() {
       const savedLang = localStorage.getItem('language') || 'pt';
       document.getElementById("languageSelector").value = savedLang;
       translatePage(savedLang);
-
-      // Salva o idioma ao mudar
-      document.getElementById("languageSelector").addEventListener("change", function() {
-        localStorage.setItem('language', this.value);
-      });
 
       // === Seu código existente continua aqui ===
       const mockData = {
