@@ -54,6 +54,24 @@
       margin-right: 12px;
     }
 
+    /* Menu de idioma no topo direito */
+    .language-selector {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      z-index: 1000;
+    }
+    #languageSelector {
+      padding: 8px 12px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      min-width: 120px;
+    }
+
     select {
       width: 100%;
       padding: 10px;
@@ -205,6 +223,7 @@
 <body>
 
   <div id="sidebar">
+    <!-- Logo no canto superior esquerdo -->
     <div class="logo">
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 20 L80 20 M20 20 L20 80 M20 80 L80 80 M80 20 L80 80" stroke="#fff" stroke-width="2.5" fill="none"/>
@@ -219,6 +238,15 @@
         <circle cx="70" cy="70" r="5" fill="#fff"/>
       </svg>
       <span>Rastreador Avançado</span>
+    </div>
+
+    <!-- Menu de idioma no canto superior direito -->
+    <div class="language-selector">
+      <select id="languageSelector">
+        <option value="pt">🇧🇷 PT/BRL</option>
+        <option value="en">🇺🇸 EN/USD</option>
+        <option value="es">🇪🇸 ES/ARS</option>
+      </select>
     </div>
 
     <div style="margin-top: 70px;">
@@ -387,7 +415,87 @@
   </div>
 
   <script>
+    // Traduções
+    const translations = {
+      pt: {
+        title: "Rastreador Avançado - Múltiplos em Alta",
+        sidebarInfo: "Selecione um campeonato.",
+        btnChance: "🎯 Reação do Líder (G4)",
+        btnPressureAlert: "🔐 Alerta de Pressão (G4 Pressionado)",
+        btnHiddenConflicts: "🔍 Valor no Mercado (Odd Alta)",
+        btnReactionChain: "🌪️ Múltiplos em Cadeia (G4)",
+        btnMultiples: "🎯 MÚLTIPLOS EM ALTA (X2 Protegido)",
+        contentTitle: "Rastreador de Alta Probabilidade",
+        btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO",
+        btnCloseModal: "Fechar",
+        paymentModalTitle: "🔐 Acesso VIP Liberado",
+        paymentModalText: "Assine o <strong>Rastreador PRO</strong> e tenha acesso ao <strong>Alerta de Pressão VIP</strong>."
+      },
+      en: {
+        title: "Advanced Tracker - High Probability Multiples",
+        sidebarInfo: "Select a league.",
+        btnChance: "🎯 Leader Reaction (G4)",
+        btnPressureAlert: "🔐 Pressure Alert (G4 Under Pressure)",
+        btnHiddenConflicts: "🔍 Hidden Conflicts (High Odds)",
+        btnReactionChain: "🌪️ Chain Reaction (G4)",
+        btnMultiples: "🎯 HIGH PROBABILITY MULTIPLES (X2 Protected)",
+        contentTitle: "High Probability Tracker",
+        btnPrimary: "🚀 I WANT TO JOIN THE PRO TRACKER",
+        btnCloseModal: "Close",
+        paymentModalTitle: "🔐 VIP Access Unlocked",
+        paymentModalText: "Subscribe to <strong>Tracker PRO</strong> and get access to <strong>Pressure Alert VIP</strong>."
+      },
+      es: {
+        title: "Rastreador Avanzado - Múltiples en Alta",
+        sidebarInfo: "Seleccione un campeonato.",
+        btnChance: "🎯 Reacción del Líder (G4)",
+        btnPressureAlert: "🔐 Alerta de Presión (G4 Presionado)",
+        btnHiddenConflicts: "🔍 Conflictos Ocultos (Odd Alta)",
+        btnReactionChain: "🌪️ Reacción en Cadena (G4)",
+        btnMultiples: "🎯 MÚLTIPLES EN ALTO (X2 Protegido)",
+        contentTitle: "Rastreador de Alta Probabilidad",
+        btnPrimary: "🚀 QUIERO SUSCRIBIRME AL RASTREADOR PRO",
+        btnCloseModal: "Cerrar",
+        paymentModalTitle: "🔐 Acceso VIP Liberado",
+        paymentModalText: "Suscríbete al <strong>Rastreador PRO</strong> y accede al <strong>Alerta de Presión VIP</strong>."
+      }
+    };
+
+    // Função de tradução
+    function translatePage(lang) {
+      const t = translations[lang];
+      document.title = t.title;
+      document.getElementById("sidebarInfo").textContent = t.sidebarInfo;
+      document.getElementById("btnChance").textContent = t.btnChance;
+      document.getElementById("btnPressureAlert").textContent = t.btnPressureAlert;
+      document.getElementById("btnHiddenConflicts").textContent = t.btnHiddenConflicts;
+      document.getElementById("btnReactionChain").textContent = t.btnReactionChain;
+      document.getElementById("btnMultiples").textContent = t.btnMultiples;
+      document.getElementById("contentTitle").textContent = t.contentTitle;
+      document.querySelector(".btn-primary").textContent = t.btnPrimary;
+      document.getElementById("btnCloseModal").textContent = t.btnCloseModal;
+      document.querySelector("#paymentModal h2").textContent = t.paymentModalTitle;
+      document.querySelector("#paymentModal p").innerHTML = t.paymentModalText;
+    }
+
+    // Evento de mudança de idioma
+    document.getElementById("languageSelector").addEventListener("change", function() {
+      const lang = this.value;
+      translatePage(lang);
+    });
+
+    // Carrega o idioma salvo ou padrão
     document.addEventListener('DOMContentLoaded', function() {
+      const savedLang = localStorage.getItem('language') || 'pt';
+      document.getElementById("languageSelector").value = savedLang;
+      translatePage(savedLang);
+
+      // Salva o idioma ao mudar
+      document.getElementById("languageSelector").addEventListener("change", function() {
+        localStorage.setItem('language', this.value);
+      });
+
+      // === Seu código existente continua aqui ===
       const mockData = {
         "2025": {
           "71": {
