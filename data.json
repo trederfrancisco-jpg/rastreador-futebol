@@ -12,50 +12,6 @@
         "scheduled_date": "13/09/2025",
         "match_time": "18:30"
       },
-      "Fluminense": {
-        "position": 6,
-        "results": ["V", "D", "V"],
-        "next_opponent": "Corinthians",
-        "home_away": "Casa",
-        "opponent_table": "Meio da tabela",
-        "position_opponent": 11,
-        "form_opponent": ["E", "V", "D"],
-        "scheduled_date": "13/09/2025",
-        "match_time": "21:00"
-      },
-      "Juventude": {
-        "position": 16,
-        "results": ["D", "D", "E"],
-        "next_opponent": "Flamengo",
-        "home_away": "Casa",
-        "opponent_table": "Top 5",
-        "position_opponent": 2,
-        "form_opponent": ["V", "E", "D"],
-        "scheduled_date": "14/09/2025",
-        "match_time": "16:00"
-      },
-      "São_Paulo": {
-        "position": 7,
-        "results": ["V", "E", "V"],
-        "next_opponent": "Botafogo",
-        "home_away": "Casa",
-        "opponent_table": "Top 5",
-        "position_opponent": 4,
-        "form_opponent": ["V", "V", "E"],
-        "scheduled_date": "14/09/2025",
-        "match_time": "17:30"
-      },
-      "Bahia": {
-        "position": 10,
-        "results": ["E", "V", "E"],
-        "next_opponent": "Cruzeiro",
-        "home_away": "Casa",
-        "opponent_table": "Meio da tabela",
-        "position_opponent": 12,
-        "form_opponent": ["D", "V", "D"],
-        "scheduled_date": "15/09/2025",
-        "match_time": "20:00"
-      },
       "Botafogo": {
         "position": 4,
         "results": ["V", "V", "E"],
@@ -88,6 +44,39 @@
         "form_opponent": ["V", "E", "D"],
         "scheduled_date": "21/09/2025",
         "match_time": "17:30"
+      },
+      "Bahia": {
+        "position": 10,
+        "results": ["E", "V", "E"],
+        "next_opponent": "Palmeiras",
+        "home_away": "Casa",
+        "opponent_table": "Top 5",
+        "position_opponent": 3,
+        "form_opponent": ["V", "E", "V"],
+        "scheduled_date": "28/09/2025",
+        "match_time": "16:00"
+      },
+      "Fluminense": {
+        "position": 6,
+        "results": ["V", "D", "V"],
+        "next_opponent": "Botafogo",
+        "home_away": "Casa",
+        "opponent_table": "Top 5",
+        "position_opponent": 4,
+        "form_opponent": ["V", "V", "E"],
+        "scheduled_date": "28/09/2025",
+        "match_time": "16:00"
+      },
+      "Corinthians": {
+        "position": 11,
+        "results": ["E", "V", "D"],
+        "next_opponent": "Flamengo",
+        "home_away": "Casa",
+        "opponent_table": "Top 5",
+        "position_opponent": 2,
+        "form_opponent": ["V", "V", "D"],
+        "scheduled_date": "28/09/2025",
+        "match_time": "20:30"
       }
     },
     "39": {
@@ -99,8 +88,43 @@
         "opponent_table": "Meio da tabela",
         "position_opponent": 11,
         "form_opponent": ["V", "D", "D"],
+        "scheduled_date": "20/09/2025",
+        "match_time": "08:30"
+      },
+      "Arsenal": {
+        "position": 2,
+        "results": ["V", "V", "E"],
+        "next_opponent": "Manchester City",
+        "home_away": "Casa",
+        "opponent_table": "Top 6",
+        "position_opponent": 1,
+        "form_opponent": ["V", "V", "V"],
+        "scheduled_date": "21/09/2025",
+        "match_time": "12:30"
+      }
+    },
+    "140": {
+      "Barcelona": {
+        "position": 2,
+        "results": ["V", "E", "D"],
+        "next_opponent": "Valencia",
+        "home_away": "Casa",
+        "opponent_table": "Meio da tabela",
+        "position_opponent": 12,
+        "form_opponent": ["D", "V", "D"],
+        "scheduled_date": "14/09/2025",
+        "match_time": "16:00"
+      },
+      "Real_Madrid": {
+        "position": 1,
+        "results": ["V", "V", "V"],
+        "next_opponent": "Real Sociedad",
+        "home_away": "Fora",
+        "opponent_table": "Meio da tabela",
+        "position_opponent": 10,
+        "form_opponent": ["V", "D", "E"],
         "scheduled_date": "13/09/2025",
-        "match_time": "16:30"
+        "match_time": "11:15"
       }
     }
   }
