@@ -174,6 +174,21 @@
       margin-top: 5px;
       text-align: center;
     }
+    .btn-primary {
+      white-space: nowrap;
+      padding: 10px 15px;
+      background: #25D366;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      text-decoration: none;
+      min-width: 240px;
+      text-align: center;
+      display: inline-block;
+    }
     .btn-secondary {
       margin: 15px 0;
       padding: 10px;
@@ -245,7 +260,7 @@
       <h2 id="contentTitle" style="margin: 0; font-size: 1.5rem; white-space: nowrap;">
         Rastreador de Alta Probabilidade
       </h2>
-      <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" target="_blank" class="btn-secondary" style="background:#25D366; min-width:240px; text-align:center; font-weight:bold; white-space:nowrap;">
+      <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" target="_blank" class="btn-primary">
         🚀 QUERO ASSINAR O RASTREADOR PRO
       </a>
     </div>
@@ -299,7 +314,7 @@
       </button>
     </div>
 
-    <button id="btnToggleTracker" class="btn-secondary" style="background:#333;">
+    <button id="btnToggleTracker" class="btn-secondary">
       Abrir/Fechar Rastreador
     </button>
 
@@ -330,7 +345,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // ==================== DADOS ATUALIZADOS (13 a 21/09/2025) ====================
       const mockData = {
         "2025": {
           "71": {
@@ -406,7 +420,6 @@
         }
       };
 
-      // URLs corrigidas com .trim()
       const leagueLinks = {
         "71": "https://www.sofascore.com/tournament/brazil/serie-a/328".trim(),
         "72": "https://www.sofascore.com/tournament/brazil/serie-b/329".trim(),
@@ -639,7 +652,6 @@
         if (btn) btn.style.display = "block";
       }
 
-      // Event Listeners
       document.getElementById("btnChance").addEventListener("click", function() {
         setActiveButton(this);
         if (leagueSelect.value) loadData();
@@ -669,7 +681,6 @@
       document.getElementById("btnCloseModal").addEventListener("click", closePaymentModal);
       leagueSelect.addEventListener("change", loadData);
 
-      // Verifica token VIP
       const urlParams = new URLSearchParams(window.location.search);
       const token = urlParams.get('token');
       if (token && token.startsWith('VIP')) {
@@ -681,89 +692,11 @@
         setTimeout(() => document.body.removeChild(toast), 3000);
       }
 
-      // Carrega inicial
       loadData();
     });
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
