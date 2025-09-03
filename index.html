@@ -174,6 +174,17 @@
       margin-top: 5px;
       text-align: center;
     }
+    .btn-secondary {
+      margin: 15px 0;
+      padding: 10px;
+      width: 100%;
+      background: #444;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -234,7 +245,7 @@
       <h2 id="contentTitle" style="margin: 0; font-size: 1.5rem; white-space: nowrap;">
         Rastreador de Alta Probabilidade
       </h2>
-      <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" target="_blank" style="white-space: nowrap; padding: 10px 15px; background: #25D366; border: none; color: white; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1rem; text-decoration: none; min-width: 240px; text-align: center;">
+      <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" target="_blank" class="btn-secondary" style="background:#25D366; min-width:240px; text-align:center; font-weight:bold; white-space:nowrap;">
         🚀 QUERO ASSINAR O RASTREADOR PRO
       </a>
     </div>
@@ -283,12 +294,12 @@
         <div class="tip">📌 Dica: Escolha uma opção acima para ver análises detalhadas.</div>
       </div>
 
-      <button id="btnVoltarInicio" style="margin: 15px 0; padding: 10px; width: 100%; background: #444; border: none; color: white; border-radius: 4px; cursor: pointer; font-size: 1rem; display: none;">
+      <button id="btnVoltarInicio" class="btn-secondary" style="display: none;">
         🔙 Voltar ao Início
       </button>
     </div>
 
-    <button id="btnToggleTracker" style="margin-top: 15px; padding: 10px; width: 100%; background: #333; border: none; color: white; border-radius: 4px; cursor: pointer;">
+    <button id="btnToggleTracker" class="btn-secondary" style="background:#333;">
       Abrir/Fechar Rastreador
     </button>
 
@@ -356,7 +367,7 @@
               "scheduled_date": "14/09/2025",
               "match_time": "16:00"
             },
-            "São_Paulo": {
+            "São Paulo": {
               "position": 7,
               "results": ["V", "E", "V"],
               "next_opponent": "Botafogo",
@@ -367,7 +378,7 @@
               "scheduled_date": "14/09/2025",
               "match_time": "17:30"
             },
-            "Flamengo_21": {
+            "Flamengo": {
               "position": 2,
               "results": ["V", "V", "D"],
               "next_opponent": "Vasco da Gama",
@@ -395,22 +406,23 @@
         }
       };
 
+      // URLs corrigidas com .trim()
       const leagueLinks = {
-        "71": "https://www.sofascore.com/tournament/brazil/serie-a/328",
-        "72": "https://www.sofascore.com/tournament/brazil/serie-b/329",
-        "202": "https://www.sofascore.com/tournament/argentina/liga-profesional/202",
-        "39": "https://www.sofascore.com/tournament/england/premier-league/17",
-        "140": "https://www.sofascore.com/tournament/spain/laliga/8",
-        "78": "https://www.sofascore.com/tournament/germany/bundesliga/35",
-        "135": "https://www.sofascore.com/tournament/italy/serie-a/23",
-        "61": "https://www.sofascore.com/tournament/france/ligue-1/34",
-        "88": "https://www.sofascore.com/tournament/netherlands/eredivisie/25",
-        "94": "https://www.sofascore.com/tournament/portugal/primeira-liga/44",
-        "262": "https://www.sofascore.com/tournament/mexico/liga-mx/105",
-        "8": "https://www.sofascore.com/tournament/champions-league/8",
-        "12": "https://www.sofascore.com/tournament/south-america/libertadores/12",
-        "13": "https://www.sofascore.com/tournament/south-america/sul-americana/13",
-        "10217": "https://www.sofascore.com/tournament/brazil/campeonato-brasileiro-women/1154"
+        "71": "https://www.sofascore.com/tournament/brazil/serie-a/328".trim(),
+        "72": "https://www.sofascore.com/tournament/brazil/serie-b/329".trim(),
+        "202": "https://www.sofascore.com/tournament/argentina/liga-profesional/202".trim(),
+        "39": "https://www.sofascore.com/tournament/england/premier-league/17".trim(),
+        "140": "https://www.sofascore.com/tournament/spain/laliga/8".trim(),
+        "78": "https://www.sofascore.com/tournament/germany/bundesliga/35".trim(),
+        "135": "https://www.sofascore.com/tournament/italy/serie-a/23".trim(),
+        "61": "https://www.sofascore.com/tournament/france/ligue-1/34".trim(),
+        "88": "https://www.sofascore.com/tournament/netherlands/eredivisie/25".trim(),
+        "94": "https://www.sofascore.com/tournament/portugal/primeira-liga/44".trim(),
+        "262": "https://www.sofascore.com/tournament/mexico/liga-mx/105".trim(),
+        "8": "https://www.sofascore.com/tournament/champions-league/8".trim(),
+        "12": "https://www.sofascore.com/tournament/south-america/libertadores/12".trim(),
+        "13": "https://www.sofascore.com/tournament/south-america/sul-americana/13".trim(),
+        "10217": "https://www.sofascore.com/tournament/brazil/campeonato-brasileiro-women/1154".trim()
       };
 
       const leagueNames = {
@@ -431,7 +443,6 @@
         "10217": "Brasileirão Feminino"
       };
 
-      // ==================== VARIÁVEIS GLOBAIS ====================
       let teamResults = {};
       const resultsDiv = document.getElementById("results");
       const sidebarInfo = document.getElementById("sidebarInfo");
@@ -454,7 +465,7 @@
         const initialHTML = document.querySelector('.initial-results').innerHTML;
         resultsDiv.innerHTML = `
           <div class="initial-results">${initialHTML}</div>
-          <button id="btnVoltarInicio" style="margin: 15px 0; padding: 10px; width: 100%; background: #444; border: none; color: white; border-radius: 4px; cursor: pointer; font-size: 1rem; display: none;">
+          <button id="btnVoltarInicio" class="btn-secondary" style="display: none;">
             🔙 Voltar ao Início
           </button>
         `;
@@ -522,7 +533,7 @@
           const winRate = d.results.includes("D") ? "78%" : "72%";
           html += `
             <div class='item'>
-              <strong>${t.replace('_21', '')}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
+              <strong>${t}</strong> (${d.results.join(", ")}) vs. ${d.next_opponent}
               <div class='confidence-high'>📊 Probabilidade: ${winRate}</div>
               <div class='details'>
                 📍 ${d.home_away} | 📅 ${d.scheduled_date} às ${d.match_time}
@@ -570,7 +581,7 @@
         multiples.forEach(m => {
           const odd = (Math.random() * 0.2 + 1.3).toFixed(2);
           totalOdd *= parseFloat(odd);
-          html += `<div>✅ <strong>${m.replace('_21', '')}</strong> vs. ${teamResults[m].next_opponent} <em>(${leagueNames[leagueSelect.value]})</em> — ${teamResults[m].scheduled_date} às ${teamResults[m].match_time}</div>`;
+          html += `<div>✅ <strong>${m}</strong> vs. ${teamResults[m].next_opponent} <em>(${leagueNames[leagueSelect.value]})</em> — ${teamResults[m].scheduled_date} às ${teamResults[m].match_time}</div>`;
         });
 
         totalOdd = totalOdd.toFixed(2);
@@ -657,24 +668,21 @@
       document.getElementById("btnToggleTracker").addEventListener("click", toggleTracker);
       document.getElementById("btnCloseModal").addEventListener("click", closePaymentModal);
       leagueSelect.addEventListener("change", loadData);
-      document.getElementById("btnVoltarInicio").addEventListener("click", voltarAoInicio);
+
+      // Verifica token VIP
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      if (token && token.startsWith('VIP')) {
+        localStorage.setItem('user_plan', 'vip');
+        const toast = document.createElement('div');
+        toast.style.cssText = `position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#4caf50;color:white;padding:10px 20px;border-radius:6px;z-index:1000;`;
+        toast.textContent = "✅ Acesso VIP liberado!";
+        document.body.appendChild(toast);
+        setTimeout(() => document.body.removeChild(toast), 3000);
+      }
 
       // Carrega inicial
       loadData();
-
-      // Verifica token VIP
-      window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
-        if (token && token.startsWith('VIP')) {
-          localStorage.setItem('user_plan', 'vip');
-          const toast = document.createElement('div');
-          toast.style.cssText = `position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#4caf50;color:white;padding:10px 20px;border-radius:6px;z-index:1000;`;
-          toast.textContent = "✅ Acesso VIP liberado!";
-          document.body.appendChild(toast);
-          setTimeout(() => document.body.removeChild(toast), 3000);
-        }
-      };
     });
   </script>
 </body>
