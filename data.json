@@ -1,356 +1,142 @@
 {
   "2025": {
     "71": {
-      "name": "Brasileirão Série A",
-      "teams": [
-        {
-          "team": "Palmeiras",
-          "position": 3,
-          "form": ["E", "E", "D"],
-          "next_opponent": "Internacional",
-          "home_away": "Casa",
-          "opponent_position": 9,
-          "opponent_form": ["V", "D", "E"],
-          "opponent_strength": "Meio da tabela",
-          "datetime": "2025-09-13T18:30:00",
-          "venue": "Allianz Parque, São Paulo, Brasil",
-          "confidence_level": "high",
-          "strategy": "Vitória ou empate (X2 Protegido)",
-          "factors": ["Técnico pressionado", "Sem desfalques importantes", "Favorito em casa"]
-        },
-        {
-          "team": "Fluminense",
-          "position": 6,
-          "form": ["V", "D", "V"],
-          "next_opponent": "Corinthians",
-          "home_away": "Casa",
-          "opponent_position": 11,
-          "opponent_form": ["E", "V", "D"],
-          "opponent_strength": "Meio da tabela",
-          "datetime": "2025-09-13T21:00:00",
-          "venue": "Estádio do Maracanã, Rio de Janeiro, Brasil",
-          "confidence_level": "medium",
-          "strategy": "Duelo direto por G6",
-          "factors": ["Clássico", "Forma irregular", "Pressão emocional"]
-        },
-        {
-          "team": "Juventude",
-          "position": 16,
-          "form": ["D", "D", "E"],
-          "next_opponent": "Flamengo",
-          "home_away": "Casa",
-          "opponent_position": 2,
-          "opponent_form": ["V", "V", "D"],
-          "opponent_strength": "Top 5",
-          "datetime": "2025-09-14T16:00:00",
-          "venue": "Alfredo Jaconi, Caxias do Sul, Brasil",
-          "confidence_level": "low",
-          "strategy": "Valor no visitante",
-          "factors": ["Flamengo pressionado", "Juventude em má fase"]
-        },
-        {
-          "team": "São Paulo",
-          "position": 7,
-          "form": ["V", "E", "V"],
-          "next_opponent": "Botafogo",
-          "home_away": "Casa",
-          "opponent_position": 4,
-          "opponent_form": ["V", "V", "E"],
-          "opponent_strength": "Top 5",
-          "datetime": "2025-09-14T17:30:00",
-          "venue": "MorumBIS, São Paulo, Brasil",
-          "confidence_level": "medium",
-          "strategy": "Duelo de G4/G6",
-          "factors": ["São Paulo em ascensão", "Botafogo com pressão"]
-        },
-        {
-          "team": "Flamengo",
-          "position": 2,
-          "form": ["V", "V", "D"],
-          "next_opponent": "Vasco da Gama",
-          "home_away": "Casa",
-          "opponent_position": 13,
-          "opponent_form": ["V", "E", "D"],
-          "opponent_strength": "Meio da tabela",
-          "datetime": "2025-09-21T17:30:00",
-          "venue": "Estádio do Maracanã, Rio de Janeiro, Brasil",
-          "confidence_level": "high",
-          "strategy": "Clássico favorito em casa",
-          "factors": ["Clássico da Amizade", "Flamengo precisa reagir", "Vasco sem pressão"]
-        },
-        {
-          "team": "Fortaleza",
-          "position": 17,
-          "form": ["D", "D", "V"],
-          "next_opponent": "Vitória",
-          "home_away": "Casa",
-          "opponent_position": 15,
-          "opponent_form": ["E", "D", "V"],
-          "opponent_strength": "Z4",
-          "datetime": "2025-09-13T16:00:00",
-          "venue": "Castelão, Fortaleza, Brasil",
-          "confidence_level": "medium",
-          "strategy": "Pressão no Z4",
-          "factors": ["Fuga do Z4", "Fortaleza em casa"]
-        },
-        {
-          "team": "Grêmio",
-          "position": 8,
-          "form": ["V", "D", "V"],
-          "next_opponent": "Mirassol",
-          "home_away": "Casa",
-          "opponent_position": 18,
-          "opponent_form": ["D", "D", "D"],
-          "opponent_strength": "Z4",
-          "datetime": "2025-09-13T16:00:00",
-          "venue": "Grêmio Arena, Porto Alegre, Brasil",
-          "confidence_level": "high",
-          "strategy": "Vitória segura (X2 Protegido)",
-          "factors": ["Grêmio em casa", "Mirassol em crise"]
-        },
-        {
-          "team": "Atlético-MG",
-          "position": 5,
-          "form": ["V", "V", "E"],
-          "next_opponent": "Cruzeiro",
-          "home_away": "Fora",
-          "opponent_position": 1,
-          "opponent_form": ["V", "V", "V"],
-          "opponent_strength": "Líder",
-          "datetime": "2025-09-14T19:30:00",
-          "venue": "Estadio Mineirão, Belo Horizonte, Brasil",
-          "confidence_level": "medium",
-          "strategy": "Clássico Mineiro (Alta volatilidade)",
-          "factors": ["Cruzeiro líder", "Atlético em boa fase"]
-        },
-        {
-          "team": "Red Bull Bragantino",
-          "position": 12,
-          "form": ["E", "V", "D"],
-          "next_opponent": "Sport",
-          "home_away": "Casa",
-          "opponent_position": 19,
-          "opponent_form": ["D", "E", "D"],
-          "opponent_strength": "Z4",
-          "datetime": "2025-09-14T11:00:00",
-          "venue": "Estádio Cicero de Souza Marques, Bragança Paulista, Brasil",
-          "confidence_level": "high",
-          "strategy": "Contra Z4 em casa",
-          "factors": ["Sport em crise", "Bragantino precisa subir"]
-        },
-        {
-          "team": "Vasco da Gama",
-          "position": 13,
-          "form": ["V", "E", "D"],
-          "next_opponent": "Botafogo",
-          "home_away": "Casa",
-          "opponent_position": 4,
-          "opponent_form": ["V", "V", "E"],
-          "opponent_strength": "Top 5",
-          "datetime": "2025-09-14T21:30:00",
-          "venue": "Estádio Olímpico Nilton Santos, Rio de Janeiro, Brasil",
-          "confidence_level": "low",
-          "strategy": "Empate com odd alta",
-          "factors": ["Botafogo favorito", "Vasco em casa", "Odd de empate > 3.50"]
-        },
-        {
-          "team": "Ceará",
-          "position": 18,
-          "form": ["D", "E", "D"],
-          "next_opponent": "Vasco da Gama",
-          "home_away": "Fora",
-          "opponent_position": 13,
-          "opponent_form": ["V", "E", "D"],
-          "opponent_strength": "Meio da tabela",
-          "datetime": "2025-09-14T20:30:00",
-          "venue": "Estádio São Januário, Rio de Janeiro, Brasil",
-          "confidence_level": "low",
-          "strategy": "Z4 visitante",
-          "factors": ["Ceará em crise", "Vasco em casa"]
-        }
-      ]
-    },
-    "21": {
-      "name": "Copa do Brasil",
-      "teams": [
-        {
-          "team": "Fluminense",
-          "position": "Quartas de Final",
-          "form": ["V", "E", "D"],
-          "next_opponent": "Bahia",
-          "home_away": "Casa",
-          "aggregate_score": "Perde por 1-0 no agregado",
-          "datetime": "2025-09-14T19:00:00",
-          "venue": "Estádio do Maracanã, Rio de Janeiro, Brasil",
-          "confidence_level": "medium",
-          "strategy": "Precisa virar (Odd de vitória > 1.80)",
-          "factors": ["Eliminatório", "Pressão máxima", "Necessita de vitória"]
-        },
-        {
-          "team": "Corinthians",
-          "position": "Quartas de Final",
-          "form": ["V", "V", "E"],
-          "next_opponent": "Athletico Paranaense",
-          "home_away": "Casa",
-          "aggregate_score": "Vence por 1-0 no agregado",
-          "datetime": "2025-09-14T21:30:00",
-          "venue": "Neo Química Arena, São Paulo, Brasil",
-          "confidence_level": "high",
-          "strategy": "Concluir com vantagem",
-          "factors": ["Vantagem no agregado", "Jogo em casa"]
-        },
-        {
-          "team": "Cruzeiro",
-          "position": "Quartas de Final",
-          "form": ["V", "V", "V"],
-          "next_opponent": "Atlético-MG",
-          "home_away": "Casa",
-          "aggregate_score": "Vence por 2-0 no agregado",
-          "datetime": "2025-09-14T19:30:00",
-          "venue": "Estadio Mineirão, Belo Horizonte, Brasil",
-          "confidence_level": "high",
-          "strategy": "Defender vantagem",
-          "factors": ["Líder do Brasileirão", "Clássico Mineiro"]
-        },
-        {
-          "team": "Botafogo",
-          "position": "Quartas de Final",
-          "form": ["V", "V", "E"],
-          "next_opponent": "Vasco da Gama",
-          "home_away": "Fora",
-          "aggregate_score": "Empatado no agregado",
-          "datetime": "2025-09-14T21:30:00",
-          "venue": "Estádio Olímpico Nilton Santos, Rio de Janeiro, Brasil",
-          "confidence_level": "medium",
-          "strategy": "Clássico com tudo em jogo",
-          "factors": ["Derby", "Decide nos pênaltis", "Alta volatilidade"]
-        }
-      ]
+      "Palmeiras": {
+        "position": 3,
+        "results": ["E", "E", "D"],
+        "next_opponent": "Internacional",
+        "home_away": "Casa",
+        "opponent_table": "Meio da tabela",
+        "position_opponent": 9,
+        "form_opponent": ["V", "D", "E"],
+        "scheduled_date": "13/09/2025",
+        "match_time": "18:30"
+      },
+      "Botafogo": {
+        "position": 4,
+        "results": ["V", "V", "E"],
+        "next_opponent": "Mirassol",
+        "home_away": "Casa",
+        "opponent_table": "Z4",
+        "position_opponent": 18,
+        "form_opponent": ["D", "D", "D"],
+        "scheduled_date": "17/09/2025",
+        "match_time": "19:30"
+      },
+      "Palmeiras_20": {
+        "position": 3,
+        "results": ["V", "E", "V"],
+        "next_opponent": "Fortaleza",
+        "home_away": "Casa",
+        "opponent_table": "Z4",
+        "position_opponent": 17,
+        "form_opponent": ["D", "D", "V"],
+        "scheduled_date": "20/09/2025",
+        "match_time": "21:00"
+      },
+      "Flamengo_21": {
+        "position": 2,
+        "results": ["V", "V", "D"],
+        "next_opponent": "Vasco da Gama",
+        "home_away": "Casa",
+        "opponent_table": "Meio da tabela",
+        "position_opponent": 13,
+        "form_opponent": ["V", "E", "D"],
+        "scheduled_date": "21/09/2025",
+        "match_time": "17:30"
+      },
+      "Bahia": {
+        "position": 10,
+        "results": ["E", "V", "E"],
+        "next_opponent": "Palmeiras",
+        "home_away": "Casa",
+        "opponent_table": "Top 5",
+        "position_opponent": 3,
+        "form_opponent": ["V", "E", "V"],
+        "scheduled_date": "28/09/2025",
+        "match_time": "16:00"
+      },
+      "Fluminense": {
+        "position": 6,
+        "results": ["V", "D", "V"],
+        "next_opponent": "Botafogo",
+        "home_away": "Casa",
+        "opponent_table": "Top 5",
+        "position_opponent": 4,
+        "form_opponent": ["V", "V", "E"],
+        "scheduled_date": "28/09/2025",
+        "match_time": "16:00"
+      },
+      "Corinthians": {
+        "position": 11,
+        "results": ["E", "V", "D"],
+        "next_opponent": "Flamengo",
+        "home_away": "Casa",
+        "opponent_table": "Top 5",
+        "position_opponent": 2,
+        "form_opponent": ["V", "V", "D"],
+        "scheduled_date": "28/09/2025",
+        "match_time": "20:30"
+      },
+      "São_Paulo": {
+        "position": 7,
+        "results": ["V", "E", "V"],
+        "next_opponent": "Ceará",
+        "home_away": "Casa",
+        "opponent_table": "Z4",
+        "position_opponent": 17,
+        "form_opponent": ["D", "D", "D"],
+        "scheduled_date": "29/09/2025",
+        "match_time": "20:00"
+      }
     },
     "39": {
-      "name": "Premier League",
-      "teams": [
-        {
-          "team": "Arsenal",
-          "position": 2,
-          "form": ["V", "V", "E"],
-          "next_opponent": "Nottingham Forest",
-          "home_away": "Casa",
-          "opponent_position": 14,
-          "opponent_form": ["D", "E", "V"],
-          "opponent_strength": "Meio da tabela",
-          "datetime": "2025-09-14T08:30:00",
-          "venue": "Emirates Stadium, Londres, Inglaterra",
-          "confidence_level": "high",
-          "strategy": "Favorito claro em casa",
-          "factors": ["Arsenal em alta", "Forest em crise"]
-        },
-        {
-          "team": "Liverpool",
-          "position": 4,
-          "form": ["V", "E", "D"],
-          "next_opponent": "Burnley",
-          "home_away": "Fora",
-          "opponent_position": 19,
-          "opponent_form": ["D", "D", "V"],
-          "opponent_strength": "Z4",
-          "datetime": "2025-09-14T10:00:00",
-          "venue": "Turf Moor, Burnley, Inglaterra",
-          "confidence_level": "high",
-          "strategy": "Visita técnica",
-          "factors": ["Burnley em crise", "Liverpool precisa vencer"]
-        },
-        {
-          "team": "Manchester City",
-          "position": 1,
-          "form": ["V", "V", "V"],
-          "next_opponent": "Manchester United",
-          "home_away": "Casa",
-          "opponent_position": 6,
-          "opponent_form": ["V", "D", "V"],
-          "opponent_strength": "Top 6",
-          "datetime": "2025-09-14T12:30:00",
-          "venue": "Etihad Stadium, Manchester, Inglaterra",
-          "confidence_level": "high",
-          "strategy": "Clássico da cidade",
-          "factors": ["City favorito", "United pressionado"]
-        }
-      ]
+      "Liverpool": {
+        "position": 4,
+        "results": ["V", "E", "D"],
+        "next_opponent": "Everton",
+        "home_away": "Casa",
+        "opponent_table": "Meio da tabela",
+        "position_opponent": 11,
+        "form_opponent": ["V", "D", "D"],
+        "scheduled_date": "20/09/2025",
+        "match_time": "08:30"
+      },
+      "Arsenal": {
+        "position": 2,
+        "results": ["V", "V", "E"],
+        "next_opponent": "Manchester City",
+        "home_away": "Casa",
+        "opponent_table": "Top 6",
+        "position_opponent": 1,
+        "form_opponent": ["V", "V", "V"],
+        "scheduled_date": "21/09/2025",
+        "match_time": "12:30"
+      }
     },
     "140": {
-      "name": "La Liga",
-      "teams": [
-        {
-          "team": "Real Madrid",
-          "position": 1,
-          "form": ["V", "V", "V"],
-          "next_opponent": "Real Sociedad",
-          "home_away": "Fora",
-          "opponent_position": 10,
-          "opponent_form": ["V", "D", "E"],
-          "opponent_strength": "Meio da tabela",
-          "datetime": "2025-09-13T11:15:00",
-          "venue": "Estadio Municipal de Anoeta, Anoeta Stadium, Espanha",
-          "confidence_level": "high",
-          "strategy": "Visita técnica",
-          "factors": ["Real Madrid em alta", "Sociedad em casa"]
-        },
-        {
-          "team": "Barcelona",
-          "position": 2,
-          "form": ["V", "E", "D"],
-          "next_opponent": "Valencia",
-          "home_away": "Casa",
-          "opponent_position": 12,
-          "opponent_form": ["D", "V", "D"],
-          "opponent_strength": "Meio da tabela",
-          "datetime": "2025-09-14T16:00:00",
-          "venue": "Camp Nou, Barcelona, Espanha",
-          "confidence_level": "high",
-          "strategy": "Favorito claro",
-          "factors": ["Barcelona em casa", "Valencia irregular"]
-        }
-      ]
-    },
-    "61": {
-      "name": "Ligue 1",
-      "teams": [
-        {
-          "team": "Paris Saint-Germain",
-          "position": 1,
-          "form": ["V", "V", "V"],
-          "next_opponent": "Lens",
-          "home_away": "Casa",
-          "opponent_position": 3,
-          "opponent_form": ["V", "E", "V"],
-          "opponent_strength": "Top 5",
-          "datetime": "2025-09-14T12:15:00",
-          "venue": "Parc des Princes, Paris, França",
-          "confidence_level": "medium",
-          "strategy": "Clássico francês",
-          "factors": ["PSG favorito", "Lens em boa fase"]
-        }
-      ]
-    },
-    "78": {
-      "name": "Bundesliga",
-      "teams": [
-        {
-          "team": "Bayern Munich",
-          "position": 1,
-          "form": ["V", "V", "V"],
-          "next_opponent": "Hamburg SV",
-          "home_away": "Casa",
-          "opponent_position": 2,
-          "opponent_form": ["V", "V", "E"],
-          "opponent_strength": "Top 2",
-          "datetime": "2025-09-14T13:30:00",
-          "venue": "Allianz Arena, München, Alemanha",
-          "confidence_level": "medium",
-          "strategy": "Clássico da Alemanha",
-          "factors": ["Bayern favorito", "Hamburg em ascensão"]
-        }
-      ]
+      "Barcelona": {
+        "position": 2,
+        "results": ["V", "E", "D"],
+        "next_opponent": "Valencia",
+        "home_away": "Casa",
+        "opponent_table": "Meio da tabela",
+        "position_opponent": 12,
+        "form_opponent": ["D", "V", "D"],
+        "scheduled_date": "14/09/2025",
+        "match_time": "16:00"
+      },
+      "Real_Madrid": {
+        "position": 1,
+        "results": ["V", "V", "V"],
+        "next_opponent": "Real Sociedad",
+        "home_away": "Fora",
+        "opponent_table": "Meio da tabela",
+        "position_opponent": 10,
+        "form_opponent": ["V", "D", "E"],
+        "scheduled_date": "13/09/2025",
+        "match_time": "11:15"
+      }
     }
   }
 }
