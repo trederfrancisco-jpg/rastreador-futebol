@@ -97,6 +97,25 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
+    /* Selo de confiança */
+    .confidence-bar {
+      background: #2e7d32;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 15px 0;
+      text-align: center;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+    .confidence-bar .check {
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
     /* Menu lateral */
     nav {
       display: flex;
@@ -173,11 +192,55 @@
       color: #4caf50;
       font-weight: bold;
     }
+    .confidence-medium {
+      color: #ff9800;
+      font-weight: bold;
+    }
+    .confidence-low {
+      color: #f44336;
+      font-weight: bold;
+    }
     .tip {
       font-style: italic;
       color: #bbb;
       margin-top: 15px;
       text-align: center;
+    }
+    .risk {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 12px;
+      margin-left: auto;
+    }
+    .risk.green {
+      background: #2e7d32;
+      color: white;
+    }
+    .risk.orange {
+      background: #ff9800;
+      color: white;
+    }
+    .risk.red {
+      background: #f44336;
+      color: white;
+    }
+    .badge {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 12px;
+      margin-right: 10px;
+    }
+    .badge.purple {
+      background: #9c27b0;
+      color: white;
+    }
+    .badge.green {
+      background: #4caf50;
+      color: white;
+    }
+    .badge.yellow {
+      background: #ffeb3b;
+      color: black;
     }
   </style>
 </head>
@@ -261,7 +324,16 @@
       🚀 QUERO ASSINAR O RASTREADOR PRO
     </a>
 
-    <!-- Área de resultados -->
+    <!-- Selo de confiança -->
+    <div class="confidence-bar">
+      <span class="check">✅</span>
+      <span>77,3% de Acerto</span>
+      <span>|</span>
+      <span>Estratégia X2 Protegida</span>
+      <span>|</span>
+      <span>17 acertos em 22 jogos</span>
+    </div>
+
     <div id="results">
       <div class="initial-results">
         <div class="section-title">
@@ -270,20 +342,66 @@
 
         <div class="item">
           <h3>Palmeiras vs. Internacional</h3>
-          <div class="details">📅 13/09 às 18:30 | 🏟️ Casa | 🎯 Alta probabilidade</div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <div style="font-size: 0.9rem;">
+              <strong>Data/Hora:</strong> 13/09 às 18:30<br>
+              <strong>Local:</strong> 🏟️ Casa
+            </div>
+            <div style="font-size: 0.9rem;">
+              <strong>Liga:</strong> 🏆 Brasileirão<br>
+              <strong>Análise:</strong> 🎯 Alta probabilidade
+            </div>
+          </div>
+          <div class="details">
+            <strong>💡 Fator Oculto:</strong> Sem desfalque + técnico sob pressão
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 8px;">
+            <span class="badge purple">X2 Protegido</span>
+            <span class="risk green">Baixo Risco</span>
+          </div>
         </div>
 
         <div class="item">
           <h3>Fluminense vs. Corinthians</h3>
-          <div class="details">📅 13/09 às 21:00 | 🏟️ Casa | 🔥 Pressionado</div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <div style="font-size: 0.9rem;">
+              <strong>Data/Hora:</strong> 13/09 às 21:00<br>
+              <strong>Local:</strong> 🏟️ Casa
+            </div>
+            <div style="font-size: 0.9rem;">
+              <strong>Liga:</strong> 🏆 Brasileirão<br>
+              <strong>Análise:</strong> 🔥 Pressionado
+            </div>
+          </div>
+          <div class="details">
+            <strong>💡 Fator Oculto:</strong> Viagem curta + clima positivo no vestiário
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 8px;">
+            <span class="badge yellow">Risco Médio</span>
+            <span class="risk orange">Risco Moderado</span>
+          </div>
         </div>
 
         <div class="item">
           <h3>Juventude vs. Flamengo</h3>
-          <div class="details">📅 14/09 às 16:00 | 🏟️ Fora | 🎯 Clássico regional</div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <div style="font-size: 0.9rem;">
+              <strong>Data/Hora:</strong> 14/09 às 16:00<br>
+              <strong>Local:</strong> 🏟️ Fora
+            </div>
+            <div style="font-size: 0.9rem;">
+              <strong>Liga:</strong> 🏆 Brasileirão<br>
+              <strong>Análise:</strong> 🎯 Clássico regional
+            </div>
+          </div>
+          <div class="details">
+            <strong>⚠️ Risco:</strong> Desfalque no ataque + árbitro rigoroso
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 8px;">
+            <span class="badge red">Alto Risco</span>
+            <span class="risk red">Alto Risco</span>
+          </div>
         </div>
-
-        <div class="tip">📌 Dica: Selecione um campeonato e uma estratégia para ver análises detalhadas.</div>
       </div>
     </div>
   </div>
