@@ -31,41 +31,6 @@
     }
     h1, h2 { margin-top: 0; }
 
-    /* Header com badges */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      background: #0d0d16;
-      color: white;
-      font-size: 0.9rem;
-      border-bottom: 1px solid #222;
-    }
-    .header .badges {
-      display: flex;
-      gap: 10px;
-      font-weight: bold;
-    }
-    .header .badges span {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .header .badges .emoji {
-      font-size: 1.2rem;
-    }
-    .header .language-selector {
-      padding: 8px 12px;
-      background: #333;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      min-width: 120px;
-    }
-
     /* Badge de elite principal */
     .elite-badge {
       text-align: center;
@@ -76,6 +41,24 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    /* Menu de idioma no topo direito */
+    .language-selector {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      z-index: 1000;
+    }
+    #languageSelector {
+      padding: 8px 12px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      min-width: 120px;
     }
 
     /* Botão de assinatura */
@@ -95,25 +78,6 @@
       display: inline-block;
       margin: 15px 0;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    /* Selo de confiança */
-    .confidence-bar {
-      background: #2e7d32;
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin: 15px 0;
-      text-align: center;
-      font-size: 0.95rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-    }
-    .confidence-bar .check {
-      color: #fff;
-      font-size: 1.2rem;
     }
 
     /* Menu lateral */
@@ -190,14 +154,6 @@
     }
     .confidence-high {
       color: #4caf50;
-      font-weight: bold;
-    }
-    .confidence-medium {
-      color: #ff9800;
-      font-weight: bold;
-    }
-    .confidence-low {
-      color: #f44336;
       font-weight: bold;
     }
     .tip {
@@ -300,39 +256,24 @@
   </div>
 
   <div id="content">
-    <!-- Header com badges -->
-    <div class="header">
-      <div class="badges">
-        <span><span class="emoji">🏆</span> Top 1% no Mundo</span>
-        <span><span class="emoji">🥇</span> Líder em Inovação</span>
-        <span><span class="emoji">💡</span> X2 Protegido</span>
-      </div>
-      <select id="languageSelector" class="language-selector">
+    <!-- Badge de elite principal -->
+    <div class="elite-badge">
+      🏆 Top 1% no Mundo | 🥇 Líder em Inovação | 💡 X2 Protegido
+    </div>
+
+    <!-- Menu de idioma no topo direito -->
+    <div class="language-selector">
+      <select id="languageSelector">
         <option value="pt">🇧🇷 PT/BRL</option>
         <option value="en">🇺🇸 EN/USD</option>
         <option value="es">🇪🇸 ES/ARS</option>
       </select>
     </div>
 
-    <!-- Badge de elite principal -->
-    <div class="elite-badge">
-      🏆 Top 1% no Mundo | 🥇 Líder em Inovação | 💡 X2 Protegido
-    </div>
-
     <!-- Botão de assinatura -->
     <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" target="_blank" class="btn-primary">
       🚀 QUERO ASSINAR O RASTREADOR PRO
     </a>
-
-    <!-- Selo de confiança -->
-    <div class="confidence-bar">
-      <span class="check">✅</span>
-      <span>77,3% de Acerto</span>
-      <span>|</span>
-      <span>Estratégia X2 Protegida</span>
-      <span>|</span>
-      <span>17 acertos em 22 jogos</span>
-    </div>
 
     <div id="results">
       <div class="initial-results">
