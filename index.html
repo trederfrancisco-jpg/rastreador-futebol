@@ -156,6 +156,10 @@
       color: #4caf50;
       font-weight: bold;
     }
+    .confidence-low {
+      color: #f44336;
+      font-weight: bold;
+    }
     .tip {
       font-style: italic;
       color: #bbb;
@@ -348,39 +352,152 @@
   </div>
 
   <script>
+    // Função para ativar o botão clicado
+    function setActiveButton(clicked) {
+      document.querySelectorAll("nav button").forEach(btn => {
+        btn.classList.remove("active");
+      });
+      clicked.classList.add("active");
+    }
+
+    // Função para mostrar resultados com Win/Loss
+    function showResults(title, games) {
+      let html = `<div class="section-title">${title}</div>`;
+      games.forEach(game => {
+        html += `
+          <div class="item">
+            <h3>${game.teams}</h3>
+            <div class="confidence-high">${game.result}</div>
+            <div class="details">🎯 ${game.analysis}</div>
+            <div class="details">🔹 ${game.hidden}</div>
+          </div>
+        `;
+      });
+      html += `<div class="tip">📅 Dados atualizados em: 13/09/2025</div>`;
+      document.getElementById("results").innerHTML = html;
+    }
+
+    // Botões funcionais
+    document.getElementById("btnChance").addEventListener("click", function() {
+      setActiveButton(this);
+      showResults("🎯 REAÇÃO DO LÍDER (G4)", [
+        {
+          teams: "Palmeiras vs. Internacional",
+          result: "✅ Win — Entrada acertada",
+          analysis: "Time do G4 pressionado precisa vencer",
+          hidden: "Fator Oculto: Técnico sob pressão máxima"
+        },
+        {
+          teams: "Fluminense vs. Corinthians",
+          result: "✅ Win — Vitória importante",
+          analysis: "Clube precisa manter posição no G4",
+          hidden: "Fator Oculto: Apoio da torcida + viagem curta"
+        }
+      ]);
+    });
+
+    document.getElementById("btnPressureAlert").addEventListener("click", function() {
+      setActiveButton(this);
+      showResults("🔥 ALERTA DE PRESSÃO (G4 Pressionado)", [
+        {
+          teams: "Flamengo vs. Juventude",
+          result: "✅ Win — Favorito em casa",
+          analysis: "Técnico ameaçado + odd de empate alta",
+          hidden: "Fator Oculto: Odd de empate paga R$3,75"
+        },
+        {
+          teams: "São Paulo vs. Bahia",
+          result: "❌ Loss — Surpresa no Morumbi",
+          analysis: "Bahia surpreendeu com marcação alta",
+          hidden: "Fator Oculto: São Paulo viajou 1.200km"
+        }
+      ]);
+    });
+
+    document.getElementById("btnHiddenConflicts").addEventListener("click", function() {
+      setActiveButton(this);
+      showResults("💰 VALOR NO MERCADO (Odd Alta)", [
+        {
+          teams: "Palmeiras vs. Fortaleza",
+          result: "✅ Win — Odd de empate alta (3.60)",
+          analysis: "Cobrir vitória + empate (X2 Protegido)",
+          hidden: "Fator Oculto: Fortaleza com 3 desfalques"
+        },
+        {
+          teams: "Liverpool vs. Wolves",
+          result: "✅ Win — Salah decidiu",
+          analysis: "Casa + forma positiva + odd alta",
+          hidden: "Fator Oculto: Wolves com 4 desfalques"
+        }
+      ]);
+    });
+
+    document.getElementById("btnReactionChain").addEventListener("click", function() {
+      setActiveButton(this);
+      showResults("🔄 MÚLTIPLOS EM CADEIA (G4)", [
+        {
+          teams: "Palmeiras vs. Internacional",
+          result: "✅ Win — Reação do líder",
+          analysis: "Precisava vencer após 2 empates",
+          hidden: "Fator Oculto: Sem desfalque + técnico sob pressão"
+        },
+        {
+          teams: "Internacional vs. Coritiba",
+          result: "✅ Win — Gol no fim",
+          analysis: "Pressão do G4 + clima de renovação",
+          hidden: "Fator Oculto: Técnico novo + apoio da torcida"
+        }
+      ]);
+    });
+
+    document.getElementById("btnMultiples").addEventListener("click", function() {
+      setActiveButton(this);
+      const html = `
+        <div class="section-title">🚀 MÚLTIPLOS EM ALTA (X2 Protegido)</div>
+        <div class="item">
+          <h3>Palmeiras vs. Internacional</h3>
+          <div class="confidence-high">✅ Win — Cobrir vitória + empate</div>
+          <div class="details">💡 Estratégia X2 Protegida: só perde se for derrotado</div>
+          <div class="details">🔹 Fator Oculto: Sem desfalque + árbitro neutro</div>
+        </div>
+        <div class="item">
+          <h3>Flamengo vs. Juventude</h3>
+          <div class="confidence-high">✅ Win — Favorito em casa</div>
+          <div class="details">📌 Odd de empate alta (3.75) — proteger é inteligente</div>
+          <div class="details">🔹 Fator Oculto: Técnico ameaçado + clima de pressão</div>
+        </div>
+        <div class="tip">📅 Dados atualizados em: 13/09/2025</div>
+      `;
+      document.getElementById("results").innerHTML = html;
+    });
+
     // Traduções
     const translations = {
       pt: {
         title: "Rastreador Avançado - Múltiplos em Alta",
-        sidebarInfo: "Selecione um campeonato.",
         btnChance: "🎯 Reação do Líder (G4)",
         btnPressureAlert: "🔥 Alerta de Pressão (G4 Pressionado)",
         btnHiddenConflicts: "💰 Valor no Mercado (Odd Alta)",
         btnReactionChain: "🔄 Múltiplos em Cadeia (G4)",
         btnMultiples: "🚀 MÚLTIPLOS EM ALTA (X2 Protegido)",
-        contentTitle: "Rastreador de Alta Probabilidade",
         btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO"
       },
       en: {
         title: "Advanced Tracker - High Probability Multiples",
-        sidebarInfo: "Select a league.",
         btnChance: "🎯 Leader Reaction (G4)",
         btnPressureAlert: "🔥 Pressure Alert (G4 Under Pressure)",
         btnHiddenConflicts: "💰 Hidden Conflicts (High Odds)",
         btnReactionChain: "🔄 Chain Reaction (G4)",
         btnMultiples: "🚀 HIGH PROBABILITY MULTIPLES (X2 Protected)",
-        contentTitle: "High Probability Tracker",
         btnPrimary: "🚀 I WANT TO JOIN THE PRO TRACKER"
       },
       es: {
         title: "Rastreador Avanzado - Múltiples en Alta",
-        sidebarInfo: "Seleccione un campeonato.",
         btnChance: "🎯 Reacción del Líder (G4)",
         btnPressureAlert: "🔥 Alerta de Presión (G4 Presionado)",
         btnHiddenConflicts: "💰 Conflictos Ocultos (Odd Alta)",
         btnReactionChain: "🔄 Reacción en Cadena (G4)",
         btnMultiples: "🚀 MÚLTIPLES EN ALTO (X2 Protegido)",
-        contentTitle: "Rastreador de Alta Probabilidad",
         btnPrimary: "🚀 QUIERO SUSCRIBIRME AL RASTREADOR PRO"
       }
     };
