@@ -29,9 +29,8 @@
       overflow-y: auto;
       background: #0f0f1a;
     }
-    h1, h2 { margin-top: 0; }
 
-    /* Badge de elite principal */
+    /* Badge de elite */
     .elite-badge {
       text-align: center;
       margin-bottom: 15px;
@@ -41,24 +40,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    /* Menu de idioma no topo direito */
-    .language-selector {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      z-index: 1000;
-    }
-    #languageSelector {
-      padding: 8px 12px;
-      background: #333;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      min-width: 120px;
     }
 
     /* Botão de assinatura */
@@ -160,36 +141,18 @@
       border-radius: 12px;
       margin-left: auto;
     }
-    .risk.green {
-      background: #2e7d32;
-      color: white;
-    }
-    .risk.orange {
-      background: #ff9800;
-      color: white;
-    }
-    .risk.red {
-      background: #f44336;
-      color: white;
-    }
+    .risk.green { background: #2e7d32; color: white; }
+    .risk.orange { background: #ff9800; color: white; }
+    .risk.red { background: #f44336; color: white; }
     .badge {
       font-size: 0.8rem;
       padding: 4px 8px;
       border-radius: 12px;
       margin-right: 10px;
     }
-    .badge.purple {
-      background: #9c27b0;
-      color: white;
-    }
-    .badge.green {
-      background: #4caf50;
-      color: white;
-    }
-    .badge.yellow {
-      background: #ffeb3b;
-      color: black;
-    }
+    .badge.purple { background: #9c27b0; color: white; }
+    .badge.green { background: #4caf50; color: white; }
+    .badge.yellow { background: #ffeb3b; color: black; }
   </style>
 </head>
 <body>
@@ -248,18 +211,9 @@
   </div>
 
   <div id="content">
-    <!-- Badge de elite principal -->
+    <!-- Badge de elite -->
     <div class="elite-badge">
       🏆 Top 1% no Mundo | 🥇 Líder em Inovação | 💡 X2 Protegido
-    </div>
-
-    <!-- Menu de idioma no topo direito -->
-    <div class="language-selector">
-      <select id="languageSelector">
-        <option value="pt">🇧🇷 PT/BRL</option>
-        <option value="en">🇺🇸 EN/USD</option>
-        <option value="es">🇪🇸 ES/ARS</option>
-      </select>
     </div>
 
     <!-- Botão de assinatura -->
@@ -267,44 +221,66 @@
       🚀 QUERO ASSINAR O RASTREADOR PRO
     </a>
 
-    <!-- Resultados -->
+    <!-- Resultados - PRÓXIMOS JOGOS (dinâmico) -->
     <div id="results">
       <div class="initial-results">
-        <div class="section-title">📅 Últimos Resultados</div>
-
-        <!-- Estatísticas iniciais -->
-        <div style="background: #1a1a2e; padding: 12px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-size: 0.95rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
-          <strong>📊 Desempenho Semanal</strong><br>
-          <span style="color: #4caf50; font-weight: bold;">85% de acerto</span> (17 Wins / 3 Loss)
-        </div>
+        <div class="section-title">🔥 PRÓXIMOS EM ALTA (13 a 20/09/2025)</div>
 
         <div class="item">
-          <h3>Palmeiras vs. Internacional</h3>
-          <div class="confidence-high">✅ Win — Entrada acertada</div>
-          <div class="details">💡 Fator Oculto: Sem desfalque + técnico sob pressão</div>
+          <h3>Flamengo vs. Grêmio</h3>
+          <div class="details">
+            ⏰ 13/09 às 20:00 | 🏟️ Casa | 🏆 Brasileirão<br>
+            <strong>Estratégia:</strong> Time pressionado precisa vencer
+          </div>
           <div style="display: flex; gap: 10px; margin-top: 8px;">
-            <span class="badge purple">X2 Protegido</span>
+            <span class="badge green">Alta Probabilidade</span>
             <span class="risk green">Baixo Risco</span>
           </div>
         </div>
 
         <div class="item">
-          <h3>São Paulo vs. Bahia</h3>
-          <div class="confidence-low">❌ Loss — Surpresa no Morumbi</div>
-          <div class="details">⚠️ São Paulo viajou 1.200km</div>
+          <h3>Palmeiras vs. Corinthians</h3>
+          <div class="details">
+            ⏰ 14/09 às 18:30 | 🏟️ Casa | 🏆 Brasileirão<br>
+            <strong>Estratégia:</strong> Clássico com pressão no G4
+          </div>
           <div style="display: flex; gap: 10px; margin-top: 8px;">
-            <span class="badge red">Alto Risco</span>
+            <span class="badge yellow">Risco Médio</span>
+            <span class="risk orange">Médio Risco</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <h3>Liverpool vs. Arsenal</h3>
+          <div class="details">
+            ⏰ 14/09 às 16:30 | 🏟️ Casa | 🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League<br>
+            <strong>Estratégia:</strong> Forma positiva + clássico com tensão
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 8px;">
+            <span class="badge green">Alta Probabilidade</span>
+            <span class="risk green">Baixo Risco</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <h3>Barcelona vs. Real Madrid</h3>
+          <div class="details">
+            ⏰ 19/09 às 16:00 | 🏟️ Neutro | 🇪🇸 LaLiga<br>
+            <strong>Estratégia:</strong> Odd de empate alta (3.40) — X2 Protegido
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 8px;">
+            <span class="badge purple">X2 Protegido</span>
             <span class="risk red">Alto Risco</span>
           </div>
         </div>
 
-        <div class="tip" id="update-date">📅 Dados atualizados em: carregando...</div>
+        <div class="tip">📅 Dados atualizados em: <span id="update-date">carregando...</span></div>
       </div>
     </div>
   </div>
 
   <script>
-    // Função para ativar o botão clicado
+    // Função para ativar botão
     function setActiveButton(clicked) {
       document.querySelectorAll("nav button").forEach(btn => {
         btn.classList.remove("active");
@@ -312,22 +288,22 @@
       clicked.classList.add("active");
     }
 
-    // Função para mostrar resultados com estatísticas
+    // Função para mostrar resultados
     function showResults(title, games) {
       const wins = games.filter(g => g.result.includes("✅")).length;
       const total = games.length;
       const winRate = Math.round((wins / total) * 100);
       const date = new Date().toLocaleDateString('pt-BR');
 
-      let html = `
-        <div class="section-title">${title}</div>
-        
-        <!-- Estatísticas -->
-        <div style="background: #1a1a2e; padding: 12px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-size: 0.95rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
-          <strong>📊 Histórico: ${wins}/${total} Acertos</strong><br>
-          <span style="color: #4caf50; font-weight: bold;">${winRate}% de taxa de acerto</span>
-        </div>
-      `;
+      let html = `<div class="section-title">${title}</div>`;
+
+      if (title.includes("RESULTADOS")) {
+        html += `
+          <div style="background: #1a1a2e; padding: 12px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-size: 0.95rem;">
+            <strong>📊 Taxa de Acerto: ${winRate}%</strong><br>
+            <small>${wins}/${total} Wins</small>
+          </div>`;
+      }
 
       games.forEach(game => {
         html += `
@@ -336,11 +312,10 @@
             <div class="${game.result.includes('✅') ? 'confidence-high' : 'confidence-low'}">${game.result}</div>
             <div class="details">🎯 ${game.analysis}</div>
             <div class="details">🔹 ${game.hidden}</div>
-          </div>
-        `;
+          </div>`;
       });
 
-      html += `<div class="tip" id="update-date">📅 Dados atualizados em: ${date}</div>`;
+      html += `<div class="tip">📅 Atualizado em: ${date}</div>`;
       document.getElementById("results").innerHTML = html;
     }
 
@@ -348,72 +323,32 @@
     document.getElementById("btnChance").addEventListener("click", function() {
       setActiveButton(this);
       showResults("🎯 REAÇÃO DO LÍDER (G4)", [
-        {
-          teams: "Palmeiras vs. Internacional",
-          result: "✅ Win — Entrada acertada",
-          analysis: "Time do G4 pressionado precisa vencer",
-          hidden: "Fator Oculto: Técnico sob pressão máxima"
-        },
-        {
-          teams: "Fluminense vs. Corinthians",
-          result: "✅ Win — Vitória importante",
-          analysis: "Clube precisa manter posição no G4",
-          hidden: "Fator Oculto: Apoio da torcida + viagem curta"
-        }
+        { teams: "Palmeiras vs. Internacional", result: "✅ Win — Entrada acertada", analysis: "Time do G4 precisa vencer", hidden: "Técnico sob pressão máxima" },
+        { teams: "Fluminense vs. Corinthians", result: "✅ Win — Vitória importante", analysis: "Clube precisa manter posição", hidden: "Apoio da torcida + viagem curta" }
       ]);
     });
 
     document.getElementById("btnPressureAlert").addEventListener("click", function() {
       setActiveButton(this);
       showResults("🔥 ALERTA DE PRESSÃO (G4 Pressionado)", [
-        {
-          teams: "Flamengo vs. Juventude",
-          result: "✅ Win — Favorito em casa",
-          analysis: "Técnico ameaçado + odd de empate alta",
-          hidden: "Fator Oculto: Odd de empate paga R$3,75"
-        },
-        {
-          teams: "São Paulo vs. Bahia",
-          result: "❌ Loss — Surpresa no Morumbi",
-          analysis: "Bahia surpreendeu com marcação alta",
-          hidden: "Fator Oculto: São Paulo viajou 1.200km"
-        }
+        { teams: "Flamengo vs. Juventude", result: "✅ Win — Favorito em casa", analysis: "Odd de empate alta", hidden: "Odd paga R$3,75" },
+        { teams: "São Paulo vs. Bahia", result: "❌ Loss — Surpresa no Morumbi", analysis: "Bahia surpreendeu", hidden: "São Paulo viajou 1.200km" }
       ]);
     });
 
     document.getElementById("btnHiddenConflicts").addEventListener("click", function() {
       setActiveButton(this);
       showResults("💰 VALOR NO MERCADO (Odd Alta)", [
-        {
-          teams: "Palmeiras vs. Fortaleza",
-          result: "✅ Win — Odd de empate alta (3.60)",
-          analysis: "Cobrir vitória + empate (X2 Protegido)",
-          hidden: "Fator Oculto: Fortaleza com 3 desfalques"
-        },
-        {
-          teams: "Liverpool vs. Wolves",
-          result: "✅ Win — Salah decidiu",
-          analysis: "Casa + forma positiva + odd alta",
-          hidden: "Fator Oculto: Wolves com 4 desfalques"
-        }
+        { teams: "Palmeiras vs. Fortaleza", result: "✅ Win — Odd de empate 3.60", analysis: "Cobrir vitória + empate", hidden: "Fortaleza com 3 desfalques" },
+        { teams: "Liverpool vs. Wolves", result: "✅ Win — Salah decidiu", analysis: "Casa + forma positiva", hidden: "Wolves com 4 desfalques" }
       ]);
     });
 
     document.getElementById("btnReactionChain").addEventListener("click", function() {
       setActiveButton(this);
       showResults("🔄 MÚLTIPLOS EM CADEIA (G4)", [
-        {
-          teams: "Palmeiras vs. Internacional",
-          result: "✅ Win — Reação do líder",
-          analysis: "Precisava vencer após 2 empates",
-          hidden: "Fator Oculto: Sem desfalque + técnico sob pressão"
-        },
-        {
-          teams: "Internacional vs. Coritiba",
-          result: "✅ Win — Gol no fim",
-          analysis: "Pressão do G4 + clima de renovação",
-          hidden: "Fator Oculto: Técnico novo + apoio da torcida"
-        }
+        { teams: "Palmeiras vs. Internacional", result: "✅ Win — Reação do líder", analysis: "Precisava vencer após 2 empates", hidden: "Sem desfalque + técnico pressionado" },
+        { teams: "Internacional vs. Coritiba", result: "✅ Win — Gol no fim", analysis: "Pressão do G4", hidden: "Técnico novo + apoio da torcida" }
       ]);
     });
 
@@ -422,25 +357,23 @@
       const date = new Date().toLocaleDateString('pt-BR');
       const html = `
         <div class="section-title">🚀 MÚLTIPLOS EM ALTA (X2 Protegido)</div>
-        
         <div style="background: #1a1a2e; padding: 12px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-size: 0.95rem;">
-          <strong>📊 Desempenho: 90% de acerto</strong><br>
-          <span style="color: #4caf50;">Estratégia X2 Protegido altamente eficaz</span>
+          <strong>📊 Estratégia com 90% de acerto</strong><br>
+          <small>Protege contra derrota direta</small>
         </div>
-
         <div class="item">
           <h3>Palmeiras vs. Internacional</h3>
-          <div class="confidence-high">✅ Win — Cobrir vitória + empate</div>
-          <div class="details">💡 Estratégia X2 Protegida: só perde se for derrotado</div>
+          <div class="confidence-high">✅ Recomendado — X2 Protegido</div>
+          <div class="details">💡 Estratégia: cobrir vitória ou empate</div>
           <div class="details">🔹 Fator Oculto: Sem desfalque + árbitro neutro</div>
         </div>
         <div class="item">
           <h3>Flamengo vs. Juventude</h3>
-          <div class="confidence-high">✅ Win — Favorito em casa</div>
-          <div class="details">📌 Odd de empate alta (3.75) — proteger é inteligente</div>
+          <div class="confidence-high">✅ Recomendado — Odd de empate alta</div>
+          <div class="details">📌 Odd de empate: 3.75 — proteger é inteligente</div>
           <div class="details">🔹 Fator Oculto: Técnico ameaçado + clima de pressão</div>
         </div>
-        <div class="tip" id="update-date">📅 Dados atualizados em: ${date}</div>
+        <div class="tip">📅 Atualizado em: ${date}</div>
       `;
       document.getElementById("results").innerHTML = html;
     });
@@ -497,15 +430,11 @@
       const savedLang = localStorage.getItem('language') || 'pt';
       document.getElementById("languageSelector").value = savedLang;
       translatePage(savedLang);
-
-      // Define data atual na tela inicial
-      const date = new Date().toLocaleDateString('pt-BR');
-      document.getElementById("update-date").textContent = `📅 Dados atualizados em: ${date}`;
+      document.getElementById("update-date").textContent = new Date().toLocaleDateString('pt-BR');
     });
   </script>
 </body>
 </html>
-
 
 
 
