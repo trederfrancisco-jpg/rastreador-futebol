@@ -351,126 +351,71 @@
     </div>
   </div>
 
+  <!-- Modal de Pagamento VIP -->
+  <div id="paymentModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:999; padding:20px; color:white; font-family:Arial;">
+    <div style="max-width:500px; margin:50px auto; background:#121212; padding:20px; border-radius:10px; box-shadow:0 0 20px rgba(255,138,0,0.3);">
+      <h2 style="color:#ff9800; text-align:center;">🔐 Acesso VIP Liberado</h2>
+      <p style="text-align:center; color:#ccc;">Assine o <strong>Rastreador PRO</strong> e tenha acesso ao <strong>Alerta de Pressão VIP</strong>.</p>
+      <ul style="color:#ccc; margin:20px 0;">
+        <li>✅ Análise emocional em tempo real</li>
+        <li>✅ Recomendações com odd ideal</li>
+        <li>✅ Histórico de acertos (30 dias)</li>
+        <li>✅ Alerta por WhatsApp automático</li>
+        <li>✅ Texto pronto para copiar</li>
+      </ul>
+      <a href="https://wa.me/5511998545662?text=Quero+assinar+o+Rastreador+PRO+com+Alerta+VIP" target="_blank" style="background:#25D366; color:black; padding:15px; text-align:center; display:block; border-radius:6px; font-weight:bold; text-decoration:none; font-size:1.1rem;">
+        🚀 QUERO O VIP (via WhatsApp)
+      </a>
+      <button id="btnCloseModal" style="background:#555; border:none; color:white; padding:10px; width:100%; margin-top:10px; border-radius:6px;">
+        Fechar
+      </button>
+    </div>
+  </div>
+
   <script>
-    // Função para ativar o botão clicado
-    function setActiveButton(clicked) {
-      document.querySelectorAll("nav button").forEach(btn => {
-        btn.classList.remove("active");
-      });
-      clicked.classList.add("active");
-    }
-
-    // Função para mostrar o histórico mensal completo
-    function showMonthlyHistory() {
-      const html = `
-        <div class="section-title">📊 RELATÓRIO MENSAL (30 DIAS REAIS)</div>
-        
-        <div style="background: #2a2a2a; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 15px; font-size: 1.1rem;">
-          <strong>🎯 TAXA DE ACERTO: 77,3%</strong><br>
-          <small>17 acertos em 22 jogos (01/08 a 30/08/2025)</small>
-        </div>
-
-        <div class="item">
-          <strong>Palmeiras</strong> vs. Internacional
-          <div class="confidence-high">✅ Win — Entrada acertada</div>
-          <div class="details">🎯 Análise: time do G4 pressionado em casa contra time do meio da tabela</div>
-          <div class="details">🔹 Fator Oculto: Sem desfalque + árbitro neutro</div>
-        </div>
-
-        <div class="item">
-          <strong>Flamengo</strong> vs. Juventude
-          <div class="confidence-high">✅ Win — Favorito em casa</div>
-          <div class="details">📌 Análise: Flamengo precisava reagir após derrota</div>
-          <div class="details">🔹 Fator Oculto: Técnico ameaçado + odd de empate alta (3.75)</div>
-        </div>
-
-        <div class="item">
-          <strong>Botafogo</strong> vs. Fortaleza
-          <div class="confidence-high">✅ Win — Vitória segura</div>
-          <div class="details">💡 Estratégia: cobrir vitória + empate (X2 Protegida)</div>
-          <div class="details">🔹 Fator Oculto: Fortaleza com 3 desfalques importantes</div>
-        </div>
-
-        <div class="item">
-          <strong>São Paulo</strong> vs. Bahia
-          <div class="confidence-low">❌ Loss — Fora de casa forte</div>
-          <div class="details">⚠️ Análise: Bahia surpreendeu com marcação alta</div>
-          <div class="details">🔹 Fator Oculto: São Paulo viajou 1.200km + goleiro titular fora</div>
-        </div>
-
-        <div class="item">
-          <strong>Internacional</strong> vs. Coritiba
-          <div class="confidence-high">✅ Win — Pressão do G4</div>
-          <div class="details">🎯 Inter venceu com gol no fim</div>
-          <div class="details">🔹 Fator Oculto: Técnico novo + clima de renovação</div>
-        </div>
-
-        <div class="item">
-          <strong>Liverpool</strong> vs. Wolves
-          <div class="confidence-high">✅ Win — Casa + forma positiva</div>
-          <div class="details">📌 Salah decidiu o jogo</div>
-          <div class="details">🔹 Fator Oculto: Wolves com 4 desfalques + viagem longa</div>
-        </div>
-
-        <div class="tip">📌 Dica: Estratégia X2 Protegida: Aposta em vitória + empate. Só perde se o time for derrotado.</div>
-      `;
-      document.getElementById("results").innerHTML = html;
-    }
-
-    // Botões funcionais
-    document.getElementById("btnChance").addEventListener("click", function() {
-      setActiveButton(this);
-      showMonthlyHistory();
-    });
-
-    document.getElementById("btnPressureAlert").addEventListener("click", function() {
-      setActiveButton(this);
-      showMonthlyHistory();
-    });
-
-    document.getElementById("btnHiddenConflicts").addEventListener("click", function() {
-      setActiveButton(this);
-      showMonthlyHistory();
-    });
-
-    document.getElementById("btnReactionChain").addEventListener("click", function() {
-      setActiveButton(this);
-      showMonthlyHistory();
-    });
-
-    document.getElementById("btnMultiples").addEventListener("click", function() {
-      setActiveButton(this);
-      showMonthlyHistory();
-    });
-
     // Traduções
     const translations = {
       pt: {
         title: "Rastreador Avançado - Múltiplos em Alta",
+        sidebarInfo: "Selecione um campeonato.",
         btnChance: "🎯 Reação do Líder (G4)",
         btnPressureAlert: "🔥 Alerta de Pressão (G4 Pressionado)",
         btnHiddenConflicts: "💰 Valor no Mercado (Odd Alta)",
         btnReactionChain: "🔄 Múltiplos em Cadeia (G4)",
         btnMultiples: "🚀 MÚLTIPLOS EM ALTA (X2 Protegido)",
-        btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO"
+        contentTitle: "Rastreador de Alta Probabilidade",
+        btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO",
+        btnCloseModal: "Fechar",
+        paymentModalTitle: "🔐 Acesso VIP Liberado",
+        paymentModalText: "Assine o <strong>Rastreador PRO</strong> e tenha acesso ao <strong>Alerta de Pressão VIP</strong>."
       },
       en: {
         title: "Advanced Tracker - High Probability Multiples",
+        sidebarInfo: "Select a league.",
         btnChance: "🎯 Leader Reaction (G4)",
         btnPressureAlert: "🔥 Pressure Alert (G4 Under Pressure)",
         btnHiddenConflicts: "💰 Hidden Conflicts (High Odds)",
         btnReactionChain: "🔄 Chain Reaction (G4)",
         btnMultiples: "🚀 HIGH PROBABILITY MULTIPLES (X2 Protected)",
-        btnPrimary: "🚀 I WANT TO JOIN THE PRO TRACKER"
+        contentTitle: "High Probability Tracker",
+        btnPrimary: "🚀 I WANT TO JOIN THE PRO TRACKER",
+        btnCloseModal: "Close",
+        paymentModalTitle: "🔐 VIP Access Unlocked",
+        paymentModalText: "Subscribe to <strong>Tracker PRO</strong> and get access to <strong>Pressure Alert VIP</strong>."
       },
       es: {
         title: "Rastreador Avanzado - Múltiples en Alta",
+        sidebarInfo: "Seleccione un campeonato.",
         btnChance: "🎯 Reacción del Líder (G4)",
         btnPressureAlert: "🔥 Alerta de Presión (G4 Presionado)",
         btnHiddenConflicts: "💰 Conflictos Ocultos (Odd Alta)",
         btnReactionChain: "🔄 Reacción en Cadena (G4)",
         btnMultiples: "🚀 MÚLTIPLES EN ALTO (X2 Protegido)",
-        btnPrimary: "🚀 QUIERO SUSCRIBIRME AL RASTREADOR PRO"
+        contentTitle: "Rastreador de Alta Probabilidad",
+        btnPrimary: "🚀 QUIERO SUSCRIBIRME AL RASTREADOR PRO",
+        btnCloseModal: "Cerrar",
+        paymentModalTitle: "🔐 Acceso VIP Liberado",
+        paymentModalText: "Suscríbete al <strong>Rastreador PRO</strong> y accede al <strong>Alerta de Presión VIP</strong>."
       }
     };
 
@@ -483,6 +428,9 @@
       document.getElementById("btnReactionChain").textContent = t.btnReactionChain;
       document.getElementById("btnMultiples").textContent = t.btnMultiples;
       document.querySelector(".btn-primary").textContent = t.btnPrimary;
+      document.getElementById("btnCloseModal").textContent = t.btnCloseModal;
+      document.querySelector("#paymentModal h2").textContent = t.paymentModalTitle;
+      document.querySelector("#paymentModal p").innerHTML = t.paymentModalText;
     }
 
     document.getElementById("languageSelector").addEventListener("change", function() {
@@ -495,6 +443,80 @@
       const savedLang = localStorage.getItem('language') || 'pt';
       document.getElementById("languageSelector").value = savedLang;
       translatePage(savedLang);
+
+      // Função para ativar botão
+      function setActiveButton(clicked) {
+        document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("active"));
+        clicked.classList.add("active");
+      }
+
+      // Função para mostrar histórico mensal
+      function showMonthlyHistory() {
+        const html = `
+          <div class="section-title">📊 RELATÓRIO MENSAL (30 DIAS REAIS)</div>
+          <div style="background: #2a2a2a; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 15px; font-size: 1.1rem;">
+            <strong>🎯 TAXA DE ACERTO: 77,3%</strong><br>
+            <small>17 acertos em 22 jogos (01/08 a 30/08/2025)</small>
+          </div>
+          <div class="item">
+            <strong>Palmeiras</strong> vs. Internacional
+            <div class="confidence-high">✅ Win — Entrada acertada</div>
+            <div class="details">🎯 Análise: time do G4 pressionado em casa contra time do meio da tabela</div>
+            <div class="details">🔹 Fator Oculto: Sem desfalque + árbitro neutro</div>
+          </div>
+          <div class="item">
+            <strong>Flamengo</strong> vs. Juventude
+            <div class="confidence-high">✅ Win — Favorito em casa</div>
+            <div class="details">📌 Análise: Flamengo precisava reagir após derrota</div>
+            <div class="details">🔹 Fator Oculto: Técnico ameaçado + odd de empate alta (3.75)</div>
+          </div>
+          <div class="item">
+            <strong>Botafogo</strong> vs. Fortaleza
+            <div class="confidence-high">✅ Win — Vitória segura</div>
+            <div class="details">💡 Estratégia: cobrir vitória + empate (X2 Protegida)</div>
+            <div class="details">🔹 Fator Oculto: Fortaleza com 3 desfalques importantes</div>
+          </div>
+          <div class="item">
+            <strong>São Paulo</strong> vs. Bahia
+            <div class="confidence-low">❌ Loss — Fora de casa forte</div>
+            <div class="details">⚠️ Análise: Bahia surpreendeu com marcação alta</div>
+            <div class="details">🔹 Fator Oculto: São Paulo viajou 1.200km + goleiro titular fora</div>
+          </div>
+          <div class="tip">📌 Dica: Estratégia X2 Protegida: Aposta em vitória + empate. Só perde se o time for derrotado.</div>
+        `;
+        document.getElementById("results").innerHTML = html;
+      }
+
+      // Botões funcionais
+      document.getElementById("btnChance").addEventListener("click", function() {
+        setActiveButton(this);
+        showMonthlyHistory();
+      });
+
+      document.getElementById("btnPressureAlert").addEventListener("click", function() {
+        setActiveButton(this);
+        document.getElementById("paymentModal").style.display = "block";
+      });
+
+      document.getElementById("btnHiddenConflicts").addEventListener("click", function() {
+        setActiveButton(this);
+        document.getElementById("paymentModal").style.display = "block";
+      });
+
+      document.getElementById("btnReactionChain").addEventListener("click", function() {
+        setActiveButton(this);
+        document.getElementById("paymentModal").style.display = "block";
+      });
+
+      document.getElementById("btnMultiples").addEventListener("click", function() {
+        setActiveButton(this);
+        document.getElementById("paymentModal").style.display = "block";
+      });
+
+      // Fechar modal
+      document.getElementById("btnCloseModal").addEventListener("click", function() {
+        document.getElementById("paymentModal").style.display = "none";
+      });
     });
   </script>
 </body>
