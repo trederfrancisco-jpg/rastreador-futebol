@@ -1,969 +1,413 @@
 {
-  "2025": {
-    "71": {
-      "Campeonato": "Campeonato Brasileiro",
-      "Jogos": [
+  "brasileirao": [
+    {
+      "date": "2025-09-15",
+      "day": "segunda-feira",
+      "matches": [
         {
           "home": "Bahia",
           "away": "Cruzeiro",
-          "date": "15/09/2025",
           "time": "20:00",
-          "stadium": "Arena Fonte Nova",
-          "city": "Salvador, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/bahia-cruzeiro"
-        },
+          "stadium": "Casa de Apostas Arena Fonte Nova",
+          "city": "Salvador, Brasil"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-17",
+      "day": "quarta-feira",
+      "matches": [
         {
           "home": "Botafogo",
           "away": "Mirassol",
-          "date": "17/09/2025",
           "time": "19:30",
           "stadium": "Estádio Olímpico Nilton Santos",
-          "city": "Rio de Janeiro, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/botafogo-mirassol"
-        },
+          "city": "Rio de Janeiro, Brasil"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-20",
+      "day": "sábado",
+      "matches": [
         {
           "home": "Vitória",
           "away": "Fluminense",
-          "date": "20/09/2025",
           "time": "16:00",
           "stadium": "Estádio Manoel Barradas",
-          "city": "Salvador, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/vitoria-fluminense"
+          "city": "Salvador, Brasil"
         },
         {
           "home": "Botafogo",
           "away": "Atlético-MG",
-          "date": "20/09/2025",
           "time": "18:30",
           "stadium": "Estádio Olímpico Nilton Santos",
-          "city": "Rio de Janeiro, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/botafogo-atletico"
+          "city": "Rio de Janeiro, Brasil"
         },
         {
           "home": "Ceará",
           "away": "Bahia",
-          "date": "20/09/2025",
           "time": "18:30",
           "stadium": "Castelão",
-          "city": "Fortaleza, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/ceara-bahia"
+          "city": "Fortaleza, Brasil"
         },
         {
           "home": "Palmeiras",
           "away": "Fortaleza",
-          "date": "20/09/2025",
           "time": "21:00",
           "stadium": "Allianz Parque",
-          "city": "São Paulo, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/palmeiras-fortaleza"
-        },
+          "city": "São Paulo, Brasil"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-21",
+      "day": "domingo",
+      "matches": [
         {
           "home": "Mirassol",
           "away": "Juventude",
-          "date": "21/09/2025",
           "time": "16:00",
           "stadium": "Estadio José Maria de Campos Maia",
-          "city": "Mirassol, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/mirassol-juventude"
+          "city": "Mirassol, Brasil"
         },
         {
           "home": "Flamengo",
           "away": "Vasco da Gama",
-          "date": "21/09/2025",
           "time": "17:30",
           "stadium": "Estadio do Maracanã",
-          "city": "Rio de Janeiro, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/flamengo-vasco"
+          "city": "Rio de Janeiro, Brasil"
         },
         {
           "home": "Internacional",
           "away": "Grêmio",
-          "date": "21/09/2025",
           "time": "17:30",
           "stadium": "Estadio Beira-Rio",
-          "city": "Porto Alegre, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/internacional-gremio"
+          "city": "Porto Alegre, Brasil"
         },
         {
           "home": "Sport",
           "away": "Corinthians",
-          "date": "21/09/2025",
           "time": "17:30",
           "stadium": "Ilha do Retiro",
-          "city": "Recife, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/sport-corinthians"
+          "city": "Recife, Brasil"
         },
         {
           "home": "Cruzeiro",
           "away": "Red Bull Bragantino",
-          "date": "21/09/2025",
           "time": "20:30",
           "stadium": "Estadio Mineirão",
-          "city": "Belo Horizonte, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/cruzeiro-bragantino"
+          "city": "Belo Horizonte, Brasil"
         },
         {
           "home": "Santos",
           "away": "São Paulo",
-          "date": "21/09/2025",
           "time": "20:30",
-          "stadium": "Estádio Vila Belmiro",
-          "city": "Santos, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/santos-saopaulo"
-        },
+          "stadium": "Estádio Vila Belmiro (Urbano Caldeira)",
+          "city": "Santos, Brasil"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-24",
+      "day": "quarta-feira",
+      "matches": [
         {
           "home": "Grêmio",
           "away": "Botafogo",
-          "date": "24/09/2025",
           "time": "19:30",
           "stadium": "Grêmio Arena",
-          "city": "Porto Alegre, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/gremio-botafogo"
+          "city": "Porto Alegre, Brasil"
         },
         {
           "home": "Vasco da Gama",
           "away": "Bahia",
-          "date": "24/09/2025",
           "time": "19:30",
           "stadium": "Estádio São Januário",
-          "city": "Rio de Janeiro, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/vasco-bahia"
-        },
+          "city": "Rio de Janeiro, Brasil"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-27",
+      "day": "sábado",
+      "matches": [
         {
           "home": "Fortaleza",
           "away": "Sport",
-          "date": "27/09/2025",
           "time": "16:00",
           "stadium": "Castelão",
-          "city": "Fortaleza, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/fortaleza-sport"
+          "city": "Fortaleza, Brasil"
         },
         {
           "home": "Juventude",
           "away": "Internacional",
-          "date": "27/09/2025",
           "time": "18:30",
           "stadium": "Alfredo Jaconi",
-          "city": "Caxias do Sul, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/juventude-internacional"
+          "city": "Caxias do Sul, Brasil"
         },
         {
           "home": "Vasco da Gama",
           "away": "Cruzeiro",
-          "date": "27/09/2025",
           "time": "18:30",
           "stadium": "Estádio São Januário",
-          "city": "Rio de Janeiro, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/vasco-cruzeiro"
+          "city": "Rio de Janeiro, Brasil"
         },
         {
           "home": "Atlético-MG",
           "away": "Mirassol",
-          "date": "27/09/2025",
           "time": "21:00",
           "stadium": "Arena MRV",
-          "city": "Belo Horizonte, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/atletico-mirassol"
-        },
+          "city": "Belo Horizonte, Brasil"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-28",
+      "day": "domingo",
+      "matches": [
         {
           "home": "Grêmio",
           "away": "Vitória",
-          "date": "28/09/2025",
           "time": "11:00",
           "stadium": "Grêmio Arena",
-          "city": "Porto Alegre, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/gremio-vitoria"
+          "city": "Porto Alegre, Brasil"
         },
         {
           "home": "Bahia",
           "away": "Palmeiras",
-          "date": "28/09/2025",
           "time": "16:00",
-          "stadium": "Arena Fonte Nova",
-          "city": "Salvador, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/bahia-palmeiras"
+          "stadium": "Casa de Apostas Arena Fonte Nova",
+          "city": "Salvador, Brasil"
         },
         {
           "home": "Fluminense",
           "away": "Botafogo",
-          "date": "28/09/2025",
           "time": "16:00",
           "stadium": "Estadio do Maracanã",
-          "city": "Rio de Janeiro, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/fluminense-botafogo"
+          "city": "Rio de Janeiro, Brasil"
         },
         {
           "home": "Red Bull Bragantino",
           "away": "Santos",
-          "date": "28/09/2025",
           "time": "18:30",
           "stadium": "Estádio Cicero de Souza Marques",
-          "city": "Bragança Paulista, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/bragantino-santos"
+          "city": "Bragança Paulista, Brasil"
         },
         {
           "home": "Corinthians",
           "away": "Flamengo",
-          "date": "28/09/2025",
           "time": "20:30",
           "stadium": "Neo Química Arena",
-          "city": "São Paulo, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/corinthians-flamengo"
-        },
+          "city": "São Paulo, Brasil"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-29",
+      "day": "segunda-feira",
+      "matches": [
         {
           "home": "São Paulo",
           "away": "Ceará",
-          "date": "29/09/2025",
           "time": "20:00",
           "stadium": "MorumBIS",
-          "city": "São Paulo, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/saopaulo-ceara"
-        },
+          "city": "São Paulo, Brasil"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-30",
+      "day": "terça-feira",
+      "matches": [
         {
           "home": "Atlético-MG",
           "away": "Juventude",
-          "date": "30/09/2025",
           "time": "21:30",
           "stadium": "Arena MRV",
-          "city": "Belo Horizonte, Brasil",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/atletico-juventude"
-        }
-      ]
-    },
-    "39": {
-      "Campeonato": "Premier League",
-      "Jogos": [
-        {
-          "home": "Arsenal",
-          "away": "Nottingham Forest",
-          "date": "13/09/2025",
-          "time": "08:30",
-          "stadium": "Emirates Stadium",
-          "city": "Londres, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/arsenal-nottingham"
-        },
-        {
-          "home": "AFC Bournemouth",
-          "away": "Brighton & Hove Albion",
-          "date": "13/09/2025",
-          "time": "11:00",
-          "stadium": "Vitality Stadium",
-          "city": "Bournemouth, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/bournemouth-brighton"
-        },
-        {
-          "home": "Crystal Palace",
-          "away": "Sunderland",
-          "date": "13/09/2025",
-          "time": "11:00",
-          "stadium": "Selhurst Park",
-          "city": "Londres, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/crystal-sunderland"
-        },
-        {
-          "home": "Everton",
-          "away": "Aston Villa",
-          "date": "13/09/2025",
-          "time": "11:00",
-          "stadium": "Hill Dickinson Stadium",
-          "city": "Liverpool, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/everton-aston"
-        },
-        {
-          "home": "Fulham",
-          "away": "Leeds United",
-          "date": "13/09/2025",
-          "time": "11:00",
-          "stadium": "Craven Cottage",
-          "city": "Londres, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/fulham-leeds"
-        },
-        {
-          "home": "Newcastle United",
-          "away": "Wolverhampton Wanderers",
-          "date": "13/09/2025",
-          "time": "11:00",
-          "stadium": "St. James' Park",
-          "city": "Newcastle-upon-Tyne, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/newcastle-wolves"
-        },
-        {
-          "home": "West Ham United",
-          "away": "Tottenham Hotspur",
-          "date": "13/09/2025",
-          "time": "13:30",
-          "stadium": "London Stadium",
-          "city": "Londres, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/westham-tottenham"
-        },
-        {
-          "home": "Brentford",
-          "away": "Chelsea",
-          "date": "13/09/2025",
-          "time": "16:00",
-          "stadium": "Gtech Community Stadium",
-          "city": "Londres, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/brentford-chelsea"
-        },
-        {
-          "home": "Burnley",
-          "away": "Liverpool",
-          "date": "14/09/2025",
-          "time": "10:00",
-          "stadium": "Turf Moor",
-          "city": "Burnley, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/burnley-liverpool"
-        },
-        {
-          "home": "Manchester City",
-          "away": "Manchester United",
-          "date": "14/09/2025",
-          "time": "12:30",
-          "stadium": "Etihad Stadium",
-          "city": "Manchester, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/city-united"
-        },
-        {
-          "home": "Liverpool",
-          "away": "Everton",
-          "date": "20/09/2025",
-          "time": "08:30",
-          "stadium": "Anfield",
-          "city": "Liverpool, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/liverpool-everton"
-        },
-        {
-          "home": "Brighton & Hove Albion",
-          "away": "Tottenham Hotspur",
-          "date": "20/09/2025",
-          "time": "11:00",
-          "stadium": "American Express Stadium",
-          "city": "Falmer, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/brighton-tottenham"
-        },
-        {
-          "home": "Burnley",
-          "away": "Nottingham Forest",
-          "date": "20/09/2025",
-          "time": "11:00",
-          "stadium": "Turf Moor",
-          "city": "Burnley, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/burnley-forest"
-        },
-        {
-          "home": "West Ham United",
-          "away": "Crystal Palace",
-          "date": "20/09/2025",
-          "time": "11:00",
-          "stadium": "London Stadium",
-          "city": "Londres, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/westham-crystal"
-        },
-        {
-          "home": "Wolverhampton Wanderers",
-          "away": "Leeds United",
-          "date": "20/09/2025",
-          "time": "11:00",
-          "stadium": "Molineux Stadium",
-          "city": "Wolverhampton, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/wolves-leeds"
-        },
-        {
-          "home": "Manchester United",
-          "away": "Chelsea",
-          "date": "20/09/2025",
-          "time": "13:30",
-          "stadium": "Old Trafford",
-          "city": "Manchester, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/united-chelsea"
-        },
-        {
-          "home": "Fulham",
-          "away": "Brentford",
-          "date": "20/09/2025",
-          "time": "16:00",
-          "stadium": "Craven Cottage",
-          "city": "Londres, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/fulham-brentford"
-        },
-        {
-          "home": "AFC Bournemouth",
-          "away": "Newcastle United",
-          "date": "21/09/2025",
-          "time": "10:00",
-          "stadium": "Vitality Stadium",
-          "city": "Bournemouth, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/bournemouth-newcastle"
-        },
-        {
-          "home": "Sunderland",
-          "away": "Aston Villa",
-          "date": "21/09/2025",
-          "time": "10:00",
-          "stadium": "Stadium of Light",
-          "city": "Sunderland, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/sunderland-aston"
-        },
-        {
-          "home": "Arsenal",
-          "away": "Manchester City",
-          "date": "21/09/2025",
-          "time": "12:30",
-          "stadium": "Emirates Stadium",
-          "city": "Londres, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/arsenal-city"
-        },
-        {
-          "home": "Brentford",
-          "away": "Manchester United",
-          "date": "27/09/2025",
-          "time": "08:30",
-          "stadium": "Gtech Community Stadium",
-          "city": "Londres, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/brentford-united"
-        },
-        {
-          "home": "Chelsea",
-          "away": "Brighton & Hove Albion",
-          "date": "27/09/2025",
-          "time": "11:00",
-          "stadium": "Stamford Bridge",
-          "city": "Londres, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/chelsea-brighton"
-        },
-        {
-          "home": "Crystal Palace",
-          "away": "Liverpool",
-          "date": "27/09/2025",
-          "time": "11:00",
-          "stadium": "Selhurst Park",
-          "city": "Londres, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/crystal-liverpool"
-        },
-        {
-          "home": "Leeds United",
-          "away": "AFC Bournemouth",
-          "date": "27/09/2025",
-          "time": "11:00",
-          "stadium": "Elland Road",
-          "city": "Leeds, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/leeds-bournemouth"
-        },
-        {
-          "home": "Manchester City",
-          "away": "Burnley",
-          "date": "27/09/2025",
-          "time": "11:00",
-          "stadium": "Etihad Stadium",
-          "city": "Manchester, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/city-burnley"
-        },
-        {
-          "home": "Nottingham Forest",
-          "away": "Sunderland",
-          "date": "27/09/2025",
-          "time": "13:30",
-          "stadium": "The City Ground",
-          "city": "Nottingham, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/forest-sunderland"
-        },
-        {
-          "home": "Tottenham Hotspur",
-          "away": "Wolverhampton Wanderers",
-          "date": "27/09/2025",
-          "time": "16:00",
-          "stadium": "Tottenham Hotspur Stadium",
-          "city": "Londres, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/tottenham-wolves"
-        },
-        {
-          "home": "Aston Villa",
-          "away": "Fulham",
-          "date": "28/09/2025",
-          "time": "10:00",
-          "stadium": "Villa Park",
-          "city": "Birmingham, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/aston-fulham"
-        },
-        {
-          "home": "Newcastle United",
-          "away": "Arsenal",
-          "date": "28/09/2025",
-          "time": "12:30",
-          "stadium": "St. James' Park",
-          "city": "Newcastle-upon-Tyne, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/newcastle-arsenal"
-        },
-        {
-          "home": "Everton",
-          "away": "West Ham United",
-          "date": "29/09/2025",
-          "time": "16:00",
-          "stadium": "Hill Dickinson Stadium",
-          "city": "Liverpool, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/everton-westham"
-        },
-        {
-          "home": "AFC Bournemouth",
-          "away": "Fulham",
-          "date": "03/10/2025",
-          "time": "16:00",
-          "stadium": "Vitality Stadium",
-          "city": "Bournemouth, Inglaterra",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/bournemouth-fulham"
-        }
-      ]
-    },
-    "140": {
-      "Campeonato": "LaLiga",
-      "Jogos": [
-        {
-          "home": "Sevilla",
-          "away": "Elche",
-          "date": "12/09/2025",
-          "time": "16:00",
-          "stadium": "Ramón Sánchez-Pizjuán",
-          "city": "Sevilla, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/sevilla-elche"
-        },
-        {
-          "home": "Getafe",
-          "away": "Real Oviedo",
-          "date": "13/09/2025",
-          "time": "09:00",
-          "stadium": "Estadio Coliseum",
-          "city": "Getafe, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/getafe-oviedo"
-        },
-        {
-          "home": "Real Sociedad",
-          "away": "Real Madrid",
-          "date": "13/09/2025",
-          "time": "11:15",
-          "stadium": "Estadio Municipal de Anoeta",
-          "city": "Anoeta, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/rsociedad-realmadrid"
-        },
-        {
-          "home": "Athletic Club",
-          "away": "Alavés",
-          "date": "13/09/2025",
-          "time": "13:30",
-          "stadium": "San Mamés",
-          "city": "Bilbao, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/athletic-alaves"
-        },
-        {
-          "home": "Atlético Madrid",
-          "away": "Villarreal",
-          "date": "13/09/2025",
-          "time": "16:00",
-          "stadium": "Riyadh Air Metropolitano",
-          "city": "Madri, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/atletico-villarreal"
-        },
-        {
-          "home": "Celta Vigo",
-          "away": "Girona",
-          "date": "14/09/2025",
-          "time": "09:00",
-          "stadium": "Estadio Abanca-Balaídos",
-          "city": "Vigo, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/celtavigo-girona"
-        },
-        {
-          "home": "Levante",
-          "away": "Real Betis",
-          "date": "14/09/2025",
-          "time": "11:15",
-          "stadium": "Ciutat de Valencia",
-          "city": "Manises, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/levante-betis"
-        },
-        {
-          "home": "Osasuna",
-          "away": "Rayo Vallecano",
-          "date": "14/09/2025",
-          "time": "13:30",
-          "stadium": "El Sadar",
-          "city": "Pamplona, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/osasuna-rayo"
-        },
-        {
-          "home": "Barcelona",
-          "away": "Valencia",
-          "date": "14/09/2025",
-          "time": "16:00",
-          "stadium": "Spotify Camp Nou",
-          "city": "Barcelona, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/barcelona-valencia"
-        },
-        {
-          "home": "Espanyol",
-          "away": "Mallorca",
-          "date": "15/09/2025",
-          "time": "16:00",
-          "stadium": "RCDE Stadium",
-          "city": "Barcelona, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/espanyol-mallorca"
-        },
-        {
-          "home": "Alavés",
-          "away": "Sevilla",
-          "date": "21/09/2025",
-          "time": "A definir",
-          "stadium": "Mendizorroza",
-          "city": "Vitoria-Gasteiz, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/alaves-sevilla"
-        },
-        {
-          "home": "Barcelona",
-          "away": "Getafe",
-          "date": "21/09/2025",
-          "time": "A definir",
-          "stadium": "Spotify Camp Nou",
-          "city": "Barcelona, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/barcelona-getafe"
-        },
-        {
-          "home": "Elche",
-          "away": "Real Oviedo",
-          "date": "21/09/2025",
-          "time": "A definir",
-          "stadium": "Martínez Valero",
-          "city": "Elche, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/elche-oviedo"
-        },
-        {
-          "home": "Girona",
-          "away": "Levante",
-          "date": "21/09/2025",
-          "time": "A definir",
-          "stadium": "Municipal de Montilivi",
-          "city": "Girona, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/girona-levante"
-        },
-        {
-          "home": "Mallorca",
-          "away": "Atlético Madrid",
-          "date": "21/09/2025",
-          "time": "A definir",
-          "stadium": "Estadi Mallorca Son Moix",
-          "city": "Palma de Mallorca, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/mallorca-atletico"
-        },
-        {
-          "home": "Rayo Vallecano",
-          "away": "Celta Vigo",
-          "date": "21/09/2025",
-          "time": "A definir",
-          "stadium": "Estadio de Vallecas",
-          "city": "Madri, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/rayo-celta"
-        },
-        {
-          "home": "Real Betis",
-          "away": "Real Sociedad",
-          "date": "21/09/2025",
-          "time": "A definir",
-          "stadium": "Estadio La Cartuja de Sevilla",
-          "city": "Sevilla, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/betis-rsociedad"
-        },
-        {
-          "home": "Real Madrid",
-          "away": "Espanyol",
-          "date": "21/09/2025",
-          "time": "A definir",
-          "stadium": "Santiago Bernabéu",
-          "city": "Madri, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/realmadrid-espanyol"
-        },
-        {
-          "home": "Valencia",
-          "away": "Athletic Club",
-          "date": "21/09/2025",
-          "time": "A definir",
-          "stadium": "Mestalla",
-          "city": "Manises, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/valencia-athletic"
-        },
-        {
-          "home": "Villarreal",
-          "away": "Osasuna",
-          "date": "21/09/2025",
-          "time": "A definir",
-          "stadium": "Estadio de la Cerámica",
-          "city": "Villarreal, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/villarreal-osasuna"
-        },
-        {
-          "home": "Athletic Club",
-          "away": "Girona",
-          "date": "24/09/2025",
-          "time": "A definir",
-          "stadium": "San Mamés",
-          "city": "Bilbao, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/athletic-girona"
-        },
-        {
-          "home": "Atlético Madrid",
-          "away": "Rayo Vallecano",
-          "date": "24/09/2025",
-          "time": "A definir",
-          "stadium": "Riyadh Air Metropolitano",
-          "city": "Madri, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/atletico-rayo"
-        },
-        {
-          "home": "Espanyol",
-          "away": "Valencia",
-          "date": "24/09/2025",
-          "time": "A definir",
-          "stadium": "RCDE Stadium",
-          "city": "Barcelona, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/espanyol-valencia"
-        },
-        {
-          "home": "Getafe",
-          "away": "Alavés",
-          "date": "24/09/2025",
-          "time": "A definir",
-          "stadium": "Estadio Coliseum",
-          "city": "Getafe, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/getafe-alaves"
-        },
-        {
-          "home": "Levante",
-          "away": "Real Madrid",
-          "date": "24/09/2025",
-          "time": "A definir",
-          "stadium": "Ciutat de Valencia",
-          "city": "Manises, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/levante-realmadrid"
-        },
-        {
-          "home": "Osasuna",
-          "away": "Elche",
-          "date": "24/09/2025",
-          "time": "A definir",
-          "stadium": "El Sadar",
-          "city": "Pamplona, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/osasuna-elche"
-        },
-        {
-          "home": "Real Oviedo",
-          "away": "Barcelona",
-          "date": "24/09/2025",
-          "time": "A definir",
-          "stadium": "Carlos Tartiere",
-          "city": "Oviedo, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/oviedo-barcelona"
-        },
-        {
-          "home": "Real Sociedad",
-          "away": "Mallorca",
-          "date": "24/09/2025",
-          "time": "A definir",
-          "stadium": "Estadio Municipal de Anoeta",
-          "city": "Anoeta, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/rsociedad-mallorca"
-        },
-        {
-          "home": "Sevilla",
-          "away": "Villarreal",
-          "date": "24/09/2025",
-          "time": "A definir",
-          "stadium": "Ramón Sánchez-Pizjuán",
-          "city": "Sevilla, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/sevilla-villarreal"
-        },
-        {
-          "home": "Atlético Madrid",
-          "away": "Real Madrid",
-          "date": "28/09/2025",
-          "time": "A definir",
-          "stadium": "Riyadh Air Metropolitano",
-          "city": "Madri, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/atletico-realmadrid"
-        },
-        {
-          "home": "Barcelona",
-          "away": "Real Sociedad",
-          "date": "28/09/2025",
-          "time": "A definir",
-          "stadium": "Spotify Camp Nou",
-          "city": "Barcelona, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/barcelona-rsociedad"
-        },
-        {
-          "home": "Elche",
-          "away": "Celta Vigo",
-          "date": "28/09/2025",
-          "time": "A definir",
-          "stadium": "Martínez Valero",
-          "city": "Elche, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/elche-celta"
-        },
-        {
-          "home": "Getafe",
-          "away": "Levante",
-          "date": "28/09/2025",
-          "time": "A definir",
-          "stadium": "Estadio Coliseum",
-          "city": "Getafe, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/getafe-levante"
-        },
-        {
-          "home": "Girona",
-          "away": "Espanyol",
-          "date": "28/09/2025",
-          "time": "A definir",
-          "stadium": "Municipal de Montilivi",
-          "city": "Girona, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/girona-espanyol"
-        },
-        {
-          "home": "Mallorca",
-          "away": "Alavés",
-          "date": "28/09/2025",
-          "time": "A definir",
-          "stadium": "Estadi Mallorca Son Moix",
-          "city": "Palma de Mallorca, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/mallorca-alaves"
-        },
-        {
-          "home": "Rayo Vallecano",
-          "away": "Sevilla",
-          "date": "28/09/2025",
-          "time": "A definir",
-          "stadium": "Estadio de Vallecas",
-          "city": "Madri, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/rayo-sevilla"
-        },
-        {
-          "home": "Real Betis",
-          "away": "Osasuna",
-          "date": "28/09/2025",
-          "time": "A definir",
-          "stadium": "Estadio La Cartuja de Sevilla",
-          "city": "Sevilla, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/betis-osasuna"
-        },
-        {
-          "home": "Valencia",
-          "away": "Real Oviedo",
-          "date": "28/09/2025",
-          "time": "A definir",
-          "stadium": "Mestalla",
-          "city": "Manises, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/valencia-oviedo"
-        },
-        {
-          "home": "Villarreal",
-          "away": "Athletic Club",
-          "date": "28/09/2025",
-          "time": "A definir",
-          "stadium": "Estadio de la Cerámica",
-          "city": "Villarreal, Espanha",
-          "tv": "",
-          "tickets": "https://www.ingressos.com/villarreal-athletic"
+          "city": "Belo Horizonte, Brasil"
         }
       ]
     }
-  }
+  ],
+  "premierLeague": [
+    {
+      "date": "2025-09-13",
+      "day": "sábado",
+      "matches": [
+        { "home": "Arsenal", "away": "Nottingham Forest", "time": "08:30", "stadium": "Emirates Stadium", "city": "Londres, Inglaterra" },
+        { "home": "AFC Bournemouth", "away": "Brighton & Hove Albion", "time": "11:00", "stadium": "Vitality Stadium", "city": "Bournemouth, Inglaterra" },
+        { "home": "Crystal Palace", "away": "Sunderland", "time": "11:00", "stadium": "Selhurst Park", "city": "Londres, Inglaterra" },
+        { "home": "Everton", "away": "Aston Villa", "time": "11:00", "stadium": "Hill Dickinson Stadium", "city": "Liverpool, Inglaterra" },
+        { "home": "Fulham", "away": "Leeds United", "time": "11:00", "stadium": "Craven Cottage", "city": "Londres, Inglaterra" },
+        { "home": "Newcastle United", "away": "Wolverhampton Wanderers", "time": "11:00", "stadium": "St. James' Park", "city": "Newcastle-upon-Tyne, Inglaterra" },
+        { "home": "West Ham United", "away": "Tottenham Hotspur", "time": "13:30", "stadium": "London Stadium", "city": "Londres, Inglaterra" },
+        { "home": "Brentford", "away": "Chelsea", "time": "16:00", "stadium": "Gtech Community Stadium", "city": "Londres, Inglaterra" }
+      ]
+    },
+    {
+      "date": "2025-09-14",
+      "day": "domingo",
+      "matches": [
+        { "home": "Burnley", "away": "Liverpool", "time": "10:00", "stadium": "Turf Moor", "city": "Burnley, Inglaterra" },
+        { "home": "Manchester City", "away": "Manchester United", "time": "12:30", "stadium": "Etihad Stadium", "city": "Manchester, Inglaterra" }
+      ]
+    },
+    {
+      "date": "2025-09-20",
+      "day": "sábado",
+      "matches": [
+        { "home": "Liverpool", "away": "Everton", "time": "08:30", "stadium": "Anfield", "city": "Liverpool, Inglaterra" },
+        { "home": "Brighton & Hove Albion", "away": "Tottenham Hotspur", "time": "11:00", "stadium": "American Express Stadium", "city": "Falmer, Inglaterra" },
+        { "home": "Burnley", "away": "Nottingham Forest", "time": "11:00", "stadium": "Turf Moor", "city": "Burnley, Inglaterra" },
+        { "home": "West Ham United", "away": "Crystal Palace", "time": "11:00", "stadium": "London Stadium", "city": "Londres, Inglaterra" },
+        { "home": "Wolverhampton Wanderers", "away": "Leeds United", "time": "11:00", "stadium": "Molineux Stadium", "city": "Wolverhampton, Inglaterra" },
+        { "home": "Manchester United", "away": "Chelsea", "time": "13:30", "stadium": "Old Trafford", "city": "Manchester, Inglaterra" },
+        { "home": "Fulham", "away": "Brentford", "time": "16:00", "stadium": "Craven Cottage", "city": "Londres, Inglaterra" }
+      ]
+    },
+    {
+      "date": "2025-09-21",
+      "day": "domingo",
+      "matches": [
+        { "home": "AFC Bournemouth", "away": "Newcastle United", "time": "10:00", "stadium": "Vitality Stadium", "city": "Bournemouth, Inglaterra" },
+        { "home": "Sunderland", "away": "Aston Villa", "time": "10:00", "stadium": "Stadium of Light", "city": "Sunderland, Inglaterra" },
+        { "home": "Arsenal", "away": "Manchester City", "time": "12:30", "stadium": "Emirates Stadium", "city": "Londres, Inglaterra" }
+      ]
+    },
+    {
+      "date": "2025-09-27",
+      "day": "sábado",
+      "matches": [
+        { "home": "Brentford", "away": "Manchester United", "time": "08:30", "stadium": "Gtech Community Stadium", "city": "Londres, Inglaterra" },
+        { "home": "Chelsea", "away": "Brighton & Hove Albion", "time": "11:00", "stadium": "Stamford Bridge", "city": "Londres, Inglaterra" },
+        { "home": "Crystal Palace", "away": "Liverpool", "time": "11:00", "stadium": "Selhurst Park", "city": "Londres, Inglaterra" },
+        { "home": "Leeds United", "away": "AFC Bournemouth", "time": "11:00", "stadium": "Elland Road", "city": "Leeds, Inglaterra" },
+        { "home": "Manchester City", "away": "Burnley", "time": "11:00", "stadium": "Etihad Stadium", "city": "Manchester, Inglaterra" },
+        { "home": "Nottingham Forest", "away": "Sunderland", "time": "13:30", "stadium": "The City Ground", "city": "Nottingham, Inglaterra" },
+        { "home": "Tottenham Hotspur", "away": "Wolverhampton Wanderers", "time": "16:00", "stadium": "Tottenham Hotspur Stadium", "city": "Londres, Inglaterra" }
+      ]
+    },
+    {
+      "date": "2025-09-28",
+      "day": "domingo",
+      "matches": [
+        { "home": "Aston Villa", "away": "Fulham", "time": "10:00", "stadium": "Villa Park", "city": "Birmingham, Inglaterra" },
+        { "home": "Newcastle United", "away": "Arsenal", "time": "12:30", "stadium": "St. James' Park", "city": "Newcastle-upon-Tyne, Inglaterra" }
+      ]
+    },
+    {
+      "date": "2025-09-29",
+      "day": "segunda-feira",
+      "matches": [
+        { "home": "Everton", "away": "West Ham United", "time": "16:00", "stadium": "Hill Dickinson Stadium", "city": "Liverpool, Inglaterra" }
+      ]
+    },
+    {
+      "date": "2025-10-03",
+      "day": "sexta-feira",
+      "matches": [
+        { "home": "AFC Bournemouth", "away": "Fulham", "time": "16:00", "stadium": "Vitality Stadium", "city": "Bournemouth, Inglaterra" }
+      ]
+    }
+  ],
+  "laliga": [
+    {
+      "date": "2025-09-12",
+      "day": "sexta-feira",
+      "matches": [
+        { "home": "Sevilla", "away": "Elche", "time": "16:00", "stadium": "Ramón Sánchez-Pizjuán", "city": "Sevilla, Espanha" }
+      ]
+    },
+    {
+      "date": "2025-09-13",
+      "day": "sábado",
+      "matches": [
+        { "home": "Getafe", "away": "Real Oviedo", "time": "09:00", "stadium": "Estadio Coliseum", "city": "Getafe, Espanha" },
+        { "home": "Real Sociedad", "away": "Real Madrid", "time": "11:15", "stadium": "Estadio Municipal de Anoeta", "city": "San Sebastián, Espanha" },
+        { "home": "Athletic Club", "away": "Alavés", "time": "13:30", "stadium": "San Mamés", "city": "Bilbao, Espanha" },
+        { "home": "Atlético Madrid", "away": "Villarreal", "time": "16:00", "stadium": "Riyadh Air Metropolitano", "city": "Madri, Espanha" }
+      ]
+    },
+    {
+      "date": "2025-09-14",
+      "day": "domingo",
+      "matches": [
+        { "home": "Celta Vigo", "away": "Girona", "time": "09:00", "stadium": "Estadio Abanca-Balaídos", "city": "Vigo, Espanha" },
+        { "home": "Levante", "away": "Real Betis", "time": "11:15", "stadium": "Ciutat de Valencia", "city": "Manises, Espanha" },
+        { "home": "Osasuna", "away": "Rayo Vallecano", "time": "13:30", "stadium": "El Sadar", "city": "Pamplona, Espanha" },
+        { "home": "Barcelona", "away": "Valencia", "time": "16:00", "stadium": "Spotify Camp Nou", "city": "Barcelona, Espanha" }
+      ]
+    },
+    {
+      "date": "2025-09-15",
+      "day": "segunda-feira",
+      "matches": [
+        { "home": "Espanyol", "away": "Mallorca", "time": "16:00", "stadium": "RCDE Stadium", "city": "Barcelona, Espanha" }
+      ]
+    },
+    {
+      "date": "2025-09-21",
+      "day": "domingo",
+      "matches": [
+        { "home": "Alavés", "away": "Sevilla", "time": "A definir", "stadium": "Mendizorroza", "city": "Vitoria-Gasteiz, Espanha" },
+        { "home": "Barcelona", "away": "Getafe", "time": "A definir", "stadium": "Spotify Camp Nou", "city": "Barcelona, Espanha" },
+        { "home": "Elche", "away": "Real Oviedo", "time": "A definir", "stadium": "Martínez Valero", "city": "Elche, Espanha" },
+        { "home": "Girona", "away": "Levante", "time": "A definir", "stadium": "Municipal de Montilivi", "city": "Girona, Espanha" },
+        { "home": "Mallorca", "away": "Atlético Madrid", "time": "A definir", "stadium": "Estadi Mallorca Son Moix", "city": "Palma de Mallorca, Espanha" },
+        { "home": "Rayo Vallecano", "away": "Celta Vigo", "time": "A definir", "stadium": "Estadio de Vallecas", "city": "Madri, Espanha" },
+        { "home": "Real Betis", "away": "Real Sociedad", "time": "A definir", "stadium": "Estadio La Cartuja", "city": "Sevilla, Espanha" },
+        { "home": "Real Madrid", "away": "Espanyol", "time": "A definir", "stadium": "Santiago Bernabéu", "city": "Madri, Espanha" },
+        { "home": "Valencia", "away": "Athletic Club", "time": "A definir", "stadium": "Mestalla", "city": "Manises, Espanha" },
+        { "home": "Villarreal", "away": "Osasuna", "time": "A definir", "stadium": "Estadio de la Cerámica", "city": "Villarreal, Espanha" }
+      ]
+    },
+    {
+      "date": "2025-09-24",
+      "day": "quarta-feira",
+      "matches": [
+        { "home": "Athletic Club", "away": "Girona", "time": "A definir", "stadium": "San Mamés", "city": "Bilbao, Espanha" },
+        { "home": "Atlético Madrid", "away": "Rayo Vallecano", "time": "A definir", "stadium": "Riyadh Air Metropolitano", "city": "Madri, Espanha" },
+        { "home": "Espanyol", "away": "Valencia", "time": "A definir", "stadium": "RCDE Stadium", "city": "Barcelona, Espanha" },
+        { "home": "Getafe", "away": "Alavés", "time": "A definir", "stadium": "Estadio Coliseum", "city": "Getafe, Espanha" },
+        { "home": "Levante", "away": "Real Madrid", "time": "A definir", "stadium": "Ciutat de Valencia", "city": "Manises, Espanha" },
+        { "home": "Osasuna", "away": "Elche", "time": "A definir", "stadium": "El Sadar", "city": "Pamplona, Espanha" },
+        { "home": "Real Oviedo", "away": "Barcelona", "time": "A definir", "stadium": "Carlos Tartiere", "city": "Oviedo, Espanha" },
+        { "home": "Real Sociedad", "away": "Mallorca", "time": "A definir", "stadium": "Estadio Municipal de Anoeta", "city": "San Sebastián, Espanha" },
+        { "home": "Sevilla", "away": "Villarreal", "time": "A definir", "stadium": "Ramón Sánchez-Pizjuán", "city": "Sevilla, Espanha" }
+      ]
+    },
+    {
+      "date": "2025-09-28",
+      "day": "domingo",
+      "matches": [
+        { "home": "Atlético Madrid", "away": "Real Madrid", "time": "A definir", "stadium": "Riyadh Air Metropolitano", "city": "Madri, Espanha" },
+        { "home": "Barcelona", "away": "Real Sociedad", "time": "A definir", "stadium": "Spotify Camp Nou", "city": "Barcelona, Espanha" },
+        { "home": "Elche", "away": "Celta Vigo", "time": "A definir", "stadium": "Martínez Valero", "city": "Elche, Espanha" },
+        { "home": "Getafe", "away": "Levante", "time": "A definir", "stadium": "Estadio Coliseum", "city": "Getafe, Espanha" },
+        { "home": "Girona", "away": "Espanyol", "time": "A definir", "stadium": "Municipal de Montilivi", "city": "Girona, Espanha" },
+        { "home": "Mallorca", "away": "Alavés", "time": "A definir", "stadium": "Estadi Mallorca Son Moix", "city": "Palma de Mallorca, Espanha" },
+        { "home": "Rayo Vallecano", "away": "Sevilla", "time": "A definir", "stadium": "Estadio de Vallecas", "city": "Madri, Espanha" },
+        { "home": "Real Betis", "away": "Osasuna", "time": "A definir", "stadium": "Estadio La Cartuja", "city": "Sevilla, Espanha" },
+        { "home": "Valencia", "away": "Real Oviedo", "time": "A definir", "stadium": "Mestalla", "city": "Manises, Espanha" },
+        { "home": "Villarreal", "away": "Athletic Club", "time": "A definir", "stadium": "Estadio de la Cerámica", "city": "Villarreal, Espanha" }
+      ]
+    },
+    {
+      "date": "2025-10-05",
+      "day": "domingo",
+      "matches": [
+        { "home": "Alavés", "away": "Elche", "time": "A definir", "stadium": "Mendizorroza", "city": "Vitoria-Gasteiz, Espanha" },
+        { "home": "Athletic Club", "away": "Mallorca", "time": "A definir", "stadium": "San Mamés", "city": "Bilbao, Espanha" },
+        { "home": "Celta Vigo", "away": "Atlético Madrid", "time": "A definir", "stadium": "Estadio Abanca-Balaídos", "city": "Vigo, Espanha" },
+        { "home": "Espanyol", "away": "Real Betis", "time": "A definir", "stadium": "RCDE Stadium", "city": "Barcelona, Espanha" },
+        { "home": "Girona", "away": "Valencia", "time": "A definir", "stadium": "Municipal de Montilivi", "city": "Girona, Espanha" },
+        { "home": "Osasuna", "away": "Getafe", "time": "A definir", "stadium": "El Sadar", "city": "Pamplona, Espanha" },
+        { "home": "Real Madrid", "away": "Villarreal", "time": "A definir", "stadium": "Santiago Bernabéu", "city": "Madri, Espanha" },
+        { "home": "Real Oviedo", "away": "Levante", "time": "A definir", "stadium": "Carlos Tartiere", "city": "Oviedo, Espanha" },
+        { "home": "Real Sociedad", "away": "Rayo Vallecano", "time": "A definir", "stadium": "Estadio Municipal de Anoeta", "city": "San Sebastián, Espanha" },
+        { "home": "Sevilla", "away": "Barcelona", "time": "A definir", "stadium": "Ramón Sánchez-Pizjuán", "city": "Sevilla, Espanha" }
+      ]
+    }
+  ]
 }
