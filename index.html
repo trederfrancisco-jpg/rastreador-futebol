@@ -97,25 +97,6 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    /* Selo de confiança */
-    .confidence-bar {
-      background: #2e7d32;
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin: 15px 0;
-      text-align: center;
-      font-size: 0.95rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-    }
-    .confidence-bar .check {
-      color: #fff;
-      font-size: 1.2rem;
-    }
-
     /* Menu lateral */
     nav {
       display: flex;
@@ -156,9 +137,6 @@
     nav button:nth-child(5) {
       background: #f44336;
     }
-    nav button:nth-child(6) {
-      background: #f44336;
-    }
 
     /* Resultados */
     #results {
@@ -195,55 +173,11 @@
       color: #4caf50;
       font-weight: bold;
     }
-    .confidence-medium {
-      color: #ff9800;
-      font-weight: bold;
-    }
-    .confidence-low {
-      color: #f44336;
-      font-weight: bold;
-    }
     .tip {
       font-style: italic;
       color: #bbb;
       margin-top: 15px;
       text-align: center;
-    }
-    .risk {
-      font-size: 0.8rem;
-      padding: 4px 8px;
-      border-radius: 12px;
-      margin-left: auto;
-    }
-    .risk.green {
-      background: #2e7d32;
-      color: white;
-    }
-    .risk.orange {
-      background: #ff9800;
-      color: white;
-    }
-    .risk.red {
-      background: #f44336;
-      color: white;
-    }
-    .badge {
-      font-size: 0.8rem;
-      padding: 4px 8px;
-      border-radius: 12px;
-      margin-right: 10px;
-    }
-    .badge.purple {
-      background: #9c27b0;
-      color: white;
-    }
-    .badge.green {
-      background: #4caf50;
-      color: white;
-    }
-    .badge.yellow {
-      background: #ffeb3b;
-      color: black;
     }
   </style>
 </head>
@@ -258,6 +192,29 @@
         </svg>
         <span><strong>Rastreador Avançado</strong></span>
       </div>
+    </div>
+
+    <!-- Menu de seleção de campeonato -->
+    <div style="margin-bottom: 15px;">
+      <label for="leagueSelect" style="display: block; margin-bottom: 5px; font-size: 0.9rem;">Selecione Campeonato:</label>
+      <select id="leagueSelect" style="width: 100%; padding: 10px; border-radius: 6px; border: none; background: #333; color: white; font-size: 0.9rem;">
+        <option value="">Selecione um campeonato</option>
+        <option value="71">🇧🇷 Brasileirão Série A</option>
+        <option value="72">🇧🇷 Brasileirão Série B</option>
+        <option value="202">🇦🇷 Liga Profesional (Argentina)</option>
+        <option value="39">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+        <option value="140">🇪🇸 La Liga</option>
+        <option value="78">🇩🇪 Bundesliga</option>
+        <option value="135">🇮🇹 Serie A</option>
+        <option value="61">🇫🇷 Ligue 1</option>
+        <option value="88">🇳🇱 Eredivisie</option>
+        <option value="94">🇵🇹 Primeira Liga</option>
+        <option value="262">🇲🇽 Liga MX</option>
+        <option value="8">🏆 Champions League</option>
+        <option value="12">🏆 Copa Libertadores</option>
+        <option value="13">🌎 Copa Sul-Americana</option>
+        <option value="10217">⚽ Brasileirão Feminino</option>
+      </select>
     </div>
 
     <nav>
@@ -285,7 +242,7 @@
       <div class="badges">
         <span><span class="emoji">🏆</span> Top 1% no Mundo</span>
         <span><span class="emoji">🥇</span> Líder em Inovação</span>
-        <span><span class="emoji">🛡️</span> X2 Protegido</span>
+        <span><span class="emoji">💡</span> X2 Protegido</span>
       </div>
       <select id="languageSelector" class="language-selector">
         <option value="pt">🇧🇷 PT/BRL</option>
@@ -304,16 +261,7 @@
       🚀 QUERO ASSINAR O RASTREADOR PRO
     </a>
 
-    <!-- Selo de confiança -->
-    <div class="confidence-bar">
-      <span class="check">✅</span>
-      <span>77,3% de Acerto</span>
-      <span>|</span>
-      <span>Estratégia X2 Protegida</span>
-      <span>|</span>
-      <span>17 acertos em 22 jogos</span>
-    </div>
-
+    <!-- Área de resultados -->
     <div id="results">
       <div class="initial-results">
         <div class="section-title">
@@ -322,72 +270,26 @@
 
         <div class="item">
           <h3>Palmeiras vs. Internacional</h3>
-          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-            <div style="font-size: 0.9rem;">
-              <strong>Data/Hora:</strong> 13/09 às 18:30<br>
-              <strong>Local:</strong> 🏟️ Casa
-            </div>
-            <div style="font-size: 0.9rem;">
-              <strong>Liga:</strong> 🏆 Brasileirão<br>
-              <strong>Análise:</strong> 🎯 Alta probabilidade
-            </div>
-          </div>
-          <div class="details">
-            <strong>💡 Fator Oculto:</strong> Sem desfalque + técnico sob pressão
-          </div>
-          <div style="display: flex; gap: 10px; margin-top: 8px;">
-            <span class="badge purple">X2 Protegido</span>
-            <span class="risk green">Baixo Risco</span>
-          </div>
+          <div class="details">📅 13/09 às 18:30 | 🏟️ Casa | 🎯 Alta probabilidade</div>
         </div>
 
         <div class="item">
           <h3>Fluminense vs. Corinthians</h3>
-          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-            <div style="font-size: 0.9rem;">
-              <strong>Data/Hora:</strong> 13/09 às 21:00<br>
-              <strong>Local:</strong> 🏟️ Casa
-            </div>
-            <div style="font-size: 0.9rem;">
-              <strong>Liga:</strong> 🏆 Brasileirão<br>
-              <strong>Análise:</strong> 🔥 Pressionado
-            </div>
-          </div>
-          <div class="details">
-            <strong>💡 Fator Oculto:</strong> Viagem curta + clima positivo no vestiário
-          </div>
-          <div style="display: flex; gap: 10px; margin-top: 8px;">
-            <span class="badge yellow">Risco Médio</span>
-            <span class="risk orange">Risco Moderado</span>
-          </div>
+          <div class="details">📅 13/09 às 21:00 | 🏟️ Casa | 🔥 Pressionado</div>
         </div>
 
         <div class="item">
           <h3>Juventude vs. Flamengo</h3>
-          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-            <div style="font-size: 0.9rem;">
-              <strong>Data/Hora:</strong> 14/09 às 16:00<br>
-              <strong>Local:</strong> 🏟️ Fora
-            </div>
-            <div style="font-size: 0.9rem;">
-              <strong>Liga:</strong> 🏆 Brasileirão<br>
-              <strong>Análise:</strong> 🎯 Clássico regional
-            </div>
-          </div>
-          <div class="details">
-            <strong>⚠️ Risco:</strong> Desfalque no ataque + árbitro rigoroso
-          </div>
-          <div style="display: flex; gap: 10px; margin-top: 8px;">
-            <span class="badge red">Alto Risco</span>
-            <span class="risk red">Alto Risco</span>
-          </div>
+          <div class="details">📅 14/09 às 16:00 | 🏟️ Fora | 🎯 Clássico regional</div>
         </div>
+
+        <div class="tip">📌 Dica: Selecione um campeonato e uma estratégia para ver análises detalhadas.</div>
       </div>
     </div>
   </div>
 
   <script>
-    // Traduções completas
+    // Traduções
     const translations = {
       pt: {
         title: "Rastreador Avançado - Múltiplos em Alta",
@@ -398,9 +300,7 @@
         btnReactionChain: "🔄 Múltiplos em Cadeia (G4)",
         btnMultiples: "🚀 MÚLTIPLOS EM ALTA (X2 Protegido)",
         contentTitle: "Rastreador de Alta Probabilidade",
-        btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO",
-        paymentModalTitle: "🔐 Acesso VIP Liberado",
-        paymentModalText: "Assine o <strong>Rastreador PRO</strong> e tenha acesso ao <strong>Alerta de Pressão VIP</strong>."
+        btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO"
       },
       en: {
         title: "Advanced Tracker - High Probability Multiples",
@@ -411,9 +311,7 @@
         btnReactionChain: "🔄 Chain Reaction (G4)",
         btnMultiples: "🚀 HIGH PROBABILITY MULTIPLES (X2 Protected)",
         contentTitle: "High Probability Tracker",
-        btnPrimary: "🚀 I WANT TO JOIN THE PRO TRACKER",
-        paymentModalTitle: "🔐 VIP Access Unlocked",
-        paymentModalText: "Subscribe to <strong>Tracker PRO</strong> and get access to <strong>Pressure Alert VIP</strong>."
+        btnPrimary: "🚀 I WANT TO JOIN THE PRO TRACKER"
       },
       es: {
         title: "Rastreador Avanzado - Múltiples en Alta",
@@ -424,9 +322,7 @@
         btnReactionChain: "🔄 Reacción en Cadena (G4)",
         btnMultiples: "🚀 MÚLTIPLES EN ALTO (X2 Protegido)",
         contentTitle: "Rastreador de Alta Probabilidad",
-        btnPrimary: "🚀 QUIERO SUSCRIBIRME AL RASTREADOR PRO",
-        paymentModalTitle: "🔐 Acceso VIP Liberado",
-        paymentModalText: "Suscríbete al <strong>Rastreador PRO</strong> y accede al <strong>Alerta de Presión VIP</strong>."
+        btnPrimary: "🚀 QUIERO SUSCRIBIRME AL RASTREADOR PRO"
       }
     };
 
