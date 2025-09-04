@@ -1,97 +1,315 @@
-<script>
-  // Traduções
-  const translations = {
-    pt: {
-      title: "Rastreador Avançado - Múltiplos em Alta",
-      sidebarInfo: "Selecione um campeonato.",
-      btnChance: "🎯 Reação do Líder (G4)",
-      btnPressureAlert: "🔐 Alerta de Pressão (G4 Pressionado)",
-      btnHiddenConflicts: "🔍 Valor no Mercado (Odd Alta)",
-      btnReactionChain: "🌪️ Múltiplos em Cadeia (G4)",
-      btnMultiples: "🎯 MÚLTIPLOS EM ALTA (X2 Protegido)",
-      contentTitle: "Rastreador de Alta Probabilidade",
-      btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO",
-      btnCloseModal: "Fechar",
-      paymentModalTitle: "🔐 Acesso VIP Liberado",
-      paymentModalText: "Assine o <strong>Rastreador PRO</strong> e tenha acesso ao <strong>Alerta de Pressão VIP</strong>."
-    },
-    en: {
-      title: "Advanced Tracker - High Probability Multiples",
-      sidebarInfo: "Select a league.",
-      btnChance: "🎯 Leader Reaction (G4)",
-      btnPressureAlert: "🔐 Pressure Alert (G4 Under Pressure)",
-      btnHiddenConflicts: "🔍 Hidden Conflicts (High Odds)",
-      btnReactionChain: "🌪️ Chain Reaction (G4)",
-      btnMultiples: "🎯 HIGH PROBABILITY MULTIPLES (X2 Protected)",
-      contentTitle: "High Probability Tracker",
-      btnPrimary: "🚀 I WANT TO JOIN THE PRO TRACKER",
-      btnCloseModal: "Close",
-      paymentModalTitle: "🔐 VIP Access Unlocked",
-      paymentModalText: "Subscribe to <strong>Tracker PRO</strong> and get access to <strong>Pressure Alert VIP</strong>."
-    },
-    es: {
-      title: "Rastreador Avanzado - Múltiples en Alta",
-      sidebarInfo: "Seleccione un campeonato.",
-      btnChance: "🎯 Reacción del Líder (G4)",
-      btnPressureAlert: "🔐 Alerta de Presión (G4 Presionado)",
-      btnHiddenConflicts: "🔍 Conflictos Ocultos (Odd Alta)",
-      btnReactionChain: "🌪️ Reacción en Cadena (G4)",
-      btnMultiples: "🎯 MÚLTIPLES EN ALTO (X2 Protegido)",
-      contentTitle: "Rastreador de Alta Probabilidad",
-      btnPrimary: "🚀 QUIERO SUSCRIBIRME AL RASTREADOR PRO",
-      btnCloseModal: "Cerrar",
-      paymentModalTitle: "🔐 Acceso VIP Liberado",
-      paymentModalText: "Suscríbete al <strong>Rastreador PRO</strong> y accede al <strong>Alerta de Presión VIP</strong>."
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rastreador Avançado - Múltiplos em Alta</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #0f0f1a;
+      color: white;
+      display: flex;
+      height: 100vh;
     }
-  };
+    #sidebar {
+      width: 320px;
+      background: #121212;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      position: relative;
+    }
+    #content {
+      flex-grow: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      background: #0f0f1a;
+    }
+    h1, h2 { margin-top: 0; }
 
-  function translatePage(lang) {
-    const t = translations[lang];
-    document.title = t.title;
-    document.getElementById("btnChance").textContent = t.btnChance;
-    document.getElementById("btnPressureAlert").textContent = t.btnPressureAlert;
-    document.getElementById("btnHiddenConflicts").textContent = t.btnHiddenConflicts;
-    document.getElementById("btnReactionChain").textContent = t.btnReactionChain;
-    document.getElementById("btnMultiples").textContent = t.btnMultiples;
-    document.querySelector(".btn-primary").textContent = t.btnPrimary;
-    document.getElementById("btnCloseModal").textContent = t.btnCloseModal;
-    document.querySelector("#paymentModal h2").textContent = t.paymentModalTitle;
-    document.querySelector("#paymentModal p").innerHTML = t.paymentModalText;
-  }
-
-  document.getElementById("languageSelector").addEventListener("change", function() {
-    const lang = this.value;
-    translatePage(lang);
-    localStorage.setItem('language', lang);
-  });
-
-  document.addEventListener('DOMContentLoaded', function() {
-    const savedLang = localStorage.getItem('language') || 'pt';
-    document.getElementById("languageSelector").value = savedLang;
-    translatePage(savedLang);
-
-    // ==================== VERIFICAÇÃO DE TOKEN VIP ====================
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
-
-    let isVIP = false;
-
-    // Libera VIP se o token for válido
-    if (token && (token === 'VIP123' || token === 'PRO')) {
-      isVIP = true;
-      localStorage.setItem('user_plan', 'vip');
-      // Mostra toast de sucesso
-      const toast = document.createElement('div');
-      toast.style.cssText = `position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#4caf50;color:white;padding:10px 20px;border-radius:6px;z-index:1000;`;
-      toast.textContent = "✅ Acesso VIP liberado automaticamente!";
-      document.body.appendChild(toast);
-      setTimeout(() => document.body.removeChild(toast), 3000);
-    } else {
-      // Verifica se o usuário já foi VIP antes
-      isVIP = localStorage.getItem('user_plan') === 'vip';
+    /* Badge de elite principal */
+    .elite-badge {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #4caf50;
+      font-size: 1.1rem;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    // Função para ativar botão
+    /* Menu de idioma no topo direito */
+    .language-selector {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      z-index: 1000;
+    }
+    #languageSelector {
+      padding: 8px 12px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      min-width: 120px;
+    }
+
+    /* Botão de assinatura */
+    .btn-primary {
+      white-space: nowrap;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #00c853, #00bfa5);
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-decoration: none;
+      min-width: 260px;
+      text-align: center;
+      display: inline-block;
+      margin: 15px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* Menu lateral */
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    nav button {
+      padding: 12px 15px;
+      background: #333;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav button.active {
+      background: #00c853;
+      color: white;
+    }
+    nav button:hover {
+      transform: scale(1.02);
+    }
+
+    /* Resultados */
+    #results {
+      margin-top: 20px;
+      max-height: 70vh;
+      overflow-y: auto;
+      background: #121212;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .section-title {
+      font-size: 1.1rem;
+      color: #4caf50;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .item {
+      padding: 15px;
+      border-bottom: 1px solid #222;
+      background: #1a1a1a;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .item:last-child { border-bottom: none; }
+    .details {
+      font-size: 0.9em;
+      color: #ccc;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .confidence-high {
+      color: #4caf50;
+      font-weight: bold;
+    }
+    .confidence-low {
+      color: #f44336;
+      font-weight: bold;
+    }
+    .tip {
+      font-style: italic;
+      color: #bbb;
+      margin-top: 15px;
+      text-align: center;
+    }
+    .risk {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 12px;
+      margin-left: auto;
+    }
+    .risk.green {
+      background: #2e7d32;
+      color: white;
+    }
+    .risk.orange {
+      background: #ff9800;
+      color: white;
+    }
+    .risk.red {
+      background: #f44336;
+      color: white;
+    }
+    .badge {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 12px;
+      margin-right: 10px;
+    }
+    .badge.purple {
+      background: #9c27b0;
+      color: white;
+    }
+    .badge.green {
+      background: #4caf50;
+      color: white;
+    }
+    .badge.yellow {
+      background: #ffeb3b;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="sidebar">
+    <!-- Logo -->
+    <div style="margin-bottom: 20px;">
+      <div style="background: #00c853; color: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 10px;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px;">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="#fff"/>
+        </svg>
+        <span><strong>Rastreador Avançado</strong></span>
+      </div>
+    </div>
+
+    <!-- Menu de seleção de campeonato -->
+    <div style="margin-bottom: 15px;">
+      <label for="leagueSelect" style="display: block; margin-bottom: 5px; font-size: 0.9rem;">Selecione Campeonato:</label>
+      <select id="leagueSelect" style="width: 100%; padding: 10px; border-radius: 6px; border: none; background: #333; color: white; font-size: 0.9rem;">
+        <option value="">Selecione um campeonato</option>
+        <option value="71">🇧🇷 Brasileirão Série A</option>
+        <option value="72">🇧🇷 Brasileirão Série B</option>
+        <option value="202">🇦🇷 Liga Profesional (Argentina)</option>
+        <option value="39">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+        <option value="140">🇪🇸 La Liga</option>
+        <option value="78">🇩🇪 Bundesliga</option>
+        <option value="135">🇮🇹 Serie A</option>
+        <option value="61">🇫🇷 Ligue 1</option>
+        <option value="88">🇳🇱 Eredivisie</option>
+        <option value="94">🇵🇹 Primeira Liga</option>
+        <option value="262">🇲🇽 Liga MX</option>
+        <option value="8">🏆 Champions League</option>
+        <option value="12">🏆 Copa Libertadores</option>
+        <option value="13">🌎 Copa Sul-Americana</option>
+        <option value="10217">⚽ Brasileirão Feminino</option>
+      </select>
+    </div>
+
+    <nav>
+      <button id="btnChance" class="active">
+        🎯 Reação do Líder (G4)
+      </button>
+      <button id="btnPressureAlert">
+        🔥 Alerta de Pressão (G4 Pressionado)
+      </button>
+      <button id="btnHiddenConflicts">
+        💰 Valor no Mercado (Odd Alta)
+      </button>
+      <button id="btnReactionChain">
+        🔄 Múltiplos em Cadeia (G4)
+      </button>
+      <button id="btnMultiples">
+        🚀 MÚLTIPLOS EM ALTA (X2 Protegido)
+      </button>
+    </nav>
+  </div>
+
+  <div id="content">
+    <!-- Badge de elite principal -->
+    <div class="elite-badge">
+      🏆 Top 1% no Mundo | 🥇 Líder em Inovação | 💡 X2 Protegido
+    </div>
+
+    <!-- Menu de idioma no topo direito -->
+    <div class="language-selector">
+      <select id="languageSelector">
+        <option value="pt">🇧🇷 PT/BRL</option>
+        <option value="en">🇺🇸 EN/USD</option>
+        <option value="es">🇪🇸 ES/ARS</option>
+      </select>
+    </div>
+
+    <!-- Botão de assinatura -->
+    <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" target="_blank" rel="noopener" class="btn-primary">
+      🚀 QUERO ASSINAR O RASTREADOR PRO
+    </a>
+
+    <!-- Botão VIP Toki -->
+    <a href="https://toki.com.br/vip" target="_blank" rel="noopener" class="btn-primary" style="background: linear-gradient(135deg, #8e24aa, #ff9800);">
+      🔗 ACESSAR TOKI VIP AGORA
+    </a>
+
+    <!-- Resultados -->
+    <div id="results">
+      <div class="initial-results">
+        <div class="section-title">📅 Últimos Resultados</div>
+
+        <!-- Estatísticas iniciais -->
+        <div style="background: #1a1a2e; padding: 12px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-size: 0.95rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+          <strong>📊 Desempenho Semanal</strong><br>
+          <span style="color: #4caf50; font-weight: bold;">85% de acerto</span> (17 Wins / 3 Loss)
+        </div>
+
+        <div class="item">
+          <h3>Palmeiras vs. Internacional</h3>
+          <div class="confidence-high">✅ Win — Entrada acertada</div>
+          <div class="details">💡 Fator Oculto: Sem desfalque + técnico sob pressão</div>
+          <div style="display: flex; gap: 10px; margin-top: 8px;">
+            <span class="badge purple">X2 Protegido</span>
+            <span class="risk green">Baixo Risco</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <h3>São Paulo vs. Bahia</h3>
+          <div class="confidence-low">❌ Loss — Surpresa no Morumbi</div>
+          <div class="details">⚠️ São Paulo viajou 1.200km</div>
+          <div style="display: flex; gap: 10px; margin-top: 8px;">
+            <span class="badge red">Alto Risco</span>
+            <span class="risk red">Alto Risco</span>
+          </div>
+        </div>
+
+        <div class="tip" id="update-date">📅 Dados atualizados em: carregando...</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Função para ativar o botão clicado
     function setActiveButton(clicked) {
       document.querySelectorAll("nav button").forEach(btn => {
         btn.classList.remove("active");
@@ -99,92 +317,199 @@
       clicked.classList.add("active");
     }
 
-    // Função para mostrar histórico mensal
-    function showMonthlyHistory() {
-      const html = `
-        <div class="section-title">📊 RELATÓRIO MENSAL (30 DIAS REAIS)</div>
-        <div style="background: #2a2a2a; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 15px; font-size: 1.1rem;">
-          <strong>🎯 TAXA DE ACERTO: 77,3%</strong><br>
-          <small>17 acertos em 22 jogos (01/08 a 30/08/2025)</small>
+    // Função para mostrar resultados com estatísticas
+    function showResults(title, games) {
+      const wins = games.filter(g => g.result.includes("✅")).length;
+      const total = games.length;
+      const winRate = Math.round((wins / total) * 100);
+      const date = new Date().toLocaleDateString('pt-BR');
+
+      let html = `
+        <div class="section-title">${title}</div>
+        
+        <!-- Estatísticas -->
+        <div style="background: #1a1a2e; padding: 12px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-size: 0.95rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+          <strong>📊 Histórico: ${wins}/${total} Acertos</strong><br>
+          <span style="color: #4caf50; font-weight: bold;">${winRate}% de taxa de acerto</span>
         </div>
-        <div class="item">
-          <strong>Palmeiras</strong> vs. Internacional
-          <div class="confidence-high">✅ Win — Entrada acertada</div>
-          <div class="details">🎯 Análise: time do G4 pressionado em casa contra time do meio da tabela</div>
-          <div class="details">🔹 Fator Oculto: Sem desfalque + árbitro neutro</div>
-        </div>
-        <div class="item">
-          <strong>Flamengo</strong> vs. Juventude
-          <div class="confidence-high">✅ Win — Favorito em casa</div>
-          <div class="details">📌 Análise: Flamengo precisava reagir após derrota</div>
-          <div class="details">🔹 Fator Oculto: Técnico ameaçado + odd de empate alta (3.75)</div>
-        </div>
-        <div class="item">
-          <strong>Botafogo</strong> vs. Fortaleza
-          <div class="confidence-high">✅ Win — Vitória segura</div>
-          <div class="details">💡 Estratégia: cobrir vitória + empate (X2 Protegida)</div>
-          <div class="details">🔹 Fator Oculto: Fortaleza com 3 desfalques importantes</div>
-        </div>
-        <div class="item">
-          <strong>São Paulo</strong> vs. Bahia
-          <div class="confidence-low">❌ Loss — Fora de casa forte</div>
-          <div class="details">⚠️ Análise: Bahia surpreendeu com marcação alta</div>
-          <div class="details">🔹 Fator Oculto: São Paulo viajou 1.200km + goleiro titular fora</div>
-        </div>
-        <div class="tip">📌 Dica: Estratégia X2 Protegida: Aposta em vitória + empate. Só perde se o time for derrotado.</div>
       `;
+
+      games.forEach(game => {
+        html += `
+          <div class="item">
+            <h3>${game.teams}</h3>
+            <div class="${game.result.includes('✅') ? 'confidence-high' : 'confidence-low'}">${game.result}</div>
+            <div class="details">🎯 ${game.analysis}</div>
+            <div class="details">🔹 ${game.hidden}</div>
+          </div>
+        `;
+      });
+
+      html += `<div class="tip" id="update-date">📅 Dados atualizados em: ${date}</div>`;
       document.getElementById("results").innerHTML = html;
     }
 
     // Botões funcionais
     document.getElementById("btnChance").addEventListener("click", function() {
       setActiveButton(this);
-      showMonthlyHistory();
+      showResults("🎯 REAÇÃO DO LÍDER (G4)", [
+        {
+          teams: "Palmeiras vs. Internacional",
+          result: "✅ Win — Entrada acertada",
+          analysis: "Time do G4 pressionado precisa vencer",
+          hidden: "Fator Oculto: Técnico sob pressão máxima"
+        },
+        {
+          teams: "Fluminense vs. Corinthians",
+          result: "✅ Win — Vitória importante",
+          analysis: "Clube precisa manter posição no G4",
+          hidden: "Fator Oculto: Apoio da torcida + viagem curta"
+        }
+      ]);
     });
 
     document.getElementById("btnPressureAlert").addEventListener("click", function() {
       setActiveButton(this);
-      if (isVIP) {
-        showMonthlyHistory();
-      } else {
-        document.getElementById("paymentModal").style.display = "block";
-      }
+      showResults("🔥 ALERTA DE PRESSÃO (G4 Pressionado)", [
+        {
+          teams: "Flamengo vs. Juventude",
+          result: "✅ Win — Favorito em casa",
+          analysis: "Técnico ameaçado + odd de empate alta",
+          hidden: "Fator Oculto: Odd de empate paga R$3,75"
+        },
+        {
+          teams: "São Paulo vs. Bahia",
+          result: "❌ Loss — Surpresa no Morumbi",
+          analysis: "Bahia surpreendeu com marcação alta",
+          hidden: "Fator Oculto: São Paulo viajou 1.200km"
+        }
+      ]);
     });
 
     document.getElementById("btnHiddenConflicts").addEventListener("click", function() {
       setActiveButton(this);
-      if (isVIP) {
-        showMonthlyHistory();
-      } else {
-        document.getElementById("paymentModal").style.display = "block";
-      }
+      showResults("💰 VALOR NO MERCADO (Odd Alta)", [
+        {
+          teams: "Palmeiras vs. Fortaleza",
+          result: "✅ Win — Odd de empate alta (3.60)",
+          analysis: "Cobrir vitória + empate (X2 Protegido)",
+          hidden: "Fator Oculto: Fortaleza com 3 desfalques"
+        },
+        {
+          teams: "Liverpool vs. Wolves",
+          result: "✅ Win — Salah decidiu",
+          analysis: "Casa + forma positiva + odd alta",
+          hidden: "Fator Oculto: Wolves com 4 desfalques"
+        }
+      ]);
     });
 
     document.getElementById("btnReactionChain").addEventListener("click", function() {
       setActiveButton(this);
-      if (isVIP) {
-        showMonthlyHistory();
-      } else {
-        document.getElementById("paymentModal").style.display = "block";
-      }
+      showResults("🔄 MÚLTIPLOS EM CADEIA (G4)", [
+        {
+          teams: "Palmeiras vs. Internacional",
+          result: "✅ Win — Reação do líder",
+          analysis: "Precisava vencer após 2 empates",
+          hidden: "Fator Oculto: Sem desfalque + técnico sob pressão"
+        },
+        {
+          teams: "Internacional vs. Coritiba",
+          result: "✅ Win — Gol no fim",
+          analysis: "Pressão do G4 + clima de renovação",
+          hidden: "Fator Oculto: Técnico novo + apoio da torcida"
+        }
+      ]);
     });
 
     document.getElementById("btnMultiples").addEventListener("click", function() {
       setActiveButton(this);
-      if (isVIP) {
-        showMonthlyHistory();
-      } else {
-        document.getElementById("paymentModal").style.display = "block";
+      const date = new Date().toLocaleDateString('pt-BR');
+      const html = `
+        <div class="section-title">🚀 MÚLTIPLOS EM ALTA (X2 Protegido)</div>
+        
+        <div style="background: #1a1a2e; padding: 12px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-size: 0.95rem;">
+          <strong>📊 Desempenho: 90% de acerto</strong><br>
+          <span style="color: #4caf50;">Estratégia X2 Protegido altamente eficaz</span>
+        </div>
+
+        <div class="item">
+          <h3>Palmeiras vs. Internacional</h3>
+          <div class="confidence-high">✅ Win — Cobrir vitória + empate</div>
+          <div class="details">💡 Estratégia X2 Protegida: só perde se for derrotado</div>
+          <div class="details">🔹 Fator Oculto: Sem desfalque + árbitro neutro</div>
+        </div>
+        <div class="item">
+          <h3>Flamengo vs. Juventude</h3>
+          <div class="confidence-high">✅ Win — Favorito em casa</div>
+          <div class="details">📌 Odd de empate alta (3.75) — proteger é inteligente</div>
+          <div class="details">🔹 Fator Oculto: Técnico ameaçado + clima de pressão</div>
+        </div>
+        <div class="tip" id="update-date">📅 Dados atualizados em: ${date}</div>
+      `;
+      document.getElementById("results").innerHTML = html;
+    });
+
+    // Traduções
+    const translations = {
+      pt: {
+        title: "Rastreador Avançado - Múltiplos em Alta",
+        btnChance: "🎯 Reação do Líder (G4)",
+        btnPressureAlert: "🔥 Alerta de Pressão (G4 Pressionado)",
+        btnHiddenConflicts: "💰 Valor no Mercado (Odd Alta)",
+        btnReactionChain: "🔄 Múltiplos em Cadeia (G4)",
+        btnMultiples: "🚀 MÚLTIPLOS EM ALTA (X2 Protegido)",
+        btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO"
+      },
+      en: {
+        title: "Advanced Tracker - High Probability Multiples",
+        btnChance: "🎯 Leader Reaction (G4)",
+        btnPressureAlert: "🔥 Pressure Alert (G4 Under Pressure)",
+        btnHiddenConflicts: "💰 Hidden Conflicts (High Odds)",
+        btnReactionChain: "🔄 Chain Reaction (G4)",
+        btnMultiples: "🚀 HIGH PROBABILITY MULTIPLES (X2 Protected)",
+        btnPrimary: "🚀 I WANT TO JOIN THE PRO TRACKER"
+      },
+      es: {
+        title: "Rastreador Avanzado - Múltiples en Alta",
+        btnChance: "🎯 Reacción del Líder (G4)",
+        btnPressureAlert: "🔥 Alerta de Presión (G4 Presionado)",
+        btnHiddenConflicts: "💰 Conflictos Ocultos (Odd Alta)",
+        btnReactionChain: "🔄 Reacción en Cadena (G4)",
+        btnMultiples: "🚀 MÚLTIPLES EN ALTO (X2 Protegido)",
+        btnPrimary: "🚀 QUIERO SUSCRIBIRME AL RASTREADOR PRO"
       }
+    };
+
+    function translatePage(lang) {
+      const t = translations[lang];
+      document.title = t.title;
+      document.getElementById("btnChance").textContent = t.btnChance;
+      document.getElementById("btnPressureAlert").textContent = t.btnPressureAlert;
+      document.getElementById("btnHiddenConflicts").textContent = t.btnHiddenConflicts;
+      document.getElementById("btnReactionChain").textContent = t.btnReactionChain;
+      document.getElementById("btnMultiples").textContent = t.btnMultiples;
+      document.querySelector(".btn-primary").textContent = t.btnPrimary;
+    }
+
+    document.getElementById("languageSelector").addEventListener("change", function() {
+      const lang = this.value;
+      translatePage(lang);
+      localStorage.setItem('language', lang);
     });
 
-    // Fechar modal
-    document.getElementById("btnCloseModal").addEventListener("click", function() {
-      document.getElementById("paymentModal").style.display = "none";
-    });
-  });
-</script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedLang = localStorage.getItem('language') || 'pt';
+      document.getElementById("languageSelector").value = savedLang;
+      translatePage(savedLang);
 
+      // Define data atual na tela inicial
+      const date = new Date().toLocaleDateString('pt-BR');
+      document.getElementById("update-date").textContent = `📅 Dados atualizados em: ${date}`;
+    });
+  </script>
+</body>
+</html>
 
 
 
