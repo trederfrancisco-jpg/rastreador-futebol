@@ -168,26 +168,24 @@
       </div>
     </div>
 
+    <!-- Seletor de idioma -->
+    <div style="margin-bottom: 15px;">
+      <label for="languageSelector" style="display: block; margin-bottom: 5px; font-size: 0.9rem;">Idioma:</label>
+      <select id="languageSelector" style="width: 100%; padding: 10px; border-radius: 6px; border: none; background: #333; color: white;">
+        <option value="pt">🇧🇷 Português</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="es">🇪🇸 Español</option>
+      </select>
+    </div>
+
     <!-- Menu de seleção de campeonato -->
     <div style="margin-bottom: 15px;">
       <label for="leagueSelect" style="display: block; margin-bottom: 5px; font-size: 0.9rem;">Selecione Campeonato:</label>
       <select id="leagueSelect" style="width: 100%; padding: 10px; border-radius: 6px; border: none; background: #333; color: white; font-size: 0.9rem;">
-        <option value="">Selecione um campeonato</option>
-        <option value="71">🇧🇷 Brasileirão Série A</option>
-        <option value="72">🇧🇷 Brasileirão Série B</option>
-        <option value="202">🇦🇷 Liga Profesional (Argentina)</option>
-        <option value="39">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
-        <option value="140">🇪🇸 La Liga</option>
-        <option value="78">🇩🇪 Bundesliga</option>
-        <option value="135">🇮🇹 Serie A</option>
-        <option value="61">🇫🇷 Ligue 1</option>
-        <option value="88">🇳🇱 Eredivisie</option>
-        <option value="94">🇵🇹 Primeira Liga</option>
-        <option value="262">🇲🇽 Liga MX</option>
-        <option value="8">🏆 Champions League</option>
-        <option value="12">🏆 Copa Libertadores</option>
-        <option value="13">🌎 Copa Sul-Americana</option>
-        <option value="10217">⚽ Brasileirão Feminino</option>
+        <option value="">Todos os campeonatos</option>
+        <option value="brasileirao">🇧🇷 Brasileirão Série A</option>
+        <option value="premierLeague">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+        <option value="laliga">🇪🇸 La Liga</option>
       </select>
     </div>
 
@@ -221,203 +219,168 @@
       🚀 QUERO ASSINAR O RASTREADOR PRO
     </a>
 
-    <!-- Resultados - PRÓXIMOS JOGOS (dinâmico) -->
+    <!-- Resultados dinâmicos -->
     <div id="results">
-      <div class="initial-results">
-        <div class="section-title">🔥 PRÓXIMOS EM ALTA (13 a 20/09/2025)</div>
-
-        <div class="item">
-          <h3>Flamengo vs. Grêmio</h3>
-          <div class="details">
-            ⏰ 13/09 às 20:00 | 🏟️ Casa | 🏆 Brasileirão<br>
-            <strong>Estratégia:</strong> Time pressionado precisa vencer
-          </div>
-          <div style="display: flex; gap: 10px; margin-top: 8px;">
-            <span class="badge green">Alta Probabilidade</span>
-            <span class="risk green">Baixo Risco</span>
-          </div>
-        </div>
-
-        <div class="item">
-          <h3>Palmeiras vs. Corinthians</h3>
-          <div class="details">
-            ⏰ 14/09 às 18:30 | 🏟️ Casa | 🏆 Brasileirão<br>
-            <strong>Estratégia:</strong> Clássico com pressão no G4
-          </div>
-          <div style="display: flex; gap: 10px; margin-top: 8px;">
-            <span class="badge yellow">Risco Médio</span>
-            <span class="risk orange">Médio Risco</span>
-          </div>
-        </div>
-
-        <div class="item">
-          <h3>Liverpool vs. Arsenal</h3>
-          <div class="details">
-            ⏰ 14/09 às 16:30 | 🏟️ Casa | 🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League<br>
-            <strong>Estratégia:</strong> Forma positiva + clássico com tensão
-          </div>
-          <div style="display: flex; gap: 10px; margin-top: 8px;">
-            <span class="badge green">Alta Probabilidade</span>
-            <span class="risk green">Baixo Risco</span>
-          </div>
-        </div>
-
-        <div class="item">
-          <h3>Barcelona vs. Real Madrid</h3>
-          <div class="details">
-            ⏰ 19/09 às 16:00 | 🏟️ Neutro | 🇪🇸 LaLiga<br>
-            <strong>Estratégia:</strong> Odd de empate alta (3.40) — X2 Protegido
-          </div>
-          <div style="display: flex; gap: 10px; margin-top: 8px;">
-            <span class="badge purple">X2 Protegido</span>
-            <span class="risk red">Alto Risco</span>
-          </div>
-        </div>
-
-        <div class="tip">📅 Dados atualizados em: <span id="update-date">carregando...</span></div>
-      </div>
+      <div class="section-title">🔥 PRÓXIMOS EM ALTA (02 a 09/10/2025)</div>
+      <p>Carregando jogos...</p>
     </div>
   </div>
 
   <script>
-    // Função para ativar botão
-    function setActiveButton(clicked) {
-      document.querySelectorAll("nav button").forEach(btn => {
-        btn.classList.remove("active");
+    let data = {};
+
+    // Carregar data.json
+    async function loadData() {
+      try {
+        const response = await fetch('/data.json');
+        data = await response.json();
+        filterAndDisplay('all'); // Mostra todos ao iniciar
+      } catch (error) {
+        console.error('Erro ao carregar data.json:', error);
+        document.getElementById("results").innerHTML = `<p>❌ Falha ao carregar dados.</p>`;
+      }
+    }
+
+    // Filtrar e exibir jogos
+    function filterAndDisplay(type) {
+      const leagueFilter = document.getElementById("leagueSelect").value;
+      const today = new Date('2025-10-02'); // Simulando data atual
+      const nextWeek = new Date(today);
+      nextWeek.setDate(today.getDate() + 7);
+
+      let matches = [];
+
+      const leagues = {
+        brasileirao: data.brasileirao || [],
+        premierLeague: data.premierLeague || [],
+        laliga: data.laliga || []
+      };
+
+      const selectedLeagues = leagueFilter ? leagues[leagueFilter] : [...leagues.brasileirao, ...leagues.premierLeague, ...leagues.laliga];
+
+      selectedLeagues.forEach(day => {
+        const gameDate = new Date(day.date);
+        if (gameDate >= today && gameDate <= nextWeek) {
+          day.matches.forEach(match => {
+            matches.push({
+              home: match.home,
+              away: match.away,
+              date: day.date,
+              time: match.time,
+              stadium: match.stadium,
+              city: match.city,
+              league: getLeagueName(match)
+            });
+          });
+        }
       });
+
+      // Ordenar por data
+      matches.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      // Aplicar lógica estratégica
+      matches = matches.map(game => ({
+        ...game,
+        strategy: getStrategy(game),
+        risk: getRiskLevel(game),
+        badge: getBadge(game)
+      }));
+
+      renderMatches(matches);
+    }
+
+    function renderMatches(games) {
+      const container = document.getElementById("results");
+      const date = new Date().toLocaleDateString('pt-BR');
+
+      let html = `<div class="section-title">🔥 PRÓXIMOS EM ALTA (${formatDateRange(new Date('2025-10-02'))})</div>`;
+
+      if (games.length === 0) {
+        html += `<p>Nenhum jogo encontrado.</p>`;
+      } else {
+        games.forEach(game => {
+          const riskClass = game.risk === 'Alto' ? 'red' : game.risk === 'Médio' ? 'orange' : 'green';
+          html += `
+            <div class="item">
+              <h3>${game.home} vs. ${game.away}</h3>
+              <div class="details">
+                ⏰ ${formatDate(game.date)} às ${game.time} | 🏟️ Casa | 🏆 ${game.league}<br>
+                <strong>Estratégia:</strong> ${game.strategy}
+              </div>
+              <div style="display: flex; gap: 10px; margin-top: 8px;">
+                <span class="badge green">${game.badge}</span>
+                <span class="risk ${riskClass}">${game.risk} Risco</span>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      html += `<div class="tip">📅 Dados atualizados em: ${date}</div>`;
+      container.innerHTML = html;
+    }
+
+    // Funções auxiliares
+    function formatDate(dateStr) {
+      return new Date(dateStr).toLocaleDateString('pt-BR');
+    }
+
+    function formatDateRange(start) {
+      const end = new Date(start);
+      end.setDate(start.getDate() + 7);
+      return `${formatDate(start)} a ${formatDate(end)}`;
+    }
+
+    function getLeagueName(match) {
+      if (match.home.includes("Arsenal") || match.home.includes("Liverpool")) return "Premier League";
+      if (match.home.includes("Barcelona") || match.home.includes("Real")) return "LaLiga";
+      return "Brasileirão";
+    }
+
+    function getStrategy(game) {
+      if (["Flamengo", "Palmeiras", "Botafogo", "Grêmio"].includes(game.home)) {
+        if (game.away === "Cruzeiro" || game.away === "Fortaleza") return "Time pressionado precisa vencer";
+        if (game.away === "São Paulo" || game.away === "Corinthians") return "Clássico com tensão";
+      }
+      return "Análise técnica aplicada";
+    }
+
+    function getRiskLevel(game) {
+      if (game.away === "Grêmio" || game.away === "Corinthians") return "Alto";
+      if (game.away === "Fortaleza" || game.away === "Atlético-MG") return "Médio";
+      return "Baixo";
+    }
+
+    function getBadge(game) {
+      return ["Flamengo", "Palmeiras", "Botafogo"].includes(game.home) ? "Alta Probabilidade" : "Análise Técnica";
+    }
+
+    // Ativar botões
+    function setActiveButton(clicked) {
+      document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("active"));
       clicked.classList.add("active");
     }
 
-    // Função para mostrar resultados
-    function showResults(title, games) {
-      const wins = games.filter(g => g.result.includes("✅")).length;
-      const total = games.length;
-      const winRate = Math.round((wins / total) * 100);
-      const date = new Date().toLocaleDateString('pt-BR');
+    // Eventos dos botões
+    document.getElementById("btnChance").addEventListener("click", () => { setActiveButton(this); filterAndDisplay('chance'); });
+    document.getElementById("btnPressureAlert").addEventListener("click", () => { setActiveButton(this); filterAndDisplay('pressure'); });
+    document.getElementById("btnHiddenConflicts").addEventListener("click", () => { setActiveButton(this); filterAndDisplay('hidden'); });
+    document.getElementById("btnReactionChain").addEventListener("click", () => { setActiveButton(this); filterAndDisplay('chain'); });
+    document.getElementById("btnMultiples").addEventListener("click", () => { setActiveButton(this); filterAndDisplay('multiples'); });
 
-      let html = `<div class="section-title">${title}</div>`;
+    // Filtro por campeonato
+    document.getElementById("leagueSelect").addEventListener("change", () => filterAndDisplay('all'));
 
-      if (title.includes("RESULTADOS")) {
-        html += `
-          <div style="background: #1a1a2e; padding: 12px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-size: 0.95rem;">
-            <strong>📊 Taxa de Acerto: ${winRate}%</strong><br>
-            <small>${wins}/${total} Wins</small>
-          </div>`;
-      }
-
-      games.forEach(game => {
-        html += `
-          <div class="item">
-            <h3>${game.teams}</h3>
-            <div class="${game.result.includes('✅') ? 'confidence-high' : 'confidence-low'}">${game.result}</div>
-            <div class="details">🎯 ${game.analysis}</div>
-            <div class="details">🔹 ${game.hidden}</div>
-          </div>`;
-      });
-
-      html += `<div class="tip">📅 Atualizado em: ${date}</div>`;
-      document.getElementById("results").innerHTML = html;
-    }
-
-    // Botões funcionais
-    document.getElementById("btnChance").addEventListener("click", function() {
-      setActiveButton(this);
-      showResults("🎯 REAÇÃO DO LÍDER (G4)", [
-        { teams: "Palmeiras vs. Internacional", result: "✅ Win — Entrada acertada", analysis: "Time do G4 precisa vencer", hidden: "Técnico sob pressão máxima" },
-        { teams: "Fluminense vs. Corinthians", result: "✅ Win — Vitória importante", analysis: "Clube precisa manter posição", hidden: "Apoio da torcida + viagem curta" }
-      ]);
-    });
-
-    document.getElementById("btnPressureAlert").addEventListener("click", function() {
-      setActiveButton(this);
-      showResults("🔥 ALERTA DE PRESSÃO (G4 Pressionado)", [
-        { teams: "Flamengo vs. Juventude", result: "✅ Win — Favorito em casa", analysis: "Odd de empate alta", hidden: "Odd paga R$3,75" },
-        { teams: "São Paulo vs. Bahia", result: "❌ Loss — Surpresa no Morumbi", analysis: "Bahia surpreendeu", hidden: "São Paulo viajou 1.200km" }
-      ]);
-    });
-
-    document.getElementById("btnHiddenConflicts").addEventListener("click", function() {
-      setActiveButton(this);
-      showResults("💰 VALOR NO MERCADO (Odd Alta)", [
-        { teams: "Palmeiras vs. Fortaleza", result: "✅ Win — Odd de empate 3.60", analysis: "Cobrir vitória + empate", hidden: "Fortaleza com 3 desfalques" },
-        { teams: "Liverpool vs. Wolves", result: "✅ Win — Salah decidiu", analysis: "Casa + forma positiva", hidden: "Wolves com 4 desfalques" }
-      ]);
-    });
-
-    document.getElementById("btnReactionChain").addEventListener("click", function() {
-      setActiveButton(this);
-      showResults("🔄 MÚLTIPLOS EM CADEIA (G4)", [
-        { teams: "Palmeiras vs. Internacional", result: "✅ Win — Reação do líder", analysis: "Precisava vencer após 2 empates", hidden: "Sem desfalque + técnico pressionado" },
-        { teams: "Internacional vs. Coritiba", result: "✅ Win — Gol no fim", analysis: "Pressão do G4", hidden: "Técnico novo + apoio da torcida" }
-      ]);
-    });
-
-    document.getElementById("btnMultiples").addEventListener("click", function() {
-      setActiveButton(this);
-      const date = new Date().toLocaleDateString('pt-BR');
-      const html = `
-        <div class="section-title">🚀 MÚLTIPLOS EM ALTA (X2 Protegido)</div>
-        <div style="background: #1a1a2e; padding: 12px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-size: 0.95rem;">
-          <strong>📊 Estratégia com 90% de acerto</strong><br>
-          <small>Protege contra derrota direta</small>
-        </div>
-        <div class="item">
-          <h3>Palmeiras vs. Internacional</h3>
-          <div class="confidence-high">✅ Recomendado — X2 Protegido</div>
-          <div class="details">💡 Estratégia: cobrir vitória ou empate</div>
-          <div class="details">🔹 Fator Oculto: Sem desfalque + árbitro neutro</div>
-        </div>
-        <div class="item">
-          <h3>Flamengo vs. Juventude</h3>
-          <div class="confidence-high">✅ Recomendado — Odd de empate alta</div>
-          <div class="details">📌 Odd de empate: 3.75 — proteger é inteligente</div>
-          <div class="details">🔹 Fator Oculto: Técnico ameaçado + clima de pressão</div>
-        </div>
-        <div class="tip">📅 Atualizado em: ${date}</div>
-      `;
-      document.getElementById("results").innerHTML = html;
-    });
-
-    // Traduções
+    // Tradução
     const translations = {
-      pt: {
-        title: "Rastreador Avançado - Múltiplos em Alta",
-        btnChance: "🎯 Reação do Líder (G4)",
-        btnPressureAlert: "🔥 Alerta de Pressão (G4 Pressionado)",
-        btnHiddenConflicts: "💰 Valor no Mercado (Odd Alta)",
-        btnReactionChain: "🔄 Múltiplos em Cadeia (G4)",
-        btnMultiples: "🚀 MÚLTIPLOS EM ALTA (X2 Protegido)",
-        btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO"
-      },
-      en: {
-        title: "Advanced Tracker - High Probability Multiples",
-        btnChance: "🎯 Leader Reaction (G4)",
-        btnPressureAlert: "🔥 Pressure Alert (G4 Under Pressure)",
-        btnHiddenConflicts: "💰 Hidden Conflicts (High Odds)",
-        btnReactionChain: "🔄 Chain Reaction (G4)",
-        btnMultiples: "🚀 HIGH PROBABILITY MULTIPLES (X2 Protected)",
-        btnPrimary: "🚀 I WANT TO JOIN THE PRO TRACKER"
-      },
-      es: {
-        title: "Rastreador Avanzado - Múltiples en Alta",
-        btnChance: "🎯 Reacción del Líder (G4)",
-        btnPressureAlert: "🔥 Alerta de Presión (G4 Presionado)",
-        btnHiddenConflicts: "💰 Conflictos Ocultos (Odd Alta)",
-        btnReactionChain: "🔄 Reacción en Cadena (G4)",
-        btnMultiples: "🚀 MÚLTIPLES EN ALTO (X2 Protegido)",
-        btnPrimary: "🚀 QUIERO SUSCRIBIRME AL RASTREADOR PRO"
-      }
+      pt: { title: "Rastreador Avançado - Múltiplos em Alta", btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO" },
+      en: { title: "Advanced Tracker - High Probability Multiples", btnPrimary: "🚀 I WANT TO JOIN THE PRO TRACKER" },
+      es: { title: "Rastreador Avanzado - Múltiples en Alta", btnPrimary: "🚀 QUIERO SUSCRIBIRME AL RASTREADOR PRO" }
     };
 
     function translatePage(lang) {
-      const t = translations[lang];
-      document.title = t.title;
-      document.getElementById("btnChance").textContent = t.btnChance;
-      document.getElementById("btnPressureAlert").textContent = t.btnPressureAlert;
-      document.getElementById("btnHiddenConflicts").textContent = t.btnHiddenConflicts;
-      document.getElementById("btnReactionChain").textContent = t.btnReactionChain;
-      document.getElementById("btnMultiples").textContent = t.btnMultiples;
-      document.querySelector(".btn-primary").textContent = t.btnPrimary;
+      document.title = translations[lang].title;
+      document.querySelector(".btn-primary").textContent = translations[lang].btnPrimary;
     }
 
     document.getElementById("languageSelector").addEventListener("change", function() {
@@ -426,11 +389,12 @@
       localStorage.setItem('language', lang);
     });
 
+    // Carregar ao iniciar
     document.addEventListener('DOMContentLoaded', function() {
       const savedLang = localStorage.getItem('language') || 'pt';
       document.getElementById("languageSelector").value = savedLang;
       translatePage(savedLang);
-      document.getElementById("update-date").textContent = new Date().toLocaleDateString('pt-BR');
+      loadData();
     });
   </script>
 </body>
