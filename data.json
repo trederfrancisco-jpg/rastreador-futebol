@@ -230,7 +230,7 @@
       ]
     },
 
-    // --- JOGOS ATUALIZADOS COM DIAS CORRETOS ---
+    // --- JOGOS DE 2 DE OUTUBRO DE 2025 (ATUALIZADOS COM RESULTADOS) ---
     {
       "date": "2025-10-02",
       "day": "quarta-feira",
@@ -240,29 +240,32 @@
           "away": "Ceará",
           "time": "19:00",
           "stadium": "Estádio Manoel Barradas",
-          "city": "Salvador, Brasil"
+          "city": "Salvador, Brasil",
+          "result": "1-1",
+          "status": "draw"
         },
         {
           "home": "Fortaleza",
           "away": "São Paulo",
           "time": "19:30",
           "stadium": "Castelão",
-          "city": "Fortaleza, Brasil"
+          "city": "Fortaleza, Brasil",
+          "result": "0-2",
+          "status": "loss"
         },
         {
           "home": "Flamengo",
           "away": "Cruzeiro",
           "time": "20:30",
           "stadium": "Estadio do Maracanã",
-          "city": "Rio de Janeiro, Brasil"
+          "city": "Rio de Janeiro, Brasil",
+          "result": "2-2",
+          "status": "draw"
         }
       ]
     },
-    {
-      "date": "2025-10-03",
-      "day": "quinta-feira",
-      "matches": []
-    },
+
+    // --- PRÓXIMOS JOGOS (AGENDADOS - SEM RESULTADO AINDA) ---
     {
       "date": "2025-10-04",
       "day": "sexta-feira",
@@ -346,16 +349,6 @@
       ]
     },
     {
-      "date": "2025-10-06",
-      "day": "domingo",
-      "matches": []
-    },
-    {
-      "date": "2025-10-07",
-      "day": "segunda-feira",
-      "matches": []
-    },
-    {
       "date": "2025-10-08",
       "day": "terça-feira",
       "matches": [
@@ -376,8 +369,8 @@
       ]
     }
 
-    // Outros campeonatos permanecem inalterados (premierLeague, laliga)
+    // Outros campeonatos (premierLeague, laliga) permanecem inalterados
   ],
-  "premierLeague": [ ... ],  // mantido igual
-  "laliga": [ ... ]         // mantido igual
+  "premierLeague": [ ... ],
+  "laliga": [ ... ]
 }
