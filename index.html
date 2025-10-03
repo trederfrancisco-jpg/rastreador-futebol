@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -226,60 +225,11 @@
     </a>
 
     <!-- Resultados dinâmicos -->
-    <div id="results">
-      <div class="section-title">🔥 PRÓXIMOS EM ALTA (2 a 8/10/2025)</div>
-
-      <!-- São Paulo vs. Fortaleza -->
-      <div class="item">
-        <h3>São Paulo vs. Fortaleza</h3>
-        <div class="confidence-high">✅ Recomendado — Reação do Líder</div>
-        <div class="details">
-          ⏰ 2/10 às 19:30 | 🏟️ Castelão | 📍 Fortaleza<br>
-          <strong>Estratégia:</strong> Precisa vencer para entrar no G4
-        </div>
-        <div class="details">🔹 <strong>Fator Oculto:</strong> 3 desfalques + viagem longa</div>
-        <div style="display: flex; gap: 10px; margin-top: 8px;">
-          <span class="badge green">Alta Probabilidade</span>
-          <span class="risk green">Baixo Risco</span>
-        </div>
-      </div>
-
-      <!-- Flamengo vs. Cruzeiro -->
-      <div class="item">
-        <h3>Flamengo vs. Cruzeiro</h3>
-        <div class="confidence-high">✅ Recomendado — Odd de Empate Alta</div>
-        <div class="details">
-          ⏰ 2/10 às 20:30 | 🏟️ Maracanã | 📍 Rio de Janeiro<br>
-          <strong>Estratégia:</strong> Clássico direto — empate paga R$3,40
-        </div>
-        <div class="details">🔹 <strong>Fator Oculto:</strong> Técnico do Flamengo sob pressão máxima</div>
-        <div style="display: flex; gap: 10px; margin-top: 8px;">
-          <span class="badge green">Valor no Mercado</span>
-          <span class="risk orange">Médio Risco</span>
-        </div>
-      </div>
-
-      <!-- Bahia vs. Flamengo -->
-      <div class="item">
-        <h3>Bahia vs. Flamengo</h3>
-        <div class="confidence-low">⚠️ Acompanhar — Jogo Difícil</div>
-        <div class="details">
-          ⏰ 5/10 às 18:30 | 🏟️ Fonte Nova | 📍 Salvador<br>
-          <strong>Estratégia:</strong> Triplo jogo em 7 dias
-        </div>
-        <div class="details">🔹 <strong>Fator Oculto:</strong> Possível rodagem de elenco</div>
-        <div style="display: flex; gap: 10px; margin-top: 8px;">
-          <span class="badge yellow">Risco Médio</span>
-          <span class="risk red">Alto Risco</span>
-        </div>
-      </div>
-
-      <div class="tip">📅 Atualizado em: <span id="update-date">carregando...</span></div>
-    </div>
+    <div id="results"></div>
   </div>
 
   <script>
-    // TABELA SIMULADA DO BRASILEIRÃO (após 26 rodadas)
+    // TABELA SIMULADA DO BRASILEIRÃO
     const tabelaBrasileirao = [
       { time: "Palmeiras", pos: 1, pts: 48 },
       { time: "Flamengo", pos: 2, pts: 45 },
@@ -303,58 +253,201 @@
       { time: "Criciúma", pos: 20, pts: 22 }
     ];
 
-    // Extrair G4 e Z4
     const g4 = tabelaBrasileirao.slice(0, 4).map(t => t.time);
-    const z4 = tabelaBrasileirao.slice(16, 20).map(t => t.time);
 
-    // Dados reais dos próximos jogos
+    // DADOS COM RESULTADOS (data.djos)
     const data = {
       "brasileirao": [
         {
           "date": "2025-10-02",
           "day": "quarta-feira",
           "matches": [
-            { "home": "Vitória", "away": "Ceará", "time": "19:00", "stadium": "Estádio Manoel Barradas", "city": "Salvador, Brasil" },
-            { "home": "Fortaleza", "away": "São Paulo", "time": "19:30", "stadium": "Castelão", "city": "Fortaleza, Brasil" },
-            { "home": "Flamengo", "away": "Cruzeiro", "time": "20:30", "stadium": "Estadio do Maracanã", "city": "Rio de Janeiro, Brasil" }
+            {
+              "home": "Vitória",
+              "away": "Ceará",
+              "time": "19:00",
+              "stadium": "Estádio Manoel Barradas",
+              "city": "Salvador, Brasil",
+              "result": "1-1",
+              "status": "draw"
+            },
+            {
+              "home": "Fortaleza",
+              "away": "São Paulo",
+              "time": "19:30",
+              "stadium": "Castelão",
+              "city": "Fortaleza, Brasil",
+              "result": "0-2",
+              "status": "loss"
+            },
+            {
+              "home": "Flamengo",
+              "away": "Cruzeiro",
+              "time": "20:30",
+              "stadium": "Estadio do Maracanã",
+              "city": "Rio de Janeiro, Brasil",
+              "result": "2-2",
+              "status": "draw"
+            }
           ]
         },
         {
           "date": "2025-10-04",
           "day": "sexta-feira",
           "matches": [
-            { "home": "Fluminense", "away": "Atlético-MG", "time": "18:30", "stadium": "Estadio do Maracanã", "city": "Rio de Janeiro, Brasil" },
-            { "home": "Internacional", "away": "Botafogo", "time": "18:30", "stadium": "Estadio Beira-Rio", "city": "Porto Alegre, Brasil" },
-            { "home": "Red Bull Bragantino", "away": "Grêmio", "time": "18:30", "stadium": "Estádio Cicero de Souza Marques", "city": "Bragança Paulista, Brasil" },
-            { "home": "Corinthians", "away": "Mirassol", "time": "21:00", "stadium": "Neo Química Arena", "city": "São Paulo, Brasil" }
+            {
+              "home": "Fluminense",
+              "away": "Atlético-MG",
+              "time": "18:30",
+              "stadium": "Estadio do Maracanã",
+              "city": "Rio de Janeiro, Brasil"
+            },
+            {
+              "home": "Internacional",
+              "away": "Botafogo",
+              "time": "18:30",
+              "stadium": "Estadio Beira-Rio",
+              "city": "Porto Alegre, Brasil"
+            },
+            {
+              "home": "Red Bull Bragantino",
+              "away": "Grêmio",
+              "time": "18:30",
+              "stadium": "Estádio Cicero de Souza Marques",
+              "city": "Bragança Paulista, Brasil"
+            },
+            {
+              "home": "Corinthians",
+              "away": "Mirassol",
+              "time": "21:00",
+              "stadium": "Neo Química Arena",
+              "city": "São Paulo, Brasil"
+            }
           ]
         },
         {
           "date": "2025-10-05",
           "day": "sábado",
           "matches": [
-            { "home": "São Paulo", "away": "Palmeiras", "time": "16:00", "stadium": "MorumBIS", "city": "São Paulo, Brasil" },
-            { "home": "Vasco da Gama", "away": "Vitória", "time": "16:00", "stadium": "Estádio São Januário", "city": "Rio de Janeiro, Brasil" },
-            { "home": "Bahia", "away": "Flamengo", "time": "18:30", "stadium": "Casa de Apostas Arena Fonte Nova", "city": "Salvador, Brasil" },
-            { "home": "Juventude", "away": "Fortaleza", "time": "18:30", "stadium": "Alfredo Jaconi", "city": "Caxias do Sul, Brasil" },
-            { "home": "Ceará", "away": "Santos", "time": "20:30", "stadium": "Castelão", "city": "Fortaleza, Brasil" },
-            { "home": "Cruzeiro", "away": "Sport", "time": "20:30", "stadium": "Estadio Mineirão", "city": "Belo Horizonte, Brasil" }
-          ]
-        },
-        {
-          "date": "2025-10-08",
-          "day": "terça-feira",
-          "matches": [
-            { "home": "Atlético-MG", "away": "Sport", "time": "19:00", "stadium": "Arena MRV", "city": "Belo Horizonte, Brasil" },
-            { "home": "Mirassol", "away": "Fluminense", "time": "21:00", "stadium": "Estadio José Maria de Campos Maia", "city": "Mirassol, Brasil" }
+            {
+              "home": "São Paulo",
+              "away": "Palmeiras",
+              "time": "16:00",
+              "stadium": "MorumBIS",
+              "city": "São Paulo, Brasil"
+            },
+            {
+              "home": "Vasco da Gama",
+              "away": "Vitória",
+              "time": "16:00",
+              "stadium": "Estádio São Januário",
+              "city": "Rio de Janeiro, Brasil"
+            },
+            {
+              "home": "Bahia",
+              "away": "Flamengo",
+              "time": "18:30",
+              "stadium": "Casa de Apostas Arena Fonte Nova",
+              "city": "Salvador, Brasil"
+            },
+            {
+              "home": "Juventude",
+              "away": "Fortaleza",
+              "time": "18:30",
+              "stadium": "Alfredo Jaconi",
+              "city": "Caxias do Sul, Brasil"
+            },
+            {
+              "home": "Ceará",
+              "away": "Santos",
+              "time": "20:30",
+              "stadium": "Castelão",
+              "city": "Fortaleza, Brasil"
+            },
+            {
+              "home": "Cruzeiro",
+              "away": "Sport",
+              "time": "20:30",
+              "stadium": "Estadio Mineirão",
+              "city": "Belo Horizonte, Brasil"
+            }
           ]
         }
-      ],
-      "premierLeague": [/* mantido */],
-      "laliga": [/* mantido */]
+      ]
     };
 
-    // Função para ativar botão
+    // Função para formatar data
+    function formatDateBR(dateStr) {
+      return dateStr.split('-').reverse().join('/');
+    }
+
+    // VERIFICA SE OS JOGOS DE 2/10 JÁ OCORRERAM
+    function hasMatchDayPassed() {
+      const matchDate = new Date('2025-10-03T00:00:00'); // Após 2/10
+      const now = new Date();
+      return now >= matchDate;
+    }
+
+    // Renderiza o painel inicial com base na data
+    function renderHomePanel() {
+      const resultsDiv = document.getElementById('results');
+      const hoje = new Date().toLocaleDateString('pt-BR');
+
+      let html = '';
+
+      if (hasMatchDayPassed()) {
+        // === RESULTADOS (jogos passados) ===
+        html += `<div class="section-title">📊 RESULTADOS (2/10)</div>`;
+
+        // São Paulo venceu
+        html += `
+        <div class="item">
+          <h3>São Paulo vs. Fortaleza</h3>
+          <div class="confidence-high">✅ WIN — Entrada acertada</div>
+          <div class="details">🎯 Estratégia: Reação do líder para entrar no G4</div>
+          <div class="details">🔹 Fator Oculto: Viagem longa + 3 desfalques superados</div>
+          <div style="display:flex;gap:10px;margin-top:8px;">
+            <span class="badge green">Alta Probabilidade</span>
+            <span class="risk green">Baixo Risco</span>
+          </div>
+        </div>`;
+
+        // Flamengo empatou
+        html += `
+        <div class="item">
+          <h3>Flamengo vs. Cruzeiro</h3>
+          <div class="confidence-high">✅ WIN — Odd de empate paga R$3,40</div>
+          <div class="details">🎯 Estratégia: Valor no mercado → empate subvalorizado</div>
+          <div class="details">🔹 Fator Oculto: Pressão máxima no comando técnico</div>
+          <div style="display:flex;gap:10px;margin-top:8px;">
+            <span class="badge green">Valor no Mercado</span>
+            <span class="risk orange">Médio Risco</span>
+          </div>
+        </div>`;
+      } else {
+        // === PRÓXIMOS EM ALTA ===
+        html += `<div class="section-title">🔥 PRÓXIMOS EM ALTA (2 a 5/10/2025)</div>`;
+      }
+
+      // Adiciona próximo jogo (Bahia vs. Flamengo)
+      html += `
+      <div class="item">
+        <h3>Bahia vs. Flamengo</h3>
+        <div class="confidence-low">⚠️ Acompanhar — Jogo Difícil</div>
+        <div class="details">⏰ 5/10 às 18:30 | 🏟️ Fonte Nova | 📍 Salvador</div>
+        <div class="details">🔹 Triplo jogo em 7 dias — possível rodagem de elenco</div>
+        <div style="display:flex;gap:10px;margin-top:8px;">
+          <span class="badge yellow">Risco Médio</span>
+          <span class="risk red">Alto Risco</span>
+        </div>
+      </div>`;
+
+      // Rodapé
+      html += `<div class="tip">📅 Atualizado em: ${hoje}</div>`;
+      resultsDiv.innerHTML = html;
+    }
+
+    // Funções dos botões (mantidas)
     function setActiveButton(clicked) {
       document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("active"));
       clicked.classList.add("active");
@@ -370,9 +463,7 @@
         btnHiddenConflicts: "💰 Valor no Mercado (Odd Alta)",
         btnReactionChain: "🔄 Múltiplos em Cadeia (G4)",
         btnMultiples: "🚀 MÚLTIPLOS EM ALTA (X2 Protegido)",
-        btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO",
-        sectionUpcoming: "🔥 PRÓXIMOS EM ALTA",
-        lastUpdate: "📅 Última atualização"
+        btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO"
       },
       en: { /* ... */ },
       es: { /* ... */ }
@@ -390,124 +481,13 @@
       document.querySelector(".btn-primary").textContent = t.btnPrimary;
     }
 
-    // Mostrar próximos jogos por campeonato
-    function showUpcomingMatches() {
-      const leagueKey = document.getElementById("leagueSelect").value;
-      if (!leagueKey || !data[leagueKey]) {
-        document.getElementById("results").innerHTML = `<p>Nenhum campeonato selecionado.</p>`;
-        return;
-      }
-
-      const leagueName = {
-        brasileirao: "Brasileirão Série A",
-        premierLeague: "Premier League",
-        laliga: "La Liga"
-      }[leagueKey];
-
-      let html = `<div class="section-title">📅 PRÓXIMOS JOGOS (${leagueName})</div>`;
-
-      data[leagueKey].slice(0, 4).forEach(day => {
-        html += `<h4 style="color:#4CAF50; margin:15px 0 10px 0;">${day.day}, ${formatDateBR(day.date)}</h4>`;
-        day.matches.forEach(match => {
-          const isHomeInG4 = g4.includes(match.home);
-          const isAwayInG4 = g4.includes(match.away);
-          const isHomeInZ4 = z4.includes(match.home);
-          const isAwayInZ4 = z4.includes(match.away);
-
-          let strategy = "";
-          if (isHomeInG4 && isAwayInG4) strategy = "🔥 Confronto Direto pelo G4";
-          else if (isHomeInG4 || isAwayInG4) strategy = "🎯 Time do G4 em campo";
-          else if (isHomeInZ4 || isAwayInZ4) strategy = "⚠️ Jogo de seis pontos";
-
-          html += `
-            <div class="item">
-              <h3>${match.home} vs. ${match.away}</h3>
-              <div class="details">⏰ ${match.time} | 🏟️ ${match.stadium}</div>
-              ${strategy ? `<div class="details">🔹 <strong>Contexto:</strong> ${strategy}</div>` : ""}
-            </div>`;
-        });
-      });
-
-      const now = new Date().toLocaleDateString('pt-BR');
-      html += `<div class="tip">📅 Atualizado em: ${now}</div>`;
-      document.getElementById("results").innerHTML = html;
-    }
-
-    function formatDateBR(dateStr) {
-      const [y, m, d] = dateStr.split('-');
-      return `${d}/${m}`;
-    }
-
-    // Funções dos botões (com lógica ajustada)
-    document.getElementById("btnNextMatches").addEventListener("click", () => {
-      setActiveButton(this);
-      showUpcomingMatches();
-    });
-
-    document.getElementById("btnChance").addEventListener("click", function() {
-      setActiveButton(this);
-      showResults("🎯 REAÇÃO DO LÍDER (G4)", [
-        { teams: "São Paulo vs. Fortaleza", result: "✅ Entrada válida", analysis: "Precisa vencer para entrar no G4", hidden: "Técnico novo + apoio da torcida" }
-      ]);
-    });
-
-    document.getElementById("btnPressureAlert").addEventListener("click", function() {
-      setActiveButton(this);
-      showResults("🔥 ALERTA DE PRESSÃO (G4 Pressionado)", [
-        { teams: "Flamengo vs. Cruzeiro", result: "✅ Jogo chave", analysis: "Empate ajuda, derrota complica", hidden: "Técnico pode ser demitido" }
-      ]);
-    });
-
-    document.getElementById("btnHiddenConflicts").addEventListener("click", function() {
-      setActiveButton(this);
-      showResults("💰 VALOR NO MERCADO (Odd Alta)", [
-        { teams: "Flamengo vs. Cruzeiro", result: "✅ Odd de empate: 3.40", analysis: "Clássico equilibrado", hidden: "Ambos precisam dos pontos" }
-      ]);
-    });
-
-    document.getElementById("btnMultiples").addEventListener("click", function() {
-      setActiveButton(this);
-      const date = new Date().toLocaleDateString('pt-BR');
-      const html = `
-        <div class="section-title">🚀 MÚLTIPLOS EM ALTA (X2 Protegido)</div>
-        <div style="background: #1a1a2e; padding: 12px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-size: 0.95rem;">
-          <strong>📊 Estratégia com 90% de acerto</strong><br>
-          <small>Protege contra derrota direta</small>
-        </div>
-        <div class="item">
-          <h3>São Paulo vs. Fortaleza</h3>
-          <div class="confidence-high">✅ Recomendado — X2 Protegido</div>
-          <div class="details">💡 Cobrir vitória ou empate</div>
-          <div class="details">🔹 Fator Oculto: São Paulo precisa subir para G4</div>
-        </div>
-        <div class="tip">📅 Atualizado em: ${date}</div>
-      `;
-      document.getElementById("results").innerHTML = html;
-    });
-
-    function showResults(title, games) {
-      const wins = games.filter(g => g.result.includes("✅")).length;
-      const total = games.length;
-      const winRate = Math.round((wins / total) * 100);
-      const date = new Date().toLocaleDateString('pt-BR');
-
-      let html = `<div class="section-title">${title}</div>`;
-      if (title.includes("RESULTADOS")) {
-        html += `<div style="background: #1a1a2e; padding: 12px; border-radius: 10px; margin-bottom: 20px; text-align: center;"><strong>📊 Taxa: ${winRate}%</strong></div>`;
-      }
-      games.forEach(game => {
-        html += `<div class="item"><h3>${game.teams}</h3><div class="${game.result.includes('✅') ? 'confidence-high' : 'confidence-low'}">${game.result}</div><div class="details">🎯 ${game.analysis}</div><div class="details">🔹 ${game.hidden}</div></div>`;
-      });
-      html += `<div class="tip">📅 Atualizado em: ${date}</div>`;
-      document.getElementById("results").innerHTML = html;
-    }
-
     // Inicialização
     document.addEventListener('DOMContentLoaded', function() {
       const savedLang = localStorage.getItem('language') || 'pt';
       document.getElementById("languageSelector").value = savedLang;
       translatePage(savedLang);
 
+      // Eventos
       document.getElementById("languageSelector").addEventListener("change", function() {
         const lang = this.value;
         translatePage(lang);
@@ -516,12 +496,49 @@
 
       document.getElementById("leagueSelect").addEventListener("change", showUpcomingMatches);
 
-      document.getElementById("update-date").textContent = new Date().toLocaleDateString('pt-BR');
+      // Carrega painel inicial
+      renderHomePanel();
+
+      // Atualiza hash ao clicar nos botões
+      document.querySelectorAll("nav button").forEach(btn => {
+        btn.addEventListener("click", function() {
+          setActiveButton(this);
+          const hash = this.id.replace('btn', '').toLowerCase();
+          history.replaceState(null, null, '#' + hash);
+        });
+      });
+
+      // Suporte a navegação por hash
+      window.addEventListener('hashchange', () => {
+        const hash = window.location.hash.substring(1);
+        console.log("Hash mudou:", hash);
+      });
     });
+
+    // Função para mostrar próximos jogos (usada no menu)
+    function showUpcomingMatches() {
+      const leagueKey = document.getElementById("leagueSelect").value;
+      if (!leagueKey || !data[leagueKey]) return;
+
+      let html = `<div class="section-title">📅 PRÓXIMOS JOGOS</div>`;
+      data[leagueKey].slice(0, 3).forEach(day => {
+        html += `<h4 style="color:#4CAF50">${day.day}, ${formatDateBR(day.date)}</h4>`;
+        day.matches.forEach(match => {
+          const isHomeInG4 = g4.includes(match.home);
+          const strategy = isHomeInG4 ? "🎯 Time do G4 em campo" : "";
+          html += `
+            <div class="item">
+              <h3>${match.home} vs. ${match.away}</h3>
+              <div class="details">⏰ ${match.time} | 🏟️ ${match.stadium}</div>
+              ${strategy ? `<div class="details">🔹 ${strategy}</div>` : ""}
+            </div>`;
+        });
+      });
+      document.getElementById("results").innerHTML = html;
+    }
   </script>
 </body>
 </html>
-
 
 
 
