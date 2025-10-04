@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -20,7 +21,6 @@
       padding: 20px;
       box-sizing: border-box;
       overflow-y: auto;
-      position: relative;
     }
     #content {
       flex-grow: 1;
@@ -30,45 +30,13 @@
       background: #0f0f1a;
     }
 
-    /* Badge de elite */
-    .elite-badge {
-      text-align: center;
-      margin-bottom: 15px;
-      color: #4caf50;
-      font-size: 1.1rem;
-      font-weight: bold;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* Botão de assinatura */
-    .btn-primary {
-      white-space: nowrap;
-      padding: 12px 20px;
-      background: linear-gradient(135deg, #00c853, #00bfa5);
-      border: none;
+    /* Botão ativo */
+    nav button.active {
+      background: #00c853;
       color: white;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1.1rem;
-      text-decoration: none;
-      min-width: 260px;
-      text-align: center;
-      display: inline-block;
-      margin: 15px 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    /* Menu lateral */
-    nav {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
     }
     nav button {
+      width: 100%;
       padding: 12px 15px;
       background: #333;
       border: none;
@@ -76,137 +44,63 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 0.9rem;
-      transition: all 0.3s ease;
       text-align: left;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    nav button.active {
-      background: #00c853;
-      color: white;
-    }
-    nav button:hover {
-      transform: scale(1.02);
+      margin-bottom: 8px;
     }
 
     /* Resultados */
     #results {
-      margin-top: 20px;
-      max-height: 70vh;
-      overflow-y: auto;
       background: #121212;
       padding: 15px;
       border-radius: 10px;
+      max-height: 70vh;
+      overflow-y: auto;
     }
     .section-title {
-      font-size: 1.1rem;
       color: #4caf50;
+      font-size: 1.1rem;
       margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
     .item {
-      padding: 15px;
-      border-bottom: 1px solid #222;
       background: #1a1a1a;
+      padding: 15px;
       border-radius: 8px;
       margin-bottom: 10px;
+      border-bottom: 1px solid #222;
     }
-    .item:last-child { border-bottom: none; }
-    .details {
-      font-size: 0.9em;
-      color: #ccc;
-      margin-top: 8px;
-      line-height: 1.5;
+    .confidence-high { color: #4caf50; font-weight: bold; }
+    .details { color: #ccc; font-size: 0.9em; margin-top: 8px; line-height: 1.5; }
+    .tip { color: #bbb; font-style: italic; text-align: center; margin-top: 15px; }
+    .badge { 
+      font-size: 0.8rem; 
+      padding: 4px 8px; 
+      border-radius: 12px; 
+      margin-right: 8px; 
+      display: inline-block;
     }
-    .confidence-high {
-      color: #4caf50;
-      font-weight: bold;
-    }
-    .confidence-low {
-      color: #f44336;
-      font-weight: bold;
-    }
-    .tip {
-      font-style: italic;
-      color: #bbb;
-      margin-top: 15px;
-      text-align: center;
-    }
+    .badge.green { background: #4caf50; color: white; }
+    .badge.purple { background: #9c27b0; color: white; }
     .risk {
       font-size: 0.8rem;
       padding: 4px 8px;
       border-radius: 12px;
-      margin-left: auto;
+      float: right;
     }
     .risk.green { background: #2e7d32; color: white; }
     .risk.orange { background: #ff9800; color: white; }
-    .risk.red { background: #f44336; color: white; }
-    .badge {
-      font-size: 0.8rem;
-      padding: 4px 8px;
-      border-radius: 12px;
-      margin-right: 10px;
-    }
-    .badge.purple { background: #9c27b0; color: white; }
-    .badge.green { background: #4caf50; color: white; }
-    .badge.yellow { background: #ffeb3b; color: black; }
-
-    /* Seletor de idioma */
-    #languageSelector {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: none;
-      background: #333;
-      color: white;
-      font-size: 0.9rem;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
 
   <div id="sidebar">
-    <!-- Logo -->
-    <div style="margin-bottom: 20px;">
-      <div style="background: #00c853; color: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 10px;">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px;">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="#fff"/>
-        </svg>
-        <span><strong>Rastreador Avançado</strong></span>
-      </div>
+    <div style="background:#00c853; color:white; padding:15px; border-radius:10px; margin-bottom:20px;">
+      <strong>🚀 Rastreador Avançado</strong>
     </div>
 
-    <!-- Seleção de campeonato -->
-    <div style="margin-bottom: 15px;">
-      <label for="leagueSelect" style="display: block; margin-bottom: 5px; font-size: 0.9rem;">Selecione Campeonato:</label>
-      <select id="leagueSelect" style="width: 100%; padding: 10px; border-radius: 6px; border: none; background: #333; color: white; font-size: 0.9rem;">
-        <option value="">Selecione um campeonato</option>
-        <option value="brasileirao">🇧🇷 Brasileirão Série A</option>
-        <option value="premierLeague">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
-        <option value="laliga">🇪🇸 La Liga</option>
-        <option value="libertadores">🏆 Copa Libertadores</option>
-      </select>
-    </div>
-
-    <!-- Idioma -->
-    <div style="margin-bottom: 15px;">
-      <label for="languageSelector" style="display: block; margin-bottom: 5px; font-size: 0.9rem;">Idioma:</label>
-      <select id="languageSelector">
-        <option value="pt">Português</option>
-        <option value="en">English</option>
-        <option value="es">Español</option>
-      </select>
-    </div>
-
-    <!-- Menu de análise -->
     <nav>
       <button id="btnNextMatches" class="active">📅 PRÓXIMOS JOGOS</button>
       <button id="btnChance">🎯 Reação do Líder (G4)</button>
-      <button id="btnPressureAlert">🔥 Alerta de Pressão (G4 Pressionado)</button>
+      <button id="btnPressureAlert">🔥 Alerta de Pressão (G4)</button>
       <button id="btnHiddenConflicts">💰 Valor no Mercado (Odd Alta)</button>
       <button id="btnReactionChain">🔄 Múltiplos em Cadeia (G4)</button>
       <button id="btnMultiples">🚀 MÚLTIPLOS EM ALTA (X2 Protegido)</button>
@@ -214,332 +108,223 @@
   </div>
 
   <div id="content">
-    <!-- Elite badge -->
-    <div class="elite-badge">
-      🏆 Top 1% no Mundo | 🥇 Líder em Inovação | 💡 X2 Protegido
+    <div class="elite-badge" style="color:#4caf50; font-weight:bold; margin-bottom:15px;">
+      🏆 Top 1% | 💡 X2 Protegido | 🥇 Inovação
     </div>
 
-    <!-- Botão de assinatura -->
-    <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" target="_blank" rel="noopener" class="btn-primary">
+    <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" 
+       target="_blank" 
+       style="display:inline-block; background:linear-gradient(135deg,#00c853,#00bfa5); 
+              color:white; padding:12px 20px; text-decoration:none; border-radius:8px; 
+              font-weight:bold; text-align:center; margin:15px 0;">
       🚀 QUERO ASSINAR O RASTREADOR PRO
     </a>
 
-    <!-- Resultados dinâmicos -->
     <div id="results"></div>
   </div>
 
   <script>
-    // TABELA SIMULADA DO BRASILEIRÃO
+    // Tabela simulada
     const tabelaBrasileirao = [
       { time: "Palmeiras", pos: 1, pts: 48 },
       { time: "Flamengo", pos: 2, pts: 45 },
       { time: "Botafogo", pos: 3, pts: 44 },
       { time: "Atlético-MG", pos: 4, pts: 43 },
-      { time: "Grêmio", pos: 5, pts: 41 },
       { time: "São Paulo", pos: 6, pts: 40 },
-      { time: "Cruzeiro", pos: 7, pts: 40 },
-      { time: "Fluminense", pos: 8, pts: 39 },
-      { time: "Red Bull Bragantino", pos: 9, pts: 38 },
-      { time: "Internacional", pos: 10, pts: 37 },
-      { time: "Fortaleza", pos: 11, pts: 36 },
-      { time: "Bahia", pos: 12, pts: 35 },
-      { time: "Corinthians", pos: 13, pts: 34 },
-      { time: "Vasco da Gama", pos: 14, pts: 33 },
-      { time: "Ceará", pos: 15, pts: 32 },
-      { time: "Santos", pos: 16, pts: 31 },
-      { time: "Juventude", pos: 17, pts: 28 },
-      { time: "Vitória", pos: 18, pts: 26 },
-      { time: "América-MG", pos: 19, pts: 25 },
-      { time: "Criciúma", pos: 20, pts: 22 }
+      { time: "Cruzeiro", pos: 7, pts: 40 }
     ];
-
     const g4 = tabelaBrasileirao.slice(0, 4).map(t => t.time);
 
-    // DADOS COM RESULTADOS (data.djos)
+    // Dados com resultados
     const data = {
       "brasileirao": [
         {
           "date": "2025-10-02",
           "day": "quarta-feira",
           "matches": [
-            {
-              "home": "Vitória",
-              "away": "Ceará",
-              "time": "19:00",
-              "stadium": "Estádio Manoel Barradas",
-              "city": "Salvador, Brasil",
-              "result": "1-1",
-              "status": "draw"
-            },
-            {
-              "home": "Fortaleza",
-              "away": "São Paulo",
-              "time": "19:30",
-              "stadium": "Castelão",
-              "city": "Fortaleza, Brasil",
-              "result": "0-2",
-              "status": "loss"
-            },
-            {
-              "home": "Flamengo",
-              "away": "Cruzeiro",
-              "time": "20:30",
-              "stadium": "Estadio do Maracanã",
-              "city": "Rio de Janeiro, Brasil",
-              "result": "2-2",
-              "status": "draw"
-            }
+            { "home": "Vitória", "away": "Ceará", "time": "19:00", "stadium": "Estádio Manoel Barradas", "result": "1-1", "status": "draw" },
+            { "home": "Fortaleza", "away": "São Paulo", "time": "19:30", "stadium": "Castelão", "result": "0-2", "status": "loss" },
+            { "home": "Flamengo", "away": "Cruzeiro", "time": "20:30", "stadium": "Maracanã", "result": "2-2", "status": "draw" }
           ]
         },
         {
           "date": "2025-10-04",
           "day": "sexta-feira",
           "matches": [
-            {
-              "home": "Fluminense",
-              "away": "Atlético-MG",
-              "time": "18:30",
-              "stadium": "Estadio do Maracanã",
-              "city": "Rio de Janeiro, Brasil"
-            },
-            {
-              "home": "Internacional",
-              "away": "Botafogo",
-              "time": "18:30",
-              "stadium": "Estadio Beira-Rio",
-              "city": "Porto Alegre, Brasil"
-            },
-            {
-              "home": "Red Bull Bragantino",
-              "away": "Grêmio",
-              "time": "18:30",
-              "stadium": "Estádio Cicero de Souza Marques",
-              "city": "Bragança Paulista, Brasil"
-            },
-            {
-              "home": "Corinthians",
-              "away": "Mirassol",
-              "time": "21:00",
-              "stadium": "Neo Química Arena",
-              "city": "São Paulo, Brasil"
-            }
-          ]
-        },
-        {
-          "date": "2025-10-05",
-          "day": "sábado",
-          "matches": [
-            {
-              "home": "São Paulo",
-              "away": "Palmeiras",
-              "time": "16:00",
-              "stadium": "MorumBIS",
-              "city": "São Paulo, Brasil"
-            },
-            {
-              "home": "Vasco da Gama",
-              "away": "Vitória",
-              "time": "16:00",
-              "stadium": "Estádio São Januário",
-              "city": "Rio de Janeiro, Brasil"
-            },
-            {
-              "home": "Bahia",
-              "away": "Flamengo",
-              "time": "18:30",
-              "stadium": "Casa de Apostas Arena Fonte Nova",
-              "city": "Salvador, Brasil"
-            },
-            {
-              "home": "Juventude",
-              "away": "Fortaleza",
-              "time": "18:30",
-              "stadium": "Alfredo Jaconi",
-              "city": "Caxias do Sul, Brasil"
-            },
-            {
-              "home": "Ceará",
-              "away": "Santos",
-              "time": "20:30",
-              "stadium": "Castelão",
-              "city": "Fortaleza, Brasil"
-            },
-            {
-              "home": "Cruzeiro",
-              "away": "Sport",
-              "time": "20:30",
-              "stadium": "Estadio Mineirão",
-              "city": "Belo Horizonte, Brasil"
-            }
+            { "home": "Fluminense", "away": "Atlético-MG", "time": "18:30", "stadium": "Maracanã" },
+            { "home": "Internacional", "away": "Botafogo", "time": "18:30", "stadium": "Beira-Rio" }
           ]
         }
       ]
     };
 
-    // Função para formatar data
-    function formatDateBR(dateStr) {
-      return dateStr.split('-').reverse().join('/');
+    // Função para ativar botão
+    function setActive(btnId) {
+      document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+      document.getElementById(btnId).classList.add("active");
     }
 
-    // VERIFICA SE OS JOGOS DE 2/10 JÁ OCORRERAM
-    function hasMatchDayPassed() {
-      const matchDate = new Date('2025-10-03T00:00:00'); // Após 2/10
-      const now = new Date();
-      return now >= matchDate;
-    }
+    // Função para exibir resultados
+    function showResults(title, items) {
+      const resultsDiv = document.getElementById("results");
+      let html = `<div class="section-title">${title}</div>`;
 
-    // Renderiza o painel inicial com base na data
-    function renderHomePanel() {
-      const resultsDiv = document.getElementById('results');
-      const hoje = new Date().toLocaleDateString('pt-BR');
+      items.forEach(item => {
+        html += `<div class="item">
+          <h3>${item.teams}</h3>
+          <div class="${item.confidence}">${item.result}</div>
+          <div class="details">🎯 ${item.analysis}</div>
+          <div class="details">🔹 ${item.hidden}</div>`;
+        
+        if (item.badge) {
+          html += `<div style="margin-top:8px;">`;
+          item.badge.split(',').forEach(b => {
+            const [cls, txt] = b.split(':');
+            html += `<span class="badge ${cls.trim()}">${txt.trim()}</span>`;
+          });
+          html += `</div>`;
+        }
+        html += `</div>`;
+      });
 
-      let html = '';
-
-      if (hasMatchDayPassed()) {
-        // === RESULTADOS (jogos passados) ===
-        html += `<div class="section-title">📊 RESULTADOS (2/10)</div>`;
-
-        // São Paulo venceu
-        html += `
-        <div class="item">
-          <h3>São Paulo vs. Fortaleza</h3>
-          <div class="confidence-high">✅ WIN — Entrada acertada</div>
-          <div class="details">🎯 Estratégia: Reação do líder para entrar no G4</div>
-          <div class="details">🔹 Fator Oculto: Viagem longa + 3 desfalques superados</div>
-          <div style="display:flex;gap:10px;margin-top:8px;">
-            <span class="badge green">Alta Probabilidade</span>
-            <span class="risk green">Baixo Risco</span>
-          </div>
-        </div>`;
-
-        // Flamengo empatou
-        html += `
-        <div class="item">
-          <h3>Flamengo vs. Cruzeiro</h3>
-          <div class="confidence-high">✅ WIN — Odd de empate paga R$3,40</div>
-          <div class="details">🎯 Estratégia: Valor no mercado → empate subvalorizado</div>
-          <div class="details">🔹 Fator Oculto: Pressão máxima no comando técnico</div>
-          <div style="display:flex;gap:10px;margin-top:8px;">
-            <span class="badge green">Valor no Mercado</span>
-            <span class="risk orange">Médio Risco</span>
-          </div>
-        </div>`;
-      } else {
-        // === PRÓXIMOS EM ALTA ===
-        html += `<div class="section-title">🔥 PRÓXIMOS EM ALTA (2 a 5/10/2025)</div>`;
-      }
-
-      // Adiciona próximo jogo (Bahia vs. Flamengo)
-      html += `
-      <div class="item">
-        <h3>Bahia vs. Flamengo</h3>
-        <div class="confidence-low">⚠️ Acompanhar — Jogo Difícil</div>
-        <div class="details">⏰ 5/10 às 18:30 | 🏟️ Fonte Nova | 📍 Salvador</div>
-        <div class="details">🔹 Triplo jogo em 7 dias — possível rodagem de elenco</div>
-        <div style="display:flex;gap:10px;margin-top:8px;">
-          <span class="badge yellow">Risco Médio</span>
-          <span class="risk red">Alto Risco</span>
-        </div>
-      </div>`;
-
-      // Rodapé
-      html += `<div class="tip">📅 Atualizado em: ${hoje}</div>`;
+      html += `<div class="tip">📅 Atualizado em: ${new Date().toLocaleDateString('pt-BR')}</div>`;
       resultsDiv.innerHTML = html;
     }
 
-    // Funções dos botões (mantidas)
-    function setActiveButton(clicked) {
-      document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("active"));
-      clicked.classList.add("active");
-    }
+    // Botões funcionais
+    document.getElementById("btnNextMatches").addEventListener("click", () => {
+      setActive("btnNextMatches");
 
-    // Traduções
-    const translations = {
-      pt: {
-        title: "Rastreador Avançado - Múltiplos em Alta",
-        btnNextMatches: "📅 PRÓXIMOS JOGOS",
-        btnChance: "🎯 Reação do Líder (G4)",
-        btnPressureAlert: "🔥 Alerta de Pressão (G4 Pressionado)",
-        btnHiddenConflicts: "💰 Valor no Mercado (Odd Alta)",
-        btnReactionChain: "🔄 Múltiplos em Cadeia (G4)",
-        btnMultiples: "🚀 MÚLTIPLOS EM ALTA (X2 Protegido)",
-        btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO"
-      },
-      en: { /* ... */ },
-      es: { /* ... */ }
-    };
+      const hoje = new Date().toISOString().split('T')[0];
+      const passados = [];
+      const futuros = [];
 
-    function translatePage(lang) {
-      const t = translations[lang];
-      document.title = t.title;
-      document.getElementById("btnNextMatches").textContent = t.btnNextMatches;
-      document.getElementById("btnChance").textContent = t.btnChance;
-      document.getElementById("btnPressureAlert").textContent = t.btnPressureAlert;
-      document.getElementById("btnHiddenConflicts").textContent = t.btnHiddenConflicts;
-      document.getElementById("btnReactionChain").textContent = t.btnReactionChain;
-      document.getElementById("btnMultiples").textContent = t.btnMultiples;
-      document.querySelector(".btn-primary").textContent = t.btnPrimary;
-    }
-
-    // Inicialização
-    document.addEventListener('DOMContentLoaded', function() {
-      const savedLang = localStorage.getItem('language') || 'pt';
-      document.getElementById("languageSelector").value = savedLang;
-      translatePage(savedLang);
-
-      // Eventos
-      document.getElementById("languageSelector").addEventListener("change", function() {
-        const lang = this.value;
-        translatePage(lang);
-        localStorage.setItem('language', lang);
-      });
-
-      document.getElementById("leagueSelect").addEventListener("change", showUpcomingMatches);
-
-      // Carrega painel inicial
-      renderHomePanel();
-
-      // Atualiza hash ao clicar nos botões
-      document.querySelectorAll("nav button").forEach(btn => {
-        btn.addEventListener("click", function() {
-          setActiveButton(this);
-          const hash = this.id.replace('btn', '').toLowerCase();
-          history.replaceState(null, null, '#' + hash);
+      data.brasileirao.forEach(dia => {
+        dia.matches.forEach(m => {
+          if (m.result && dia.date <= hoje) {
+            passados.push({ ...m, date: dia.date, day: dia.day });
+          } else if (dia.date > hoje || !m.result) {
+            futuros.push({ ...m, date: dia.date, day: dia.day });
+          }
         });
       });
 
-      // Suporte a navegação por hash
-      window.addEventListener('hashchange', () => {
-        const hash = window.location.hash.substring(1);
-        console.log("Hash mudou:", hash);
+      let html = `<div class="section-title">📊 RESULTADOS</div>`;
+      passados.forEach(m => {
+        const [y, mth, d] = m.date.split('-');
+        html += `
+        <div class="item">
+          <h3>${m.home} ${m.result} ${m.away}</h3>
+          <div class="confidence-high">✅ WIN — Acerto estratégico</div>
+          <div class="details">📅 ${d}/${mth} | ⏰ ${m.time} | 🏟️ ${m.stadium}</div>
+        </div>`;
       });
-    });
 
-    // Função para mostrar próximos jogos (usada no menu)
-    function showUpcomingMatches() {
-      const leagueKey = document.getElementById("leagueSelect").value;
-      if (!leagueKey || !data[leagueKey]) return;
+      if (futuros.length > 0) {
+        html += `<div class="section-title">📅 PRÓXIMOS JOGOS</div>`;
+        const grouped = {};
+        futuros.forEach(m => {
+          if (!grouped[m.date]) grouped[m.date] = { day: m.day, matches: [] };
+          grouped[m.date].matches.push(m);
+        });
 
-      let html = `<div class="section-title">📅 PRÓXIMOS JOGOS</div>`;
-      data[leagueKey].slice(0, 3).forEach(day => {
-        html += `<h4 style="color:#4CAF50">${day.day}, ${formatDateBR(day.date)}</h4>`;
-        day.matches.forEach(match => {
-          const isHomeInG4 = g4.includes(match.home);
-          const strategy = isHomeInG4 ? "🎯 Time do G4 em campo" : "";
-          html += `
+        Object.keys(grouped).forEach(date => {
+          const d = grouped[date];
+          const [y, mth, day] = date.split('-');
+          html += `<h4 style="color:#4CAF50;margin:15px 0;">${d.day}, ${day}/${mth}</h4>`;
+          d.matches.forEach(match => {
+            const g4Match = g4.includes(match.home) || g4.includes(match.away);
+            html += `
             <div class="item">
               <h3>${match.home} vs. ${match.away}</h3>
               <div class="details">⏰ ${match.time} | 🏟️ ${match.stadium}</div>
-              ${strategy ? `<div class="details">🔹 ${strategy}</div>` : ""}
+              ${g4Match ? `<div class="details">🔹 🎯 Time do G4 em campo</div>` : ""}
             </div>`;
+          });
         });
-      });
+      }
+
+      html += `<div class="tip">📅 Atualizado em: ${new Date().toLocaleDateString('pt-BR')}</div>`;
       document.getElementById("results").innerHTML = html;
-    }
+    });
+
+    document.getElementById("btnChance").addEventListener("click", () => {
+      setActive("btnChance");
+      showResults("🎯 REAÇÃO DO LÍDER (G4)", [
+        {
+          teams: "São Paulo vs. Fortaleza",
+          result: "✅ Win — Entrada acertada",
+          confidence: "confidence-high",
+          analysis: "Precisava vencer para subir na tabela",
+          hidden: "3 desfalques superados",
+          badge: "green:Alta Probabilidade"
+        }
+      ]);
+    });
+
+    document.getElementById("btnPressureAlert").addEventListener("click", () => {
+      setActive("btnPressureAlert");
+      showResults("🔥 ALERTA DE PRESSÃO (G4 Pressionado)", [
+        {
+          teams: "Flamengo vs. Cruzeiro",
+          result: "✅ Win — Odd de empate alta",
+          confidence: "confidence-high",
+          analysis: "Empate paga R$3,40",
+          hidden: "Técnico pode ser demitido",
+          badge: "orange:Médio Risco"
+        }
+      ]);
+    });
+
+    document.getElementById("btnHiddenConflicts").addEventListener("click", () => {
+      setActive("btnHiddenConflicts");
+      showResults("💰 VALOR NO MERCADO (Odd Alta)", [
+        {
+          teams: "Flamengo vs. Cruzeiro",
+          result: "✅ Recomendado — Odd 3.40",
+          confidence: "confidence-high",
+          analysis: "Clássico equilibrado",
+          hidden: "Ambos precisam dos pontos",
+          badge: "green:Valor no Mercado"
+        }
+      ]);
+    });
+
+    document.getElementById("btnReactionChain").addEventListener("click", () => {
+      setActive("btnReactionChain");
+      showResults("🔄 MÚLTIPLOS EM CADEIA (G4)", [
+        {
+          teams: "São Paulo → Flamengo → Atlético-MG",
+          result: "✅ Sequência ativa",
+          confidence: "confidence-high",
+          analysis: "Três times do G4 jogam em 72h",
+          hidden: "Oportunidade de múltiplo acumulado",
+          badge: "purple:Cadeia Ativa"
+        }
+      ]);
+    });
+
+    document.getElementById("btnMultiples").addEventListener("click", () => {
+      setActive("btnMultiples");
+      showResults("🚀 MÚLTIPLOS EM ALTA (X2 Protegido)", [
+        {
+          teams: "São Paulo vs. Fortaleza",
+          result: "✅ Recomendado — X2 Protegido",
+          confidence: "confidence-high",
+          analysis: "Cobrir vitória ou empate",
+          hidden: "Fator: São Paulo precisa subir",
+          badge: "purple:X2 Protegido,green:Bom valor"
+        }
+      ]);
+    });
+
+    // Inicializa com "Próximos Jogos"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("btnNextMatches").click();
+    });
   </script>
 </body>
 </html>
-
 
 
 
