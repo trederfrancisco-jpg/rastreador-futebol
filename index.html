@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -30,11 +29,50 @@
       background: #0f0f1a;
     }
 
-    /* Botão ativo */
-    nav button.active {
+    /* Logo */
+    .logo {
+      background: #00c853;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    /* Seletor de campeonato */
+    select {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #333;
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    /* Botão de time */
+    .team-btn {
+      display: inline-block;
+      padding: 6px 10px;
+      margin: 4px;
+      background: #333;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.3s;
+    }
+    .team-btn:hover {
+      background: #00c853;
+      transform: scale(1.05);
+    }
+    .team-btn.active {
       background: #00c853;
       color: white;
     }
+
+    /* Menu lateral */
     nav button {
       width: 100%;
       padding: 12px 15px;
@@ -46,6 +84,10 @@
       font-size: 0.9rem;
       text-align: left;
       margin-bottom: 8px;
+    }
+    nav button.active {
+      background: #00c853;
+      color: white;
     }
 
     /* Resultados */
@@ -69,17 +111,21 @@
       border-bottom: 1px solid #222;
     }
     .confidence-high { color: #4caf50; font-weight: bold; }
+    .confidence-low { color: #f44336; font-weight: bold; }
     .details { color: #ccc; font-size: 0.9em; margin-top: 8px; line-height: 1.5; }
     .tip { color: #bbb; font-style: italic; text-align: center; margin-top: 15px; }
-    .badge { 
-      font-size: 0.8rem; 
-      padding: 4px 8px; 
-      border-radius: 12px; 
-      margin-right: 8px; 
+
+    /* Badges e riscos */
+    .badge {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 12px;
+      margin-right: 8px;
       display: inline-block;
     }
     .badge.green { background: #4caf50; color: white; }
     .badge.purple { background: #9c27b0; color: white; }
+    .badge.yellow { background: #ffeb3b; color: black; }
     .risk {
       font-size: 0.8rem;
       padding: 4px 8px;
@@ -88,16 +134,36 @@
     }
     .risk.green { background: #2e7d32; color: white; }
     .risk.orange { background: #ff9800; color: white; }
+    .risk.red { background: #f44336; color: white; }
   </style>
 </head>
 <body>
 
   <div id="sidebar">
-    <div style="background:#00c853; color:white; padding:15px; border-radius:10px; margin-bottom:20px;">
-      <strong>🚀 Rastreador Avançado</strong>
+    <!-- Logo -->
+    <div class="logo">🚀 Rastreador Avançado</div>
+
+    <!-- Seleção de campeonato -->
+    <div>
+      <label for="leagueSelect" style="display:block; margin-bottom:5px; font-size:0.9rem;">Selecione Campeonato:</label>
+      <select id="leagueSelect">
+        <option value="">Selecione um campeonato</option>
+        <option value="brasileirao" selected>🇧🇷 Brasileirão Série A</option>
+        <option value="premierLeague">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+        <option value="laliga">🇪🇸 La Liga</option>
+      </select>
     </div>
 
-    <nav>
+    <!-- Times do Brasileirão -->
+    <div>
+      <div style="font-size:0.9rem; color:#ccc; margin-bottom:10px;">🔍 TIMES DO BRASILEIRÃO</div>
+      <div id="teamButtons" style="display:flex;flex-wrap:wrap;gap:6px;">
+        <!-- Preenchido via JS -->
+      </div>
+    </div>
+
+    <!-- Menu de Análise -->
+    <nav style="margin-top:20px;">
       <button id="btnNextMatches" class="active">📅 PRÓXIMOS JOGOS</button>
       <button id="btnChance">🎯 Reação do Líder (G4)</button>
       <button id="btnPressureAlert">🔥 Alerta de Pressão (G4)</button>
@@ -108,10 +174,12 @@
   </div>
 
   <div id="content">
-    <div class="elite-badge" style="color:#4caf50; font-weight:bold; margin-bottom:15px;">
+    <!-- Elite badge -->
+    <div style="color:#4caf50; font-weight:bold; margin-bottom:15px; text-align:center;">
       🏆 Top 1% | 💡 X2 Protegido | 🥇 Inovação
     </div>
 
+    <!-- Botão de assinatura -->
     <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" 
        target="_blank" 
        style="display:inline-block; background:linear-gradient(135deg,#00c853,#00bfa5); 
@@ -120,22 +188,39 @@
       🚀 QUERO ASSINAR O RASTREADOR PRO
     </a>
 
+    <!-- Painel de resultados -->
     <div id="results"></div>
   </div>
 
   <script>
-    // Tabela simulada
+    // Tabela simulada (atualizada)
     const tabelaBrasileirao = [
       { time: "Palmeiras", pos: 1, pts: 48 },
       { time: "Flamengo", pos: 2, pts: 45 },
       { time: "Botafogo", pos: 3, pts: 44 },
       { time: "Atlético-MG", pos: 4, pts: 43 },
+      { time: "Grêmio", pos: 5, pts: 41 },
       { time: "São Paulo", pos: 6, pts: 40 },
-      { time: "Cruzeiro", pos: 7, pts: 40 }
+      { time: "Cruzeiro", pos: 7, pts: 40 },
+      { time: "Fluminense", pos: 8, pts: 39 },
+      { time: "Red Bull Bragantino", pos: 9, pts: 38 },
+      { time: "Internacional", pos: 10, pts: 37 },
+      { time: "Fortaleza", pos: 11, pts: 36 },
+      { time: "Bahia", pos: 12, pts: 35 },
+      { time: "Corinthians", pos: 13, pts: 34 },
+      { time: "Vasco da Gama", pos: 14, pts: 33 },
+      { time: "Ceará", pos: 15, pts: 32 },
+      { time: "Santos", pos: 16, pts: 31 },
+      { time: "Juventude", pos: 17, pts: 28 },
+      { time: "Vitória", pos: 18, pts: 26 },
+      { time: "América-MG", pos: 19, pts: 25 },
+      { time: "Criciúma", pos: 20, pts: 22 }
     ];
-    const g4 = tabelaBrasileirao.slice(0, 4).map(t => t.time);
 
-    // Dados com resultados
+    const g4 = tabelaBrasileirao.slice(0, 4).map(t => t.time);
+    const timesOrdenados = tabelaBrasileirao.map(t => t.time);
+
+    // Dados dos jogos (com resultados)
     const data = {
       "brasileirao": [
         {
@@ -154,6 +239,14 @@
             { "home": "Fluminense", "away": "Atlético-MG", "time": "18:30", "stadium": "Maracanã" },
             { "home": "Internacional", "away": "Botafogo", "time": "18:30", "stadium": "Beira-Rio" }
           ]
+        },
+        {
+          "date": "2025-10-05",
+          "day": "sábado",
+          "matches": [
+            { "home": "São Paulo", "away": "Palmeiras", "time": "16:00", "stadium": "MorumBIS" },
+            { "home": "Bahia", "away": "Flamengo", "time": "18:30", "stadium": "Arena Fonte Nova" }
+          ]
         }
       ]
     };
@@ -164,7 +257,69 @@
       document.getElementById(btnId).classList.add("active");
     }
 
-    // Função para exibir resultados
+    // Gerar botões de times
+    function renderTeamButtons() {
+      const container = document.getElementById("teamButtons");
+      container.innerHTML = '';
+      timesOrdenados.forEach(time => {
+        const btn = document.createElement("button");
+        btn.textContent = time;
+        btn.className = "team-btn";
+        btn.onclick = () => showTeamAnalysis(time);
+        container.appendChild(btn);
+      });
+    }
+
+    // Mostrar análise de um time
+    function showTeamAnalysis(time) {
+      setActive(null);
+      const resultsDiv = document.getElementById("results");
+      const hoje = new Date().toISOString().split('T')[0];
+
+      let html = `<div class="section-title"> ${time} - ANÁLISE DETALHADA</div>`;
+
+      const jogosTime = [];
+      data.brasileirao.forEach(dia => {
+        dia.matches.forEach(match => {
+          if (match.home === time || match.away === time) {
+            jogosTime.push({ ...match, date: dia.date, day: dia.day });
+          }
+        });
+      });
+
+      jogosTime.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      jogosTime.forEach(jogo => {
+        const isHome = jogo.home === time;
+        const rival = isHome ? jogo.away : jogo.home;
+        const local = isHome ? "Casa" : "Fora";
+        const [y, m, d] = jogo.date.split('-');
+
+        if (jogo.result) {
+          // Jogo já ocorreu
+          html += `
+          <div class="item">
+            <h3>${jogo.home} ${jogo.result} ${jogo.away}</h3>
+            <div class="confidence-high">✅ ${isHome ? 'Vitória' : 'Empate/Sobrevivência'}</div>
+            <div class="details">📅 ${d}/${m} | 📍 ${local} | 🏟️ ${jogo.stadium}</div>
+          </div>`;
+        } else {
+          // Próximo jogo
+          const isInG4 = g4.includes(time);
+          html += `
+          <div class="item">
+            <h3>${jogo.home} vs. ${jogo.away}</h3>
+            <div class="details">📅 ${d}/${m} (${jogo.day}) | ⏰ ${jogo.time} | 📍 ${local}</div>
+            <div class="details">🔹 ${isInG4 ? '🎯 Time do G4 — pressionado' : '⚠️ Jogo chave para subir'}</div>
+          </div>`;
+        }
+      });
+
+      html += `<div class="tip">📅 Análise atualizada em: ${new Date().toLocaleDateString('pt-BR')}</div>`;
+      resultsDiv.innerHTML = html;
+    }
+
+    // Função genérica de exibição
     function showResults(title, items) {
       const resultsDiv = document.getElementById("results");
       let html = `<div class="section-title">${title}</div>`;
@@ -175,7 +330,7 @@
           <div class="${item.confidence}">${item.result}</div>
           <div class="details">🎯 ${item.analysis}</div>
           <div class="details">🔹 ${item.hidden}</div>`;
-        
+
         if (item.badge) {
           html += `<div style="margin-top:8px;">`;
           item.badge.split(',').forEach(b => {
@@ -191,25 +346,23 @@
       resultsDiv.innerHTML = html;
     }
 
-    // Botões funcionais
+    // Botões de análise
     document.getElementById("btnNextMatches").addEventListener("click", () => {
       setActive("btnNextMatches");
-
       const hoje = new Date().toISOString().split('T')[0];
+      const resultsDiv = document.getElementById("results");
+
+      let html = `<div class="section-title">📊 RESULTADOS</div>`;
       const passados = [];
-      const futuros = [];
 
       data.brasileirao.forEach(dia => {
         dia.matches.forEach(m => {
           if (m.result && dia.date <= hoje) {
             passados.push({ ...m, date: dia.date, day: dia.day });
-          } else if (dia.date > hoje || !m.result) {
-            futuros.push({ ...m, date: dia.date, day: dia.day });
           }
         });
       });
 
-      let html = `<div class="section-title">📊 RESULTADOS</div>`;
       passados.forEach(m => {
         const [y, mth, d] = m.date.split('-');
         html += `
@@ -220,106 +373,79 @@
         </div>`;
       });
 
-      if (futuros.length > 0) {
-        html += `<div class="section-title">📅 PRÓXIMOS JOGOS</div>`;
-        const grouped = {};
-        futuros.forEach(m => {
-          if (!grouped[m.date]) grouped[m.date] = { day: m.day, matches: [] };
-          grouped[m.date].matches.push(m);
+      html += `<div class="section-title">📅 PRÓXIMOS JOGOS</div>`;
+      const futuros = [];
+      data.brasileirao.forEach(dia => {
+        dia.matches.forEach(m => {
+          if (!m.result || dia.date > hoje) {
+            futuros.push({ ...m, date: dia.date, day: dia.day });
+          }
         });
+      });
 
-        Object.keys(grouped).forEach(date => {
-          const d = grouped[date];
-          const [y, mth, day] = date.split('-');
-          html += `<h4 style="color:#4CAF50;margin:15px 0;">${d.day}, ${day}/${mth}</h4>`;
-          d.matches.forEach(match => {
-            const g4Match = g4.includes(match.home) || g4.includes(match.away);
-            html += `
-            <div class="item">
-              <h3>${match.home} vs. ${match.away}</h3>
-              <div class="details">⏰ ${match.time} | 🏟️ ${match.stadium}</div>
-              ${g4Match ? `<div class="details">🔹 🎯 Time do G4 em campo</div>` : ""}
-            </div>`;
-          });
+      const grouped = {};
+      futuros.forEach(m => {
+        if (!grouped[m.date]) grouped[m.date] = { day: m.day, matches: [] };
+        grouped[m.date].matches.push(m);
+      });
+
+      Object.keys(grouped).forEach(date => {
+        const d = grouped[date];
+        const [y, mth, day] = date.split('-');
+        html += `<h4 style="color:#4CAF50;margin:15px 0;">${d.day}, ${day}/${mth}</h4>`;
+        d.matches.forEach(match => {
+          const context = g4.includes(match.home) || g4.includes(match.away) ? "🎯 Time do G4 em campo" : "";
+          html += `
+          <div class="item">
+            <h3>${match.home} vs. ${match.away}</h3>
+            <div class="details">⏰ ${match.time} | 🏟️ ${match.stadium}</div>
+            ${context ? `<div class="details">🔹 ${context}</div>` : ""}
+          </div>`;
         });
-      }
+      });
 
       html += `<div class="tip">📅 Atualizado em: ${new Date().toLocaleDateString('pt-BR')}</div>`;
-      document.getElementById("results").innerHTML = html;
+      resultsDiv.innerHTML = html;
     });
 
     document.getElementById("btnChance").addEventListener("click", () => {
       setActive("btnChance");
       showResults("🎯 REAÇÃO DO LÍDER (G4)", [
-        {
-          teams: "São Paulo vs. Fortaleza",
-          result: "✅ Win — Entrada acertada",
-          confidence: "confidence-high",
-          analysis: "Precisava vencer para subir na tabela",
-          hidden: "3 desfalques superados",
-          badge: "green:Alta Probabilidade"
-        }
+        { teams: "São Paulo vs. Fortaleza", result: "✅ Win — Entrada acertada", confidence: "confidence-high", analysis: "Precisava vencer para subir", hidden: "3 desfalques superados", badge: "green:Alta Probabilidade" }
       ]);
     });
 
     document.getElementById("btnPressureAlert").addEventListener("click", () => {
       setActive("btnPressureAlert");
-      showResults("🔥 ALERTA DE PRESSÃO (G4 Pressionado)", [
-        {
-          teams: "Flamengo vs. Cruzeiro",
-          result: "✅ Win — Odd de empate alta",
-          confidence: "confidence-high",
-          analysis: "Empate paga R$3,40",
-          hidden: "Técnico pode ser demitido",
-          badge: "orange:Médio Risco"
-        }
+      showResults("🔥 ALERTA DE PRESSÃO (G4)", [
+        { teams: "Flamengo vs. Cruzeiro", result: "✅ Win — Odd de empate alta", confidence: "confidence-high", analysis: "Empate paga R$3,40", hidden: "Técnico pode ser demitido", badge: "orange:Médio Risco" }
       ]);
     });
 
     document.getElementById("btnHiddenConflicts").addEventListener("click", () => {
       setActive("btnHiddenConflicts");
       showResults("💰 VALOR NO MERCADO (Odd Alta)", [
-        {
-          teams: "Flamengo vs. Cruzeiro",
-          result: "✅ Recomendado — Odd 3.40",
-          confidence: "confidence-high",
-          analysis: "Clássico equilibrado",
-          hidden: "Ambos precisam dos pontos",
-          badge: "green:Valor no Mercado"
-        }
+        { teams: "Flamengo vs. Cruzeiro", result: "✅ Recomendado — Odd 3.40", confidence: "confidence-high", analysis: "Clássico equilibrado", hidden: "Ambos precisam dos pontos", badge: "green:Valor no Mercado" }
       ]);
     });
 
     document.getElementById("btnReactionChain").addEventListener("click", () => {
       setActive("btnReactionChain");
       showResults("🔄 MÚLTIPLOS EM CADEIA (G4)", [
-        {
-          teams: "São Paulo → Flamengo → Atlético-MG",
-          result: "✅ Sequência ativa",
-          confidence: "confidence-high",
-          analysis: "Três times do G4 jogam em 72h",
-          hidden: "Oportunidade de múltiplo acumulado",
-          badge: "purple:Cadeia Ativa"
-        }
+        { teams: "São Paulo → Flamengo → Atlético-MG", result: "✅ Sequência ativa", confidence: "confidence-high", analysis: "Três times do G4 jogam em 72h", hidden: "Oportunidade de múltiplo acumulado", badge: "purple:Cadeia Ativa" }
       ]);
     });
 
     document.getElementById("btnMultiples").addEventListener("click", () => {
       setActive("btnMultiples");
       showResults("🚀 MÚLTIPLOS EM ALTA (X2 Protegido)", [
-        {
-          teams: "São Paulo vs. Fortaleza",
-          result: "✅ Recomendado — X2 Protegido",
-          confidence: "confidence-high",
-          analysis: "Cobrir vitória ou empate",
-          hidden: "Fator: São Paulo precisa subir",
-          badge: "purple:X2 Protegido,green:Bom valor"
-        }
+        { teams: "São Paulo vs. Fortaleza", result: "✅ Recomendado — X2 Protegido", confidence: "confidence-high", analysis: "Cobrir vitória ou empate", hidden: "Fator: São Paulo precisa subir", badge: "purple:X2 Protegido,green:Bom valor" }
       ]);
     });
 
-    // Inicializa com "Próximos Jogos"
+    // Inicialização
     document.addEventListener('DOMContentLoaded', () => {
+      renderTeamButtons();
       document.getElementById("btnNextMatches").click();
     });
   </script>
