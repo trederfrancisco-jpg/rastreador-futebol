@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -175,7 +176,19 @@
     </div>
 
     <nav>
-      <button id="btnMultiples" class="active">
+      <button id="btnChance" class="active">
+        🎯 Reação do Líder (G4)
+      </button>
+      <button id="btnPressureAlert">
+        🔥 Alerta de Pressão (G4 Pressionado)
+      </button>
+      <button id="btnHiddenConflicts">
+        💰 Valor no Mercado (Odd Alta)
+      </button>
+      <button id="btnReactionChain">
+        🔄 Múltiplos em Cadeia (G4)
+      </button>
+      <button id="btnMultiples">
         🚀 MÚLTIPLOS EM ALTA (X2 Protegido)
       </button>
     </nav>
@@ -204,14 +217,15 @@
         const response = await fetch('/data.json');
         if (!response.ok) throw new Error('Falha ao carregar data.json');
         data = await response.json();
-        filterAndDisplay();
+        filterAndDisplay('chance'); // Inicia com a lógica principal
       } catch (error) {
         console.error('Erro:', error);
         document.getElementById("results").innerHTML = `<p>❌ Falha ao carregar dados.</p>`;
       }
     }
 
-    function filterAndDisplay() {
+    function filterAndDisplay(type) {
+      // Por enquanto, todas as abas usam a mesma lógica (você pode diferenciar depois)
       const leagueFilter = document.getElementById("leagueSelect").value;
       const today = new Date('2025-10-11');
       const nextWeek = new Date('2025-10-17');
@@ -245,15 +259,35 @@
         if (gameDate >= today && gameDate <= nextWeek) {
           day.matches.forEach(match => {
             if (!match || !match.home || !match.away) return;
-            matches.push({
-              home: match.home,
-              away: match.away,
-              date: day.date,
-              time: match.time,
-              stadium: match.stadium || 'Estádio não informado',
-              city: match.city || '',
-              league: match.league || 'Outro'
-            });
+
+            const homeIsG4 = isG4Team(match.home);
+            const awayIsG4 = isG4Team(match.away);
+
+            // Regra 1: Ignorar G4 vs G4
+            if (homeIsG4 && awayIsG4) return;
+
+            // Regra 2: Só considerar G4 vs não-G4
+            const isG4VsNonG4 = (homeIsG4 && !awayIsG4) || (!homeIsG4 && awayIsG4);
+            if (!isG4VsNonG4) return;
+
+            // Regra 3: Time do G4 deve vir de derrota ou empate
+            const g4Team = homeIsG4 ? match.home : match.away;
+            const lastResult = getLastResult(g4Team);
+
+            if (lastResult === 'derrota' || lastResult === 'empate') {
+              matches.push({
+                home: match.home,
+                away: match.away,
+                date: day.date,
+                time: match.time,
+                stadium: match.stadium || 'Estádio não informado',
+                city: match.city || '',
+                league: match.league || 'Outro',
+                strategy: `⏱️ Time do G4 (${g4Team}) vem de ${lastResult} → Alta probabilidade de reação`,
+                risk: "Baixo",
+                badge: "Reação do G4"
+              });
+            }
           });
         }
       });
@@ -269,15 +303,21 @@
       let html = `<div class="section-title">🔥 PRÓXIMOS EM ALTA (11 a 17/10/2025)</div>`;
 
       if (games.length === 0) {
-        html += `<p>Nenhum jogo encontrado para o período selecionado.</p>`;
+        html += `<p>Nenhum jogo encontrado com a lógica de "Reação do G4".<br>✅ Jogos G4 vs G4 foram ignorados conforme sua lógica.</p>`;
       } else {
         games.forEach(game => {
+          const riskClass = 'green';
           const location = game.stadium ? `🏟️ ${game.stadium}` + (game.city ? ` (${game.city})` : '') : '🏟️ Local não informado';
           html += `
             <div class="item">
               <h3>${game.home} vs. ${game.away}</h3>
               <div class="details">
-                ⏰ ${formatDate(game.date)} às ${game.time} | ${location} | 🏆 ${game.league}
+                ⏰ ${formatDate(game.date)} às ${game.time} | ${location} | 🏆 ${game.league}<br>
+                <strong>Estratégia:</strong> ${game.strategy}
+              </div>
+              <div style="display: flex; gap: 10px; margin-top: 8px;">
+                <span class="badge green">${game.badge}</span>
+                <span class="risk ${riskClass}">${game.risk} Risco</span>
               </div>
             </div>
           `;
@@ -292,8 +332,67 @@
       return new Date(dateStr).toLocaleDateString('pt-BR');
     }
 
-    // Eventos
-    document.getElementById("leagueSelect").addEventListener("change", filterAndDisplay);
+    function isG4Team(team) {
+      const g4Teams = [
+        "Flamengo", "Palmeiras", "Botafogo", "Grêmio", "Atlético-MG", "Internacional",
+        "Arsenal", "Liverpool", "Manchester City", "Chelsea",
+        "Barcelona", "Real Madrid", "Atlético Madrid", "Villarreal",
+        "Juventus", "AC Milan", "Inter", "Napoli",
+        "Bayern", "Dortmund", "Leipzig", "Bayer Leverkusen",
+        "PSG", "Marseille", "Lyon", "Monaco"
+      ];
+      return g4Teams.some(g4 => team.includes(g4));
+    }
+
+    function getLastResult(team) {
+      // 🔁 Simulação com base nos dados reais que você forneceu
+      const results = {
+        "Palmeiras": "derrota",
+        "Grêmio": "derrota",
+        "Botafogo": "empate",
+        "Atlético-MG": "vitória",
+        "Flamengo": "vitória",
+        "Internacional": "vitória",
+        "Chelsea": "derrota",
+        "Arsenal": "empate",
+        "Barcelona": "derrota",
+        "Atlético Madrid": "vitória",
+        "Juventus": "empate",
+        "AC Milan": "vitória",
+        "Fluminense": "vitória",
+        "São Paulo": "vitória"
+      };
+      return results[team] || "vitória";
+    }
+
+    function setActiveButton(clickedBtn) {
+      document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("active"));
+      clickedBtn.classList.add("active");
+    }
+
+    // Restaurando todos os botões com eventos
+    document.getElementById("btnChance").addEventListener("click", function() {
+      setActiveButton(this);
+      filterAndDisplay('chance');
+    });
+    document.getElementById("btnPressureAlert").addEventListener("click", function() {
+      setActiveButton(this);
+      filterAndDisplay('pressure');
+    });
+    document.getElementById("btnHiddenConflicts").addEventListener("click", function() {
+      setActiveButton(this);
+      filterAndDisplay('hidden');
+    });
+    document.getElementById("btnReactionChain").addEventListener("click", function() {
+      setActiveButton(this);
+      filterAndDisplay('chain');
+    });
+    document.getElementById("btnMultiples").addEventListener("click", function() {
+      setActiveButton(this);
+      filterAndDisplay('multiples');
+    });
+
+    document.getElementById("leagueSelect").addEventListener("change", () => filterAndDisplay('all'));
 
     const translations = {
       pt: { title: "Rastreador Avançado - Múltiplos em Alta", btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO" },
@@ -322,7 +421,6 @@
   </script>
 </body>
 </html>
-
 
 
 
