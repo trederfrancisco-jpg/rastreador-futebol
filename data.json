@@ -167,55 +167,6 @@
       ]
     }
   ],
-  "libertadores": [
-    {
-      "date": "2025-10-21",
-      "matches": [
-        {
-          "home": "Independiente del Valle",
-          "away": "Atlético-MG",
-          "time": "21:30",
-          "stadium": "Estadio Banco Guayaquil",
-          "city": "Quito, Equador",
-          "league": "Copa Libertadores"
-        }
-      ]
-    },
-    {
-      "date": "2025-10-22",
-      "matches": [
-        {
-          "home": "Flamengo",
-          "away": "Racing Club",
-          "time": "21:30",
-          "stadium": "Estadio do Maracanã",
-          "city": "Rio de Janeiro, Brasil",
-          "league": "Copa Libertadores"
-        }
-      ]
-    },
-    {
-      "date": "2025-10-23",
-      "matches": [
-        {
-          "home": "Liga de Quito",
-          "away": "Palmeiras",
-          "time": "21:30",
-          "stadium": "Rodrigo Paz Delgado",
-          "city": "Quito, Equador",
-          "league": "Copa Libertadores"
-        },
-        {
-          "home": "Universidad de Chile",
-          "away": "Lanús",
-          "time": "19:00",
-          "stadium": "Estadio Nacional Julio Martínez Prádanos",
-          "city": "Santiago, Chile",
-          "league": "Copa Libertadores"
-        }
-      ]
-    }
-  ],
   "laliga": [
     {
       "date": "2025-10-05",
@@ -306,6 +257,55 @@
           "stadium": "Allianz Stadium",
           "city": "Torino, Itália",
           "league": "Serie A"
+        }
+      ]
+    }
+  ],
+  "libertadores": [
+    {
+      "date": "2025-10-21",
+      "matches": [
+        {
+          "home": "Independiente del Valle",
+          "away": "Atlético-MG",
+          "time": "21:30",
+          "stadium": "Estadio Banco Guayaquil",
+          "city": "Quito, Equador",
+          "league": "Copa Libertadores"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-22",
+      "matches": [
+        {
+          "home": "Flamengo",
+          "away": "Racing Club",
+          "time": "21:30",
+          "stadium": "Estadio do Maracanã",
+          "city": "Rio de Janeiro, Brasil",
+          "league": "Copa Libertadores"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-23",
+      "matches": [
+        {
+          "home": "Liga de Quito",
+          "away": "Palmeiras",
+          "time": "21:30",
+          "stadium": "Rodrigo Paz Delgado",
+          "city": "Quito, Equador",
+          "league": "Copa Libertadores"
+        },
+        {
+          "home": "Universidad de Chile",
+          "away": "Lanús",
+          "time": "19:00",
+          "stadium": "Estadio Nacional Julio Martínez Prádanos",
+          "city": "Santiago, Chile",
+          "league": "Copa Libertadores"
         }
       ]
     }
