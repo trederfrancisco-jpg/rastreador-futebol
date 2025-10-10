@@ -36,7 +36,7 @@
           "home": "Mirassol",
           "away": "Internacional",
           "time": "20:00",
-          "stadium": "Estadio José Maria de Campos Maia",
+          "stadium": "Estádio José Maria de Campos Maia",
           "city": "Mirassol, Brasil",
           "league": "Brasileirão"
         },
@@ -89,7 +89,7 @@
           "home": "Fluminense",
           "away": "Juventude",
           "time": "21:30",
-          "stadium": "Estadio do Maracanã",
+          "stadium": "Estádio do Maracanã",
           "city": "Rio de Janeiro, Brasil",
           "league": "Brasileirão"
         },
@@ -167,6 +167,55 @@
       ]
     }
   ],
+  "libertadores": [
+    {
+      "date": "2025-10-21",
+      "matches": [
+        {
+          "home": "Independiente del Valle",
+          "away": "Atlético-MG",
+          "time": "21:30",
+          "stadium": "Estadio Banco Guayaquil",
+          "city": "Quito, Equador",
+          "league": "Copa Libertadores"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-22",
+      "matches": [
+        {
+          "home": "Flamengo",
+          "away": "Racing Club",
+          "time": "21:30",
+          "stadium": "Estádio do Maracanã",
+          "city": "Rio de Janeiro, Brasil",
+          "league": "Copa Libertadores"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-23",
+      "matches": [
+        {
+          "home": "Liga de Quito",
+          "away": "Palmeiras",
+          "time": "21:30",
+          "stadium": "Estadio Rodrigo Paz Delgado",
+          "city": "Quito, Equador",
+          "league": "Copa Libertadores"
+        },
+        {
+          "home": "Universidad de Chile",
+          "away": "Lanús",
+          "time": "19:00",
+          "stadium": "Estadio Nacional Julio Martínez Prádanos",
+          "city": "Santiago, Chile",
+          "league": "Copa Libertadores"
+        }
+      ]
+    }
+  ],
   "laliga": [
     {
       "date": "2025-10-05",
@@ -200,7 +249,7 @@
           "away": "Rayo Vallecano",
           "time": "19:00",
           "stadium": "Estadio Municipal de Anoeta",
-          "city": "Anoeta, Espanha",
+          "city": "San Sebastián, Espanha",
           "league": "LaLiga"
         },
         {
@@ -239,7 +288,7 @@
           "away": "AS Roma",
           "time": "20:45",
           "stadium": "Artemio Franchi",
-          "city": "Firenze, Itália",
+          "city": "Florença, Itália",
           "league": "Serie A"
         },
         {
@@ -247,7 +296,7 @@
           "away": "Genoa",
           "time": "20:45",
           "stadium": "Diego Armando Maradona",
-          "city": "Napoli, Itália",
+          "city": "Nápoles, Itália",
           "league": "Serie A"
         },
         {
@@ -255,57 +304,8 @@
           "away": "AC Milan",
           "time": "20:45",
           "stadium": "Allianz Stadium",
-          "city": "Torino, Itália",
+          "city": "Turim, Itália",
           "league": "Serie A"
-        }
-      ]
-    }
-  ],
-  "libertadores": [
-    {
-      "date": "2025-10-21",
-      "matches": [
-        {
-          "home": "Independiente del Valle",
-          "away": "Atlético-MG",
-          "time": "21:30",
-          "stadium": "Estadio Banco Guayaquil",
-          "city": "Quito, Equador",
-          "league": "Copa Libertadores"
-        }
-      ]
-    },
-    {
-      "date": "2025-10-22",
-      "matches": [
-        {
-          "home": "Flamengo",
-          "away": "Racing Club",
-          "time": "21:30",
-          "stadium": "Estadio do Maracanã",
-          "city": "Rio de Janeiro, Brasil",
-          "league": "Copa Libertadores"
-        }
-      ]
-    },
-    {
-      "date": "2025-10-23",
-      "matches": [
-        {
-          "home": "Liga de Quito",
-          "away": "Palmeiras",
-          "time": "21:30",
-          "stadium": "Rodrigo Paz Delgado",
-          "city": "Quito, Equador",
-          "league": "Copa Libertadores"
-        },
-        {
-          "home": "Universidad de Chile",
-          "away": "Lanús",
-          "time": "19:00",
-          "stadium": "Estadio Nacional Julio Martínez Prádanos",
-          "city": "Santiago, Chile",
-          "league": "Copa Libertadores"
         }
       ]
     }
