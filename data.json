@@ -1,59 +1,313 @@
 {
   "brasileirao": [
     {
+      "date": "2025-10-11",
+      "matches": [
+        {
+          "home": "Palmeiras",
+          "away": "Juventude",
+          "time": "19:00",
+          "stadium": "Allianz Parque",
+          "city": "São Paulo, Brasil",
+          "league": "Brasileirão"
+        }
+      ]
+    },
+    {
       "date": "2025-10-15",
-      "day": "quarta-feira",
       "matches": [
         {
           "home": "Palmeiras",
           "away": "Red Bull Bragantino",
           "time": "19:00",
           "stadium": "Allianz Parque",
-          "city": "São Paulo, Brasil"
+          "city": "São Paulo, Brasil",
+          "league": "Brasileirão"
         },
         {
           "home": "Botafogo",
           "away": "Flamengo",
           "time": "19:30",
           "stadium": "Estádio Olímpico Nilton Santos",
-          "city": "Rio de Janeiro, Brasil"
+          "city": "Rio de Janeiro, Brasil",
+          "league": "Brasileirão"
+        },
+        {
+          "home": "Mirassol",
+          "away": "Internacional",
+          "time": "20:00",
+          "stadium": "Estadio José Maria de Campos Maia",
+          "city": "Mirassol, Brasil",
+          "league": "Brasileirão"
+        },
+        {
+          "home": "Sport",
+          "away": "Ceará",
+          "time": "20:00",
+          "stadium": "Ilha do Retiro",
+          "city": "Recife, Brasil",
+          "league": "Brasileirão"
         },
         {
           "home": "Atlético-MG",
           "away": "Cruzeiro",
           "time": "21:30",
           "stadium": "Arena MRV",
-          "city": "Belo Horizonte, Brasil"
+          "city": "Belo Horizonte, Brasil",
+          "league": "Brasileirão"
+        },
+        {
+          "home": "Fortaleza",
+          "away": "Vasco da Gama",
+          "time": "21:30",
+          "stadium": "Castelão",
+          "city": "Fortaleza, Brasil",
+          "league": "Brasileirão"
+        },
+        {
+          "home": "Santos",
+          "away": "Corinthians",
+          "time": "21:30",
+          "stadium": "Estádio Vila Belmiro (Urbano Caldeira)",
+          "city": "Santos, Brasil",
+          "league": "Brasileirão"
         }
       ]
     },
     {
       "date": "2025-10-16",
-      "day": "quinta-feira",
       "matches": [
         {
           "home": "Grêmio",
           "away": "São Paulo",
           "time": "19:00",
           "stadium": "Grêmio Arena",
-          "city": "Porto Alegre, Brasil"
+          "city": "Porto Alegre, Brasil",
+          "league": "Brasileirão"
         },
         {
           "home": "Fluminense",
           "away": "Juventude",
           "time": "21:30",
-          "stadium": "Estádio do Maracanã",
-          "city": "Rio de Janeiro, Brasil"
+          "stadium": "Estadio do Maracanã",
+          "city": "Rio de Janeiro, Brasil",
+          "league": "Brasileirão"
+        },
+        {
+          "home": "Vitória",
+          "away": "Bahia",
+          "time": "21:30",
+          "stadium": "Estádio Manoel Barradas",
+          "city": "Salvador, Brasil",
+          "league": "Brasileirão"
         }
       ]
     }
   ],
-  "premierLeague": [],
-  "laliga": [],
-  "serieA": [],
-  "bundesliga": [],
-  "ligue1": [],
-  "libertadores": [],
-  "champions": [],
-  "europa": []
+  "premierLeague": [
+    {
+      "date": "2025-10-12",
+      "matches": [
+        {
+          "home": "Nottingham Forest",
+          "away": "Chelsea",
+          "time": "08:30",
+          "stadium": "The City Ground",
+          "city": "Nottingham, Inglaterra",
+          "league": "Premier League"
+        },
+        {
+          "home": "Brighton & Hove Albion",
+          "away": "Newcastle United",
+          "time": "11:00",
+          "stadium": "American Express Stadium",
+          "city": "Falmer, Inglaterra",
+          "league": "Premier League"
+        },
+        {
+          "home": "Burnley",
+          "away": "Leeds United",
+          "time": "11:00",
+          "stadium": "Turf Moor",
+          "city": "Burnley, Inglaterra",
+          "league": "Premier League"
+        },
+        {
+          "home": "Crystal Palace",
+          "away": "AFC Bournemouth",
+          "time": "11:00",
+          "stadium": "Selhurst Park",
+          "city": "Londres, Inglaterra",
+          "league": "Premier League"
+        },
+        {
+          "home": "Manchester City",
+          "away": "Everton",
+          "time": "11:00",
+          "stadium": "Etihad Stadium",
+          "city": "Manchester, Inglaterra",
+          "league": "Premier League"
+        },
+        {
+          "home": "Sunderland",
+          "away": "Wolverhampton Wanderers",
+          "time": "11:00",
+          "stadium": "Stadium of Light",
+          "city": "Sunderland, Inglaterra",
+          "league": "Premier League"
+        },
+        {
+          "home": "Fulham",
+          "away": "Arsenal",
+          "time": "13:30",
+          "stadium": "Craven Cottage",
+          "city": "Londres, Inglaterra",
+          "league": "Premier League"
+        }
+      ]
+    }
+  ],
+  "libertadores": [
+    {
+      "date": "2025-10-21",
+      "matches": [
+        {
+          "home": "Independiente del Valle",
+          "away": "Atlético-MG",
+          "time": "21:30",
+          "stadium": "Estadio Banco Guayaquil",
+          "city": "Quito, Equador",
+          "league": "Copa Libertadores"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-22",
+      "matches": [
+        {
+          "home": "Flamengo",
+          "away": "Racing Club",
+          "time": "21:30",
+          "stadium": "Estadio do Maracanã",
+          "city": "Rio de Janeiro, Brasil",
+          "league": "Copa Libertadores"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-23",
+      "matches": [
+        {
+          "home": "Liga de Quito",
+          "away": "Palmeiras",
+          "time": "21:30",
+          "stadium": "Rodrigo Paz Delgado",
+          "city": "Quito, Equador",
+          "league": "Copa Libertadores"
+        },
+        {
+          "home": "Universidad de Chile",
+          "away": "Lanús",
+          "time": "19:00",
+          "stadium": "Estadio Nacional Julio Martínez Prádanos",
+          "city": "Santiago, Chile",
+          "league": "Copa Libertadores"
+        }
+      ]
+    }
+  ],
+  "laliga": [
+    {
+      "date": "2025-10-05",
+      "matches": [
+        {
+          "home": "Alavés",
+          "away": "Elche",
+          "time": "16:00",
+          "stadium": "Mendizorroza",
+          "city": "Vitoria-Gasteiz, Espanha",
+          "league": "LaLiga"
+        },
+        {
+          "home": "Sevilla",
+          "away": "Barcelona",
+          "time": "20:00",
+          "stadium": "Ramón Sánchez-Pizjuán",
+          "city": "Sevilla, Espanha",
+          "league": "LaLiga"
+        },
+        {
+          "home": "Espanyol",
+          "away": "Real Betis",
+          "time": "18:00",
+          "stadium": "RCDE Stadium",
+          "city": "Barcelona, Espanha",
+          "league": "LaLiga"
+        },
+        {
+          "home": "Real Sociedad",
+          "away": "Rayo Vallecano",
+          "time": "19:00",
+          "stadium": "Estadio Municipal de Anoeta",
+          "city": "Anoeta, Espanha",
+          "league": "LaLiga"
+        },
+        {
+          "home": "Celta Vigo",
+          "away": "Atlético Madrid",
+          "time": "21:00",
+          "stadium": "Estadio Abanca-Balaídos",
+          "city": "Vigo, Espanha",
+          "league": "LaLiga"
+        }
+      ]
+    }
+  ],
+  "serieA": [
+    {
+      "date": "2025-10-05",
+      "matches": [
+        {
+          "home": "Udinese",
+          "away": "Cagliari",
+          "time": "15:00",
+          "stadium": "Bluenergy Stadium",
+          "city": "Udine, Itália",
+          "league": "Serie A"
+        },
+        {
+          "home": "Bologna",
+          "away": "Pisa",
+          "time": "18:00",
+          "stadium": "Renato Dall'Ara",
+          "city": "Bologna, Itália",
+          "league": "Serie A"
+        },
+        {
+          "home": "Fiorentina",
+          "away": "AS Roma",
+          "time": "20:45",
+          "stadium": "Artemio Franchi",
+          "city": "Firenze, Itália",
+          "league": "Serie A"
+        },
+        {
+          "home": "Napoli",
+          "away": "Genoa",
+          "time": "20:45",
+          "stadium": "Diego Armando Maradona",
+          "city": "Napoli, Itália",
+          "league": "Serie A"
+        },
+        {
+          "home": "Juventus",
+          "away": "AC Milan",
+          "time": "20:45",
+          "stadium": "Allianz Stadium",
+          "city": "Torino, Itália",
+          "league": "Serie A"
+        }
+      ]
+    }
+  ]
 }
