@@ -1,235 +1,327 @@
-
-<script>
-  let data = {};
-
-  async function loadData() {
-    try {
-      const response = await fetch('/data.json');
-      if (!response.ok) throw new Error('Falha ao carregar data.json');
-      data = await response.json();
-      filterAndDisplay('all');
-    } catch (error) {
-      console.error('Erro:', error);
-      document.getElementById("results").innerHTML = `<p>❌ Falha ao carregar dados.</p>`;
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rastreador Avançado - Múltiplos em Alta</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #0f0f1a;
+      color: white;
+      display: flex;
+      height: 100vh;
     }
-  }
-
-  function filterAndDisplay(type) {
-    const leagueFilter = document.getElementById("leagueSelect").value;
-    const today = new Date('2025-10-15');
-    const nextWeek = new Date(today);
-    nextWeek.setDate(today.getDate() + 2);
-
-    let matches = [];
-
-    const leagues = {
-      brasileirao: data.brasileirao || [],
-      premierLeague: data.premierLeague || [],
-      laliga: data.laliga || [],
-      serieA: data.serieA || [],
-      bundesliga: data.bundesliga || [],
-      ligue1: data.ligue1 || [],
-      libertadores: data.libertadores || [],
-      champions: data.champions || [],
-      europa: data.europa || []
-    };
-
-    let selectedLeagues = [];
-    if (leagueFilter && leagues[leagueFilter]) {
-      selectedLeagues = leagues[leagueFilter];
-    } else {
-      selectedLeagues = [
-        ...leagues.brasileirao,
-        ...leagues.premierLeague,
-        ...leagues.laliga,
-        ...leagues.serieA,
-        ...leagues.bundesliga,
-        ...leagues.ligue1,
-        ...leagues.libertadores,
-        ...leagues.champions,
-        ...leagues.europa
-      ];
+    #sidebar {
+      width: 320px;
+      background: #121212;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      position: relative;
+    }
+    #content {
+      flex-grow: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      background: #0f0f1a;
     }
 
-    selectedLeagues.forEach(day => {
-      if (!day || !day.date || !Array.isArray(day.matches)) return;
-      const gameDate = new Date(day.date);
-      if (gameDate >= today && gameDate <= nextWeek) {
-        day.matches.forEach(match => {
-          if (!match || !match.home || !match.away) return;
+    .elite-badge {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #4caf50;
+      font-size: 1.1rem;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-          const homeIsG4 = isG4Team(match.home);
-          const awayIsG4 = isG4Team(match.away);
+    .btn-primary {
+      white-space: nowrap;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #00c853, #00bfa5);
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-decoration: none;
+      min-width: 260px;
+      text-align: center;
+      display: inline-block;
+      margin: 15px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
 
-          // Regra 1: Ignorar jogos G4 vs G4
-          if (homeIsG4 && awayIsG4) {
-            // Pode adicionar aqui um log ou ignorar silenciosamente
-            return;
-          }
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    nav button {
+      padding: 12px 15px;
+      background: #333;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav button.active {
+      background: #00c853;
+      color: white;
+    }
+    nav button:hover {
+      transform: scale(1.02);
+    }
 
-          // Regra 2: Só considerar se pelo menos um time for G4 e o outro não
-          const isG4VsNonG4 = (homeIsG4 && !awayIsG4) || (!homeIsG4 && awayIsG4);
+    #results {
+      margin-top: 20px;
+      max-height: 70vh;
+      overflow-y: auto;
+      background: #121212;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .section-title {
+      font-size: 1.1rem;
+      color: #4caf50;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .item {
+      padding: 15px;
+      border-bottom: 1px solid #222;
+      background: #1a1a1a;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .item:last-child { border-bottom: none; }
+    .details {
+      font-size: 0.9em;
+      color: #ccc;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .tip {
+      font-style: italic;
+      color: #bbb;
+      margin-top: 15px;
+      text-align: center;
+    }
+    .risk {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 12px;
+      margin-left: auto;
+    }
+    .risk.green { background: #2e7d32; color: white; }
+    .risk.orange { background: #ff9800; color: white; }
+    .risk.red { background: #f44336; color: white; }
+    .badge {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 12px;
+      margin-right: 10px;
+    }
+    .badge.green { background: #4caf50; color: white; }
+  </style>
+</head>
+<body>
 
-          if (isG4VsNonG4) {
-            // Regra 3: Verificar se o time do G4 perdeu ou empatou o último jogo
-            const g4Team = homeIsG4 ? match.home : match.away;
-            const lastResult = getLastResult(g4Team); // Função simulada
+  <div id="sidebar">
+    <div style="margin-bottom: 20px;">
+      <div style="background: #00c853; color: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 10px;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px;">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="#fff"/>
+        </svg>
+        <span><strong>Rastreador Avançado</strong></span>
+      </div>
+    </div>
 
-            if (lastResult === 'derrota' || lastResult === 'empate') {
-              matches.push({
-                home: match.home,
-                away: match.away,
-                date: day.date,
-                time: match.time,
-                stadium: match.stadium || 'Estádio não informado',
-                city: match.city || '',
-                league: getLeagueName(match),
-                strategy: `Time do G4 (${g4Team}) vem de ${lastResult} e joga contra time fora do G4 → Alta probabilidade de reação`,
-                risk: "Baixo",
-                badge: "Reação do G4"
-              });
-            }
-          }
+    <div style="margin-bottom: 15px;">
+      <label for="languageSelector" style="display: block; margin-bottom: 5px; font-size: 0.9rem;">Idioma:</label>
+      <select id="languageSelector" style="width: 100%; padding: 10px; border-radius: 6px; border: none; background: #333; color: white;">
+        <option value="pt">🇧🇷 Português</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="es">🇪🇸 Español</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label for="leagueSelect" style="display: block; margin-bottom: 5px; font-size: 0.9rem;">Selecione Campeonato:</label>
+      <select id="leagueSelect" style="width: 100%; padding: 10px; border-radius: 6px; border: none; background: #333; color: white; font-size: 0.9rem;">
+        <option value="">Todos os campeonatos</option>
+        <option value="brasileirao">🇧🇷 Brasileirão Série A</option>
+        <option value="premierLeague">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+        <option value="laliga">🇪🇸 La Liga</option>
+        <option value="serieA">🇮🇹 Serie A</option>
+        <option value="libertadores">🏆 Copa Libertadores</option>
+      </select>
+    </div>
+
+    <nav>
+      <button id="btnMultiples" class="active">
+        🚀 MÚLTIPLOS EM ALTA (X2 Protegido)
+      </button>
+    </nav>
+  </div>
+
+  <div id="content">
+    <div class="elite-badge">
+      🏆 Top 1% no Mundo | 🥇 Líder em Inovação | 💡 X2 Protegido
+    </div>
+
+    <a href="https://wa.me/5511998545662?text=Olá, quero assinar o Rastreador PRO" target="_blank" rel="noopener" class="btn-primary">
+      🚀 QUERO ASSINAR O RASTREADOR PRO
+    </a>
+
+    <div id="results">
+      <div class="section-title">🔥 PRÓXIMOS EM ALTA (11 a 17/10/2025)</div>
+      <p>Carregando jogos...</p>
+    </div>
+  </div>
+
+  <script>
+    let data = {};
+
+    async function loadData() {
+      try {
+        const response = await fetch('/data.json');
+        if (!response.ok) throw new Error('Falha ao carregar data.json');
+        data = await response.json();
+        filterAndDisplay();
+      } catch (error) {
+        console.error('Erro:', error);
+        document.getElementById("results").innerHTML = `<p>❌ Falha ao carregar dados.</p>`;
+      }
+    }
+
+    function filterAndDisplay() {
+      const leagueFilter = document.getElementById("leagueSelect").value;
+      const today = new Date('2025-10-11');
+      const nextWeek = new Date('2025-10-17');
+
+      let matches = [];
+
+      const leagues = {
+        brasileirao: data.brasileirao || [],
+        premierLeague: data.premierLeague || [],
+        laliga: data.laliga || [],
+        serieA: data.serieA || [],
+        libertadores: data.libertadores || []
+      };
+
+      let selectedLeagues = [];
+      if (leagueFilter && leagues[leagueFilter]) {
+        selectedLeagues = leagues[leagueFilter];
+      } else {
+        selectedLeagues = [
+          ...leagues.brasileirao,
+          ...leagues.premierLeague,
+          ...leagues.laliga,
+          ...leagues.serieA,
+          ...leagues.libertadores
+        ];
+      }
+
+      selectedLeagues.forEach(day => {
+        if (!day || !day.date || !Array.isArray(day.matches)) return;
+        const gameDate = new Date(day.date);
+        if (gameDate >= today && gameDate <= nextWeek) {
+          day.matches.forEach(match => {
+            if (!match || !match.home || !match.away) return;
+            matches.push({
+              home: match.home,
+              away: match.away,
+              date: day.date,
+              time: match.time,
+              stadium: match.stadium || 'Estádio não informado',
+              city: match.city || '',
+              league: match.league || 'Outro'
+            });
+          });
+        }
+      });
+
+      matches.sort((a, b) => new Date(a.date) - new Date(b.date));
+      renderMatches(matches);
+    }
+
+    function renderMatches(games) {
+      const container = document.getElementById("results");
+      const date = new Date().toLocaleDateString('pt-BR');
+
+      let html = `<div class="section-title">🔥 PRÓXIMOS EM ALTA (11 a 17/10/2025)</div>`;
+
+      if (games.length === 0) {
+        html += `<p>Nenhum jogo encontrado para o período selecionado.</p>`;
+      } else {
+        games.forEach(game => {
+          const location = game.stadium ? `🏟️ ${game.stadium}` + (game.city ? ` (${game.city})` : '') : '🏟️ Local não informado';
+          html += `
+            <div class="item">
+              <h3>${game.home} vs. ${game.away}</h3>
+              <div class="details">
+                ⏰ ${formatDate(game.date)} às ${game.time} | ${location} | 🏆 ${game.league}
+              </div>
+            </div>
+          `;
         });
       }
-    });
 
-    matches.sort((a, b) => new Date(a.date) - new Date(b.date));
-    renderMatches(matches);
-  }
-
-  function renderMatches(games) {
-    const container = document.getElementById("results");
-    const date = new Date().toLocaleDateString('pt-BR');
-
-    let html = `<div class="section-title">🔥 PRÓXIMOS EM ALTA (${formatDateRange(new Date('2025-10-15'))})</div>`;
-
-    if (games.length === 0) {
-      html += `<p>Nenhum jogo encontrado com a lógica de "Reação do G4".<br>✅ Jogos G4 vs G4 foram ignorados conforme sua lógica.</p>`;
-    } else {
-      games.forEach(game => {
-        const riskClass = 'green';
-        const location = game.stadium ? `🏟️ ${game.stadium}` + (game.city ? ` (${game.city})` : '') : '🏟️ Local não informado';
-        html += `
-          <div class="item">
-            <h3>${game.home} vs. ${game.away}</h3>
-            <div class="details">
-              ⏰ ${formatDate(game.date)} às ${game.time} | ${location} | 🏆 ${game.league}<br>
-              <strong>Estratégia:</strong> ${game.strategy}
-            </div>
-            <div style="display: flex; gap: 10px; margin-top: 8px;">
-              <span class="badge green">${game.badge}</span>
-              <span class="risk ${riskClass}">${game.risk} Risco</span>
-            </div>
-          </div>
-        `;
-      });
+      html += `<div class="tip">📅 Dados atualizados em: ${date}</div>`;
+      container.innerHTML = html;
     }
 
-    html += `<div class="tip">📅 Dados atualizados em: ${date}</div>`;
-    container.innerHTML = html;
-  }
+    function formatDate(dateStr) {
+      return new Date(dateStr).toLocaleDateString('pt-BR');
+    }
 
-  function formatDate(dateStr) {
-    return new Date(dateStr).toLocaleDateString('pt-BR');
-  }
+    // Eventos
+    document.getElementById("leagueSelect").addEventListener("change", filterAndDisplay);
 
-  function formatDateRange(start) {
-    const end = new Date(start);
-    end.setDate(start.getDate() + 2);
-    return `${formatDate(start)} a ${formatDate(end)}`;
-  }
-
-  function getLeagueName(match) {
-    const home = match.home;
-    if (home.includes("Arsenal") || home.includes("Liverpool") || home.includes("Manchester")) return "Premier League";
-    if (home.includes("Barcelona") || home.includes("Real Madrid") || home.includes("Atlético Madrid")) return "LaLiga";
-    if (home.includes("Juventus") || home.includes("Milan") || home.includes("Inter") || home.includes("Napoli")) return "Serie A";
-    if (home.includes("Bayern") || home.includes("Dortmund") || home.includes("Leipzig")) return "Bundesliga";
-    if (home.includes("PSG") || home.includes("Marseille") || home.includes("Lyon")) return "Ligue 1";
-    if (home.includes("Flamengo") || home.includes("Palmeiras") || home.includes("Botafogo") || home.includes("Grêmio") || home.includes("Atlético-MG")) return "Brasileirão";
-    return "Outro";
-  }
-
-  function isG4Team(team) {
-    const g4Teams = [
-      "Flamengo", "Palmeiras", "Botafogo", "Grêmio", "Atlético-MG", "Internacional",
-      "Arsenal", "Liverpool", "Manchester City", "Chelsea",
-      "Barcelona", "Real Madrid", "Atlético Madrid", "Villarreal",
-      "Juventus", "AC Milan", "Inter", "Napoli",
-      "Bayern", "Dortmund", "Leipzig", "Bayer Leverkusen",
-      "PSG", "Marseille", "Lyon", "Monaco"
-    ];
-    return g4Teams.some(g4 => team.includes(g4));
-  }
-
-  // ⚙️ SIMULAÇÃO: Retorna o último resultado do time (em produção, viria de API)
-  function getLastResult(team) {
-    // Simulando: Palmeiras e Grêmio vieram de derrota, Botafogo de empate
-    const results = {
-      "Palmeiras": "derrota",
-      "Grêmio": "derrota",
-      "Botafogo": "empate",
-      "Atlético-MG": "vitória", // Não ativa a lógica
-      "Fluminense": "vitória"  // Não é G4
+    const translations = {
+      pt: { title: "Rastreador Avançado - Múltiplos em Alta", btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO" },
+      en: { title: "Advanced Tracker - High Probability Multiples", btnPrimary: "🚀 I WANT TO JOIN THE PRO TRACKER" },
+      es: { title: "Rastreador Avanzado - Múltiples en Alta", btnPrimary: "🚀 QUIERO SUSCRIBIRME AL RASTREADOR PRO" }
     };
-    return results[team] || "vitória"; // Se não estiver na lista, assume vitória (não ativa lógica)
-  }
 
-  function setActiveButton(clickedBtn) {
-    document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("active"));
-    clickedBtn.classList.add("active");
-  }
+    function translatePage(lang) {
+      document.title = translations[lang]?.title || translations.pt.title;
+      const btn = document.querySelector(".btn-primary");
+      if (btn) btn.textContent = translations[lang]?.btnPrimary || translations.pt.btnPrimary;
+    }
 
-  document.getElementById("btnChance").addEventListener("click", function() {
-    setActiveButton(this);
-    filterAndDisplay('chance');
-  });
-  document.getElementById("btnPressureAlert").addEventListener("click", function() {
-    setActiveButton(this);
-    filterAndDisplay('pressure');
-  });
-  document.getElementById("btnHiddenConflicts").addEventListener("click", function() {
-    setActiveButton(this);
-    filterAndDisplay('hidden');
-  });
-  document.getElementById("btnReactionChain").addEventListener("click", function() {
-    setActiveButton(this);
-    filterAndDisplay('chain');
-  });
-  document.getElementById("btnMultiples").addEventListener("click", function() {
-    setActiveButton(this);
-    filterAndDisplay('multiples');
-  });
+    document.getElementById("languageSelector").addEventListener("change", function() {
+      const lang = this.value;
+      translatePage(lang);
+      localStorage.setItem('language', lang);
+    });
 
-  document.getElementById("leagueSelect").addEventListener("change", () => filterAndDisplay('all'));
-
-  const translations = {
-    pt: { title: "Rastreador Avançado - Múltiplos em Alta", btnPrimary: "🚀 QUERO ASSINAR O RASTREADOR PRO" },
-    en: { title: "Advanced Tracker - High Probability Multiples", btnPrimary: "🚀 I WANT TO JOIN THE PRO TRACKER" },
-    es: { title: "Rastreador Avanzado - Múltiples en Alta", btnPrimary: "🚀 QUIERO SUSCRIBIRME AL RASTREADOR PRO" }
-  };
-
-  function translatePage(lang) {
-    document.title = translations[lang]?.title || translations.pt.title;
-    const btn = document.querySelector(".btn-primary");
-    if (btn) btn.textContent = translations[lang]?.btnPrimary || translations.pt.btnPrimary;
-  }
-
-  document.getElementById("languageSelector").addEventListener("change", function() {
-    const lang = this.value;
-    translatePage(lang);
-    localStorage.setItem('language', lang);
-  });
-
-  document.addEventListener('DOMContentLoaded', function() {
-    const savedLang = localStorage.getItem('language') || 'pt';
-    document.getElementById("languageSelector").value = savedLang;
-    translatePage(savedLang);
-    loadData();
-  });
-</script>
-
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedLang = localStorage.getItem('language') || 'pt';
+      document.getElementById("languageSelector").value = savedLang;
+      translatePage(savedLang);
+      loadData();
+    });
+  </script>
+</body>
+</html>
 
 
 
