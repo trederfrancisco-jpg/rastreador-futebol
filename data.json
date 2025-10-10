@@ -1,47 +1,59 @@
 {
-  "date": "2025-10-15",
-  "day": "quarta-feira",
-  "matches": [
+  "brasileirao": [
     {
-      "home": "Palmeiras",
-      "away": "Red Bull Bragantino",
-      "time": "19:00",
-      "stadium": "Allianz Parque",
-      "city": "São Paulo, Brasil"
+      "date": "2025-10-15",
+      "day": "quarta-feira",
+      "matches": [
+        {
+          "home": "Palmeiras",
+          "away": "Red Bull Bragantino",
+          "time": "19:00",
+          "stadium": "Allianz Parque",
+          "city": "São Paulo, Brasil"
+        },
+        {
+          "home": "Botafogo",
+          "away": "Flamengo",
+          "time": "19:30",
+          "stadium": "Estádio Olímpico Nilton Santos",
+          "city": "Rio de Janeiro, Brasil"
+        },
+        {
+          "home": "Atlético-MG",
+          "away": "Cruzeiro",
+          "time": "21:30",
+          "stadium": "Arena MRV",
+          "city": "Belo Horizonte, Brasil"
+        }
+      ]
     },
     {
-      "home": "Botafogo",
-      "away": "Flamengo",
-      "time": "19:30",
-      "stadium": "Estádio Olímpico Nilton Santos",
-      "city": "Rio de Janeiro, Brasil"
-    },
-    {
-      "home": "Atlético-MG",
-      "away": "Cruzeiro",
-      "time": "21:30",
-      "stadium": "Arena MRV",
-      "city": "Belo Horizonte, Brasil"
+      "date": "2025-10-16",
+      "day": "quinta-feira",
+      "matches": [
+        {
+          "home": "Grêmio",
+          "away": "São Paulo",
+          "time": "19:00",
+          "stadium": "Grêmio Arena",
+          "city": "Porto Alegre, Brasil"
+        },
+        {
+          "home": "Fluminense",
+          "away": "Juventude",
+          "time": "21:30",
+          "stadium": "Estádio do Maracanã",
+          "city": "Rio de Janeiro, Brasil"
+        }
+      ]
     }
-  ]
-},
-{
-  "date": "2025-10-16",
-  "day": "quinta-feira",
-  "matches": [
-    {
-      "home": "Grêmio",
-      "away": "São Paulo",
-      "time": "19:00",
-      "stadium": "Grêmio Arena",
-      "city": "Porto Alegre, Brasil"
-    },
-    {
-      "home": "Fluminense",
-      "away": "Juventude",
-      "time": "21:30",
-      "stadium": "Estadio do Maracanã",
-      "city": "Rio de Janeiro, Brasil"
-    }
-  ]
+  ],
+  "premierLeague": [],
+  "laliga": [],
+  "serieA": [],
+  "bundesliga": [],
+  "ligue1": [],
+  "libertadores": [],
+  "champions": [],
+  "europa": []
 }
