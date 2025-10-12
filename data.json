@@ -1,27 +1,57 @@
+
 {
   "brasileirao": [
     {
-      "date": "2025-09-05",
+      "date": "2025-10-11",
       "matches": [
         {
-          "home": "Flamengo",
-          "away": "Grêmio",
-          "time": "20:00",
-          "stadium": "Estádio do Maracanã",
-          "city": "Rio de Janeiro, Brasil",
+          "home": "Palmeiras",
+          "away": "Juventude",
+          "time": "19:00",
+          "stadium": "Allianz Parque",
+          "city": "São Paulo, Brasil",
           "league": "Brasileirão"
         }
       ]
     },
     {
-      "date": "2025-09-06",
+      "date": "2025-10-12",
       "matches": [
         {
-          "home": "Palmeiras",
-          "away": "Corinthians",
+          "home": "Internacional",
+          "away": "Cuiabá",
+          "time": "16:00",
+          "stadium": "Beira-Rio",
+          "city": "Porto Alegre, Brasil",
+          "league": "Brasileirão"
+        },
+        {
+          "home": "Fluminense",
+          "away": "Athletico-PR",
           "time": "18:30",
-          "stadium": "Allianz Parque",
-          "city": "São Paulo, Brasil",
+          "stadium": "Maracanã",
+          "city": "Rio de Janeiro, Brasil",
+          "league": "Brasileirão"
+        },
+        {
+          "home": "Grêmio",
+          "away": "São Paulo",
+          "time": "20:00",
+          "stadium": "Arena do Grêmio",
+          "city": "Porto Alegre, Brasil",
+          "league": "Brasileirão"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-15",
+      "matches": [
+        {
+          "home": "Botafogo",
+          "away": "Fortaleza",
+          "time": "21:30",
+          "stadium": "Nilton Santos",
+          "city": "Rio de Janeiro, Brasil",
           "league": "Brasileirão"
         }
       ]
@@ -29,11 +59,40 @@
   ],
   "premierLeague": [
     {
-      "date": "2025-09-06",
+      "date": "2025-10-11",
       "matches": [
         {
+          "home": "Manchester City",
+          "away": "Wolves",
+          "time": "12:30",
+          "stadium": "Etihad Stadium",
+          "city": "Manchester, Inglaterra",
+          "league": "Premier League"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-12",
+      "matches": [
+        {
+          "home": "Arsenal",
+          "away": "Bournemouth",
+          "time": "14:00",
+          "stadium": "Emirates Stadium",
+          "city": "Londres, Inglaterra",
+          "league": "Premier League"
+        },
+        {
+          "home": "Chelsea",
+          "away": "Nottingham Forest",
+          "time": "16:30",
+          "stadium": "Stamford Bridge",
+          "city": "Londres, Inglaterra",
+          "league": "Premier League"
+        },
+        {
           "home": "Liverpool",
-          "away": "Arsenal",
+          "away": "Everton",
           "time": "16:30",
           "stadium": "Anfield",
           "city": "Liverpool, Inglaterra",
@@ -42,7 +101,61 @@
       ]
     }
   ],
-  "laliga": [],
-  "serieA": [],
+  "laliga": [
+    {
+      "date": "2025-10-11",
+      "matches": [
+        {
+          "home": "Barcelona",
+          "away": "Sevilla",
+          "time": "16:15",
+          "stadium": "Camp Nou",
+          "city": "Barcelona, Espanha",
+          "league": "LaLiga"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-12",
+      "matches": [
+        {
+          "home": "Atlético Madrid",
+          "away": "Real Betis",
+          "time": "21:00",
+          "stadium": "Metropolitano",
+          "city": "Madri, Espanha",
+          "league": "LaLiga"
+        }
+      ]
+    }
+  ],
+  "serieA": [
+    {
+      "date": "2025-10-11",
+      "matches": [
+        {
+          "home": "Juventus",
+          "away": "Lazio",
+          "time": "15:00",
+          "stadium": "Allianz Stadium",
+          "city": "Turim, Itália",
+          "league": "Serie A"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-12",
+      "matches": [
+        {
+          "home": "AC Milan",
+          "away": "Roma",
+          "time": "20:45",
+          "stadium": "San Siro",
+          "city": "Milão, Itália",
+          "league": "Serie A"
+        }
+      ]
+    }
+  ],
   "libertadores": []
 }
